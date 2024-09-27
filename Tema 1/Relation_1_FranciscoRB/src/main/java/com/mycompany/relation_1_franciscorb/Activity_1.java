@@ -19,9 +19,13 @@ public class Activity_1 extends javax.swing.JFrame {
         
         initComponents();
         
-        inputAge.setSize(new Dimension(300, 50));
-        inputLastName.setSize(new Dimension(300, 50));
-        inputName.setPreferredSize(new Dimension(300, 50));
+        genderGroup.add(maleGender);
+        genderGroup.add(femaleGender);
+        
+        //inputName.setPreferredSize(new Dimension(300, 50));
+        //inputLastName.setPreferredSize(new Dimension(300, 50));
+        //inputAge.setPreferredSize(new Dimension(300, 50));
+
         
     }
 
@@ -34,14 +38,34 @@ public class Activity_1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        genderGroup = new javax.swing.ButtonGroup();
+        labelName = new javax.swing.JLabel();
         inputName = new javax.swing.JTextField();
+        labelLastName = new javax.swing.JLabel();
         inputLastName = new javax.swing.JTextField();
+        labelAge = new javax.swing.JLabel();
         inputAge = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        separator = new javax.swing.JSeparator();
+        labelGender1 = new javax.swing.JLabel();
+        maleGender = new javax.swing.JRadioButton();
+        femaleGender = new javax.swing.JRadioButton();
+        labelCountry = new javax.swing.JLabel();
+        selectCountry = new javax.swing.JComboBox<>();
+        labelExtraInformation = new javax.swing.JLabel();
+        extraInformation = new javax.swing.JTextArea();
+        labelEmail = new javax.swing.JLabel();
+        inputEmail = new javax.swing.JFormattedTextField();
+        labelPassword = new javax.swing.JLabel();
+        inputPassword = new javax.swing.JPasswordField();
+        labelRepeatPassword = new javax.swing.JLabel();
+        inputRepeatPassword = new javax.swing.JPasswordField();
+        buttonRegister = new javax.swing.JButton();
+        buttonCancelRegister = new javax.swing.JButton();
+        AcceptTerms = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        labelName.setText("Enter the name:");
 
         inputName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,17 +73,82 @@ public class Activity_1 extends javax.swing.JFrame {
             }
         });
 
+        labelLastName.setText("Enter the last name:");
+
         inputLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputLastNameActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Enter the last name:");
+        labelAge.setText("Enter your age:");
 
-        jLabel2.setText("Enter the name:");
+        labelGender1.setText("Please enter your gender:");
 
-        jLabel3.setText("Enter your age:");
+        maleGender.setText("Male");
+        maleGender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maleGenderActionPerformed(evt);
+            }
+        });
+
+        femaleGender.setText("Female");
+        femaleGender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                femaleGenderActionPerformed(evt);
+            }
+        });
+
+        labelCountry.setText("Select the country:");
+
+        selectCountry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Spain", "England", "Germany", "France" }));
+        selectCountry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectCountryActionPerformed(evt);
+            }
+        });
+
+        labelExtraInformation.setText("Enter something we should know:");
+
+        extraInformation.setColumns(20);
+        extraInformation.setRows(5);
+
+        labelEmail.setText("Please enter a email:");
+
+        inputEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputEmailActionPerformed(evt);
+            }
+        });
+
+        labelPassword.setText("Please enter a password:");
+
+        inputPassword.setText("jPasswordField1");
+
+        labelRepeatPassword.setText("Repeat password:");
+
+        inputRepeatPassword.setText("jPasswordField1");
+
+        buttonRegister.setText("Register");
+        buttonRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRegisterActionPerformed(evt);
+            }
+        });
+
+        buttonCancelRegister.setText("Cancel register");
+        buttonCancelRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelRegisterActionPerformed(evt);
+            }
+        });
+
+        AcceptTerms.setText("Check the box to accept the terms");
+        AcceptTerms.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AcceptTermsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,42 +157,169 @@ public class Activity_1 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(inputLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(inputAge, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(271, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(separator)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(inputEmail, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(inputPassword, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(labelRepeatPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(inputRepeatPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(labelEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(AcceptTerms))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(buttonRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(buttonCancelRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(25, 25, 25))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inputAge, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelName)
+                            .addComponent(labelLastName)
+                            .addComponent(labelAge)
+                            .addComponent(inputLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(labelGender1))
+                                    .addComponent(labelCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(maleGender)
+                                        .addGap(38, 38, 38)
+                                        .addComponent(femaleGender)
+                                        .addGap(59, 59, 59))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(selectCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelExtraInformation)
+                                    .addComponent(extraInformation, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelName)
+                            .addComponent(maleGender)
+                            .addComponent(femaleGender))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(94, 94, 94))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addComponent(labelLastName)
+                                .addGap(10, 10, 10)
+                                .addComponent(inputLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(labelAge)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(inputAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelGender1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelCountry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(selectCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelExtraInformation)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(extraInformation, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelEmail)
+                    .addComponent(buttonRegister))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelRepeatPassword)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(inputRepeatPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(AcceptTerms))
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(labelPassword)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(buttonCancelRegister)
+                        .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void inputLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputLastNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputLastNameActionPerformed
+
     private void inputNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputNameActionPerformed
 
-    private void inputLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputLastNameActionPerformed
+    private void maleGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maleGenderActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_inputLastNameActionPerformed
+    }//GEN-LAST:event_maleGenderActionPerformed
+
+    private void AcceptTermsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptTermsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AcceptTermsActionPerformed
+
+    private void inputEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputEmailActionPerformed
+
+    private void selectCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectCountryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectCountryActionPerformed
+
+    private void buttonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegisterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonRegisterActionPerformed
+
+    private void buttonCancelRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelRegisterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonCancelRegisterActionPerformed
+
+    private void femaleGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femaleGenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_femaleGenderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,11 +357,29 @@ public class Activity_1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox AcceptTerms;
+    private javax.swing.JButton buttonCancelRegister;
+    private javax.swing.JButton buttonRegister;
+    private javax.swing.JTextArea extraInformation;
+    private javax.swing.JRadioButton femaleGender;
+    private javax.swing.ButtonGroup genderGroup;
     private javax.swing.JTextField inputAge;
+    private javax.swing.JFormattedTextField inputEmail;
     private javax.swing.JTextField inputLastName;
     private javax.swing.JTextField inputName;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPasswordField inputPassword;
+    private javax.swing.JPasswordField inputRepeatPassword;
+    private javax.swing.JLabel labelAge;
+    private javax.swing.JLabel labelCountry;
+    private javax.swing.JLabel labelEmail;
+    private javax.swing.JLabel labelExtraInformation;
+    private javax.swing.JLabel labelGender1;
+    private javax.swing.JLabel labelLastName;
+    private javax.swing.JLabel labelName;
+    private javax.swing.JLabel labelPassword;
+    private javax.swing.JLabel labelRepeatPassword;
+    private javax.swing.JRadioButton maleGender;
+    private javax.swing.JComboBox<String> selectCountry;
+    private javax.swing.JSeparator separator;
     // End of variables declaration//GEN-END:variables
 }
