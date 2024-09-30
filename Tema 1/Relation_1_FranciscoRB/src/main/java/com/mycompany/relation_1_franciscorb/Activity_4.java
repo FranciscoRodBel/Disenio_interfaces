@@ -8,12 +8,12 @@ package com.mycompany.relation_1_franciscorb;
  *
  * @author Francisco
  */
-public class Activity_3 extends javax.swing.JFrame {
+public class Activity_4 extends javax.swing.JFrame {
 
     /**
      * Creates new form Activity_3
      */
-    public Activity_3() {
+    public Activity_4() {
         initComponents();
     }
 
@@ -29,6 +29,7 @@ public class Activity_3 extends javax.swing.JFrame {
         labelNumber = new javax.swing.JLabel();
         inputNumber = new javax.swing.JTextField();
         buttonSubmit = new javax.swing.JButton();
+        labelResult = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,7 +57,8 @@ public class Activity_3 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonSubmit, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                     .addComponent(inputNumber)
-                    .addComponent(labelNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(labelNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelResult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(125, 125, 125))
         );
         layout.setVerticalGroup(
@@ -68,7 +70,9 @@ public class Activity_3 extends javax.swing.JFrame {
                 .addComponent(inputNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16)
                 .addComponent(buttonSubmit)
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelResult, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(152, Short.MAX_VALUE))
         );
 
         pack();
@@ -82,14 +86,18 @@ public class Activity_3 extends javax.swing.JFrame {
         
         try {
             
-            int numberInput = Integer.parseInt(inputNumber.getText());
+            int factorial = Integer.parseInt(inputNumber.getText());
+
+            for (int i = factorial; i > 1; i--) {
+
+                factorial *= i-1;
+            }
             
-            
-            labelNumber.setText("Número: ");
-            
+            labelResult.setText("The factorial is "+factorial);
+
         } catch(Exception e) {
             
-            labelNumber.setText("Error: You must enter a number");
+            labelResult.setText("Error: You must enter a number");
             
         }
         
@@ -112,20 +120,21 @@ public class Activity_3 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Activity_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Activity_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Activity_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Activity_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Activity_3().setVisible(true);
+                new Activity_4().setVisible(true);
             }
         });
     }
@@ -134,5 +143,6 @@ public class Activity_3 extends javax.swing.JFrame {
     private javax.swing.JButton buttonSubmit;
     private javax.swing.JTextField inputNumber;
     private javax.swing.JLabel labelNumber;
+    private javax.swing.JLabel labelResult;
     // End of variables declaration//GEN-END:variables
 }
