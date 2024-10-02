@@ -4,6 +4,10 @@
  */
 package com.mycompany.relation_1_franciscorb;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
+
 /**
  *
  * @author Francisco
@@ -18,6 +22,7 @@ public class Activity_5 extends javax.swing.JFrame {
         
         buttonGroupRadio.add(radioButtonA_Z);
         buttonGroupRadio.add(radioButtonZ_A);
+   
         
     }
 
@@ -32,52 +37,81 @@ public class Activity_5 extends javax.swing.JFrame {
 
         buttonGroupRadio = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listVegetables = new javax.swing.JList<>();
         radioButtonA_Z = new javax.swing.JRadioButton();
         radioButtonZ_A = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Lettuce", "onion", "pepper", "eggplant", "carrot" };
+        listVegetables.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "lettuce", "onion", "pepper", "eggplant", "carrot" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listVegetables);
 
-        radioButtonA_Z.setText("jRadioButton1");
+        radioButtonA_Z.setText("Sorted from A to Z");
+        radioButtonA_Z.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioButtonA_ZActionPerformed(evt);
+            }
+        });
 
-        radioButtonZ_A.setText("jRadioButton2");
+        radioButtonZ_A.setText("Sorted from Z to A");
+        radioButtonZ_A.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioButtonZ_AActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
-                .addComponent(radioButtonZ_A)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(radioButtonA_Z)
-                .addGap(144, 144, 144))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(124, 124, 124)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(167, 167, 167))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(134, 134, 134)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(radioButtonZ_A)
+                    .addComponent(radioButtonA_Z))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(radioButtonA_Z)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(radioButtonA_Z)
-                    .addComponent(radioButtonZ_A))
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addComponent(radioButtonZ_A)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void radioButtonA_ZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonA_ZActionPerformed
+
+        ArrayList<String> vegetablesSorted = convertArrayList();
+
+        vegetablesSorted.sort( (a, b) -> { return -1 * a.compareTo(b); } );
+        
+        changeModel(vegetablesSorted);
+    }//GEN-LAST:event_radioButtonA_ZActionPerformed
+
+    private void radioButtonZ_AActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonZ_AActionPerformed
+
+        ArrayList<String> vegetablesSorted = convertArrayList();
+
+        vegetablesSorted.sort( (b, a) -> { return -1 * a.compareTo(b); } );
+        
+        changeModel(vegetablesSorted);
+
+    }//GEN-LAST:event_radioButtonZ_AActionPerformed
 
     /**
      * @param args the command line arguments
@@ -113,11 +147,38 @@ public class Activity_5 extends javax.swing.JFrame {
             }
         });
     }
+    
+    public ArrayList convertArrayList() {
+
+        ListModel<String> dataList = listVegetables.getModel();
+        ArrayList<String> vegetablesSorted = new ArrayList<>();
+                
+        for (int i = 0; i < dataList.getSize(); i++ ) {
+        
+            vegetablesSorted.add(dataList.getElementAt(i));
+            
+        }
+    
+        return vegetablesSorted;
+    }
+    
+    public void changeModel(ArrayList<String> vegetablesSorted) {
+
+        DefaultListModel<String> vegetable = new DefaultListModel<String>();
+        
+         for (int i = 0; i < vegetablesSorted.size(); i++ ) {
+
+            vegetable.addElement(vegetablesSorted.get(i));
+
+        }
+
+            listVegetables.setModel(vegetable);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupRadio;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> listVegetables;
     private javax.swing.JRadioButton radioButtonA_Z;
     private javax.swing.JRadioButton radioButtonZ_A;
     // End of variables declaration//GEN-END:variables
