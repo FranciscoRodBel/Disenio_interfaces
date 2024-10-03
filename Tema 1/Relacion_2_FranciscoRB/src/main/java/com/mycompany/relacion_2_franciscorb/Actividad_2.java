@@ -6,6 +6,8 @@ package com.mycompany.relacion_2_franciscorb;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.ArrayList;
+import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
@@ -15,7 +17,7 @@ import javax.swing.JRadioButton;
  */
 public class Actividad_2 extends javax.swing.JFrame {
 
-    private static JPanel panelGenerado = new javax.swing.JPanel(); // Crear panel
+    private JPanel panelGenerado = new javax.swing.JPanel(); // Crear panel
 
     /**
      * Creates new form Actividad_2
@@ -119,12 +121,23 @@ public class Actividad_2 extends javax.swing.JFrame {
 
     private void botonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEnviarActionPerformed
         
+        crearPanel();
+        
         JRadioButton opcion1 = crearOpcion(inputOpcion1.getText());
         JRadioButton opcion2 = crearOpcion(inputOpcion2.getText());
         JRadioButton opcion3 = crearOpcion(inputOpcion3.getText());
         JRadioButton opcion4 = crearOpcion(inputOpcion4.getText());
         
-       crearPanel();
+        ArrayList<JRadioButton> opciones = new ArrayList<JRadioButton>();
+        opciones.add(opcion1);
+        opciones.add(opcion2);
+        opciones.add(opcion3);
+        opciones.add(opcion4);
+        
+
+        insertarOpcionesGrupo(opciones);
+        
+
     }//GEN-LAST:event_botonEnviarActionPerformed
 
     private void inputOpcion3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputOpcion3ActionPerformed
@@ -158,7 +171,22 @@ public class Actividad_2 extends javax.swing.JFrame {
         panelGenerado.setVisible(true);
         this.add(panelGenerado);
         this.paint(getGraphics());
+    }
+    
+    public void insertarOpcionesGrupo(ArrayList<JRadioButton> opciones) {
+    
+        ButtonGroup grupoRadios = new javax.swing.ButtonGroup();
         
+        for(int i = 0; i < opciones.size(); i++) {
+        
+            grupoRadios.add(opciones.get(i));
+            opciones.get(i).setVisible(true);
+            opciones.get(i).paint(getGraphics());
+            
+        }
+        
+        panelGenerado.add(grupoRadios);
+    
     }
     /**
      * @param args the command line arguments
