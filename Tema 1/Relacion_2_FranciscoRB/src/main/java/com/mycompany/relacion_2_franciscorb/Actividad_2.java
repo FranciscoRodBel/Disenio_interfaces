@@ -121,6 +121,8 @@ public class Actividad_2 extends javax.swing.JFrame {
 
     private void botonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEnviarActionPerformed
         
+        panelGenerado.removeAll();
+        
         crearPanel();
         
         JRadioButton opcion1 = crearOpcion(inputOpcion1.getText());
@@ -182,10 +184,11 @@ public class Actividad_2 extends javax.swing.JFrame {
             grupoRadios.add(opciones.get(i));
             opciones.get(i).setVisible(true);
             opciones.get(i).paint(getGraphics());
+            panelGenerado.add(opciones.get(i));
             
         }
         
-        panelGenerado.add(grupoRadios);
+        panelGenerado.revalidate();
     
     }
     /**
