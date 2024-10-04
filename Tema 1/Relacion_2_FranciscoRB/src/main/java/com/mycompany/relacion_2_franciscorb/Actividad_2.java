@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.ButtonGroup;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
@@ -92,7 +93,7 @@ public class Actividad_2 extends javax.swing.JFrame {
                     .addComponent(inputOpcion4)
                     .addComponent(inputOpcion3, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(inputOpcion2))
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addContainerGap(589, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,11 +106,11 @@ public class Actividad_2 extends javax.swing.JFrame {
                 .addComponent(inputOpcion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(inputOpcion3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(inputOpcion4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botonEnviar)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
 
         pack();
@@ -125,21 +126,22 @@ public class Actividad_2 extends javax.swing.JFrame {
         
         crearPanel();
         
-        JRadioButton opcion1 = crearOpcion(inputOpcion1.getText());
-        JRadioButton opcion2 = crearOpcion(inputOpcion2.getText());
-        JRadioButton opcion3 = crearOpcion(inputOpcion3.getText());
-        JRadioButton opcion4 = crearOpcion(inputOpcion4.getText());
-        
+        JComboBox<String> inputSelect = new javax.swing.JComboBox<String>();
+        inputSelect.addItem(inputOpcion1.getText());
+        inputSelect.addItem(inputOpcion2.getText());
+        inputSelect.addItem(inputOpcion3.getText());
+        inputSelect.addItem(inputOpcion4.getText());
+        panelGenerado.add(inputSelect);
+                
         ArrayList<JRadioButton> opciones = new ArrayList<JRadioButton>();
-        opciones.add(opcion1);
-        opciones.add(opcion2);
-        opciones.add(opcion3);
-        opciones.add(opcion4);
+        opciones.add(crearOpcion(inputOpcion1.getText()));
+        opciones.add(crearOpcion(inputOpcion2.getText()));
+        opciones.add(crearOpcion(inputOpcion3.getText()));
+        opciones.add(crearOpcion(inputOpcion4.getText()));
         
-
         insertarOpcionesGrupo(opciones);
-        
 
+        paint(getGraphics());
     }//GEN-LAST:event_botonEnviarActionPerformed
 
     private void inputOpcion3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputOpcion3ActionPerformed
@@ -165,14 +167,13 @@ public class Actividad_2 extends javax.swing.JFrame {
     public void crearPanel() {
 
         // Dar propiedades
-        panelGenerado.setSize(new Dimension(150, 250));
+        panelGenerado.setSize(new Dimension(400, 300));
         panelGenerado.setBackground(new Color(174, 216, 230));
         panelGenerado.setLocation(200, 25);
 
         // Añadir el panel
         panelGenerado.setVisible(true);
         this.add(panelGenerado);
-        this.paint(getGraphics());
     }
     
     public void insertarOpcionesGrupo(ArrayList<JRadioButton> opciones) {
@@ -181,15 +182,11 @@ public class Actividad_2 extends javax.swing.JFrame {
         
         for(int i = 0; i < opciones.size(); i++) {
         
-            grupoRadios.add(opciones.get(i));
-            opciones.get(i).setVisible(true);
-            opciones.get(i).paint(getGraphics());
             panelGenerado.add(opciones.get(i));
-            
+            grupoRadios.add(opciones.get(i));
+
         }
-        
-        panelGenerado.revalidate();
-    
+                
     }
     /**
      * @param args the command line arguments
