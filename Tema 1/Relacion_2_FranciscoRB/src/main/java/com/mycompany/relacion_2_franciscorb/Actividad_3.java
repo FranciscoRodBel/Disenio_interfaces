@@ -4,10 +4,10 @@
  */
 package com.mycompany.relacion_2_franciscorb;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -15,34 +15,167 @@ import javax.swing.JPanel;
  */
 public class Actividad_3 extends javax.swing.JFrame {
 
-    private JPanel panelInfoPersonal = new javax.swing.JPanel();
-    private JPanel panelInfoDomiciliaria = new javax.swing.JPanel();
+    private JPanel panelInfoPersonal = new JPanel();
+    private JPanel panelInfoDomiciliaria = new JPanel();
+    private JButton botonSiguiente = new JButton();
+    private JButton botonAnterior = new JButton();
+    private JButton botonEnviar = new JButton();
+    private JTextField inputNombre = new JTextField();
+    private JTextField inputApellidos = new JTextField();
+    private JTextField inputNumeroTelefono = new JTextField();
+    private JComboBox<String> selectGenero = new JComboBox<String>();
+    private JTextField inputEmail = new JTextField();
+    private JTextField inputNumero = new JTextField();
+    private JComboBox<String> selectCiudad = new JComboBox<String>();
+    private JTextField inputCP = new JTextField();
+    private JTextField inputDireccion = new JTextField();
     
     public void crearPanelInformacionPersonal() {
-        
 
-        panelInfoPersonal.setSize(new Dimension(50, 50));
-        panelInfoPersonal.setPreferredSize(new Dimension(90, 90));
-        panelInfoPersonal.setBackground(new Color(255, 255, 200));
-        panelInfoPersonal.setLocation(50, 50);
-        panelInfoPersonal.setVisible(true);
+        panelInfoPersonal.setLayout(null);
+        panelInfoPersonal.setBackground(new Color(214, 217, 223));
+        panelInfoPersonal.setBounds(0, 0, 500, 500);
         this.add(panelInfoPersonal);
+        
+        JPanel panelAmarillo = new JPanel();
+        panelAmarillo.setLayout(null);
+        panelAmarillo.setBackground(new Color(255, 255, 200));
+        panelAmarillo.setBounds(50, 50, 375, 360);
+        panelInfoPersonal.add(panelAmarillo);
 
-        //JLabel titulo = new javax.swing.JLabel();
-        //titulo.setText("Información personal");
-        //panelInfoPersonal.add(titulo);
-        //SwingConstans.CENTER
+        JLabel labelTitulo = new JLabel();
+        labelTitulo.setText("Información personal");
+        labelTitulo.setFont(new Font("Arial",1, 15));
+        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        labelTitulo.setBounds(0, 0, 500, 50);
+        panelInfoPersonal.add(labelTitulo);
+
+        JLabel labelNombre = new JLabel();
+        labelNombre.setText("Nombre: ");
+        labelNombre.setFont(new Font("Arial",1, 12));
+        labelNombre.setBounds(100, 50, 100, 20);
+        panelAmarillo.add(labelNombre);
         
-        this.paint(getGraphics());
-        panelInfoPersonal.revalidate();
-       
+        JLabel labelApellidos = new JLabel();
+        labelApellidos.setText("Apellidos: ");
+        labelApellidos.setFont(new Font("Arial",1, 12));
+        labelApellidos.setBounds(100, 100, 100, 20);
+        panelAmarillo.add(labelApellidos);
         
+        JLabel LabelTelefono = new JLabel();
+        LabelTelefono.setText("Teléfono: ");
+        LabelTelefono.setFont(new Font("Arial",1, 12));
+        LabelTelefono.setBounds(100, 150, 100, 20);
+        panelAmarillo.add(LabelTelefono);
+        
+        JLabel labelGenero = new JLabel();
+        labelGenero.setText("Género: ");
+        labelGenero.setFont(new Font("Arial",1, 12));
+        labelGenero.setBounds(100, 200, 100, 20);
+        panelAmarillo.add(labelGenero);
+        
+        JLabel labelEmail = new JLabel();
+        labelEmail.setText("Email: ");
+        labelEmail.setFont(new Font("Arial",1, 12));
+        labelEmail.setBounds(100, 250, 100, 20);
+        panelAmarillo.add(labelEmail);
+        
+        inputNombre.setBounds(180, 45, 100, 30);
+        panelAmarillo.add(inputNombre);
+        
+        inputApellidos.setBounds(180, 95, 100, 30);
+        panelAmarillo.add(inputApellidos);
+        
+        inputNumeroTelefono.setBounds(180, 145, 100, 30);
+        panelAmarillo.add(inputNumeroTelefono);
+        
+        selectGenero.setBounds(180, 195, 100, 30);
+        selectGenero.addItem("Masculino");
+        selectGenero.addItem("Femenino");
+        selectGenero.addItem("No binario");
+        panelAmarillo.add(selectGenero);
+        
+        inputEmail.setBounds(180, 245, 100, 30);
+        panelAmarillo.add(inputEmail); 
+        
+        botonSiguiente.setText("Siguiente");
+        botonSiguiente.setBounds(150, 300, 100, 30);
+        panelAmarillo.add(botonSiguiente);
+
     }
     
+    
     public void crearPanelInformacionDomiciliaria() {
+
+        panelInfoDomiciliaria.setLayout(null);
+        panelInfoDomiciliaria.setBackground(new Color(214, 217, 223));
+        panelInfoDomiciliaria.setBounds(0, 0, 500, 500);
+        this.add(panelInfoDomiciliaria);
         
+        JPanel panelAmarillo = new JPanel();
+        panelAmarillo.setLayout(null);
+        panelAmarillo.setBackground(new Color(255, 255, 200));
+        panelAmarillo.setBounds(50, 50, 375, 360);
+        panelInfoDomiciliaria.add(panelAmarillo);
+
+        JLabel labelTitulo = new JLabel();
+        labelTitulo.setText("Información domiciliaria");
+        labelTitulo.setFont(new Font("Arial",1, 15));
+        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        labelTitulo.setBounds(0, 0, 500, 50);
+        panelInfoDomiciliaria.add(labelTitulo);
+
+        JLabel labelDireccion = new JLabel();
+        labelDireccion.setText("Dirección: ");
+        labelDireccion.setFont(new Font("Arial",1, 12));
+        labelDireccion.setBounds(100, 50, 100, 20);
+        panelAmarillo.add(labelDireccion);
         
+        JLabel labelNumero = new JLabel();
+        labelNumero.setText("Número: ");
+        labelNumero.setFont(new Font("Arial",1, 12));
+        labelNumero.setBounds(100, 100, 100, 20);
+        panelAmarillo.add(labelNumero);
         
+        JLabel labelCiudad = new JLabel();
+        labelCiudad.setText("Ciudad: ");
+        labelCiudad.setFont(new Font("Arial",1, 12));
+        labelCiudad.setBounds(100, 150, 100, 20);
+        panelAmarillo.add(labelCiudad);
+        
+        JLabel labelCP = new JLabel();
+        labelCP.setText("CP: ");
+        labelCP.setFont(new Font("Arial",1, 12));
+        labelCP.setBounds(100, 200, 100, 20);
+        panelAmarillo.add(labelCP);
+        
+        inputDireccion.setBounds(180, 45, 180, 30);
+        panelAmarillo.add(inputDireccion);
+        
+        inputNumero.setBounds(180, 95, 30, 30);
+        panelAmarillo.add(inputNumero);
+        
+        selectCiudad.setBounds(180, 145, 100, 30);
+        selectCiudad.addItem("Ceuta");
+        selectCiudad.addItem("Granada");
+        selectCiudad.addItem("Almería");
+        selectCiudad.addItem("Málaga");
+        selectCiudad.addItem("Cádiz");
+        selectCiudad.addItem("Tenerife");
+        selectCiudad.addItem("Murcia");
+        panelAmarillo.add(selectCiudad);
+        
+        inputCP.setBounds(180, 195, 100, 30);
+        panelAmarillo.add(inputCP); 
+        
+        botonAnterior.setText("Anterior");
+        botonAnterior.setBounds(80, 250, 100, 30);
+        panelAmarillo.add(botonAnterior);
+        
+        botonEnviar.setText("Enviar");
+        botonEnviar.setBounds(200, 250, 100, 30);
+        panelAmarillo.add(botonEnviar);
+
     }
     
     /**
@@ -51,8 +184,75 @@ public class Actividad_3 extends javax.swing.JFrame {
     public Actividad_3() {
         initComponents();
         
+        this.setBounds(0, 0, 500, 500);
+        this.setLayout(null);
+        
         crearPanelInformacionPersonal();
+        crearPanelInformacionDomiciliaria();
+        
+        //panelInfoPersonal.setVisible(false);
+        panelInfoDomiciliaria.setVisible(false);
+        
+        this.paint(getGraphics());
+        
+        botonSiguiente.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent evt) {
+                botonSiguientePulsado(evt);
+            }
+        });
+
+        botonAnterior.addActionListener(new ActionListener() {
+  
+            public void actionPerformed(ActionEvent evt) {
+                botonAnteriorPulsado(evt);
+            }
+        });
+
+        botonEnviar.addActionListener(new ActionListener() {
+            
+            public void actionPerformed(ActionEvent evt) {
+                botonEnviarPulsado(evt);
+            }
+        });
     }
+    
+    private void botonSiguientePulsado(java.awt.event.ActionEvent evt) {                                         
+
+        if (!this.inputNombre.getText().equals("") && !this.inputApellidos.getText().equals("") && !this.inputNumeroTelefono.getText().equals("") && !this.inputEmail.getText().equals("")) {
+            
+            panelInfoPersonal.setVisible(false);
+            panelInfoDomiciliaria.setVisible(true);
+            
+        }
+        
+    }
+    
+    private void botonAnteriorPulsado(java.awt.event.ActionEvent evt) {                                         
+        
+        panelInfoPersonal.setVisible(true);
+        panelInfoDomiciliaria.setVisible(false);
+        
+    }
+    
+    private void botonEnviarPulsado(java.awt.event.ActionEvent evt) {                                         
+        
+        if (!this.inputDireccion.getText().equals("") && !this.inputNumero.getText().equals("") && !this.inputCP.getText().equals("")) {
+            
+            panelInfoPersonal.setVisible(false);
+            panelInfoDomiciliaria.setVisible(false);
+            
+            JLabel mensajeFinal = new JLabel();
+            mensajeFinal.setText("Gracias por rellenar el formulario");
+            mensajeFinal.setFont(new Font("Arial",1, 20));
+            mensajeFinal.setHorizontalAlignment(SwingConstants.CENTER);
+            mensajeFinal.setBounds(0, 200, 500, 50);
+            this.add(mensajeFinal);
+
+        }
+        
+    }  
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,16 +264,20 @@ public class Actividad_3 extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(null);
+        setMinimumSize(null);
+        setResizable(false);
+        setSize(new java.awt.Dimension(500, 500));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
 
         pack();
