@@ -27,18 +27,12 @@ import javax.swing.SwingConstants;
 public class Actividad_4 extends javax.swing.JFrame {
 
     private JPanel panelMenu = new JPanel();
-    private JPanel panelUsuario = new JPanel();
-    private JPanel panelAplicacion = new JPanel();
+    private PanelUsuario jpanelUsuario = new PanelUsuario();
+    private PanelAplicacion jpanelAplicacion = new PanelAplicacion();
     private JButton botonUsuario = new JButton();
     private JButton botonAplicacion = new JButton();
     private JButton botonSalir = new JButton();
-    private JTextField inputNombre = new JTextField();
-    private JTextField inputEdad = new JTextField();
-    private JTextField inputApellidos = new JTextField();
-    private JComboBox<String> selectGenero = new JComboBox<String>();
-    private JTextArea TextAreaDescripcion = new JTextArea();
-    private ButtonGroup opcionesMetodoPago = new javax.swing.ButtonGroup();
-    
+   
     /**
      * Creates new form Actividad_4
      */
@@ -48,13 +42,14 @@ public class Actividad_4 extends javax.swing.JFrame {
         this.setBounds(0, 0, 500, 500);
         this.setLayout(null);
         
+        panelMenu.add(jpanelUsuario);
+        panelMenu.add(jpanelAplicacion);
+        
         crearPanelMenu();
-        crearPanelUsuario();
-        crearPanelAplicacion();
         
         panelMenu.setVisible(true);
-        panelUsuario.setVisible(false);
-        panelAplicacion.setVisible(false);
+        jpanelUsuario.setVisible(false);
+        jpanelAplicacion.setVisible(false);
         
         this.paint(getGraphics());
         
@@ -114,160 +109,21 @@ public class Actividad_4 extends javax.swing.JFrame {
 
     }
     
-    public void crearPanelUsuario() {
-        
-        panelUsuario.setLayout(null);
-        panelUsuario.setBackground(new Color(184, 184, 184));
-        panelUsuario.setBounds(0, 70, 500, 430);
-        panelMenu.add(panelUsuario);
-        
-        JLabel labelTitulo = new JLabel();
-        labelTitulo.setText("Información usuario");
-        labelTitulo.setFont(new Font("Arial", 1, 17));
-        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-        labelTitulo.setBounds(0, 0, 500, 50);
-        panelUsuario.add(labelTitulo);
-        
-        JLabel labelNombre = new JLabel();
-        labelNombre.setText("Nombre: ");
-        labelNombre.setFont(new Font("Arial",1, 12));
-        labelNombre.setBounds(30, 50, 100, 20);
-        panelUsuario.add(labelNombre);
-        
-        JLabel labelApellidos = new JLabel();
-        labelApellidos.setText("Apellidos: ");
-        labelApellidos.setFont(new Font("Arial",1, 12));
-        labelApellidos.setBounds(30, 100, 100, 20);
-        panelUsuario.add(labelApellidos);
-        
-        JLabel labelGenero = new JLabel();
-        labelGenero.setText("Género: ");
-        labelGenero.setFont(new Font("Arial",1, 12));
-        labelGenero.setBounds(265, 50, 100, 20);
-        panelUsuario.add(labelGenero);
-        
-        JLabel labelEdad = new JLabel();
-        labelEdad.setText("Edad: ");
-        labelEdad.setFont(new Font("Arial",1, 12));
-        labelEdad.setBounds(350, 100, 100, 20);
-        panelUsuario.add(labelEdad);
-        
-        inputNombre.setBounds(100, 45, 120, 30);
-        panelUsuario.add(inputNombre);
-        
-        selectGenero.setBounds(330, 45, 120, 30);
-        selectGenero.addItem("Masculino");
-        selectGenero.addItem("Femenino");
-        selectGenero.addItem("No binario");
-        panelUsuario.add(selectGenero);
-        
-        inputApellidos.setBounds(100, 95, 200, 30);
-        panelUsuario.add(inputApellidos);
-
-        inputEdad.setBounds(400, 95, 50, 30);
-        panelUsuario.add(inputEdad);
-        
-        JLabel labelDescripcion = new JLabel();
-        labelDescripcion.setText("Descripción: ");
-        labelDescripcion.setFont(new Font("Arial",1, 12));
-        labelDescripcion.setBounds(30, 150, 100, 20);
-        panelUsuario.add(labelDescripcion);
-        
-        TextAreaDescripcion.setBounds(30, 180, 420, 150);
-        panelUsuario.add(TextAreaDescripcion);
-        
-    }
-    
-        public void crearPanelAplicacion() {
-        
-        panelAplicacion.setLayout(null);
-        panelAplicacion.setBackground(new Color(184, 184, 184));
-        panelAplicacion.setBounds(0, 70, 500, 430);
-        panelMenu.add(panelAplicacion);
-        
-        JLabel labelTitulo = new JLabel();
-        labelTitulo.setText("Aplicación");
-        labelTitulo.setFont(new Font("Arial", 1, 17));
-        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-        labelTitulo.setBounds(0, 0, 500, 50);
-        panelAplicacion.add(labelTitulo);
-        
-        JCheckBox appVscode = new JCheckBox();
-        JCheckBox appNetBeans = new JCheckBox();
-        JCheckBox appIntelliJ = new JCheckBox();
-        JCheckBox appEclipse = new JCheckBox();        
-        JCheckBox appUnity = new JCheckBox();
-                                
-        appVscode.setText("VScode");
-        appVscode.setBounds(0, 50, 100, 50);
-        appVscode.setFont(new Font("Arial", 1, 15));
-        panelAplicacion.add(appVscode);
-        
-        appNetBeans.setText("NetBeans");
-        appNetBeans.setBounds(100, 50, 100, 50);
-        appNetBeans.setFont(new Font("Arial", 1, 15));
-        panelAplicacion.add(appNetBeans);
-        
-        appIntelliJ.setText("IntelliJ");
-        appIntelliJ.setBounds(200, 50, 100, 50);
-        appIntelliJ.setFont(new Font("Arial", 1, 15));
-        panelAplicacion.add(appIntelliJ);
-        
-        appEclipse.setText("Eclipse");
-        appEclipse.setBounds(300, 50, 100, 50);
-        appEclipse.setFont(new Font("Arial", 1, 15));
-        panelAplicacion.add(appEclipse);
-        
-        appUnity.setText("Unity");
-        appUnity.setBounds(400, 50, 100, 50);
-        appUnity.setFont(new Font("Arial", 1, 15));
-        panelAplicacion.add(appUnity);
-        
-        JLabel labelMetodoPago = new JLabel();
-        labelMetodoPago.setText("Método de pago");
-        labelMetodoPago.setHorizontalAlignment(SwingConstants.CENTER);
-        labelMetodoPago.setFont(new Font("Arial", 1, 17));
-        labelMetodoPago.setBounds(0, 100, 500, 50);
-        panelAplicacion.add(labelMetodoPago);
-        
-        JRadioButton opcionTarjeta = new JRadioButton();
-        opcionTarjeta.setText("Tarjeta");
-        opcionTarjeta.setBounds(50, 150, 100, 50);
-        opcionTarjeta.setFont(new Font("Arial", 1, 15));
-                
-        JRadioButton opcionBizum = new JRadioButton();
-        opcionBizum.setText("Bizum");
-        opcionBizum.setBounds(200, 150, 100, 50);
-        opcionBizum.setFont(new Font("Arial", 1, 15));
-                
-        JRadioButton opcionPaypal = new JRadioButton();
-        opcionPaypal.setText("PayPal");
-        opcionPaypal.setBounds(350, 150, 100, 50);
-        opcionPaypal.setFont(new Font("Arial", 1, 15));
-        
-        opcionesMetodoPago.add(opcionTarjeta);
-        opcionesMetodoPago.add(opcionBizum);
-        opcionesMetodoPago.add(opcionPaypal);
-        
-        panelAplicacion.add(opcionTarjeta);
-        panelAplicacion.add(opcionBizum);
-        panelAplicacion.add(opcionPaypal);
-    }
     
     private void botonUsuarioPulsado(java.awt.event.ActionEvent evt) {                                         
 
 
         cambiarColorBoton(botonUsuario, botonAplicacion);
-        panelUsuario.setVisible(true);
-        panelAplicacion.setVisible(false);
+        jpanelUsuario.setVisible(true);
+        jpanelAplicacion.setVisible(false);
         
     }
     
     private void botonAplicacionPulsado(java.awt.event.ActionEvent evt) {                                         
         
         cambiarColorBoton(botonAplicacion, botonUsuario);
-        panelUsuario.setVisible(false);
-        panelAplicacion.setVisible(true);
+        jpanelUsuario.setVisible(false);
+        jpanelAplicacion.setVisible(true);
         
     }
     
