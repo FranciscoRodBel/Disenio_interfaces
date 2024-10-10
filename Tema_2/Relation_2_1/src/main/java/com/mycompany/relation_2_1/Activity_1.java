@@ -16,9 +16,9 @@ import javax.swing.JButton;
  */
 public class Activity_1 extends javax.swing.JFrame {
 
-    private JButton boton1 = new JButton();
-    private JButton boton2 = new JButton();
-    private JButton boton3 = new JButton();
+    private JButton button1 = new JButton();
+    private JButton button2 = new JButton();
+    private JButton button3 = new JButton();
     /**
      * Creates new form Activity_1
      */
@@ -28,55 +28,55 @@ public class Activity_1 extends javax.swing.JFrame {
         this.setBounds(0, 0, 500, 500);
         this.setLayout(null);
         
-        crearBotones();
+        createButtons();
         
-        boton1.addActionListener(new ActionListener() {
+        button1.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
-                boton1Pulsado(evt);
+                button1Pressed(evt);
             }
         });
 
-        boton2.addActionListener(new ActionListener() {
+        button2.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
-                boton2Pulsado(evt);
+                button2Pressed(evt);
             }
         });
 
-        boton3.addActionListener(new ActionListener() {
+        button3.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
-                boton3Pulsado(evt);
+                button3Pressed(evt);
             }
         });
     }
 
-    public void crearBotones() {
+    public void createButtons() {
     
-        boton1.setText("Botón 1");
-        boton1.setBounds(40, 20, 100, 30);
-        boton1.setBackground(new Color(57, 62, 65));
-        boton1.setForeground(new Color(211, 208, 203));
-        boton1.setFocusPainted(false);
-        boton1.setFont(new Font("Arial",1, 15));
-        this.add(boton1);
+        button1.setText("Botón 1");
+        button1.setBounds(40, 20, 100, 30);
+        button1.setBackground(new Color(57, 62, 65));
+        button1.setForeground(new Color(211, 208, 203));
+        button1.setFocusPainted(false);
+        button1.setFont(new Font("Arial",1, 15));
+        this.add(button1);
 
-        boton2.setText("Botón 2");
-        boton2.setBounds(190, 20, 100, 30);
-        boton2.setBackground(new Color(57, 62, 65));
-        boton2.setForeground(new Color(211, 208, 203));
-        boton2.setFocusPainted(false);
-        boton2.setFont(new Font("Arial",1, 15));
-        this.add(boton2);
+        button2.setText("Botón 2");
+        button2.setBounds(190, 20, 100, 30);
+        button2.setBackground(new Color(57, 62, 65));
+        button2.setForeground(new Color(211, 208, 203));
+        button2.setFocusPainted(false);
+        button2.setFont(new Font("Arial",1, 15));
+        this.add(button2);
 
-        boton3.setText("Botón 3");
-        boton3.setBounds(340, 20, 100, 30);
-        boton3.setBackground(new Color(57, 62, 65));
-        boton3.setForeground(new Color(211, 208, 203));
-        boton3.setFocusPainted(false);
-        boton3.setFont(new Font("Arial",1, 15));
-        this.add(boton3);
+        button3.setText("Botón 3");
+        button3.setBounds(340, 20, 100, 30);
+        button3.setBackground(new Color(57, 62, 65));
+        button3.setForeground(new Color(211, 208, 203));
+        button3.setFocusPainted(false);
+        button3.setFont(new Font("Arial",1, 15));
+        this.add(button3);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -107,19 +107,19 @@ public class Activity_1 extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
-    private void boton1Pulsado(java.awt.event.ActionEvent evt) {                                         
+    private void button1Pressed(java.awt.event.ActionEvent evt) {                                         
 
 
         
     }
     
-    private void boton2Pulsado(java.awt.event.ActionEvent evt) {                                         
+    private void button2Pressed(java.awt.event.ActionEvent evt) {                                         
         
 
         
     }
     
-    private void boton3Pulsado(java.awt.event.ActionEvent evt) {                                         
+    private void button3Pressed(java.awt.event.ActionEvent evt) {                                         
 
         
         
