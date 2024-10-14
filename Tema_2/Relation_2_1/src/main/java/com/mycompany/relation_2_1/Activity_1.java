@@ -9,6 +9,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -19,6 +21,7 @@ public class Activity_1 extends javax.swing.JFrame {
     private JButton button1 = new JButton();
     private JButton button2 = new JButton();
     private JButton button3 = new JButton();
+    private JLabel labelMessage = new JLabel();
     /**
      * Creates new form Activity_1
      */
@@ -28,7 +31,7 @@ public class Activity_1 extends javax.swing.JFrame {
         this.setBounds(0, 0, 500, 500);
         this.setLayout(null);
         
-        createButtons();
+        createInterface();
         
         button1.addActionListener(new ActionListener() {
 
@@ -52,9 +55,9 @@ public class Activity_1 extends javax.swing.JFrame {
         });
     }
 
-    public void createButtons() {
+    public void createInterface() {
     
-        button1.setText("Botón 1");
+        button1.setText("Button 1");
         button1.setBounds(40, 20, 100, 30);
         button1.setBackground(new Color(57, 62, 65));
         button1.setForeground(new Color(211, 208, 203));
@@ -62,7 +65,7 @@ public class Activity_1 extends javax.swing.JFrame {
         button1.setFont(new Font("Arial",1, 15));
         this.add(button1);
 
-        button2.setText("Botón 2");
+        button2.setText("Button 2");
         button2.setBounds(190, 20, 100, 30);
         button2.setBackground(new Color(57, 62, 65));
         button2.setForeground(new Color(211, 208, 203));
@@ -70,13 +73,19 @@ public class Activity_1 extends javax.swing.JFrame {
         button2.setFont(new Font("Arial",1, 15));
         this.add(button2);
 
-        button3.setText("Botón 3");
+        button3.setText("Button 3");
         button3.setBounds(340, 20, 100, 30);
         button3.setBackground(new Color(57, 62, 65));
         button3.setForeground(new Color(211, 208, 203));
         button3.setFocusPainted(false);
         button3.setFont(new Font("Arial",1, 15));
         this.add(button3);
+        
+        labelMessage.setText("You don’t have press any button yet");
+        labelMessage.setFont(new Font("Arial", 1, 17));
+        labelMessage.setHorizontalAlignment(SwingConstants.CENTER);
+        labelMessage.setBounds(0, 200, 500, 50);
+        this.add(labelMessage);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -109,19 +118,19 @@ public class Activity_1 extends javax.swing.JFrame {
 
     private void button1Pressed(java.awt.event.ActionEvent evt) {                                         
 
-
+        labelMessage.setText("You have pressed the Button 1");
         
     }
     
     private void button2Pressed(java.awt.event.ActionEvent evt) {                                         
         
-
+        labelMessage.setText("You have pressed the Button 2");
         
     }
     
     private void button3Pressed(java.awt.event.ActionEvent evt) {                                         
 
-        
+        labelMessage.setText("You have pressed the Button 3");        
         
     }  
 

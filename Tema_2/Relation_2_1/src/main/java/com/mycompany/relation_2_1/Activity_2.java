@@ -9,75 +9,34 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 /**
  *
  * @author Francisco
  */
-public class Activity_1 extends javax.swing.JFrame {
+public class Activity_2 extends javax.swing.JFrame {
 
-    private JButton button1 = new JButton();
-    private JButton button2 = new JButton();
-    private JButton button3 = new JButton();
+    private JLabel labelMessage = new JLabel();
     /**
      * Creates new form Activity_1
      */
-    public Activity_1() {
+    public Activity_2() {
         initComponents();
         
         this.setBounds(0, 0, 500, 500);
         this.setLayout(null);
         
-        createButtons();
-        
-        button1.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent evt) {
-                button1Pressed(evt);
-            }
-        });
-
-        button2.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent evt) {
-                button2Pressed(evt);
-            }
-        });
-
-        button3.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent evt) {
-                button3Pressed(evt);
-            }
-        });
-    }
-
-    public void createButtons() {
+        labelMessage.setText("It’s a great day!");
+        labelMessage.setFont(new Font("Arial", 1, 17));
+        labelMessage.setHorizontalAlignment(SwingConstants.CENTER);
+        labelMessage.setBounds(0, 200, 500, 50);
+        this.add(labelMessage);
     
-        button1.setText("Botón 1");
-        button1.setBounds(40, 20, 100, 30);
-        button1.setBackground(new Color(57, 62, 65));
-        button1.setForeground(new Color(211, 208, 203));
-        button1.setFocusPainted(false);
-        button1.setFont(new Font("Arial",1, 15));
-        this.add(button1);
-
-        button2.setText("Botón 2");
-        button2.setBounds(190, 20, 100, 30);
-        button2.setBackground(new Color(57, 62, 65));
-        button2.setForeground(new Color(211, 208, 203));
-        button2.setFocusPainted(false);
-        button2.setFont(new Font("Arial",1, 15));
-        this.add(button2);
-
-        button3.setText("Botón 3");
-        button3.setBounds(340, 20, 100, 30);
-        button3.setBackground(new Color(57, 62, 65));
-        button3.setForeground(new Color(211, 208, 203));
-        button3.setFocusPainted(false);
-        button3.setFont(new Font("Arial",1, 15));
-        this.add(button3);
+        
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -107,24 +66,6 @@ public class Activity_1 extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
-    private void button1Pressed(java.awt.event.ActionEvent evt) {                                         
-
-
-        
-    }
-    
-    private void button2Pressed(java.awt.event.ActionEvent evt) {                                         
-        
-
-        
-    }
-    
-    private void button3Pressed(java.awt.event.ActionEvent evt) {                                         
-
-        
-        
-    }  
-
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -139,20 +80,21 @@ public class Activity_1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Activity_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Activity_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Activity_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Activity_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Activity_1().setVisible(true);
+                new Activity_2().setVisible(true);
             }
         });
     }
