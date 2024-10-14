@@ -4,36 +4,78 @@
  */
 package com.mycompany.relation_2_1;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 /**
  *
  * @author Francisco
  */
-public class Activity_2 extends javax.swing.JFrame {
+public class Activity_3 extends javax.swing.JFrame {
 
     private JLabel labelMessage = new JLabel();
+    private JButton button = new JButton();
+    private JPanel panelColor = new JPanel();
     /**
      * Creates new form Activity_1
      */
-    public Activity_2() {
+    public Activity_3() {
         initComponents();
         
         this.setBounds(0, 0, 500, 500);
         this.setLayout(null);
         
-        labelMessage.setText("It’s a great day!");
+        labelMessage.setText("Text");
         labelMessage.setFont(new Font("Arial", 1, 17));
         labelMessage.setHorizontalAlignment(SwingConstants.CENTER);
-        labelMessage.setBounds(0, 200, 500, 50);
+        labelMessage.setBounds(0, 20, 500, 50);
         this.add(labelMessage);
-    
+        
+        button.setText("Button");
+        button.setBounds(200, 100, 100, 30);
+        button.setFont(new Font("Arial",1, 15));
+        this.add(button);
+        
+        panelColor.setLayout(null);
+        panelColor.setBackground(new Color(245, 245, 245));
+        panelColor.setBounds(200, 200, 100, 100);
+        this.add(panelColor);
+
+        labelMessage.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                
+                labelMessage.setBackground(new Color(0, 0, 0));
+                labelMessage.setForeground(new Color(245, 245, 245));
+            }
+        });
+        
+        panelColor.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                
+                panelColor.setBackground(new Color(0, 200, 0));
+                
+            }
+        });
+        
+        /*
+        panelColor.addMouseListener(new MouseAdapter() {
+            public void mouseExited(MouseEvent evt) {
+                
+                panelColor.setBackground(new Color(0, 0, 0));
+                
+            }
+        });
+        */
+        
+        button.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent evt) {
+                
+                panelColor.setBackground(new Color(0, 0, 200));
+                
+            }
+        });
         
     }
 
@@ -62,6 +104,7 @@ public class Activity_2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+        
     /**
      * @param args the command line arguments
      */
@@ -80,21 +123,23 @@ public class Activity_2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Activity_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Activity_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Activity_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Activity_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Activity_2().setVisible(true);
+                new Activity_3().setVisible(true);
             }
         });
     }

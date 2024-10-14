@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -33,7 +35,22 @@ public class Activity_2 extends javax.swing.JFrame {
         labelMessage.setHorizontalAlignment(SwingConstants.CENTER);
         labelMessage.setBounds(0, 200, 500, 50);
         this.add(labelMessage);
-    
+        
+        labelMessage.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                
+                labelMessage.setForeground(new Color(255, 0, 0));
+                
+            }
+        });
+        
+        labelMessage.addMouseListener(new MouseAdapter() {
+            public void mouseExited(MouseEvent evt) {
+                
+                labelMessage.setForeground(new Color(0, 0, 0));
+                
+            }
+        });
         
     }
 
@@ -62,6 +79,7 @@ public class Activity_2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+        
     /**
      * @param args the command line arguments
      */
