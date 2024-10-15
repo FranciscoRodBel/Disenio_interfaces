@@ -12,50 +12,34 @@ import javax.swing.*;
  *
  * @author Francisco
  */
-public class Activity_3 extends javax.swing.JFrame {
+public class Activity_5 extends javax.swing.JFrame {
 
-    private JLabel labelMessage = new JLabel();
     private JButton button = new JButton();
     private JPanel panelColor = new JPanel();
-    private Color colorLetters;
     /**
      * Creates new form Activity_1
      */
-    public Activity_3() {
+    public Activity_5() {
         initComponents();
         
-        this.setBounds(0, 0, 500, 500);
+        this.setBounds(0, 0, 300, 800);
         this.setLayout(null);
-        
-        labelMessage.setText("Text");
-        labelMessage.setFont(new Font("Arial", 1, 17));
-        labelMessage.setHorizontalAlignment(SwingConstants.CENTER);
-        labelMessage.setBounds(0, 20, 500, 50);
-        this.add(labelMessage);
-        
-        button.setText("Button");
-        button.setBounds(200, 100, 100, 30);
-        button.setFont(new Font("Arial",1, 15));
-        this.add(button);
         
         panelColor.setLayout(null);
         panelColor.setBackground(new Color(245, 245, 245));
-        panelColor.setBounds(200, 200, 100, 100);
+        panelColor.setBounds(100, 600, 100, 100);
         this.add(panelColor);
-
-        labelMessage.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent evt) {
-                
-                labelMessage.setOpaque(true);
-                labelMessage.setBackground(new Color(0, 0, 0));
-                labelMessage.setForeground(new Color(245, 245, 245));
-            }
-        });
+        
+        button.setText("Reset");
+        button.setBounds(100, 715, 100, 30);
+        button.setFont(new Font("Arial",1, 15));
+        this.add(button);
         
         panelColor.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent evt) {
-                
-                panelColor.setBackground(new Color(0, 200, 0));
+            public void mouseClicked(MouseEvent evt) {
+
+                int newPositionPanel = panelColor.getY()-100;
+                panelColor.setBounds(100, newPositionPanel, 100, 100);
                 
             }
         });
@@ -64,34 +48,11 @@ public class Activity_3 extends javax.swing.JFrame {
 
             public void mouseClicked(MouseEvent evt) {
                 
-                panelColor.setBackground(new Color(0, 0, 200));
+                panelColor.setBounds(100, 600, 100, 100);
                 
             }
         });
         
-        labelMessage.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                panelColor.setBackground(new Color(232, 77, 140));
-            }
-        });
-        
-        button.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent evt) {
-                
-                colorLetters = labelMessage.getForeground();
-                
-                labelMessage.setForeground(new Color(0, 75, 42));
-                
-            }
-        });
-        
-        button.addMouseListener(new MouseAdapter() {
-            public void mouseExited(MouseEvent evt) {
-                
-                labelMessage.setForeground(colorLetters);
-                
-            }
-        });
     }
 
     /**
@@ -138,23 +99,20 @@ public class Activity_3 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Activity_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Activity_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Activity_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Activity_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Activity_3().setVisible(true);
+                new Activity_5().setVisible(true);
             }
         });
     }

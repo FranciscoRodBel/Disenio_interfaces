@@ -7,91 +7,95 @@ package com.mycompany.relation_2_1;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 
 /**
  *
  * @author Francisco
  */
-public class Activity_3 extends javax.swing.JFrame {
+public class Activity_6 extends javax.swing.JFrame {
 
-    private JLabel labelMessage = new JLabel();
-    private JButton button = new JButton();
+    private JPanel panelMain = new JPanel();
     private JPanel panelColor = new JPanel();
-    private Color colorLetters;
+    private JLabel labelTitle = new JLabel();
+    private JList listEvent = new JList<>();
+    private JButton buttonBlue = new JButton();
+    private JButton buttonGreen = new JButton();
+    private JButton buttonRed = new JButton();
+    private JButton buttonClean = new JButton();
+    private JButton buttonExit = new JButton();
     /**
      * Creates new form Activity_1
      */
-    public Activity_3() {
+    public Activity_6() {
         initComponents();
         
-        this.setBounds(0, 0, 500, 500);
+        this.setBounds(0, 0, 675, 600);
         this.setLayout(null);
         
-        labelMessage.setText("Text");
-        labelMessage.setFont(new Font("Arial", 1, 17));
-        labelMessage.setHorizontalAlignment(SwingConstants.CENTER);
-        labelMessage.setBounds(0, 20, 500, 50);
-        this.add(labelMessage);
+        createPanel();
+        createBotones();
         
-        button.setText("Button");
-        button.setBounds(200, 100, 100, 30);
-        button.setFont(new Font("Arial",1, 15));
-        this.add(button);
+    }
+    
+    public void createPanel() { 
+    
+        panelMain.setLayout(null);
+        panelMain.setBackground(new Color(245, 245, 245));
+        panelMain.setBounds(0, 0, 675, 600);
+        this.add(panelMain);
         
-        panelColor.setLayout(null);
-        panelColor.setBackground(new Color(245, 245, 245));
-        panelColor.setBounds(200, 200, 100, 100);
-        this.add(panelColor);
-
-        labelMessage.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent evt) {
-                
-                labelMessage.setOpaque(true);
-                labelMessage.setBackground(new Color(0, 0, 0));
-                labelMessage.setForeground(new Color(245, 245, 245));
-            }
-        });
+        panelColor.setBackground(new Color(255, 186, 8));
+        panelColor.setBorder(new LineBorder(Color.black, 2,true));
+        panelColor.setBounds(10, 10, 640, 250);
+        panelMain.add(panelColor);
         
-        panelColor.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent evt) {
-                
-                panelColor.setBackground(new Color(0, 200, 0));
-                
-            }
-        });
+        labelTitle.setText("Panel that captures the events");
+        labelTitle.setFont(new Font("Arial", 1, 17));
+        labelTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        labelTitle.setBounds(0, 200, 500, 50);
+        labelTitle.setForeground(new Color(69, 83, 103));
+        panelColor.add(labelTitle);
         
-        button.addMouseListener(new MouseAdapter() {
-
-            public void mouseClicked(MouseEvent evt) {
+        listEvent.setBackground(new Color(255, 255, 255));
+        listEvent.setBorder(new LineBorder(Color.black,2,true));
+        listEvent.setBounds(10, 270, 640, 200);
+        panelMain.add(listEvent);
+    
+    }
+    
+    public void createBotones() {
                 
-                panelColor.setBackground(new Color(0, 0, 200));
-                
-            }
-        });
+        buttonBlue.setText("Blue");
+        buttonBlue.setBackground(new Color(132, 214, 242));
+        buttonBlue.setBounds(25, 500, 100, 30);
+        buttonBlue.setFont(new Font("Arial",1, 15));
+        panelMain.add(buttonBlue);
         
-        labelMessage.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                panelColor.setBackground(new Color(232, 77, 140));
-            }
-        });
+        buttonGreen.setText("Green");
+        buttonGreen.setBackground(new Color(96, 147, 93));
+        buttonGreen.setBounds(150, 500, 100, 30);
+        buttonGreen.setFont(new Font("Arial",1, 15));
+        panelMain.add(buttonGreen);
         
-        button.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent evt) {
-                
-                colorLetters = labelMessage.getForeground();
-                
-                labelMessage.setForeground(new Color(0, 75, 42));
-                
-            }
-        });
+        buttonRed.setText("Red");
+        buttonRed.setBackground(new Color(241, 89, 70));
+        buttonRed.setBounds(275, 500, 100, 30);
+        buttonRed.setFont(new Font("Arial",1, 15));
+        panelMain.add(buttonRed);
         
-        button.addMouseListener(new MouseAdapter() {
-            public void mouseExited(MouseEvent evt) {
-                
-                labelMessage.setForeground(colorLetters);
-                
-            }
-        });
+        buttonClean.setText("Clean");
+        buttonClean.setBackground(new Color(255, 255, 255));
+        buttonClean.setBounds(400, 500, 100, 30);
+        buttonClean.setFont(new Font("Arial",1, 15));
+        panelMain.add(buttonClean);
+        
+        buttonExit.setText("Exit");
+        buttonExit.setBackground(new Color(255, 255, 255));
+        buttonExit.setBounds(525, 500, 100, 30);
+        buttonExit.setFont(new Font("Arial",1, 15));
+        panelMain.add(buttonExit);
+        
     }
 
     /**
@@ -138,23 +142,20 @@ public class Activity_3 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Activity_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Activity_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Activity_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Activity_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Activity_3().setVisible(true);
+                new Activity_6().setVisible(true);
             }
         });
     }
