@@ -17,6 +17,7 @@ public class Activity_3 extends javax.swing.JFrame {
     private JLabel labelMessage = new JLabel();
     private JButton button = new JButton();
     private JPanel panelColor = new JPanel();
+    private Color colorLetters;
     /**
      * Creates new form Activity_1
      */
@@ -45,6 +46,7 @@ public class Activity_3 extends javax.swing.JFrame {
         labelMessage.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
                 
+                labelMessage.setOpaque(true);
                 labelMessage.setBackground(new Color(0, 0, 0));
                 labelMessage.setForeground(new Color(245, 245, 245));
             }
@@ -58,25 +60,38 @@ public class Activity_3 extends javax.swing.JFrame {
             }
         });
         
-        /*
-        panelColor.addMouseListener(new MouseAdapter() {
-            public void mouseExited(MouseEvent evt) {
-                
-                panelColor.setBackground(new Color(0, 0, 0));
-                
-            }
-        });
-        */
-        
-        button.addActionListener(new ActionListener() {
+        button.addMouseListener(new MouseAdapter() {
 
-            public void actionPerformed(ActionEvent evt) {
+            public void mouseClicked(MouseEvent evt) {
                 
                 panelColor.setBackground(new Color(0, 0, 200));
                 
             }
         });
         
+        labelMessage.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                panelColor.setBackground(new Color(232, 77, 140));
+            }
+        });
+        
+        button.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
+                
+                colorLetters = labelMessage.getForeground();
+                
+                labelMessage.setForeground(new Color(0, 75, 42));
+                
+            }
+        });
+        
+        button.addMouseListener(new MouseAdapter() {
+            public void mouseExited(MouseEvent evt) {
+                
+                labelMessage.setForeground(colorLetters);
+                
+            }
+        });
     }
 
     /**
