@@ -36,6 +36,70 @@ public class Activity_6 extends javax.swing.JFrame {
         createPanel();
         createBotones();
         
+        buttonBlue.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent evt) {
+                panelColor.setBackground(new Color(132, 214, 242));
+                insertEventPanelList("Botón azul pulsado");
+            }
+        });
+        
+        buttonGreen.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent evt) {
+                panelColor.setBackground(new Color(96, 147, 93));
+            }
+        });
+                
+        buttonRed.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent evt) {
+                panelColor.setBackground(new Color(241, 89, 70));
+            }
+        });
+        
+        buttonClean.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent evt) {
+                listEvent.clearSelection();
+                panelColor.setBackground(new Color(255, 186, 8));
+            }
+        });
+        
+        buttonExit.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent evt) {
+                System.exit(0);
+            }
+        });
+     
+    }
+    
+    public void insertEventPanelList(String textEvent) {
+    
+        DefaultListModel<String> modelEvent = new DefaultListModel<String>();
+        
+        modelEvent.addElement(textEvent);
+        
+        listEvent.setModel(modelEvent);
+        /*
+        for (int i = 0; i < vegetablesSorted.size(); i++ ) {
+
+            vegetable.addElement(vegetablesSorted.get(i));
+
+        }
+
+        listVegetables.setModel(vegetable);
+        
+        
+        
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        
+        */
     }
     
     public void createPanel() { 
