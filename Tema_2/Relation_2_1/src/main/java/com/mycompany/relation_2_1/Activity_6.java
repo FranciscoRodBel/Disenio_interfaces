@@ -19,11 +19,13 @@ public class Activity_6 extends javax.swing.JFrame {
     private JPanel panelColor = new JPanel();
     private JLabel labelTitle = new JLabel();
     private JList listEvent = new JList<>();
+    private DefaultListModel<String> modelEvent = new DefaultListModel<String>();
     private JButton buttonBlue = new JButton();
     private JButton buttonGreen = new JButton();
     private JButton buttonRed = new JButton();
     private JButton buttonClean = new JButton();
     private JButton buttonExit = new JButton();
+    
     /**
      * Creates new form Activity_1
      */
@@ -35,34 +37,47 @@ public class Activity_6 extends javax.swing.JFrame {
         
         createPanel();
         createBotones();
-        
+
         buttonBlue.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
+                
                 panelColor.setBackground(new Color(132, 214, 242));
-                insertEventPanelList("Botón azul pulsado");
+                
+                modelEvent.addElement("The blue button has been pressed");
+                listEvent.setModel(modelEvent);
             }
         });
         
         buttonGreen.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
+                
                 panelColor.setBackground(new Color(96, 147, 93));
+                
+                modelEvent.addElement("The green button has been pressed");
+                listEvent.setModel(modelEvent);
             }
         });
                 
         buttonRed.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
+                
                 panelColor.setBackground(new Color(241, 89, 70));
+               
+                modelEvent.addElement("The red button has been pressed");
+                listEvent.setModel(modelEvent);
             }
         });
         
         buttonClean.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
-                listEvent.clearSelection();
                 panelColor.setBackground(new Color(255, 186, 8));
+                
+                modelEvent.clear();
+                listEvent.setModel(modelEvent);
             }
         });
         
@@ -73,33 +88,6 @@ public class Activity_6 extends javax.swing.JFrame {
             }
         });
      
-    }
-    
-    public void insertEventPanelList(String textEvent) {
-    
-        DefaultListModel<String> modelEvent = new DefaultListModel<String>();
-        
-        modelEvent.addElement(textEvent);
-        
-        listEvent.setModel(modelEvent);
-        /*
-        for (int i = 0; i < vegetablesSorted.size(); i++ ) {
-
-            vegetable.addElement(vegetablesSorted.get(i));
-
-        }
-
-        listVegetables.setModel(vegetable);
-        
-        
-        
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        
-        */
     }
     
     public void createPanel() { 
@@ -121,10 +109,11 @@ public class Activity_6 extends javax.swing.JFrame {
         labelTitle.setForeground(new Color(69, 83, 103));
         panelColor.add(labelTitle);
         
-        listEvent.setBackground(new Color(255, 255, 255));
-        listEvent.setBorder(new LineBorder(Color.black,2,true));
-        listEvent.setBounds(10, 270, 640, 200);
-        panelMain.add(listEvent);
+        JScrollPane panelList = new JScrollPane(listEvent);
+        panelList.setBackground(new Color(255, 255, 255));
+        panelList.setBorder(new LineBorder(Color.black,2,true));
+        panelList.setBounds(10, 270, 640, 200);
+        panelMain.add(panelList);
     
     }
     
