@@ -28,6 +28,7 @@ public class Actividad_2_view extends javax.swing.JFrame {
     private void initComponents() {
 
         closedJPanel1 = new com.mycompany.relacion_2_2_franciscorb.ClosedJPanel();
+        closedJPanel2 = new com.mycompany.relacion_2_2_franciscorb.ClosedJPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -35,11 +36,15 @@ public class Actividad_2_view extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 653, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 353, Short.MAX_VALUE)
+                .addComponent(closedJPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 312, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(closedJPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         pack();
@@ -83,5 +88,6 @@ public class Actividad_2_view extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.mycompany.relacion_2_2_franciscorb.ClosedJPanel closedJPanel1;
+    private com.mycompany.relacion_2_2_franciscorb.ClosedJPanel closedJPanel2;
     // End of variables declaration//GEN-END:variables
 }

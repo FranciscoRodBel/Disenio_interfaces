@@ -8,12 +8,12 @@ package com.mycompany.relacion_2_2_franciscorb;
  *
  * @author Francisco
  */
-public class Actividad_2_view extends javax.swing.JFrame {
+public class Actividad_3_view extends javax.swing.JFrame {
 
     /**
      * Creates new form Actividad_1_view
      */
-    public Actividad_2_view() {
+    public Actividad_3_view() {
         initComponents();
         
     }
@@ -26,8 +26,6 @@ public class Actividad_2_view extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        closedJPanel1 = new com.mycompany.relacion_2_2_franciscorb.ClosedJPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,26 +60,27 @@ public class Actividad_2_view extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Actividad_2_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Actividad_3_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Actividad_2_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Actividad_3_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Actividad_2_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Actividad_3_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Actividad_2_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Actividad_3_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Actividad_2_view().setVisible(true);
+                new Actividad_3_view().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.mycompany.relacion_2_2_franciscorb.ClosedJPanel closedJPanel1;
     // End of variables declaration//GEN-END:variables
 }
