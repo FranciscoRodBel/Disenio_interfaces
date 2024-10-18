@@ -11,49 +11,116 @@ import javax.swing.*;
  *
  * @author Francisco
  */
-public class LabelInput extends JPanel {
+public class ExtInput extends JPanel {
 
-    private JLabel texto = new JLabel();
+    private Boolean isEditable = true;
+    private Boolean isTextArea = false;
+    private JLabel label1 = new JLabel();
     private JTextField inputText = new JTextField();
-    public LabelInput() {
+    private JLabel label2 = new JLabel();
+    private JTextArea textArea = new JTextArea();
+    
+    public ExtInput() {
 
         this.setLayout(null);
-        this.setPreferredSize(new Dimension(200, 100));
+        this.setPreferredSize(new Dimension(200, 150));
         this.setVisible(true);
         
-        texto.setText("Label: ");
-        texto.setBounds(15, 35, 50, 30);
-        texto.setVisible(true);
-        this.add(texto);
+        label1.setText("Mi campo");
+        label1.setBounds(25, 25, 150, 30);
+        label1.setVisible(true);
+        this.add(label1);
         
         inputText.setText("Input text");
-        inputText.setBounds(75, 35, 100, 30);
+        inputText.setBounds(25, 70, 100, 30);
         inputText.setVisible(true);
         this.add(inputText);
+        
+        label2.setText("label2");
+        label2.setBounds(25, 70, 100, 30);
+        label2.setVisible(false);
+        this.add(label2);
+        
+        textArea.setText("label2");
+        textArea.setBounds(25, 70, 120, 50);
+        textArea.setVisible(false);
+        this.add(textArea);
 
     }
 
-    public void setTextoLabel(String textoNuevo) {
+    public void setTextoLabel1(String textoNuevo) {
     
-        texto.setText(textoNuevo);
+        label1.setText(textoNuevo);
         
     }
     
-    public JLabel getTextoLabel() {
+    public JLabel getTextoLabel1() {
     
-        return texto;
+        return label1;
         
     }
     
-    public void setTextoInput(String textoNuevo) {
+    public void setTextoLabel2(String textoNuevo) {
     
-        inputText.setText(textoNuevo);
+        label2.setText(textoNuevo);
         
     }
     
-    public JTextField getTextoInput() {
+    public JLabel getTextoLabel2() {
     
-        return inputText;
+        return label2;
+        
+    }
+
+    public void comprobarTipo() {
+    
+        if (isEditable) {
+        
+            if (isTextArea) {
+            
+                inputText.setVisible(false);
+                textArea.setVisible(true);
+                label2.setVisible(false);
+            
+            } else {
+            
+                inputText.setVisible(true);
+                textArea.setVisible(false);
+                label2.setVisible(false);
+            
+            }
+            
+        } else {
+        
+            inputText.setVisible(false);
+            textArea.setVisible(false);
+            label2.setVisible(true);
+            
+        }
+        
+    }
+    
+    public Boolean getisEditable() {
+        
+        return isEditable;
+    }
+    
+    public void setisEditable(Boolean tipo) {
+
+        isEditable = tipo;
+        comprobarTipo();
+        
+    }
+    
+    public Boolean getisTextArea() {
+        
+        return isTextArea;
+    }
+    
+    public void setisTextArea(Boolean tipo) {
+
+        isTextArea = tipo;
+        comprobarTipo();
         
     }
 }
