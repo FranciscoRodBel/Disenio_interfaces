@@ -8,12 +8,12 @@ package com.mycompany.relacion_2_2_franciscorb;
  *
  * @author Francisco
  */
-public class Actividad_6_view extends javax.swing.JFrame {
+public class Actividad_7_view extends javax.swing.JFrame {
 
     /**
      * Creates new form Actividad_1_view
      */
-    public Actividad_6_view() {
+    public Actividad_7_view() {
         initComponents();
         
     }
@@ -33,11 +33,11 @@ public class Actividad_6_view extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 379, Short.MAX_VALUE)
+            .addGap(0, 901, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 314, Short.MAX_VALUE)
+            .addGap(0, 512, Short.MAX_VALUE)
         );
 
         pack();
@@ -51,7 +51,7 @@ public class Actividad_6_view extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Actividad_6_view().setVisible(true);
+                new Actividad_7_view().setVisible(true);
             }
         });
     }

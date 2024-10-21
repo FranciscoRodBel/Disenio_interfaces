@@ -4,56 +4,55 @@
  */
 package com.mycompany.relacion_2_2_franciscorb;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
  *
  * @author Francisco
  */
-public class LabelInput extends JPanel {
+public class ProgressForm extends JPanel {
 
-    private JLabel texto = new JLabel();
-    private JTextField inputText = new JTextField();
-    public LabelInput() {
+    private ClosedJPanel panelCerrado = new ClosedJPanel();
+    private LabelInput campoForm = new LabelInput();
+    private JButton botonEnviar = new JButton();
+    private JProgressBar barraProgreso = new JProgressBar();
+    private JLabel mensajeFinal = new JLabel();
+    
+    public ProgressForm() {
 
-        this.setLayout(null);
-        this.setPreferredSize(new Dimension(200, 100));
+        this.setPreferredSize(new Dimension(500, 500));
         this.setVisible(true);
         
-        texto.setText("Label: ");
-        texto.setBounds(15, 35, 50, 30);
-        texto.setVisible(true);
-        this.add(texto);
+        panelCerrado.setLocation(400, 0);
+        this.add(panelCerrado);
         
-        inputText.setText("Input text");
-        inputText.setBounds(75, 35, 100, 30);
-        inputText.setVisible(true);
-        this.add(inputText);
+        campoForm.setLocation(100, 200);
+        this.add(campoForm);
+        
+        botonEnviar.setText("Enviar");
+        botonEnviar.setBounds(200, 300, 100, 30);
+        botonEnviar.setVisible(true);
+        this.add(botonEnviar);
+        
+        barraProgreso.setBounds(200, 400, 100, 30);
+        barraProgreso.setVisible(false);
+        this.add(barraProgreso);
 
-    }
+        mensajeFinal.setBounds(300, 300, 100, 30);
+        mensajeFinal.setVisible(false);
+        this.add(mensajeFinal);
+        
+        botonEnviar.addActionListener(new ActionListener() {
 
-    public void setTextoLabel(String textoNuevo) {
-    
-        texto.setText(textoNuevo);
-        
-    }
-    
-    public JLabel getTextoLabel() {
-    
-        return texto;
-        
-    }
-    
-    public void setTextoInput(String textoNuevo) {
-    
-        inputText.setText(textoNuevo);
-        
-    }
-    
-    public JTextField getTextoInput() {
-    
-        return inputText;
-        
+            public void actionPerformed(ActionEvent evt) {
+                
+                barraProgreso.setVisible(true);
+            }
+            
+        });
     }
 }
