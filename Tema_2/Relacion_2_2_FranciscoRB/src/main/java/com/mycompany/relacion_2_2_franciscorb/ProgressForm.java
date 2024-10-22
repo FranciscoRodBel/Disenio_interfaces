@@ -5,10 +5,15 @@
 package com.mycompany.relacion_2_2_franciscorb;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import java.util.Timer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.TimerTask;
 
 /**
  *
@@ -21,16 +26,17 @@ public class ProgressForm extends JPanel {
     private JButton botonEnviar = new JButton();
     private JProgressBar barraProgreso = new JProgressBar();
     private JLabel mensajeFinal = new JLabel();
+    private Timer timer = new Timer();
+
     
     public ProgressForm() {
 
         this.setPreferredSize(new Dimension(500, 500));
-        this.setVisible(true);
         
-        panelCerrado.setLocation(400, 0);
+        panelCerrado.setLocation(200, 200);
         this.add(panelCerrado);
         
-        campoForm.setLocation(100, 200);
+        
         this.add(campoForm);
         
         botonEnviar.setText("Enviar");
@@ -46,13 +52,24 @@ public class ProgressForm extends JPanel {
         mensajeFinal.setVisible(false);
         this.add(mensajeFinal);
         
+        TimerTask task = new TimerTask() {
+            public void run() {
+
+                barraProgreso.setValue(barraProgreso.getValue()+1);
+            }
+        };
+        
         botonEnviar.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
                 
                 barraProgreso.setVisible(true);
+
+                barraProgreso.setMinimum(0);
+                barraProgreso.setMaximum(5);
+
+                timer.schedule(task, 1000);
             }
-            
         });
     }
 }
