@@ -51,11 +51,23 @@ public class ProgressForm extends JPanel {
         mensajeFinal.setBounds(300, 300, 100, 30);
         mensajeFinal.setVisible(false);
         this.add(mensajeFinal);
-        
+    
         TimerTask task = new TimerTask() {
             public void run() {
 
-                barraProgreso.setValue(barraProgreso.getValue()+1);
+                int valorBarra = barraProgreso.getValue();
+
+                if (valorBarra < barraProgreso.getMaximum()) {
+
+                    barraProgreso.setValue(valorBarra + 1);
+
+                } else {
+
+                    timer.cancel();
+                    mensajeFinal.setText("¡Formulario Enviado!");
+                    mensajeFinal.setVisible(true);
+
+                }
             }
         };
         
@@ -64,11 +76,10 @@ public class ProgressForm extends JPanel {
             public void actionPerformed(ActionEvent evt) {
                 
                 barraProgreso.setVisible(true);
-
                 barraProgreso.setMinimum(0);
                 barraProgreso.setMaximum(5);
 
-                timer.schedule(task, 1000);
+                timer.schedule(task, 0,1000);
             }
         });
     }
