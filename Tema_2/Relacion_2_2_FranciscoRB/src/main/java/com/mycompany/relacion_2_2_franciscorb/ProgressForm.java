@@ -79,7 +79,7 @@ public class ProgressForm extends JPanel {
                 barraProgreso.setMinimum(0);
                 barraProgreso.setMaximum(5);
 
-                timer.schedule(task, 0,1000);
+                timer.schedule(task, 0, 5000);
             }
         });
     }
