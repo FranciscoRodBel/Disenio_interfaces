@@ -12,80 +12,40 @@ import javax.swing.*;
  *
  * @author Propietario
  */
-public class Activity_3 extends javax.swing.JFrame {
+public class Activity_4 extends javax.swing.JFrame {
 
     JPanel panelMain = new JPanel();
-    JPanel panelButtons = new JPanel();
-    JPanel panelText = new JPanel();
+
     JButton button1 = new JButton("Button 1");
     JButton button2 = new JButton("Button 2");
     JButton button3 = new JButton("Button 3");
-    JTextField inputText = new JTextField();
-    JComboBox<String> listOptions = new JComboBox();
+    JButton button4 = new JButton("Button 4");
+    JButton button5 = new JButton("Button 5");
+
     /**
      * Creates new form Activity_3
      */
-    public Activity_3() {
+    public Activity_4() {
         initComponents();
-        
+
         this.setLayout(null);
         this.setBounds(0, 0, 500, 300);
         this.add(panelMain);
-        
-        
-        panelMain.setLayout(new CardLayout());
-        panelMain.setBounds(0, 0, 500, 300);
-        
-        
-        button1.setBounds(50, 100, 100, 40);
-        button2.setBounds(200, 100, 100, 40);
-        button3.setBounds(350, 100, 100, 40);
-        
-        
-        listOptions.setBounds(150, 20, 200, 50);
-        listOptions.addItem("Card with JButtons");
-        listOptions.addItem("Card with JTextField");
-        panelMain.add(listOptions);
-        
-        
-        inputText.setBounds(150, 100, 200, 40);
-        
-        
-        panelButtons.setBounds(0, 200, 300, 400);
-        panelButtons.add(button1);
-        panelButtons.add(button2);
-        panelButtons.add(button3);
-        panelButtons.setLayout(null);
-        panelMain.add(panelButtons, "panelButtons");
-       
-        
-        panelText.setBounds(0, 200, 300, 400);
-        panelText.add(inputText);
-        panelText.setLayout(null);
-        panelMain.add(panelText, "panelText");
-        
-        
-        //CardLayout layout = (CardLayout)(panelMain.getLayout());
-        //layout.show(panelMain, "panelButtons");
-        
-        
-        listOptions.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e) {
-                
-                CardLayout card = (CardLayout) (panelMain.getLayout());
-                String selectedOption = (String) listOptions.getSelectedItem();
-                
-                if ("Card with JButtons".equals(selectedOption)) {
-                    
-                    card.show(panelMain, "panelButtons");
-                    
-                } else if ("Card with JTextField".equals(selectedOption)) {
-                    
-                    card.show(panelMain, "panelText");
-                }
-            }
-        });
+        panelMain.setLayout(new FlowLayout());
+        panelMain.setBounds(0, 0, 500, 300);
+
+        panelMain.add(button1);
+        panelMain.add(button2);
+        panelMain.add(button3);
+        panelMain.add(button4);
+        panelMain.add(button5);
+        
+        button1.setBackground(new Color(175, 246, 249));
+        button2.setBackground(new Color(206, 249, 175));
+        button3.setBackground(new Color(249, 175, 183));
+        button4.setBackground(new Color(206, 249, 175));
+        button5.setBackground(new Color(243, 249, 175));
         
     }
 
@@ -131,20 +91,21 @@ public class Activity_3 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Activity_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Activity_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Activity_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Activity_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Activity_3().setVisible(true);
+                new Activity_4().setVisible(true);
             }
         });
     }
