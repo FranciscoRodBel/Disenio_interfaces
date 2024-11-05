@@ -15,6 +15,8 @@ import javax.swing.*;
 public class Activity_3 extends javax.swing.JFrame {
 
     JPanel panelMain = new JPanel();
+    JPanel panelNorth = new JPanel();
+    JPanel panelSouth = new JPanel();
     JPanel panelButtons = new JPanel();
     JPanel panelText = new JPanel();
     JButton button1 = new JButton("Button 1");
@@ -33,45 +35,44 @@ public class Activity_3 extends javax.swing.JFrame {
         this.setBounds(0, 0, 500, 300);
         this.add(panelMain);
 
-        panelMain.setLayout(new CardLayout());
         panelMain.setBounds(0, 0, 500, 300);
-
-        //listOptions.setBounds(150, 20, 200, 50);
+        //panelMain.setLayout(new BorderLayout());
+        panelMain.add(panelNorth, BorderLayout.NORTH);
+        panelMain.add(panelSouth, BorderLayout.SOUTH);
+        
         listOptions.addItem("Card with JButtons");
         listOptions.addItem("Card with JTextField");
-        panelMain.add(listOptions);
+        panelNorth.add(listOptions);
+
+        panelSouth.setLayout(new CardLayout());
         
-        //panelButtons.setBounds(0, 200, 300, 400);
         panelButtons.setLayout(new BoxLayout(panelButtons, BoxLayout.X_AXIS));
         panelButtons.add(button1);
         panelButtons.add(button2);
         panelButtons.add(button3);
-        panelMain.add(panelButtons, "panelButtons");
+        panelSouth.add(panelButtons, "panelButtons");
         
-        //panelText.setBounds(0, 200, 300, 400);
         panelText.setLayout(new BoxLayout(panelText, BoxLayout.X_AXIS));
         panelText.add(inputText);
-        panelMain.add(panelText, "panelText");
+        panelSouth.add(panelText, "panelText");
         
-        //inputText.setBounds(150, 100, 200, 40);
-
-        //CardLayout layout = (CardLayout)(panelMain.getLayout());
-        //layout.show(panelMain, "panelButtons");
+        CardLayout layout = (CardLayout)(panelSouth.getLayout());
+        layout.show(panelSouth, "panelButtons");
         
         listOptions.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
 
-                CardLayout card = (CardLayout) (panelMain.getLayout());
+                CardLayout card = (CardLayout) (panelSouth.getLayout());
                 String selectedOption = (String) listOptions.getSelectedItem();
 
                 if ("Card with JButtons".equals(selectedOption)) {
 
-                    card.show(panelMain, "panelButtons");
+                    card.show(panelSouth, "panelButtons");
 
                 } else if ("Card with JTextField".equals(selectedOption)) {
 
-                    card.show(panelMain, "panelText");
+                    card.show(panelSouth, "panelText");
                 }
             }
         });

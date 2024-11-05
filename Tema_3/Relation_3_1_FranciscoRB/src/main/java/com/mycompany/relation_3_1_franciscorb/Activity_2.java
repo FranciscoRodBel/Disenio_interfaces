@@ -39,14 +39,17 @@ public class Activity_2 extends javax.swing.JFrame {
         
         button1.setPreferredSize(new Dimension(200, 50));
         button1.setBackground(new Color(175, 246, 249));
+        button1.setAlignmentX(CENTER_ALIGNMENT);
         panelMain.add(button1);
         
         button2.setPreferredSize(new Dimension(200, 50));
         button2.setBackground(new Color(249, 175, 183));
+        button2.setAlignmentX(CENTER_ALIGNMENT);
         panelMain.add(button2);
         
         button3.setPreferredSize(new Dimension(200, 50));
         button3.setBackground(new Color(206, 249, 175));
+        button3.setAlignmentX(CENTER_ALIGNMENT);
         panelMain.add(button3);
         
         panelBottom.setPreferredSize(new Dimension(600, 200));

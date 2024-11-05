@@ -29,11 +29,10 @@ public class Activity_1 extends javax.swing.JFrame {
         initComponents();
         
         this.setBounds(0, 0, 600, 600);
+        this.add(panelMain);
         
         panelMain.setBounds(0, 0, 600, 600);
         panelMain.setLayout(new BorderLayout());
-        panelMain.setVisible(true);
-        this.add(panelMain);
         
         panelNorth.setPreferredSize(new Dimension(600, 200));
         panelNorth.setBackground(new Color(243, 249, 175));
