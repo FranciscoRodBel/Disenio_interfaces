@@ -29,11 +29,11 @@ public class Activity_4 extends javax.swing.JFrame {
         initComponents();
 
         this.setLayout(null);
-        this.setBounds(0, 0, 500, 300);
+        this.setBounds(0, 0, 500, 200);
         this.add(panelMain);
 
-        panelMain.setLayout(new FlowLayout());
-        panelMain.setBounds(0, 0, 500, 300);
+        panelMain.setLayout(new FlowLayout(FlowLayout.CENTER));
+        panelMain.setBounds(0, 0, 500, 200);
 
         panelMain.add(button1);
         panelMain.add(button2);

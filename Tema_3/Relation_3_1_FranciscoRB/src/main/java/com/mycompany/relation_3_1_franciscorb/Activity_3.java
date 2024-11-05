@@ -22,7 +22,7 @@ public class Activity_3 extends javax.swing.JFrame {
     JButton button1 = new JButton("Button 1");
     JButton button2 = new JButton("Button 2");
     JButton button3 = new JButton("Button 3");
-    JTextField inputText = new JTextField();
+    JTextField inputText = new JTextField(15);
     JComboBox<String> listOptions = new JComboBox();
 
     /**
@@ -32,13 +32,13 @@ public class Activity_3 extends javax.swing.JFrame {
         initComponents();
 
         this.setLayout(null);
-        this.setBounds(0, 0, 500, 300);
+        this.setBounds(0, 0, 400, 200);
         this.add(panelMain);
 
-        panelMain.setBounds(0, 0, 500, 300);
-        //panelMain.setLayout(new BorderLayout());
+        panelMain.setBounds(0, 0, 400, 200);
+        panelMain.setLayout(new BorderLayout());
         panelMain.add(panelNorth, BorderLayout.NORTH);
-        panelMain.add(panelSouth, BorderLayout.SOUTH);
+        panelMain.add(panelSouth, BorderLayout.CENTER);
         
         listOptions.addItem("Card with JButtons");
         listOptions.addItem("Card with JTextField");
@@ -46,18 +46,15 @@ public class Activity_3 extends javax.swing.JFrame {
 
         panelSouth.setLayout(new CardLayout());
         
-        panelButtons.setLayout(new BoxLayout(panelButtons, BoxLayout.X_AXIS));
+        panelButtons.setLayout(new FlowLayout(FlowLayout.CENTER));
         panelButtons.add(button1);
         panelButtons.add(button2);
         panelButtons.add(button3);
         panelSouth.add(panelButtons, "panelButtons");
         
-        panelText.setLayout(new BoxLayout(panelText, BoxLayout.X_AXIS));
+        panelText.setLayout(new FlowLayout(FlowLayout.CENTER));
         panelText.add(inputText);
         panelSouth.add(panelText, "panelText");
-        
-        CardLayout layout = (CardLayout)(panelSouth.getLayout());
-        layout.show(panelSouth, "panelButtons");
         
         listOptions.addActionListener(new ActionListener() {
 

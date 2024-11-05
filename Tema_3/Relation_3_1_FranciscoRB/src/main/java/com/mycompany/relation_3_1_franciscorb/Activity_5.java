@@ -12,34 +12,61 @@ import javax.swing.*;
  *
  * @author Propietario
  */
-public class Activity_4 extends javax.swing.JFrame {
+public class Activity_5 extends javax.swing.JFrame {
 
     JPanel panelMain = new JPanel();
 
     JButton button1 = new JButton("Button 1");
     JButton button2 = new JButton("Button 2");
     JButton button3 = new JButton("Button 3");
-    JButton button4 = new JButton("Button 4");
-    JButton button5 = new JButton("Button 5");
+    JButton button4 = new JButton("Long-named Button 4");
+    JButton button5 = new JButton("5");
 
     /**
      * Creates new form Activity_3
      */
-    public Activity_4() {
+    public Activity_5() {
         initComponents();
 
         this.setLayout(null);
-        this.setBounds(0, 0, 500, 300);
+        this.setBounds(0, 0, 500, 200);
         this.add(panelMain);
 
-        panelMain.setLayout(new FlowLayout());
-        panelMain.setBounds(0, 0, 500, 300);
+        panelMain.setLayout(new GridBagLayout());
+        panelMain.setBounds(0, 0, 500, 200);
 
-        panelMain.add(button1);
-        panelMain.add(button2);
-        panelMain.add(button3);
-        panelMain.add(button4);
-        panelMain.add(button5);
+        GridBagConstraints gridOptions = new GridBagConstraints();
+        
+        gridOptions.gridx = 0;
+        gridOptions.gridy = 0;
+        gridOptions.gridwidth = 1;
+        gridOptions.gridheight = 1;
+        gridOptions.fill = GridBagConstraints.BOTH;
+        panelMain.add(button1, gridOptions);
+        
+        gridOptions.gridx = 1;
+        gridOptions.gridy = 0;
+        gridOptions.gridwidth = 1;
+        gridOptions.gridheight = 1;
+        panelMain.add(button2, gridOptions);
+        
+        gridOptions.gridx = 2;
+        gridOptions.gridy = 0;
+        gridOptions.gridwidth = 1;
+        gridOptions.gridheight = 1;
+        panelMain.add(button3, gridOptions);
+        
+        gridOptions.gridx = 0;
+        gridOptions.gridy = 1;
+        gridOptions.gridwidth = 3;
+        gridOptions.gridheight = 2;
+        panelMain.add(button4, gridOptions);
+        
+        gridOptions.gridx = 1;
+        gridOptions.gridy = 3;
+        gridOptions.gridwidth = 2;
+        gridOptions.gridheight = 1;
+        panelMain.add(button5, gridOptions);
         
         button1.setBackground(new Color(175, 246, 249));
         button2.setBackground(new Color(206, 249, 175));
@@ -91,21 +118,23 @@ public class Activity_4 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Activity_4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Activity_4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Activity_4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Activity_4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Activity_4().setVisible(true);
+                new Activity_5().setVisible(true);
             }
         });
     }
