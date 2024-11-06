@@ -30,7 +30,6 @@ public class Activity_2 extends javax.swing.JFrame {
         
         panelMain.setBounds(0, 0, 600, 600);
         panelMain.setLayout(new BoxLayout(panelMain, BoxLayout.Y_AXIS));
-        panelMain.setVisible(true);
         this.add(panelMain);
         
         panelTop.setPreferredSize(new Dimension(600, 200));

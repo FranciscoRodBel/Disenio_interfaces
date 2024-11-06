@@ -29,18 +29,22 @@ public class Activity_4 extends javax.swing.JFrame {
         initComponents();
 
         this.setLayout(null);
-        this.setBounds(0, 0, 500, 200);
+        this.setBounds(0, 0, 600, 200);
         this.add(panelMain);
 
         panelMain.setLayout(new FlowLayout(FlowLayout.CENTER));
-        panelMain.setBounds(0, 0, 500, 200);
-
+        panelMain.setBounds(0, 0, 600, 200);
+        
         panelMain.add(button1);
         panelMain.add(button2);
         panelMain.add(button3);
         panelMain.add(button4);
         panelMain.add(button5);
         
+        button1.setPreferredSize(new Dimension(100, 50));
+        button3.setPreferredSize(new Dimension(100, 50));
+        button5.setPreferredSize(new Dimension(100, 50));
+         
         button1.setBackground(new Color(175, 246, 249));
         button2.setBackground(new Color(206, 249, 175));
         button3.setBackground(new Color(249, 175, 183));

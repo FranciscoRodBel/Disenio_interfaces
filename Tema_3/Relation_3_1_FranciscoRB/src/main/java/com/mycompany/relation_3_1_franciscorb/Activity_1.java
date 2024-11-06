@@ -28,7 +28,7 @@ public class Activity_1 extends javax.swing.JFrame {
         
         initComponents();
         
-        this.setBounds(0, 0, 600, 600);
+        this.setBounds(0, 0, 615, 640);
         this.add(panelMain);
         
         panelMain.setBounds(0, 0, 600, 600);

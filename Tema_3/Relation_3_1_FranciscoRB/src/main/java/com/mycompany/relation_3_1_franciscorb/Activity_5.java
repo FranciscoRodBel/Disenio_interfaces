@@ -29,11 +29,11 @@ public class Activity_5 extends javax.swing.JFrame {
         initComponents();
 
         this.setLayout(null);
-        this.setBounds(0, 0, 500, 200);
+        this.setBounds(0, 0, 500, 300);
         this.add(panelMain);
 
         panelMain.setLayout(new GridBagLayout());
-        panelMain.setBounds(0, 0, 500, 200);
+        panelMain.setBounds(0, 0, 500, 300);
 
         GridBagConstraints gridOptions = new GridBagConstraints();
         
@@ -60,12 +60,15 @@ public class Activity_5 extends javax.swing.JFrame {
         gridOptions.gridy = 1;
         gridOptions.gridwidth = 3;
         gridOptions.gridheight = 2;
+        gridOptions.ipady = 40;
         panelMain.add(button4, gridOptions);
         
         gridOptions.gridx = 1;
         gridOptions.gridy = 3;
         gridOptions.gridwidth = 2;
         gridOptions.gridheight = 1;
+        gridOptions.ipady = 0;
+        gridOptions.insets = new Insets(10,0,0,0); 
         panelMain.add(button5, gridOptions);
         
         button1.setBackground(new Color(175, 246, 249));

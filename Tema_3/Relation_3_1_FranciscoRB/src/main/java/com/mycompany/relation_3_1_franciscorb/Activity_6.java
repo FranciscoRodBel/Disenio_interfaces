@@ -12,61 +12,31 @@ import javax.swing.*;
  *
  * @author Propietario
  */
-public class Activity_5 extends javax.swing.JFrame {
+public class Activity_6 extends javax.swing.JFrame {
 
     JPanel panelMain = new JPanel();
+    JPanel panelButtons = new JPanel();
+    JPanel panelDown = new JPanel();
 
     JButton button1 = new JButton("Button 1");
     JButton button2 = new JButton("Button 2");
     JButton button3 = new JButton("Button 3");
     JButton button4 = new JButton("Long-named Button 4");
     JButton button5 = new JButton("5");
-
+    JLabel labelHorizontal = new JLabel("Horizontal gap: ");
+    JLabel labelVertical = new JLabel("Vertical gap: ");
     /**
      * Creates new form Activity_3
      */
-    public Activity_5() {
+    public Activity_6() {
         initComponents();
 
         this.setLayout(null);
-        this.setBounds(0, 0, 500, 200);
+        this.setBounds(0, 0, 515, 340);
         this.add(panelMain);
 
-        panelMain.setLayout(new GridBagLayout());
-        panelMain.setBounds(0, 0, 500, 200);
-
-        GridBagConstraints gridOptions = new GridBagConstraints();
-        
-        gridOptions.gridx = 0;
-        gridOptions.gridy = 0;
-        gridOptions.gridwidth = 1;
-        gridOptions.gridheight = 1;
-        gridOptions.fill = GridBagConstraints.BOTH;
-        panelMain.add(button1, gridOptions);
-        
-        gridOptions.gridx = 1;
-        gridOptions.gridy = 0;
-        gridOptions.gridwidth = 1;
-        gridOptions.gridheight = 1;
-        panelMain.add(button2, gridOptions);
-        
-        gridOptions.gridx = 2;
-        gridOptions.gridy = 0;
-        gridOptions.gridwidth = 1;
-        gridOptions.gridheight = 1;
-        panelMain.add(button3, gridOptions);
-        
-        gridOptions.gridx = 0;
-        gridOptions.gridy = 1;
-        gridOptions.gridwidth = 3;
-        gridOptions.gridheight = 2;
-        panelMain.add(button4, gridOptions);
-        
-        gridOptions.gridx = 1;
-        gridOptions.gridy = 3;
-        gridOptions.gridwidth = 2;
-        gridOptions.gridheight = 1;
-        panelMain.add(button5, gridOptions);
+        panelMain.setLayout(new BoxLayout(panelMain, BoxLayout.Y_AXIS));
+        panelMain.setBounds(0, 0, 500, 300);
         
         button1.setBackground(new Color(175, 246, 249));
         button2.setBackground(new Color(206, 249, 175));
@@ -74,6 +44,24 @@ public class Activity_5 extends javax.swing.JFrame {
         button4.setBackground(new Color(206, 249, 175));
         button5.setBackground(new Color(243, 249, 175));
         
+        panelButtons.setPreferredSize(new Dimension(500, 150));
+        panelButtons.setLayout(new GridLayout(3,2));
+        panelButtons.add(button1);
+        panelButtons.add(button2);
+        panelButtons.add(button3);
+        panelButtons.add(button4);
+        panelButtons.add(button5);
+        panelMain.add(panelButtons);
+        
+        panelDown.setPreferredSize(new Dimension(500, 150));
+        panelDown.setLayout(new GridLayout(2,3));
+        panelDown.add(labelHorizontal);
+        panelDown.add(labelVertical);
+        panelMain.add(panelDown);
+        
+        panelDown.setLayout(new GridLayout(2,3));
+        this.add(panelDown);
+     
     }
 
     /**
@@ -118,14 +106,18 @@ public class Activity_5 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Activity_5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Activity_5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Activity_5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Activity_5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -134,7 +126,7 @@ public class Activity_5 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Activity_5().setVisible(true);
+                new Activity_6().setVisible(true);
             }
         });
     }
