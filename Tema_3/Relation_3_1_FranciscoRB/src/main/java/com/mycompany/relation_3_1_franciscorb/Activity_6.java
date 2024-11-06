@@ -25,6 +25,9 @@ public class Activity_6 extends javax.swing.JFrame {
     JButton button5 = new JButton("5");
     JLabel labelHorizontal = new JLabel("Horizontal gap: ");
     JLabel labelVertical = new JLabel("Vertical gap: ");
+    JComboBox<String> comboBoxHorizontal = new JComboBox<>();
+    JComboBox<String> comboBoxVertical = new JComboBox<>();
+    JButton buttonApply = new JButton("Apply gaps");
     /**
      * Creates new form Activity_3
      */
@@ -35,7 +38,7 @@ public class Activity_6 extends javax.swing.JFrame {
         this.setBounds(0, 0, 515, 340);
         this.add(panelMain);
 
-        panelMain.setLayout(new BoxLayout(panelMain, BoxLayout.Y_AXIS));
+        panelMain.setLayout(new BorderLayout());
         panelMain.setBounds(0, 0, 500, 300);
         
         button1.setBackground(new Color(175, 246, 249));
@@ -51,17 +54,23 @@ public class Activity_6 extends javax.swing.JFrame {
         panelButtons.add(button3);
         panelButtons.add(button4);
         panelButtons.add(button5);
-        panelMain.add(panelButtons);
+        panelMain.add(panelButtons, BorderLayout.NORTH);
         
         panelDown.setPreferredSize(new Dimension(500, 150));
         panelDown.setLayout(new GridLayout(2,3));
         panelDown.add(labelHorizontal);
         panelDown.add(labelVertical);
-        panelMain.add(panelDown);
+        panelMain.add(panelDown, BorderLayout.CENTER);
         
-        panelDown.setLayout(new GridLayout(2,3));
-        this.add(panelDown);
-     
+        comboBoxHorizontal.addItem("0");
+        comboBoxHorizontal.addItem("10");
+        panelDown.add(comboBoxHorizontal);
+        
+        comboBoxVertical.addItem("0");
+        comboBoxVertical.addItem("10");
+        panelDown.add(comboBoxVertical);
+        
+        panelDown.add(buttonApply);
     }
 
     /**
@@ -114,13 +123,6 @@ public class Activity_6 extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Activity_6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
