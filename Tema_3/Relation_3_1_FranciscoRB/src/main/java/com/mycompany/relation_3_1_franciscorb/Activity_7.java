@@ -12,65 +12,32 @@ import javax.swing.*;
  *
  * @author Propietario
  */
-public class Activity_6 extends javax.swing.JFrame {
+public class Activity_7 extends javax.swing.JFrame {
 
     JPanel panelMain = new JPanel();
-    JPanel panelButtons = new JPanel();
-    JPanel panelDown = new JPanel();
-
-    JButton button1 = new JButton("Button 1");
-    JButton button2 = new JButton("Button 2");
-    JButton button3 = new JButton("Button 3");
-    JButton button4 = new JButton("Long-named Button 4");
-    JButton button5 = new JButton("5");
-    JLabel labelHorizontal = new JLabel("Horizontal gap: ");
-    JLabel labelVertical = new JLabel("Vertical gap: ");
-    JComboBox<String> comboBoxHorizontal = new JComboBox<>();
-    JComboBox<String> comboBoxVertical = new JComboBox<>();
-    JButton buttonApply = new JButton("Apply gaps");
+    
+    JLabel labelFind = new JLabel("Horizontal gap: ");
+    JTextField inputFind = new JTextField();
+    JButton buttonFind = new JButton("Button 1");
+    JButton buttonCancel = new JButton("Button 2");
+    JCheckBox checkMatchCase = new JCheckBox("Match Case");
+    JCheckBox checkWrapAround = new JCheckBox("Wrap Around");
+    JCheckBox checkWholeWords = new JCheckBox("Whole Words");
+    JCheckBox checkSearchBackwards = new JCheckBox("Search Backwards");
+    
     /**
      * Creates new form Activity_3
      */
-    public Activity_6() {
+    public Activity_7() {
         initComponents();
 
         this.setLayout(null);
         this.setBounds(0, 0, 515, 340);
         this.add(panelMain);
 
-        panelMain.setLayout(new BorderLayout());
+        panelMain.setLayout(new GroupLayout(panelMain));
         panelMain.setBounds(0, 0, 500, 300);
         
-        button1.setBackground(new Color(175, 246, 249));
-        button2.setBackground(new Color(206, 249, 175));
-        button3.setBackground(new Color(249, 175, 183));
-        button4.setBackground(new Color(206, 249, 175));
-        button5.setBackground(new Color(243, 249, 175));
-        
-        panelButtons.setPreferredSize(new Dimension(500, 150));
-        panelButtons.setLayout(new GridLayout(3,2));
-        panelButtons.add(button1);
-        panelButtons.add(button2);
-        panelButtons.add(button3);
-        panelButtons.add(button4);
-        panelButtons.add(button5);
-        panelMain.add(panelButtons, BorderLayout.NORTH);
-        
-        panelDown.setPreferredSize(new Dimension(500, 150));
-        panelDown.setLayout(new GridLayout(2,3));
-        panelDown.add(labelHorizontal);
-        panelDown.add(labelVertical);
-        panelMain.add(panelDown, BorderLayout.CENTER);
-        
-        comboBoxHorizontal.addItem("0");
-        comboBoxHorizontal.addItem("10");
-        panelDown.add(comboBoxHorizontal);
-        
-        comboBoxVertical.addItem("0");
-        comboBoxVertical.addItem("10");
-        panelDown.add(comboBoxVertical);
-        
-        panelDown.add(buttonApply);
     }
 
     /**
@@ -115,20 +82,21 @@ public class Activity_6 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Activity_6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_7.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Activity_6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_7.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Activity_6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_7.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Activity_6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Activity_7.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Activity_6().setVisible(true);
+                new Activity_7().setVisible(true);
             }
         });
     }
