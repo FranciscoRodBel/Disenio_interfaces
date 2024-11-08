@@ -7,6 +7,8 @@ package com.mycompany.relation_3_1_franciscorb;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import static javax.swing.GroupLayout.Alignment.BASELINE;
+import static javax.swing.GroupLayout.Alignment.LEADING;
 
 /**
  *
@@ -16,28 +18,70 @@ public class Activity_7 extends javax.swing.JFrame {
 
     JPanel panelMain = new JPanel();
     
-    JLabel labelFind = new JLabel("Horizontal gap: ");
-    JTextField inputFind = new JTextField();
-    JButton buttonFind = new JButton("Button 1");
-    JButton buttonCancel = new JButton("Button 2");
+    JLabel labelFind = new JLabel("Find What: ");
+    JTextField inputFind = new JTextField(15);
     JCheckBox checkMatchCase = new JCheckBox("Match Case");
     JCheckBox checkWrapAround = new JCheckBox("Wrap Around");
     JCheckBox checkWholeWords = new JCheckBox("Whole Words");
     JCheckBox checkSearchBackwards = new JCheckBox("Search Backwards");
-    
+    JButton buttonFind = new JButton("Find");
+    JButton buttonCancel = new JButton("Cancel");
     /**
      * Creates new form Activity_3
      */
-    public Activity_7() {
+    public Activity_7() { // Exercise done with the help of the code from the official Java page
         initComponents();
 
         this.setLayout(null);
         this.setBounds(0, 0, 515, 340);
         this.add(panelMain);
 
-        panelMain.setLayout(new GroupLayout(panelMain));
+        GroupLayout layout = new GroupLayout(panelMain);
+        panelMain.setLayout(layout);
         panelMain.setBounds(0, 0, 500, 300);
         
+        // Space is added between components
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
+        
+        layout.setHorizontalGroup( // The components are configured horizontally (the columns)
+            layout.createSequentialGroup() // A button group is created
+                .addComponent(labelFind) // Search label is added for the first column
+                .addGroup(layout.createParallelGroup(LEADING) // Another group is created for another column
+                    .addComponent(inputFind) // The textField is added
+                    .addGroup(layout.createSequentialGroup() // Inside this column there will be 2 more columns
+                        .addGroup(layout.createParallelGroup(LEADING) // The first one with the two checkboxes on the left
+                            .addComponent(checkMatchCase)
+                            .addComponent(checkWholeWords))
+                        .addGroup(layout.createParallelGroup(LEADING) // The second one with the two checkboxes on the right
+                            .addComponent(checkWrapAround)
+                            .addComponent(checkSearchBackwards))))
+                .addGroup(layout.createParallelGroup(LEADING) // In the last column the buttons are added
+                    .addComponent(buttonFind)
+                    .addComponent(buttonCancel))
+        );
+
+        layout.setVerticalGroup( // The components are configured vertically (the rows)
+            layout.createSequentialGroup() // A button group is created
+                .addGroup(layout.createParallelGroup(BASELINE) // It is configured to be added in parallel
+                    // The entire first row is added
+                    .addComponent(labelFind) 
+                    .addComponent(inputFind)
+                    .addComponent(buttonFind))
+                .addGroup(layout.createParallelGroup(LEADING) // Another group is created for the rows below
+                    .addGroup(layout.createSequentialGroup() // A button group is created
+                        .addGroup(layout.createParallelGroup(BASELINE)  // It is configured to be added in parallel in a new group
+                            // Second row is added
+                            .addComponent(checkMatchCase)
+                            .addComponent(checkWrapAround)
+                            .addComponent(buttonCancel))
+                        .addGroup(layout.createParallelGroup(BASELINE) // It is configured to be added in parallel in another group
+                            // Third row added
+                            .addComponent(checkWholeWords)
+                            .addComponent(checkSearchBackwards)))
+                )
+        );
+
     }
 
     /**
