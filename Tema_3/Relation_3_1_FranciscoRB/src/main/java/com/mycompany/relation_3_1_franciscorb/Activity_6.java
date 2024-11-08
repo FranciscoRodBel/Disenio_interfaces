@@ -17,6 +17,8 @@ public class Activity_6 extends javax.swing.JFrame {
     JPanel panelMain = new JPanel();
     JPanel panelButtons = new JPanel();
     JPanel panelDown = new JPanel();
+    JPanel panelLabels = new JPanel();
+    JPanel panelGap = new JPanel();
 
     JButton button1 = new JButton("Button 1");
     JButton button2 = new JButton("Button 2");
@@ -57,20 +59,26 @@ public class Activity_6 extends javax.swing.JFrame {
         panelMain.add(panelButtons, BorderLayout.NORTH);
         
         panelDown.setPreferredSize(new Dimension(500, 150));
-        panelDown.setLayout(new GridLayout(2,3));
-        panelDown.add(labelHorizontal);
-        panelDown.add(labelVertical);
+        panelDown.setLayout(new GridLayout(2,1));
         panelMain.add(panelDown, BorderLayout.CENTER);
         
+        panelLabels.setLayout(new GridLayout(1,3));
+        panelLabels.add(labelHorizontal);
+        panelLabels.add(labelVertical);
+        panelDown.add(panelLabels);
+        
+        panelGap.setLayout(new GridLayout(1,3));
+        panelDown.add(panelGap);
+      
         comboBoxHorizontal.addItem("0");
         comboBoxHorizontal.addItem("10");
-        panelDown.add(comboBoxHorizontal);
+        panelGap.add(comboBoxHorizontal);
         
         comboBoxVertical.addItem("0");
         comboBoxVertical.addItem("10");
-        panelDown.add(comboBoxVertical);
+        panelGap.add(comboBoxVertical);
         
-        panelDown.add(buttonApply);
+        panelGap.add(buttonApply);
     }
 
     /**
