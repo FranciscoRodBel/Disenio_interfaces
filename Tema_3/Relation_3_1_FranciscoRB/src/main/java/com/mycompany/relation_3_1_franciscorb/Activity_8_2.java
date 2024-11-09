@@ -37,7 +37,8 @@ public class Activity_8_2 extends javax.swing.JFrame {
         this.setBounds(0, 0, 500, 300);
         this.add(panelMain);
 
-        panelMain.setLayout(new SpringLayout());
+        SpringLayout layout = new SpringLayout();
+        panelMain.setLayout(layout);
         panelMain.setBounds(0, 0, 500, 300);
 
         panelMain.add(labelName);
@@ -49,6 +50,32 @@ public class Activity_8_2 extends javax.swing.JFrame {
         panelMain.add(inputFax);
         panelMain.add(inputEmail);
         panelMain.add(inputAddress);
+        
+        layout.putConstraint(SpringLayout.WEST, labelName, 50, SpringLayout.WEST, panelMain);
+        layout.putConstraint(SpringLayout.NORTH, labelName, 50, SpringLayout.NORTH, panelMain);
+        
+        layout.putConstraint(SpringLayout.WEST, labelFax, 0, SpringLayout.WEST, labelName);
+        layout.putConstraint(SpringLayout.NORTH, labelFax, 40, SpringLayout.NORTH, labelName);
+        
+        layout.putConstraint(SpringLayout.WEST, labelEmail, 0, SpringLayout.WEST, labelFax);
+        layout.putConstraint(SpringLayout.NORTH, labelEmail, 40, SpringLayout.NORTH, labelFax);
+        
+        layout.putConstraint(SpringLayout.WEST, labelAddress, 0, SpringLayout.WEST, labelEmail);
+        layout.putConstraint(SpringLayout.NORTH, labelAddress, 40, SpringLayout.NORTH, labelEmail);
+        
+        
+        layout.putConstraint(SpringLayout.WEST, inputName, 50, SpringLayout.WEST, labelName);
+        layout.putConstraint(SpringLayout.NORTH, inputName, -5, SpringLayout.NORTH, labelName);
+        
+        layout.putConstraint(SpringLayout.WEST, inputFax, 50, SpringLayout.WEST, labelFax);
+        layout.putConstraint(SpringLayout.NORTH, inputFax, -5, SpringLayout.NORTH, labelFax);
+        
+        layout.putConstraint(SpringLayout.WEST, inputEmail, 50, SpringLayout.WEST, labelEmail);
+        layout.putConstraint(SpringLayout.NORTH, inputEmail, -5, SpringLayout.NORTH, labelEmail);
+        
+        layout.putConstraint(SpringLayout.WEST, inputAddress, 50, SpringLayout.WEST, labelAddress);
+        layout.putConstraint(SpringLayout.NORTH, inputAddress, -5, SpringLayout.NORTH, labelAddress);
+
     }
 
     /**

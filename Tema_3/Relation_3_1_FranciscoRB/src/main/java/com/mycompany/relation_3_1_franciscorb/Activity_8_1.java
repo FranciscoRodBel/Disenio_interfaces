@@ -48,13 +48,20 @@ public class Activity_8_1 extends javax.swing.JFrame {
         button4.setBackground(new Color(206, 249, 175));
         button5.setBackground(new Color(243, 249, 175));
      
-        layout.putConstraint(SpringLayout.WEST, button1,
-                             5,
-                             SpringLayout.WEST, panelMain);
+        layout.putConstraint(SpringLayout.WEST, button1, 10, SpringLayout.WEST, panelMain);
+        layout.putConstraint(SpringLayout.NORTH, button1, 100, SpringLayout.NORTH, panelMain);
         
-        layout.putConstraint(SpringLayout.NORTH, button2,
-                             5,
-                             SpringLayout.NORTH, panelMain);
+        layout.putConstraint(SpringLayout.WEST, button2, 80, SpringLayout.WEST, button1);
+        layout.putConstraint(SpringLayout.NORTH, button2, 0, SpringLayout.NORTH, button1);
+        
+        layout.putConstraint(SpringLayout.WEST, button3, 80, SpringLayout.WEST, button2);
+        layout.putConstraint(SpringLayout.NORTH, button3, 0, SpringLayout.NORTH, button2);
+        
+        layout.putConstraint(SpringLayout.WEST, button4, 80, SpringLayout.WEST, button3);
+        layout.putConstraint(SpringLayout.NORTH, button4, 0, SpringLayout.NORTH, button3);
+        
+        layout.putConstraint(SpringLayout.WEST, button5, 150, SpringLayout.WEST, button4);
+        layout.putConstraint(SpringLayout.NORTH, button5, 0, SpringLayout.NORTH, button4);
     }
 
     /**
