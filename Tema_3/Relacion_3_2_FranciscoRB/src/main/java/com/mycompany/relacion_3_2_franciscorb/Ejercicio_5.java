@@ -2,18 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.relacion_2_franciscorb;
+package com.mycompany.relacion_3_2_franciscorb;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import javax.swing.*;
 
 /**
  *
  * @author Francisco
  */
-public class Actividad_3 extends javax.swing.JFrame {
+public class Ejercicio_5 extends javax.swing.JFrame {
 
     private JPanel panelInfoPersonal = new JPanel();
     private JPanel panelInfoDomiciliaria = new JPanel();
@@ -29,6 +28,13 @@ public class Actividad_3 extends javax.swing.JFrame {
     private JComboBox<String> selectCiudad = new JComboBox<String>();
     private JTextField inputCP = new JTextField();
     private JTextField inputDireccion = new JTextField();
+    
+    // Añadido para el ejercicio 5
+    
+    private JList listaResumenDatos = new JList<>();
+    private DefaultListModel<String> modelDatosResumen = new DefaultListModel<String>();
+    private JScrollPane scrollListaDatos = new JScrollPane(listaResumenDatos);
+    
     
     public void crearPanelInformacionPersonal() {
 
@@ -181,7 +187,7 @@ public class Actividad_3 extends javax.swing.JFrame {
     /**
      * Creates new form Actividad_3
      */
-    public Actividad_3() {
+    public Ejercicio_5() {
         initComponents();
         
         this.setBounds(0, 0, 500, 500);
@@ -190,7 +196,6 @@ public class Actividad_3 extends javax.swing.JFrame {
         crearPanelInformacionPersonal();
         crearPanelInformacionDomiciliaria();
         
-        //panelInfoPersonal.setVisible(false);
         panelInfoDomiciliaria.setVisible(false);
         
         this.paint(getGraphics());
@@ -208,11 +213,78 @@ public class Actividad_3 extends javax.swing.JFrame {
                 botonAnteriorPulsado(evt);
             }
         });
-
+        
+        
+        // Nuevo añadido para el ejercicio 5
+        
+        scrollListaDatos.setPreferredSize(new Dimension(300, 150));
+        
+        
         botonEnviar.addActionListener(new ActionListener() {
-            
-            public void actionPerformed(ActionEvent evt) {
-                botonEnviarPulsado(evt);
+
+            public void actionPerformed(ActionEvent e) {
+
+                if (!inputDireccion.getText().equals("") && !inputNumero.getText().equals("") && !inputCP.getText().equals("")) {
+                    
+                    modelDatosResumen.addElement("Nombre: "+inputNombre.getText());
+                    modelDatosResumen.addElement("Apellidos: "+inputApellidos.getText());
+                    modelDatosResumen.addElement("Teléfono: "+inputNumeroTelefono.getText());
+                    modelDatosResumen.addElement("Género: "+selectGenero.getSelectedItem().toString());
+                    modelDatosResumen.addElement("Email: "+inputEmail.getText());
+                    modelDatosResumen.addElement("Dirección: "+inputDireccion.getText());
+                    modelDatosResumen.addElement("Número: "+inputNumero.getText());
+                    modelDatosResumen.addElement("Ciudad: "+selectCiudad.getSelectedItem().toString());
+                    modelDatosResumen.addElement("CP: "+inputCP.getText());
+                    
+                    listaResumenDatos.setModel(modelDatosResumen);
+                    
+                    JDialog modalSalir = new JDialog(Ejercicio_5.this, true);
+                    SpringLayout layout = new SpringLayout();
+
+                    modalSalir.setLayout(layout);
+                    modalSalir.setSize(new Dimension(400, 300));
+                    modalSalir.setLocationRelativeTo(Ejercicio_5.this); // Para que aparezca el modal en el centro con respecto a al jframe principal
+
+                    JLabel labelSalir = new JLabel("Resumen de los datos");
+                    
+                    JButton botonEnviar = new JButton("Enviar");
+                    JButton botonCancelar = new JButton("Cancelar");
+
+                    modalSalir.add(labelSalir);
+                    modalSalir.add(scrollListaDatos);
+                    modalSalir.add(botonEnviar);
+                    modalSalir.add(botonCancelar);
+
+                    layout.putConstraint(SpringLayout.WEST, labelSalir, 150, SpringLayout.WEST, modalSalir);
+                    layout.putConstraint(SpringLayout.NORTH, labelSalir, 20, SpringLayout.NORTH, modalSalir);
+                    
+                    layout.putConstraint(SpringLayout.WEST, scrollListaDatos, 50, SpringLayout.WEST, modalSalir);
+                    layout.putConstraint(SpringLayout.NORTH, scrollListaDatos, 50, SpringLayout.NORTH, modalSalir);
+
+                    layout.putConstraint(SpringLayout.WEST, botonCancelar, 70, SpringLayout.WEST, scrollListaDatos);
+                    layout.putConstraint(SpringLayout.NORTH, botonCancelar, 20, SpringLayout.SOUTH, scrollListaDatos);
+
+                    layout.putConstraint(SpringLayout.WEST, botonEnviar, 20, SpringLayout.EAST, botonCancelar);
+                    layout.putConstraint(SpringLayout.NORTH, botonEnviar, 0, SpringLayout.NORTH, botonCancelar);
+                    
+                    botonEnviar.addActionListener(new ActionListener() {
+
+                        public void actionPerformed(ActionEvent e) {
+
+                            System.exit(0);
+                        }
+                    });
+
+                    botonCancelar.addActionListener(new ActionListener() {
+
+                        public void actionPerformed(ActionEvent e) {
+
+                            modalSalir.dispose();
+                        }
+                    });
+
+                    modalSalir.setVisible(true);
+                }
             }
         });
     }
@@ -234,24 +306,6 @@ public class Actividad_3 extends javax.swing.JFrame {
         panelInfoDomiciliaria.setVisible(false);
         
     }
-    
-    private void botonEnviarPulsado(java.awt.event.ActionEvent evt) {                                         
-        
-        if (!this.inputDireccion.getText().equals("") && !this.inputNumero.getText().equals("") && !this.inputCP.getText().equals("")) {
-            
-            panelInfoPersonal.setVisible(false);
-            panelInfoDomiciliaria.setVisible(false);
-            
-            JLabel mensajeFinal = new JLabel();
-            mensajeFinal.setText("Gracias por rellenar el formulario");
-            mensajeFinal.setFont(new Font("Arial",1, 20));
-            mensajeFinal.setHorizontalAlignment(SwingConstants.CENTER);
-            mensajeFinal.setBounds(0, 200, 500, 50);
-            this.add(mensajeFinal);
-
-        }
-        
-    }  
 
 
     /**
@@ -264,7 +318,6 @@ public class Actividad_3 extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(null);
         setMinimumSize(null);
         setResizable(false);
         setSize(new java.awt.Dimension(500, 500));
@@ -301,20 +354,21 @@ public class Actividad_3 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Actividad_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ejercicio_5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Actividad_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ejercicio_5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Actividad_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ejercicio_5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Actividad_3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ejercicio_5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Actividad_3().setVisible(true);
+                new Ejercicio_5().setVisible(true);
             }
         });
         
