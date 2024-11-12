@@ -33,8 +33,6 @@ public class Ejercicio_2 extends javax.swing.JFrame {
     JButton botonNegritaLabel = new JButton();
     JButton botonCentrarLabel = new JButton();
     JButton botonSalir = new JButton();
-    
-    JSeparator separador = new JSeparator();
 
     /**
      * Creates new form Ejercicio_2
@@ -66,15 +64,14 @@ public class Ejercicio_2 extends javax.swing.JFrame {
         botonCrearLabel.setEnabled(false);
         botonNegritaLabel.setEnabled(false);
         botonCentrarLabel.setEnabled(false);
-        
-        separador.setPreferredSize(new Dimension(2, 20));
                 
         barraHerramientas.add(botonCrearPanel);
         barraHerramientas.add(botonBorrarPanel);
-        barraHerramientas.add(separador);
+        barraHerramientas.add(new JToolBar.Separator());
         barraHerramientas.add(botonCrearLabel);
         barraHerramientas.add(botonNegritaLabel);
         barraHerramientas.add(botonCentrarLabel);
+        barraHerramientas.add(new JToolBar.Separator());
         barraHerramientas.add(botonSalir);
         
         // Listeners
