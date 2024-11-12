@@ -18,6 +18,9 @@ public class Ejercicio_2 extends javax.swing.JFrame {
 
     JPanel panelPrincipal = new JPanel();
     JPanel panelInsertado = new JPanel();
+    SpringLayout layoutPanelInsertado = new SpringLayout();
+    
+    JLabel labelPanel = new JLabel("Label del panel");
     
     JToolBar barraHerramientas = new JToolBar();
     
@@ -77,6 +80,7 @@ public class Ejercicio_2 extends javax.swing.JFrame {
             
             public void actionPerformed(ActionEvent e) {
                 
+                panelInsertado.setLayout(layoutPanelInsertado);
                 panelInsertado.setPreferredSize(new Dimension(400, 250));
                 panelInsertado.setBackground(new Color(250, 250, 250));
                 
@@ -99,6 +103,7 @@ public class Ejercicio_2 extends javax.swing.JFrame {
             
             public void actionPerformed(ActionEvent e) {
                 
+                
                 panelPrincipal.remove(panelInsertado);
                 
                 botonCrearPanel.setEnabled(true);
@@ -116,6 +121,35 @@ public class Ejercicio_2 extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 
                 System.exit(0);
+            }
+        });
+        
+        botonCrearLabel.addActionListener(new ActionListener() {
+            
+            public void actionPerformed(ActionEvent e) {
+                
+                panelInsertado.add(labelPanel);
+                
+                labelPanel.setPreferredSize(new Dimension(100, 30));
+                
+                layoutPanelInsertado.putConstraint(SpringLayout.WEST, labelPanel, 0, SpringLayout.WEST, panelInsertado);
+                layoutPanelInsertado.putConstraint(SpringLayout.NORTH, labelPanel, 20, SpringLayout.NORTH, panelInsertado);
+                
+                botonCrearLabel.setEnabled(false);
+
+                panelInsertado.revalidate();
+            }
+        });
+        
+        botonNegritaLabel.addActionListener(new ActionListener() {
+            
+            public void actionPerformed(ActionEvent e) {
+                
+                if
+                
+                botonCrearLabel.setEnabled(false);
+
+                panelInsertado.revalidate();
             }
         });
     }
