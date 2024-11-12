@@ -6,6 +6,7 @@ package com.mycompany.relacion_3_2_franciscorb;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -20,6 +21,8 @@ public class Ejercicio_2 extends javax.swing.JFrame {
     JPanel panelInsertado = new JPanel();
     SpringLayout layoutPanelInsertado = new SpringLayout();
     
+    boolean estaNegrita = false;
+    boolean estaCentrado = false;
     JLabel labelPanel = new JLabel("Label del panel");
     
     JToolBar barraHerramientas = new JToolBar();
@@ -56,7 +59,7 @@ public class Ejercicio_2 extends javax.swing.JFrame {
         botonBorrarPanel.setIcon(new ImageIcon("./imagenes/borrarPanel.png"));
         botonCrearLabel.setIcon(new ImageIcon("./imagenes/crearLabel.png"));
         botonNegritaLabel.setIcon(new ImageIcon("./imagenes/ponerTextoNegrita.png"));
-        botonCentrarLabel.setIcon(new ImageIcon("./imagenes/alinearTextoCentro.png"));
+        botonCentrarLabel.setIcon(new ImageIcon("./imagenes/alinearTextoIzquierda.png"));
         botonSalir.setIcon(new ImageIcon("./imagenes/salir.png"));
         
         botonBorrarPanel.setEnabled(false);
@@ -92,10 +95,9 @@ public class Ejercicio_2 extends javax.swing.JFrame {
                 botonCrearPanel.setEnabled(false);
                 botonBorrarPanel.setEnabled(true);
                 botonCrearLabel.setEnabled(true);
-                botonNegritaLabel.setEnabled(true);
-                botonCentrarLabel.setEnabled(true);
                 
                 panelPrincipal.revalidate();
+                panelPrincipal.repaint();
             }
         });
         
@@ -103,8 +105,8 @@ public class Ejercicio_2 extends javax.swing.JFrame {
             
             public void actionPerformed(ActionEvent e) {
                 
-                
                 panelPrincipal.remove(panelInsertado);
+                panelInsertado.remove(labelPanel);
                 
                 botonCrearPanel.setEnabled(true);
                 botonBorrarPanel.setEnabled(false);
@@ -112,7 +114,8 @@ public class Ejercicio_2 extends javax.swing.JFrame {
                 botonNegritaLabel.setEnabled(false);
                 botonCentrarLabel.setEnabled(false);
 
-                panelPrincipal.paint(getGraphics());
+                panelPrincipal.revalidate();
+                panelPrincipal.repaint();
             }
         });
         
@@ -130,12 +133,16 @@ public class Ejercicio_2 extends javax.swing.JFrame {
                 
                 panelInsertado.add(labelPanel);
                 
+                labelPanel.setFont(new Font("Arial", Font.PLAIN ,12));
                 labelPanel.setPreferredSize(new Dimension(100, 30));
                 
                 layoutPanelInsertado.putConstraint(SpringLayout.WEST, labelPanel, 0, SpringLayout.WEST, panelInsertado);
                 layoutPanelInsertado.putConstraint(SpringLayout.NORTH, labelPanel, 20, SpringLayout.NORTH, panelInsertado);
+                layoutPanelInsertado.putConstraint(SpringLayout.EAST, labelPanel, 0, SpringLayout.EAST, panelInsertado);
                 
                 botonCrearLabel.setEnabled(false);
+                botonNegritaLabel.setEnabled(true);
+                botonCentrarLabel.setEnabled(true);
 
                 panelInsertado.revalidate();
             }
@@ -145,9 +152,41 @@ public class Ejercicio_2 extends javax.swing.JFrame {
             
             public void actionPerformed(ActionEvent e) {
                 
-                if
+                if (estaNegrita) {
                 
-                botonCrearLabel.setEnabled(false);
+                    botonNegritaLabel.setIcon(new ImageIcon("./imagenes/ponerTextoNegrita.png"));
+                    labelPanel.setFont(new Font("Arial", Font.PLAIN ,12));
+                    
+                    estaNegrita = false;
+                    
+                } else {
+                
+                    botonNegritaLabel.setIcon(new ImageIcon("./imagenes/quitarTextoNegrita.png"));
+                    labelPanel.setFont(new Font("Arial", Font.BOLD ,12));
+                    
+                    estaNegrita = true;
+                }
+
+                panelInsertado.revalidate();
+            }
+        });
+        
+        botonCentrarLabel.addActionListener(new ActionListener() {
+            
+            public void actionPerformed(ActionEvent e) {
+                
+                if (estaCentrado) {
+                
+                    botonCentrarLabel.setIcon(new ImageIcon("./imagenes/alinearTextoIzquierda.png"));
+                    labelPanel.setHorizontalAlignment(SwingConstants.LEFT);
+                    estaCentrado = false;
+                    
+                } else {
+                
+                    botonCentrarLabel.setIcon(new ImageIcon("./imagenes/alinearTextoCentro.png"));
+                    labelPanel.setHorizontalAlignment(SwingConstants.CENTER);
+                    estaCentrado = true;
+                }
 
                 panelInsertado.revalidate();
             }
