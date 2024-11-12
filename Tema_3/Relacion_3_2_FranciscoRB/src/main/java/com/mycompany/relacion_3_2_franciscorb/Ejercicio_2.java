@@ -17,17 +17,19 @@ import javax.swing.*;
 public class Ejercicio_2 extends javax.swing.JFrame {
 
     JPanel panelPrincipal = new JPanel();
+    JPanel panelInsertado = new JPanel();
     
     JToolBar barraHerramientas = new JToolBar();
     
-    // new ImageIcon("./mas.png")
-    JButton botonCrearPanel = new JButton("Crear panel");
-    JButton botonBorrarPanel = new JButton("Borrar panel");
-    JButton botonCrearLabel = new JButton("Crear texto");
-    JButton botonNegritaLabel = new JButton("Cambiar texto a negrita");
-    JButton botonCentrarLabel = new JButton("Cambiar texto al centro");
+    JButton botonCrearPanel = new JButton();
+    JButton botonBorrarPanel = new JButton();
+    JButton botonCrearLabel = new JButton();
+    JButton botonNegritaLabel = new JButton();
+    JButton botonCentrarLabel = new JButton();
+    JButton botonSalir = new JButton();
     
-    JComponent ultimoComponente = barraHerramientas; // Para colocar un panel debajo de otro
+    JSeparator separador = new JSeparator();
+
     /**
      * Creates new form Ejercicio_2
      */
@@ -47,12 +49,27 @@ public class Ejercicio_2 extends javax.swing.JFrame {
         layout.putConstraint(SpringLayout.NORTH, barraHerramientas, 0, SpringLayout.NORTH, panelPrincipal);
         layout.putConstraint(SpringLayout.EAST, barraHerramientas, 0, SpringLayout.EAST, panelPrincipal);
         
+        botonCrearPanel.setIcon(new ImageIcon("./imagenes/crearPanel.png"));
+        botonBorrarPanel.setIcon(new ImageIcon("./imagenes/borrarPanel.png"));
+        botonCrearLabel.setIcon(new ImageIcon("./imagenes/crearLabel.png"));
+        botonNegritaLabel.setIcon(new ImageIcon("./imagenes/ponerTextoNegrita.png"));
+        botonCentrarLabel.setIcon(new ImageIcon("./imagenes/alinearTextoCentro.png"));
+        botonSalir.setIcon(new ImageIcon("./imagenes/salir.png"));
+        
+        botonBorrarPanel.setEnabled(false);
+        botonCrearLabel.setEnabled(false);
+        botonNegritaLabel.setEnabled(false);
+        botonCentrarLabel.setEnabled(false);
+        
+        separador.setPreferredSize(new Dimension(2, 20));
+                
         barraHerramientas.add(botonCrearPanel);
         barraHerramientas.add(botonBorrarPanel);
+        barraHerramientas.add(separador);
         barraHerramientas.add(botonCrearLabel);
         barraHerramientas.add(botonNegritaLabel);
         barraHerramientas.add(botonCentrarLabel);
-        
+        barraHerramientas.add(botonSalir);
         
         // Listeners
 
@@ -60,19 +77,45 @@ public class Ejercicio_2 extends javax.swing.JFrame {
             
             public void actionPerformed(ActionEvent e) {
                 
-                JPanel panelInsertado = new JPanel();
-                
-                panelInsertado.setPreferredSize(new Dimension(50, 50));
-                panelInsertado.setBackground(new Color(119, 221, 119));
+                panelInsertado.setPreferredSize(new Dimension(400, 250));
+                panelInsertado.setBackground(new Color(250, 250, 250));
                 
                 panelPrincipal.add(panelInsertado);
                 
-                layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, panelInsertado, 0, SpringLayout.HORIZONTAL_CENTER, ultimoComponente);
-                layout.putConstraint(SpringLayout.NORTH, panelInsertado, 60, SpringLayout.NORTH, ultimoComponente);
+                layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, panelInsertado, 0, SpringLayout.HORIZONTAL_CENTER, panelPrincipal);
+                layout.putConstraint(SpringLayout.NORTH, panelInsertado, 60, SpringLayout.NORTH, panelPrincipal);
                 
-                ultimoComponente = panelInsertado;
-             
+                botonCrearPanel.setEnabled(false);
+                botonBorrarPanel.setEnabled(true);
+                botonCrearLabel.setEnabled(true);
+                botonNegritaLabel.setEnabled(true);
+                botonCentrarLabel.setEnabled(true);
+                
                 panelPrincipal.revalidate();
+            }
+        });
+        
+        botonBorrarPanel.addActionListener(new ActionListener() {
+            
+            public void actionPerformed(ActionEvent e) {
+                
+                panelPrincipal.remove(panelInsertado);
+                
+                botonCrearPanel.setEnabled(true);
+                botonBorrarPanel.setEnabled(false);
+                botonCrearLabel.setEnabled(false);
+                botonNegritaLabel.setEnabled(false);
+                botonCentrarLabel.setEnabled(false);
+
+                panelPrincipal.paint(getGraphics());
+            }
+        });
+        
+        botonSalir.addActionListener(new ActionListener() {
+            
+            public void actionPerformed(ActionEvent e) {
+                
+                System.exit(0);
             }
         });
     }
