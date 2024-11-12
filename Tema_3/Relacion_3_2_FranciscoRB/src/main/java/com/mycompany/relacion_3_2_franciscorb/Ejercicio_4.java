@@ -38,7 +38,13 @@ public class Ejercicio_4 extends javax.swing.JFrame {
     
     JToolBar barraHerramientas = new JToolBar();
     
-    
+    JButton botonIncrementarLetra = new JButton();
+    JButton botonDecrementarLetra = new JButton();
+    JButton botonColorRojo = new JButton();
+    JButton botonColorVerde = new JButton();
+    JButton botonColorNegro = new JButton();
+    JButton botonColorAzul = new JButton();
+    JButton botonSalir = new JButton();
     
     /**
      * Creates new form Ejercicio_2
@@ -95,56 +101,79 @@ public class Ejercicio_4 extends javax.swing.JFrame {
         panelPrincipal.add(textArea);
         layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, textArea, 0, SpringLayout.HORIZONTAL_CENTER, panelPrincipal);
         layout.putConstraint(SpringLayout.NORTH, textArea, 25, SpringLayout.NORTH, labelComentarios); 
+
+        panelPrincipal.add(barraHerramientas);
+        layout.putConstraint(SpringLayout.WEST, barraHerramientas, 0, SpringLayout.WEST, panelPrincipal);
+        layout.putConstraint(SpringLayout.SOUTH, barraHerramientas, -50, SpringLayout.SOUTH, panelPrincipal);
+        layout.putConstraint(SpringLayout.EAST, barraHerramientas, 0, SpringLayout.EAST, panelPrincipal);
+        
+        botonIncrementarLetra.setIcon(new ImageIcon("./imagenes/incrementarTamanio.png"));
+        botonDecrementarLetra.setIcon(new ImageIcon("./imagenes/decrementarTamanio.png"));
+        botonColorRojo.setIcon(new ImageIcon("./imagenes/colorRojo.png"));
+        botonColorVerde.setIcon(new ImageIcon("./imagenes/colorVerde.png"));
+        botonColorNegro.setIcon(new ImageIcon("./imagenes/colorNegro.png"));
+        botonColorAzul.setIcon(new ImageIcon("./imagenes/colorAzul.png"));
+        botonSalir.setIcon(new ImageIcon("./imagenes/salir.png"));
+        
+        barraHerramientas.add(botonIncrementarLetra);
+        barraHerramientas.add(botonDecrementarLetra);
+        barraHerramientas.add(new JToolBar.Separator());
+        barraHerramientas.add(botonColorRojo);
+        barraHerramientas.add(botonColorVerde);
+        barraHerramientas.add(botonColorNegro);
+        barraHerramientas.add(botonColorAzul);
+        barraHerramientas.add(new JToolBar.Separator());
+        barraHerramientas.add(botonSalir);
         
         
         // Listeners
         
-itemSalir.addActionListener(new ActionListener() {
-    
-    public void actionPerformed(ActionEvent e) {
-        
-        JDialog modalSalir = new JDialog(Ejercicio_4.this, true);
-        SpringLayout layout = new SpringLayout();
-        
-        modalSalir.setLayout(layout);
-        modalSalir.setSize(new Dimension(350, 150));
-        modalSalir.setLocationRelativeTo(Ejercicio_4.this); // Para que aparezca el modal en el centro con respecto a al jframe principal
+        itemSalir.addActionListener(new ActionListener() {
 
-        JLabel labelSalir = new JLabel("¿Seguro que quiere salir del programa?");
-        JButton botonAceptar = new JButton("Aceptar");
-        JButton botonCancelar = new JButton("Cancelar");
-
-        modalSalir.add(labelSalir);
-        modalSalir.add(botonAceptar);
-        modalSalir.add(botonCancelar);
-
-        layout.putConstraint(SpringLayout.WEST, labelSalir, 50, SpringLayout.WEST, modalSalir);
-        layout.putConstraint(SpringLayout.NORTH, labelSalir, 20, SpringLayout.NORTH, modalSalir);
-        
-        layout.putConstraint(SpringLayout.WEST, botonAceptar, 80, SpringLayout.WEST, modalSalir);
-        layout.putConstraint(SpringLayout.NORTH, botonAceptar, 20, SpringLayout.SOUTH, labelSalir);
-        
-        layout.putConstraint(SpringLayout.WEST, botonCancelar, 20, SpringLayout.EAST, botonAceptar);
-        layout.putConstraint(SpringLayout.NORTH, botonCancelar, 0, SpringLayout.NORTH, botonAceptar);
-
-        botonAceptar.addActionListener(new ActionListener() {
-            
             public void actionPerformed(ActionEvent e) {
-                
-                System.exit(0);
-            }
-        });
 
-        botonCancelar.addActionListener(new ActionListener() {
-            
-            public void actionPerformed(ActionEvent e) {
-                
-                modalSalir.dispose();
-            }
-        });
+                JDialog modalSalir = new JDialog(Ejercicio_4.this, true);
+                SpringLayout layout = new SpringLayout();
 
-        modalSalir.setVisible(true);
-    }
+                modalSalir.setLayout(layout);
+                modalSalir.setSize(new Dimension(350, 150));
+                modalSalir.setLocationRelativeTo(Ejercicio_4.this); // Para que aparezca el modal en el centro con respecto a al jframe principal
+
+                JLabel labelSalir = new JLabel("¿Seguro que quiere salir del programa?");
+                JButton botonAceptar = new JButton("Aceptar");
+                JButton botonCancelar = new JButton("Cancelar");
+
+                modalSalir.add(labelSalir);
+                modalSalir.add(botonAceptar);
+                modalSalir.add(botonCancelar);
+
+                layout.putConstraint(SpringLayout.WEST, labelSalir, 50, SpringLayout.WEST, modalSalir);
+                layout.putConstraint(SpringLayout.NORTH, labelSalir, 20, SpringLayout.NORTH, modalSalir);
+
+                layout.putConstraint(SpringLayout.WEST, botonAceptar, 80, SpringLayout.WEST, modalSalir);
+                layout.putConstraint(SpringLayout.NORTH, botonAceptar, 20, SpringLayout.SOUTH, labelSalir);
+
+                layout.putConstraint(SpringLayout.WEST, botonCancelar, 20, SpringLayout.EAST, botonAceptar);
+                layout.putConstraint(SpringLayout.NORTH, botonCancelar, 0, SpringLayout.NORTH, botonAceptar);
+
+                botonAceptar.addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent e) {
+
+                        System.exit(0);
+                    }
+                });
+
+                botonCancelar.addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent e) {
+
+                        modalSalir.dispose();
+                    }
+                });
+
+                modalSalir.setVisible(true);
+            }
         });
 
         
