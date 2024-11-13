@@ -15,7 +15,6 @@ import javax.swing.*;
 public class Ejercicio_3 extends javax.swing.JFrame {
 
     JPanel panelPrincipal = new JPanel();
-    JPanel panel = new JPanel();
     JLabel labelComentarios = new JLabel("Comentarios");
     JTextArea textArea = new JTextArea();
     
@@ -72,17 +71,9 @@ public class Ejercicio_3 extends javax.swing.JFrame {
         
         // Desarrollo de los componentes en la interfaz
         
-        panel.setPreferredSize(new Dimension(0, 100));
-        panel.setBackground(new Color(152, 199, 226));
-        panelPrincipal.add(panel);
-        
-        layout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, panelPrincipal);
-        layout.putConstraint(SpringLayout.NORTH, panel, 20, SpringLayout.NORTH, menuBarras);
-        layout.putConstraint(SpringLayout.EAST, panel, 0, SpringLayout.EAST, panelPrincipal);
-        
         panelPrincipal.add(labelComentarios);
         layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, labelComentarios, 0, SpringLayout.HORIZONTAL_CENTER, panelPrincipal);
-        layout.putConstraint(SpringLayout.NORTH, labelComentarios, 110, SpringLayout.NORTH, panel);
+        layout.putConstraint(SpringLayout.NORTH, labelComentarios, 50, SpringLayout.NORTH, menuBarras);
         
         textArea.setFont(new Font("Arial", Font.PLAIN, 13));
         textArea.setPreferredSize(new Dimension(350, 150));

@@ -15,7 +15,6 @@ import javax.swing.*;
 public class Ejercicio_4 extends javax.swing.JFrame {
 
     JPanel panelPrincipal = new JPanel();
-    JPanel panel = new JPanel();
     JLabel labelComentarios = new JLabel("Comentarios");
     JTextArea textArea = new JTextArea();
     
@@ -84,27 +83,9 @@ public class Ejercicio_4 extends javax.swing.JFrame {
         
         // Desarrollo de los componentes en la interfaz
         
-        panel.setPreferredSize(new Dimension(0, 100));
-        panel.setBackground(new Color(152, 199, 226));
-        panelPrincipal.add(panel);
-        
-        layout.putConstraint(SpringLayout.WEST, panel, 0, SpringLayout.WEST, panelPrincipal);
-        layout.putConstraint(SpringLayout.NORTH, panel, 20, SpringLayout.NORTH, menuBarras);
-        layout.putConstraint(SpringLayout.EAST, panel, 0, SpringLayout.EAST, panelPrincipal);
-        
-        panelPrincipal.add(labelComentarios);
-        layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, labelComentarios, 0, SpringLayout.HORIZONTAL_CENTER, panelPrincipal);
-        layout.putConstraint(SpringLayout.NORTH, labelComentarios, 110, SpringLayout.NORTH, panel);
-        
-        textArea.setFont(new Font("Arial", Font.PLAIN, 13));
-        textArea.setPreferredSize(new Dimension(350, 150));
-        panelPrincipal.add(textArea);
-        layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, textArea, 0, SpringLayout.HORIZONTAL_CENTER, panelPrincipal);
-        layout.putConstraint(SpringLayout.NORTH, textArea, 25, SpringLayout.NORTH, labelComentarios); 
-
         panelPrincipal.add(barraHerramientas);
         layout.putConstraint(SpringLayout.WEST, barraHerramientas, 0, SpringLayout.WEST, panelPrincipal);
-        layout.putConstraint(SpringLayout.SOUTH, barraHerramientas, -50, SpringLayout.SOUTH, panelPrincipal);
+        layout.putConstraint(SpringLayout.NORTH, barraHerramientas, 25, SpringLayout.NORTH, menuBarras);
         layout.putConstraint(SpringLayout.EAST, barraHerramientas, 0, SpringLayout.EAST, panelPrincipal);
         
         botonIncrementarLetra.setIcon(new ImageIcon("./imagenes/incrementarTamanio.png"));
@@ -125,10 +106,19 @@ public class Ejercicio_4 extends javax.swing.JFrame {
         barraHerramientas.add(new JToolBar.Separator());
         barraHerramientas.add(botonSalir);
         
+        panelPrincipal.add(labelComentarios);
+        layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, labelComentarios, 0, SpringLayout.HORIZONTAL_CENTER, panelPrincipal);
+        layout.putConstraint(SpringLayout.NORTH, labelComentarios, 50, SpringLayout.NORTH, barraHerramientas);
+        
+        textArea.setFont(new Font("Arial", Font.PLAIN, 13));
+        textArea.setPreferredSize(new Dimension(350, 150));
+        panelPrincipal.add(textArea);
+        layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, textArea, 0, SpringLayout.HORIZONTAL_CENTER, panelPrincipal);
+        layout.putConstraint(SpringLayout.NORTH, textArea, 25, SpringLayout.NORTH, labelComentarios); 
+
         
         // Listeners
-        
-        itemSalir.addActionListener(new ActionListener() {
+        ActionListener listenerSalir = new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
 
@@ -174,10 +164,10 @@ public class Ejercicio_4 extends javax.swing.JFrame {
 
                 modalSalir.setVisible(true);
             }
-        });
+        };
 
         
-        itemIncrementar.addActionListener(new ActionListener() {
+        ActionListener listenerIncrementar = new ActionListener() {
             
             public void actionPerformed(ActionEvent e) {
                 
@@ -187,21 +177,24 @@ public class Ejercicio_4 extends javax.swing.JFrame {
                 textArea.setFont(new Font("Arial", Font.PLAIN, tamnoFuente));
                 
                 itemDecrementar.setEnabled(true);
+                botonDecrementarLetra.setEnabled(true);
                 
                 if (tamnoFuente == 20) {
                 
                     itemIncrementar.setEnabled(false);
+                    botonIncrementarLetra.setEnabled(false);
                     
                 } else {
                 
                     itemIncrementar.setEnabled(true);
+                    botonIncrementarLetra.setEnabled(true);
                 
                 }
                 
             }
-        });
+        };
         
-        itemDecrementar.addActionListener(new ActionListener() {
+        ActionListener listenerDecrementar = new ActionListener() {
             
             public void actionPerformed(ActionEvent e) {
                 
@@ -211,55 +204,74 @@ public class Ejercicio_4 extends javax.swing.JFrame {
                 textArea.setFont(new Font("Arial", Font.PLAIN, tamnoFuente));
                 
                 itemIncrementar.setEnabled(true);
+                botonIncrementarLetra.setEnabled(true);
 
                 if (tamnoFuente == 10) {
                 
                     itemDecrementar.setEnabled(false);
+                    botonDecrementarLetra.setEnabled(false);
                     
                 } else {
                 
                     itemDecrementar.setEnabled(true);
+                    botonDecrementarLetra.setEnabled(true);
                 
                 }
             }
-        });
+        };
         
         menuColorTexto.add(itemRojo);
         menuColorTexto.add(itemVerde);
         menuColorTexto.add(itemNegro);
         menuColorTexto.add(itemAzul);
         
-        itemRojo.addActionListener(new ActionListener() {
+        ActionListener listenerLetraRoja = new ActionListener() {
             
             public void actionPerformed(ActionEvent e) {
                 
                 textArea.setForeground(new Color(230, 89, 74));
             }
-        });
+        };
         
-        itemVerde.addActionListener(new ActionListener() {
-            
+        ActionListener listenerLetraVerde = new ActionListener() {            
             public void actionPerformed(ActionEvent e) {
                 
                 textArea.setForeground(new Color(120, 222, 119));
             }
-        });
+        };
         
-        itemNegro.addActionListener(new ActionListener() {
+        ActionListener listenerLetraNegra = new ActionListener() {  
             
             public void actionPerformed(ActionEvent e) {
                 
                 textArea.setForeground(new Color(0,0,0));
             }
-        });
+        };
         
-        itemAzul.addActionListener(new ActionListener() {
+        ActionListener listenerLetraAzul = new ActionListener() {  
             
             public void actionPerformed(ActionEvent e) {
                 
                 textArea.setForeground(new Color(121, 191, 233));
             }
-        });
+        };
+        
+        itemSalir.addActionListener(listenerSalir);
+        itemIncrementar.addActionListener(listenerIncrementar);
+        itemDecrementar.addActionListener(listenerDecrementar);
+        itemRojo.addActionListener(listenerLetraRoja);
+        itemVerde.addActionListener(listenerLetraVerde);
+        itemNegro.addActionListener(listenerLetraNegra);
+        itemAzul.addActionListener(listenerLetraAzul);
+                  
+        botonSalir.addActionListener(listenerSalir);
+        botonIncrementarLetra.addActionListener(listenerIncrementar);
+        botonDecrementarLetra.addActionListener(listenerDecrementar);
+        botonColorRojo.addActionListener(listenerLetraRoja);
+        botonColorVerde.addActionListener(listenerLetraVerde);
+        botonColorNegro.addActionListener(listenerLetraNegra);
+        botonColorAzul.addActionListener(listenerLetraAzul);
+        
     }
 
     /**
