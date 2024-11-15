@@ -1,0 +1,131 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
+package com.mycompany.exament3_frb;
+
+import java.awt.*;
+import javax.swing.*;
+
+/**
+ *
+ * @author Francisco
+ */
+public class Personal_Info extends javax.swing.JPanel {
+
+    JLabel labelTitulo = new JLabel("Información personal ");
+    JLabel labelNombre = new JLabel("Nombre: ");
+    JLabel labelApellidos = new JLabel("Apellidos: ");
+    JLabel labelTelefono = new JLabel("Teléfono: ");
+    JLabel labelGenero = new JLabel("Género: ");
+    JLabel labelEmail = new JLabel("Mail: ");
+    
+    JTextField inputNombre = new JTextField();
+    JTextField inputApellidos = new JTextField();
+    JTextField inputTelefono = new JTextField();
+    JComboBox selectGenero = new JComboBox();
+    JTextField inputEmail = new JTextField();
+    /**
+     * Creates new form Pesonal_Info
+     */
+    public Personal_Info() {
+        initComponents();
+        
+        SpringLayout layout = new SpringLayout();
+        this.setLayout(layout);
+        this.setBounds(50, 50, 500, 400);
+        this.setBackground(new Color(255,255,204));
+        
+        this.add(labelTitulo);
+        this.add(labelNombre);
+        this.add(labelApellidos);
+        this.add(labelTelefono);
+        this.add(labelGenero);
+        this.add(labelEmail);
+        
+        this.add(inputNombre);
+        this.add(inputApellidos);
+        this.add(inputTelefono);
+        this.add(selectGenero);
+        this.add(inputEmail);
+        
+        labelTitulo.setPreferredSize(new Dimension(250, 30));
+        labelNombre.setPreferredSize(new Dimension(100, 30));
+        labelApellidos.setPreferredSize(new Dimension(100, 30));
+        labelTelefono.setPreferredSize(new Dimension(100, 30));
+        labelGenero.setPreferredSize(new Dimension(100, 30));
+        labelEmail.setPreferredSize(new Dimension(100, 30));
+                
+        inputNombre.setPreferredSize(new Dimension(100, 30));
+        inputApellidos.setPreferredSize(new Dimension(100, 30));
+        inputTelefono.setPreferredSize(new Dimension(100, 30));
+        selectGenero.setPreferredSize(new Dimension(100, 30));
+        inputEmail.setPreferredSize(new Dimension(100, 30));
+        
+        selectGenero.addItem("Femenino");
+        selectGenero.addItem("Masculino");
+        selectGenero.addItem("No binario");
+     
+        layout.putConstraint(SpringLayout.WEST, labelTitulo, 200, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.NORTH, labelTitulo, 20, SpringLayout.NORTH, this);
+        
+        layout.putConstraint(SpringLayout.WEST, labelNombre, -50, SpringLayout.WEST, labelTitulo);
+        layout.putConstraint(SpringLayout.NORTH, labelNombre, 50, SpringLayout.NORTH, labelTitulo);
+        
+        layout.putConstraint(SpringLayout.WEST, labelApellidos, 0, SpringLayout.WEST, labelNombre);
+        layout.putConstraint(SpringLayout.NORTH, labelApellidos, 50, SpringLayout.NORTH, labelNombre);
+        
+        layout.putConstraint(SpringLayout.WEST, labelTelefono, 0, SpringLayout.WEST, labelApellidos);
+        layout.putConstraint(SpringLayout.NORTH, labelTelefono, 50, SpringLayout.NORTH, labelApellidos);
+        
+        layout.putConstraint(SpringLayout.WEST, labelGenero, 0, SpringLayout.WEST, labelTelefono);
+        layout.putConstraint(SpringLayout.NORTH, labelGenero, 50, SpringLayout.NORTH, labelTelefono);
+        
+        layout.putConstraint(SpringLayout.WEST, labelEmail, 0, SpringLayout.WEST, labelGenero);
+        layout.putConstraint(SpringLayout.NORTH, labelEmail, 50, SpringLayout.NORTH, labelGenero);
+        
+        
+        layout.putConstraint(SpringLayout.WEST, inputNombre, 100, SpringLayout.WEST, labelNombre);
+        layout.putConstraint(SpringLayout.NORTH, inputNombre, 0, SpringLayout.NORTH, labelNombre);
+        
+        layout.putConstraint(SpringLayout.WEST, inputApellidos, 100, SpringLayout.WEST, labelApellidos);
+        layout.putConstraint(SpringLayout.NORTH, inputApellidos, 0, SpringLayout.NORTH, labelApellidos);
+        
+        
+        layout.putConstraint(SpringLayout.WEST, inputTelefono, 100, SpringLayout.WEST, labelTelefono);
+        layout.putConstraint(SpringLayout.NORTH, inputTelefono, 0, SpringLayout.NORTH, labelTelefono);
+        
+        
+        layout.putConstraint(SpringLayout.WEST, selectGenero, 100, SpringLayout.WEST, labelGenero);
+        layout.putConstraint(SpringLayout.NORTH, selectGenero, 0, SpringLayout.NORTH, labelGenero);
+        
+        
+        layout.putConstraint(SpringLayout.WEST, inputEmail, 100, SpringLayout.WEST, labelEmail);
+        layout.putConstraint(SpringLayout.NORTH, inputEmail, 0, SpringLayout.NORTH, labelEmail);
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // End of variables declaration//GEN-END:variables
+}
