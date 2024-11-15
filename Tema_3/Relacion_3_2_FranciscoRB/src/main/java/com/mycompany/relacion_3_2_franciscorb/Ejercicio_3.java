@@ -179,11 +179,6 @@ public class Ejercicio_3 extends javax.swing.JFrame {
             }
         });
         
-        menuColorTexto.add(itemRojo);
-        menuColorTexto.add(itemVerde);
-        menuColorTexto.add(itemNegro);
-        menuColorTexto.add(itemAzul);
-        
         itemRojo.addActionListener(new ActionListener() {
             
             public void actionPerformed(ActionEvent e) {
