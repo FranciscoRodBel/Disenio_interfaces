@@ -243,7 +243,6 @@ public class Ejercicio3 extends javax.swing.JFrame {
                 labelMail.setVisible(false);
                 labelMensajeError.setVisible(false);
                 botonBorrar.setVisible(false);
-                botonBorrar.setVisible(false);
                             
                 String consultaEliminar = "DELETE FROM persona WHERE dni = '" + inputBuscador.getText() + "'";
 

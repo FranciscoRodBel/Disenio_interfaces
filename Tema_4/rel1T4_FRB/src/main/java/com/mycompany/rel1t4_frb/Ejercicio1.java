@@ -86,7 +86,7 @@ public class Ejercicio1 extends javax.swing.JFrame {
         panelPrincipal.add(inputTelefono);
         panelPrincipal.add(inputDni);
         panelPrincipal.add(inputGenero);
-        panelPrincipal.add(inputDescripcion); // Scroll para área de texto
+        panelPrincipal.add(inputDescripcion);
         panelPrincipal.add(inputMail);
         
         panelPrincipal.add(botonInsertar);
