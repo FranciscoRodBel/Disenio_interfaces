@@ -88,6 +88,7 @@ public class Ejercicio5 extends javax.swing.JFrame {
         
         itemMostrar.setEnabled(false);
         panelInsertar.setVisible(false);
+        panelBorrar.setVisible(false);
         
         
         itemMostrar.addActionListener(new ActionListener() {
