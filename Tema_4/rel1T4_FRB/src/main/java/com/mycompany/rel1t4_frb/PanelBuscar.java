@@ -34,7 +34,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Propietario
  */
-public class PanelBorrar extends javax.swing.JPanel {
+public class PanelBuscar extends javax.swing.JPanel {
     
     Ejercicio5 ejercicio5;
     
@@ -60,7 +60,7 @@ public class PanelBorrar extends javax.swing.JPanel {
     /**
      * Creates new form PanelBorrar
      */
-    public PanelBorrar(Ejercicio5 ejercicio5) throws SQLException {
+    public PanelBuscar(Ejercicio5 ejercicio5) throws SQLException {
         initComponents();
         
         conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+baseDeDatos+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","root");
@@ -219,7 +219,7 @@ public class PanelBorrar extends javax.swing.JPanel {
 
         modalMensaje.setLayout(layout);
         modalMensaje.setSize(new Dimension(350, 150));
-        modalMensaje.setLocationRelativeTo(PanelBorrar.this); // Para que aparezca el modal en el centro con respecto a al jframe principal
+        modalMensaje.setLocationRelativeTo(PanelBuscar.this); // Para que aparezca el modal en el centro con respecto a al jframe principal
 
         JLabel labelMensaje = new JLabel(mensaje);
         JButton botonAceptar = new JButton("Aceptar");
