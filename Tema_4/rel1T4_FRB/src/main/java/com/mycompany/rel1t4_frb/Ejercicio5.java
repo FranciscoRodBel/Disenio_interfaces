@@ -45,6 +45,8 @@ public class Ejercicio5 extends javax.swing.JFrame {
     PanelInsertar panelInsertar = new PanelInsertar(this);
     PanelMostrar panelMostrar = new PanelMostrar();
     PanelBorrar panelBorrar = new PanelBorrar(this);
+    PanelBuscar panelBuscar = new PanelBuscar();
+    PanelActualizar panelActualizar = new PanelActualizar(this);
     
     /**
      * Creates new form Ejercicio5_view
@@ -86,9 +88,22 @@ public class Ejercicio5 extends javax.swing.JFrame {
         layout.putConstraint(SpringLayout.WEST, panelBorrar, 50, SpringLayout.WEST, menuBar);
         layout.putConstraint(SpringLayout.NORTH, panelBorrar, 50, SpringLayout.NORTH, menuBar);        
         
+        panelPrincipal.add(panelBuscar);
+        panelBuscar.setPreferredSize(new Dimension(480,300));
+        layout.putConstraint(SpringLayout.WEST, panelBuscar, 50, SpringLayout.WEST, menuBar);
+        layout.putConstraint(SpringLayout.NORTH, panelBuscar, 50, SpringLayout.NORTH, menuBar);    
+        
+        panelPrincipal.add(panelActualizar);
+        panelActualizar.setPreferredSize(new Dimension(480,300));
+        layout.putConstraint(SpringLayout.WEST, panelActualizar, 50, SpringLayout.WEST, menuBar);
+        layout.putConstraint(SpringLayout.NORTH, panelActualizar, 50, SpringLayout.NORTH, menuBar);    
+        
+        
         itemMostrar.setEnabled(false);
         panelInsertar.setVisible(false);
         panelBorrar.setVisible(false);
+        panelBuscar.setVisible(false);
+        panelActualizar.setVisible(false);
         
         
         itemMostrar.addActionListener(new ActionListener() {
@@ -142,7 +157,32 @@ public class Ejercicio5 extends javax.swing.JFrame {
             }
                
         });
+                
+        itemBuscar.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+            
+                ocultarPaneles();
+                
+                panelBuscar.setVisible(true);
+                itemBuscar.setEnabled(false);
+                
+            }
+               
+        });
         
+        itemActualizar.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+            
+                ocultarPaneles();
+                
+                panelActualizar.setVisible(true);
+                itemActualizar.setEnabled(false);
+                
+            }
+               
+        });
     }
     
     public void ocultarPaneles() {
@@ -150,10 +190,15 @@ public class Ejercicio5 extends javax.swing.JFrame {
         panelMostrar.setVisible(false);
         panelInsertar.setVisible(false);
         panelBorrar.setVisible(false);
-    
+        panelBuscar.setVisible(false);
+        panelActualizar.setVisible(false);
+
         itemMostrar.setEnabled(true);
         itemInsertar.setEnabled(true);
         itemBorrar.setEnabled(true);
+        itemBuscar.setEnabled(true);
+        itemActualizar.setEnabled(true);
+        
     }
 
 

@@ -34,14 +34,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Propietario
  */
-public class PanelBorrar extends javax.swing.JPanel {
+public class PanelActualizar extends javax.swing.JPanel {
     
     Ejercicio5 ejercicio5;
     
     private Connection conexion;
     String baseDeDatos = "relaciont5";
     
-    JLabel labelBuscador = new JLabel("Busca un Nombre de una persona");
+    JLabel labelBuscador = new JLabel("Busca un Nombre de una mascota");
     JTextField inputBuscador = new JTextField(15);
     
     JButton botonBuscar = new JButton("Buscar");
@@ -60,7 +60,7 @@ public class PanelBorrar extends javax.swing.JPanel {
     /**
      * Creates new form PanelBorrar
      */
-    public PanelBorrar(Ejercicio5 ejercicio5) throws SQLException {
+    public PanelActualizar(Ejercicio5 ejercicio5) throws SQLException {
         initComponents();
         
         conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+baseDeDatos+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","root");
@@ -219,7 +219,7 @@ public class PanelBorrar extends javax.swing.JPanel {
 
         modalMensaje.setLayout(layout);
         modalMensaje.setSize(new Dimension(350, 150));
-        modalMensaje.setLocationRelativeTo(PanelBorrar.this); // Para que aparezca el modal en el centro con respecto a al jframe principal
+        modalMensaje.setLocationRelativeTo(PanelActualizar.this); // Para que aparezca el modal en el centro con respecto a al jframe principal
 
         JLabel labelMensaje = new JLabel(mensaje);
         JButton botonAceptar = new JButton("Aceptar");

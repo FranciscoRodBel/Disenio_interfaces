@@ -41,7 +41,7 @@ public class PanelBorrar extends javax.swing.JPanel {
     private Connection conexion;
     String baseDeDatos = "relaciont5";
     
-    JLabel labelBuscador = new JLabel("Busca un Nombre de una persona");
+    JLabel labelBuscador = new JLabel("Busca un Nombre de una mascota");
     JTextField inputBuscador = new JTextField(15);
     
     JButton botonBuscar = new JButton("Buscar");

@@ -21,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -41,8 +42,13 @@ public class PanelBuscar extends javax.swing.JPanel {
     private Connection conexion;
     String baseDeDatos = "relaciont5";
     
-    JLabel labelBuscador = new JLabel("Busca un Nombre de una persona");
-    JTextField inputBuscador = new JTextField(15);
+    JLabel labelBuscador = new JLabel("Busca un Nombre de una mascota");
+    
+    JLabel labelNombre = new JLabel("Nombre: ");
+    JTextField inputNombre = new JTextField(12);
+    
+    JLabel labelTipo = new JLabel("Tipo: ");
+    JComboBox<String> inputTipo = new JComboBox<>();
     
     JButton botonBuscar = new JButton("Buscar");
     
@@ -52,43 +58,65 @@ public class PanelBuscar extends javax.swing.JPanel {
     
     JLabel labelResultado = new JLabel("");
     
-    JButton botonBorrar = new JButton("Borrar");
-    
     ArrayList<String> idMascotas = new ArrayList<>();
     
         
     /**
      * Creates new form PanelBorrar
      */
-    public PanelBuscar(Ejercicio5 ejercicio5) throws SQLException {
+    public PanelBuscar() throws SQLException {
         initComponents();
         
         conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+baseDeDatos+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","root");
-                        
-        this.ejercicio5 = ejercicio5;
+                       
         
         SpringLayout layout = new SpringLayout();
         this.setLayout(layout);
         this.setPreferredSize(new Dimension(480,300));
         
         this.add(labelBuscador);
-        this.add(inputBuscador);
+        this.add(labelNombre);
+        this.add(inputNombre);
+        this.add(labelTipo);
+        this.add(inputTipo);
         this.add(botonBuscar);
+        
+        inputTipo.addItem("perro");
+        inputTipo.addItem("gato");
+        inputTipo.addItem("canario");
+        inputTipo.addItem("hamster");
+        inputTipo.addItem("conejo");
+        inputTipo.addItem("otro");
         
         labelBuscador.setHorizontalAlignment(labelBuscador.CENTER);
         layout.putConstraint(SpringLayout.WEST, labelBuscador, 0, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, labelBuscador, 0, SpringLayout.NORTH, this);
         layout.putConstraint(SpringLayout.EAST, labelBuscador, 0, SpringLayout.EAST, this);
         
-        layout.putConstraint(SpringLayout.WEST, inputBuscador, 80, SpringLayout.WEST, labelBuscador);
-        layout.putConstraint(SpringLayout.NORTH, inputBuscador, 30, SpringLayout.NORTH, labelBuscador);
+        layout.putConstraint(SpringLayout.WEST, inputNombre, 80, SpringLayout.WEST, labelBuscador);
+        layout.putConstraint(SpringLayout.NORTH, inputNombre, 30, SpringLayout.NORTH, labelBuscador);
+        
+        
+        layout.putConstraint(SpringLayout.WEST, labelNombre, 40, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.NORTH, labelNombre, 40, SpringLayout.NORTH, this);
+        
+        layout.putConstraint(SpringLayout.WEST, labelTipo, 0, SpringLayout.WEST, labelNombre);
+        layout.putConstraint(SpringLayout.NORTH, labelTipo, 40, SpringLayout.NORTH, labelNombre);
+        
+        
+        layout.putConstraint(SpringLayout.WEST, inputNombre, 80, SpringLayout.WEST, labelNombre);
+        layout.putConstraint(SpringLayout.NORTH, inputNombre, -5, SpringLayout.NORTH, labelNombre);
+        
+        layout.putConstraint(SpringLayout.WEST, inputTipo, 80, SpringLayout.WEST, labelTipo);
+        layout.putConstraint(SpringLayout.NORTH, inputTipo, -5, SpringLayout.NORTH, labelTipo);
+        
         
         botonBuscar.setPreferredSize(new Dimension(150, 35));
         botonBuscar.setForeground(new Color(255,255,255));
         botonBuscar.setBackground(new Color(55, 63, 81));
         
-        layout.putConstraint(SpringLayout.WEST, botonBuscar, 200, SpringLayout.WEST, inputBuscador);
-        layout.putConstraint(SpringLayout.NORTH, botonBuscar, -5, SpringLayout.NORTH, inputBuscador);
+        layout.putConstraint(SpringLayout.WEST, botonBuscar, 200, SpringLayout.WEST, inputNombre);
+        layout.putConstraint(SpringLayout.NORTH, botonBuscar, 15, SpringLayout.NORTH, inputNombre);
         
         this.add(labelResultado);
         labelResultado.setForeground(new Color(241, 81, 82));
@@ -96,13 +124,13 @@ public class PanelBuscar extends javax.swing.JPanel {
         labelResultado.setFont(new Font("Arial", Font.BOLD, 15));
         
         layout.putConstraint(SpringLayout.WEST, labelResultado, 0, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.NORTH, labelResultado, 40, SpringLayout.NORTH, inputBuscador);
+        layout.putConstraint(SpringLayout.NORTH, labelResultado, 80, SpringLayout.NORTH, inputNombre);
         layout.putConstraint(SpringLayout.EAST, labelResultado, 0, SpringLayout.EAST, this);
         
         scrollTabla.setPreferredSize(new Dimension(480,150));
         this.add(scrollTabla);
         layout.putConstraint(SpringLayout.WEST, scrollTabla, 0, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.NORTH, scrollTabla, 40, SpringLayout.NORTH, inputBuscador);
+        layout.putConstraint(SpringLayout.NORTH, scrollTabla, 80, SpringLayout.NORTH, inputNombre);
         scrollTabla.setVisible(false);
         
         modeloTabla.addColumn("Nombre");
@@ -114,15 +142,6 @@ public class PanelBuscar extends javax.swing.JPanel {
         tablaMascotas.getColumnModel().getColumn(3).setPreferredWidth(250);
         tablaMascotas.setDefaultEditor(Object.class, null);
         
-        botonBorrar.setPreferredSize(new Dimension(120, 40));
-        botonBorrar.setForeground(new Color(255,255,255));
-        botonBorrar.setBackground(new Color(241, 81, 82));
-        this.add(botonBorrar);
-        
-        layout.putConstraint(SpringLayout.WEST, botonBorrar, 180, SpringLayout.WEST, scrollTabla);
-        layout.putConstraint(SpringLayout.NORTH, botonBorrar, 170, SpringLayout.NORTH, scrollTabla);
-        botonBorrar.setVisible(false);
-        
         botonBuscar.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -131,7 +150,7 @@ public class PanelBuscar extends javax.swing.JPanel {
                 modeloTabla.setRowCount(0);
                 labelResultado.setText("");
                 
-                String consultaRecoger = "SELECT * FROM mascota WHERE nombre = '" + inputBuscador.getText() + "'";
+                String consultaRecoger = "SELECT * FROM mascota WHERE nombre = '" + inputNombre.getText() + "' AND tipo = '"+ inputTipo.getSelectedItem().toString() +"'";
 
                 try {
             
@@ -157,19 +176,11 @@ public class PanelBuscar extends javax.swing.JPanel {
                     if (totalFilas == 0) {
                     
                         scrollTabla.setVisible(false);
-                        botonBorrar.setVisible(false);
                         labelResultado.setText("No se encontraron resultados");
-                        
-                    } else if(totalFilas == 1) {
                     
-                        scrollTabla.setVisible(true);
-                        botonBorrar.setVisible(true);
-                        
                     } else {
                         
                         scrollTabla.setVisible(true);
-                        botonBorrar.setVisible(true);
-                        
                         
                     }
 
@@ -180,75 +191,7 @@ public class PanelBuscar extends javax.swing.JPanel {
             }   
         });
        
-        botonBorrar.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e) {
-                
-                scrollTabla.setVisible(false);
-                botonBorrar.setVisible(false);
-                inputBuscador.setText("");
-                      
-                for (int i = 0; i < idMascotas.size(); i++) {
-                    
-                    String consultaEliminar = "DELETE FROM mascota WHERE ID = '" + idMascotas.get(i) + "'";
-
-                    try {
-                        
-                        Statement consulta = conexion.createStatement();
-                        int filasEliminadas = consulta.executeUpdate(consultaEliminar);
-                        
-                    } catch (SQLException ex) {
-                        
-                        mostrarModal("Error al borrar la mascota");
-                            
-                    }
-                    
-                }
-
-                mostrarModal("Mascotas borradas correctamente");
-            }
-               
-        });
-    }
-    
-    public void mostrarModal(String mensaje) {
-    
-        Window parentWindow = getWindowAncestor(this);
-        JDialog modalMensaje = new JDialog((Frame) parentWindow, true);
-        SpringLayout layout = new SpringLayout();
-
-        modalMensaje.setLayout(layout);
-        modalMensaje.setSize(new Dimension(350, 150));
-        modalMensaje.setLocationRelativeTo(PanelBuscar.this); // Para que aparezca el modal en el centro con respecto a al jframe principal
-
-        JLabel labelMensaje = new JLabel(mensaje);
-        JButton botonAceptar = new JButton("Aceptar");
-
-        labelResultado.setHorizontalAlignment(labelResultado.CENTER);
-        labelResultado.setFont(new Font("Arial", Font.BOLD, 15));
-        
-        modalMensaje.add(labelMensaje);
-        modalMensaje.add(botonAceptar);
-
-        layout.putConstraint(SpringLayout.WEST, labelMensaje, 80, SpringLayout.WEST, modalMensaje);
-        layout.putConstraint(SpringLayout.NORTH, labelMensaje, 20, SpringLayout.NORTH, modalMensaje);
-
-        layout.putConstraint(SpringLayout.WEST, botonAceptar, 130, SpringLayout.WEST, modalMensaje);
-        layout.putConstraint(SpringLayout.NORTH, botonAceptar, 50, SpringLayout.NORTH, labelMensaje);
-
-        botonAceptar.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-
-                modalMensaje.dispose();
-                
-                ejercicio5.itemMostrar.doClick();
-                
-            }
-        });
-
-        modalMensaje.setVisible(true);
-        
     }
 
     /**
