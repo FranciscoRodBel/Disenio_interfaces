@@ -160,11 +160,6 @@ public class PanelBorrar extends javax.swing.JPanel {
                         botonBorrar.setVisible(false);
                         labelResultado.setText("No se encontraron resultados");
                         
-                    } else if(totalFilas == 1) {
-                    
-                        scrollTabla.setVisible(true);
-                        botonBorrar.setVisible(true);
-                        
                     } else {
                         
                         scrollTabla.setVisible(true);

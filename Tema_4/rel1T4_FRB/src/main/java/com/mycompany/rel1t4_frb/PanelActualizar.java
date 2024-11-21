@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -52,7 +53,7 @@ public class PanelActualizar extends javax.swing.JPanel {
     
     JLabel labelResultado = new JLabel("");
     
-    JButton botonBorrar = new JButton("Borrar");
+    JButton botonActualizar = new JButton("Modificar");
     
     ArrayList<String> idMascotas = new ArrayList<>();
     
@@ -112,16 +113,15 @@ public class PanelActualizar extends javax.swing.JPanel {
         modeloTabla.addColumn("Raza");
         
         tablaMascotas.getColumnModel().getColumn(3).setPreferredWidth(250);
-        tablaMascotas.setDefaultEditor(Object.class, null);
         
-        botonBorrar.setPreferredSize(new Dimension(120, 40));
-        botonBorrar.setForeground(new Color(255,255,255));
-        botonBorrar.setBackground(new Color(241, 81, 82));
-        this.add(botonBorrar);
+        botonActualizar.setPreferredSize(new Dimension(120, 40));
+        botonActualizar.setForeground(new Color(255,255,255));
+        botonActualizar.setBackground(new Color(241, 81, 82));
+        this.add(botonActualizar);
         
-        layout.putConstraint(SpringLayout.WEST, botonBorrar, 180, SpringLayout.WEST, scrollTabla);
-        layout.putConstraint(SpringLayout.NORTH, botonBorrar, 170, SpringLayout.NORTH, scrollTabla);
-        botonBorrar.setVisible(false);
+        layout.putConstraint(SpringLayout.WEST, botonActualizar, 180, SpringLayout.WEST, scrollTabla);
+        layout.putConstraint(SpringLayout.NORTH, botonActualizar, 170, SpringLayout.NORTH, scrollTabla);
+        botonActualizar.setVisible(false);
         
         botonBuscar.addActionListener(new ActionListener() {
 
@@ -157,18 +157,13 @@ public class PanelActualizar extends javax.swing.JPanel {
                     if (totalFilas == 0) {
                     
                         scrollTabla.setVisible(false);
-                        botonBorrar.setVisible(false);
+                        botonActualizar.setVisible(false);
                         labelResultado.setText("No se encontraron resultados");
-                        
-                    } else if(totalFilas == 1) {
-                    
-                        scrollTabla.setVisible(true);
-                        botonBorrar.setVisible(true);
                         
                     } else {
                         
                         scrollTabla.setVisible(true);
-                        botonBorrar.setVisible(true);
+                        botonActualizar.setVisible(true);
                         
                         
                     }
@@ -180,17 +175,24 @@ public class PanelActualizar extends javax.swing.JPanel {
             }   
         });
        
-        botonBorrar.addActionListener(new ActionListener() {
+        botonActualizar.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 
                 scrollTabla.setVisible(false);
-                botonBorrar.setVisible(false);
+                botonActualizar.setVisible(false);
                 inputBuscador.setText("");
-                      
-                for (int i = 0; i < idMascotas.size(); i++) {
+                
+                for (Vector datos : modeloTabla.getDataVector()) {
                     
-                    String consultaEliminar = "DELETE FROM mascota WHERE ID = '" + idMascotas.get(i) + "'";
+                    String nombre = datos.get(0).toString();
+                    String tipo = datos.get(1).toString();
+                    String edad = datos.get(2).toString();
+                    String descripcion = datos.get(3).toString();
+                    String raza = datos.get(4).toString();
+                    
+                    /*
+                    String consultaEliminar = "UPDATE mascota SET nombre = '"+nombre+"', tipo = "+tipo+", edad = "+edad+", descripcion = '"+descripcion+"', raza = '"+raza+"'> WHERE ID = '"++"';";
 
                     try {
                         
@@ -202,10 +204,11 @@ public class PanelActualizar extends javax.swing.JPanel {
                         mostrarModal("Error al borrar la mascota");
                             
                     }
-                    
+                    */
                 }
-
-                mostrarModal("Mascotas borradas correctamente");
+                
+                // mostrarModal("Mascotas borradas correctamente");
+                
             }
                
         });
