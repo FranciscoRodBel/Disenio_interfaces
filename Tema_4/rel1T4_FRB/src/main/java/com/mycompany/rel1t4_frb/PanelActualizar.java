@@ -182,6 +182,7 @@ public class PanelActualizar extends javax.swing.JPanel {
                 scrollTabla.setVisible(false);
                 botonActualizar.setVisible(false);
                 inputBuscador.setText("");
+                int idSeleccionado;
                 
                 for (Vector datos : modeloTabla.getDataVector()) {
                     
