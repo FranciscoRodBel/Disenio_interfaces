@@ -182,15 +182,21 @@ public class PanelActualizar extends javax.swing.JPanel {
                 scrollTabla.setVisible(false);
                 botonActualizar.setVisible(false);
                 inputBuscador.setText("");
-                int idSeleccionado;
+                int idSeleccionado = 0;
                 
                 for (Vector datos : modeloTabla.getDataVector()) {
+                    
+                    String id_mascota = idMascotas.get(idSeleccionado);
                     
                     String nombre = datos.get(0).toString();
                     String tipo = datos.get(1).toString();
                     String edad = datos.get(2).toString();
                     String descripcion = datos.get(3).toString();
                     String raza = datos.get(4).toString();
+                    
+                    System.out.println(raza);
+                    
+                    idSeleccionado++;
                     
                     /*
                     String consultaEliminar = "UPDATE mascota SET nombre = '"+nombre+"', tipo = "+tipo+", edad = "+edad+", descripcion = '"+descripcion+"', raza = '"+raza+"'> WHERE ID = '"++"';";
