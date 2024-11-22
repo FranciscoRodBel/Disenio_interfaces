@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6e8f9b63-2dc3-4242-aa2e-2da79eecadaf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * 
+FROM sakila.actor AS actor
+INNER JOIN sakila.film_actor AS filmActor ON actor.actor_id = filmActor.actor_id
+INNER JOIN sakila.film AS film ON filmActor.film_id = film.film_id;]]>
+	</queryString>
+	<field name="actor_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="first_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="last_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="last_update" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="film_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="title" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="description" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="release_year" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="language_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="original_language_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rental_duration" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rental_rate" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="length" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="replacement_cost" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rating" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="special_features" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="rating">
+		<groupExpression><![CDATA[$F{rating}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<textField>
+					<reportElement style="SubTitle" x="47" y="13" width="506" height="24" forecolor="#333333" uuid="3aad5bba-c496-4434-af7d-f17d43f6642f"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{rating}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement mode="Opaque" x="0" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="38c95e61-9d09-4aaa-b43b-fc877882b10d"/>
+				</rectangle>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="2"/>
+		</groupFooter>
+	</group>
+	<group name="first_name">
+		<groupExpression><![CDATA[$F{first_name}]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<textField>
+					<reportElement style="SubTitle" x="0" y="4" width="460" height="20" uuid="ffc139c1-36ec-44e6-9577-b511bbaa8dd6"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{first_name}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="-20" y="0" width="595" height="64" uuid="89f116c7-28ba-4e45-8ffe-acb22aa824b2"/>
+				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="0" y="5" width="340" height="34" uuid="93d78a0f-6ab2-4f1c-8f25-c41480746138"/>
+				<textElement verticalAlignment="Middle">
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Profitability of films]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="028dea8b-a8d7-4add-a403-f710b33d0243"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="39" height="15" uuid="2353c630-b9e5-4243-8038-58418299dc3f"/>
+				<text><![CDATA[actor_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="39" y="19" width="39" height="15" uuid="ec5bf407-a606-46ee-98ca-a39867df1415"/>
+				<text><![CDATA[last_name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="78" y="19" width="39" height="15" uuid="b5f37d2c-4880-49f7-b841-6966dbaace1a"/>
+				<text><![CDATA[last_update]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="117" y="19" width="39" height="15" uuid="000d6b07-0685-4ef7-87f9-6913e8fc0f80"/>
+				<text><![CDATA[film_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="156" y="19" width="39" height="15" uuid="9ee4abe6-1b60-4dd6-a8b8-c645c8396479"/>
+				<text><![CDATA[title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="195" y="19" width="39" height="15" uuid="a62bfffe-46b1-4011-b04a-c7da16e6fc82"/>
+				<text><![CDATA[description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="234" y="19" width="39" height="15" uuid="56292be4-8fc0-4e29-b971-82e89f4f5f5f"/>
+				<text><![CDATA[release_year]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="273" y="19" width="39" height="15" uuid="feb47c15-f96e-406e-a7f1-9730fc3e6ac0"/>
+				<text><![CDATA[language_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="312" y="19" width="39" height="15" uuid="d5e3596e-8b96-4cad-bb96-4e93ffcf2800"/>
+				<text><![CDATA[original_language_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="351" y="19" width="39" height="15" uuid="1e8b1946-5044-4e97-9c96-3fb4244a6d73"/>
+				<text><![CDATA[rental_duration]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="390" y="19" width="39" height="15" uuid="d043b5a1-8649-4475-b087-dd2098d3a113"/>
+				<text><![CDATA[rental_rate]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="429" y="19" width="39" height="15" uuid="5cee459b-904b-4137-80d8-708e664e88b2"/>
+				<text><![CDATA[length]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="468" y="19" width="39" height="15" uuid="bac203ee-7bdd-4908-9624-3e5cc0ac99b6"/>
+				<text><![CDATA[replacement_cost]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="507" y="19" width="39" height="15" uuid="b28d500f-834f-4335-828a-a14e958b9768"/>
+				<text><![CDATA[special_features]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="bcad16fa-baaa-4134-9c0d-ba79dde5b8ca"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="39" height="15" uuid="476e16bf-e2ae-4d89-aea4-6986d8a813da"/>
+				<textFieldExpression><![CDATA[$F{actor_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="39" y="0" width="39" height="15" uuid="a85a4ce3-edb3-4351-a1d0-3e7f8941106e"/>
+				<textFieldExpression><![CDATA[$F{last_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="78" y="0" width="39" height="15" uuid="48ca35cb-5ba7-4a26-9b16-e8fd1a6f7269"/>
+				<textFieldExpression><![CDATA[$F{last_update}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="117" y="0" width="39" height="15" uuid="02d61ed4-41f3-454a-9dde-9df8967f25e9"/>
+				<textFieldExpression><![CDATA[$F{film_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="156" y="0" width="39" height="15" uuid="7d1e665a-b495-4fdf-84fe-324f25f022ff"/>
+				<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="195" y="0" width="39" height="15" uuid="6b58729a-0d6d-4010-a91f-d733984b245b"/>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="234" y="0" width="39" height="15" uuid="5279e9ac-599a-474b-bf09-1a3f3d22b58e"/>
+				<textFieldExpression><![CDATA[$F{release_year}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="273" y="0" width="39" height="15" uuid="1361bc22-3304-4cbb-b75a-fd326d444703"/>
+				<textFieldExpression><![CDATA[$F{language_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="312" y="0" width="39" height="15" uuid="fec7db75-0ba6-4ec5-ae55-dfaca581c27c"/>
+				<textFieldExpression><![CDATA[$F{original_language_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="351" y="0" width="39" height="15" uuid="ca069b40-fd4e-4461-a98f-47a4848d15dd"/>
+				<textFieldExpression><![CDATA[$F{rental_duration}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="390" y="0" width="39" height="15" uuid="55e9b4ac-e079-4dd2-81df-12cfa9eab90f"/>
+				<textFieldExpression><![CDATA[$F{rental_rate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="429" y="0" width="39" height="15" uuid="47424535-cf33-487f-818e-bd7ee2ce4162"/>
+				<textFieldExpression><![CDATA[$F{length}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="468" y="0" width="39" height="15" uuid="49a2e641-47c5-437c-82f7-8c907e471cd5"/>
+				<textFieldExpression><![CDATA[$F{replacement_cost}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="507" y="0" width="39" height="15" uuid="1ae59298-6e25-4d88-bf72-1b2972178f06"/>
+				<textFieldExpression><![CDATA[$F{special_features}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="283" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="bbf5e30c-6ce7-4b0f-b8bb-596be751742e"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<barChart>
+				<chart>
+					<reportElement x="0" y="143" width="553" height="122" uuid="0b7b78a8-36f1-4c5f-8a78-e376273a5a06"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Rental duration"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{rental_duration}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{rental_duration}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+			<stackedBar3DChart>
+				<chart>
+					<reportElement x="-2" y="14" width="555" height="112" uuid="9f42ba3d-9509-4211-9da1-eb082b34b02d"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Rental rate"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{rental_rate}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{rental_rate}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</stackedBar3DChart>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="a8f93f3e-a35c-46ee-9c15-0f08ac5f30ba"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="b63f0ccb-74ba-4c1c-91e8-20dc25257aee"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="b7472ae2-da23-48eb-9f6c-05c531725f60"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
