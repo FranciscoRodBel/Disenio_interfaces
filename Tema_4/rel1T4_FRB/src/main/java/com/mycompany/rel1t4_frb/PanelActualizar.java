@@ -183,41 +183,81 @@ public class PanelActualizar extends javax.swing.JPanel {
                 botonActualizar.setVisible(false);
                 inputBuscador.setText("");
                 int idSeleccionado = 0;
+                int numeroErrores = 0;
+                Statement consulta = null;
+                
+                try {
+                    
+                    consulta = conexion.createStatement();
+                    conexion.setAutoCommit(false); 
+                    
+                } catch (SQLException ex) {
+                    Logger.getLogger(PanelActualizar.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
                 for (Vector datos : modeloTabla.getDataVector()) {
+                    
+                    String descripcion = "";
+                    String raza = "";
                     
                     String id_mascota = idMascotas.get(idSeleccionado);
                     
                     String nombre = datos.get(0).toString();
                     String tipo = datos.get(1).toString();
                     String edad = datos.get(2).toString();
-                    String descripcion = datos.get(3).toString();
-                    String raza = datos.get(4).toString();
+                    descripcion = datos.get(3).toString();
+                    raza = datos.get(4).toString(); 
                     
-                    System.out.println(raza);
+                    System.out.println(datos.get(0).toString());
+                    System.out.println(datos.get(1).toString());
+                    System.out.println(datos.get(2).toString());
+                    System.out.println(datos.get(3).toString());
+                    System.out.println(datos.get(4).toString());
+                    System.out.println(idMascotas.get(idSeleccionado));
                     
-                    idSeleccionado++;
-                    
-                    /*
-                    String consultaEliminar = "UPDATE mascota SET nombre = '"+nombre+"', tipo = "+tipo+", edad = "+edad+", descripcion = '"+descripcion+"', raza = '"+raza+"'> WHERE ID = '"++"';";
+                    String consultaActualizar = "UPDATE mascota SET nombre = '"+nombre+"', tipo = '"+tipo+"', edad = '"+edad+"', descripcion = '"+descripcion+"', raza = '"+raza+"' WHERE ID = '"+idMascotas.get(idSeleccionado)+"';";
 
                     try {
                         
-                        Statement consulta = conexion.createStatement();
-                        int filasEliminadas = consulta.executeUpdate(consultaEliminar);
+                        consulta.executeUpdate(consultaActualizar);
                         
                     } catch (SQLException ex) {
                         
-                        mostrarModal("Error al borrar la mascota");
+                        numeroErrores++;
                             
                     }
-                    */
+                    
+                    idSeleccionado++;
+                    
                 }
-                
-                // mostrarModal("Mascotas borradas correctamente");
-                
+                 
+
+                    if (numeroErrores == 0) {
+
+                        try {
+                            
+                            conexion.commit();
+
+                        } catch (SQLException ex) {
+                            Logger.getLogger(PanelActualizar.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        mostrarModal("Mascotas actualizadas correctamente");
+
+                    } else { 
+
+                        try {
+                            
+                            conexion.rollback();
+                        
+                        } catch (SQLException ex) {
+                            Logger.getLogger(PanelActualizar.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                        mostrarModal("Error al actualizar las mascotas");
+                    }
+
+                    
             }
-               
         });
     }
     
