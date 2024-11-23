@@ -115,8 +115,7 @@ public class PanelActualizar extends javax.swing.JPanel {
         tablaMascotas.getColumnModel().getColumn(3).setPreferredWidth(250);
         
         botonActualizar.setPreferredSize(new Dimension(120, 40));
-        botonActualizar.setForeground(new Color(255,255,255));
-        botonActualizar.setBackground(new Color(241, 81, 82));
+        botonActualizar.setBackground(new Color(101, 145, 87));
         this.add(botonActualizar);
         
         layout.putConstraint(SpringLayout.WEST, botonActualizar, 180, SpringLayout.WEST, scrollTabla);
@@ -206,14 +205,7 @@ public class PanelActualizar extends javax.swing.JPanel {
                     String tipo = datos.get(1).toString();
                     String edad = datos.get(2).toString();
                     descripcion = datos.get(3).toString();
-                    raza = datos.get(4).toString(); 
-                    
-                    System.out.println(datos.get(0).toString());
-                    System.out.println(datos.get(1).toString());
-                    System.out.println(datos.get(2).toString());
-                    System.out.println(datos.get(3).toString());
-                    System.out.println(datos.get(4).toString());
-                    System.out.println(idMascotas.get(idSeleccionado));
+                    raza = datos.get(4).toString();
                     
                     String consultaActualizar = "UPDATE mascota SET nombre = '"+nombre+"', tipo = '"+tipo+"', edad = '"+edad+"', descripcion = '"+descripcion+"', raza = '"+raza+"' WHERE ID = '"+idMascotas.get(idSeleccionado)+"';";
 
