@@ -40,9 +40,6 @@ INNER JOIN sakila.film AS film ON filmActor.film_id = film.film_id;]]>
 	<field name="language_id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="original_language_id" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
 	<field name="rental_duration" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -78,13 +75,13 @@ INNER JOIN sakila.film AS film ON filmActor.film_id = film.film_id;]]>
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="2"/>
+			<band height="37"/>
 		</groupFooter>
 	</group>
 	<group name="first_name">
 		<groupExpression><![CDATA[$F{first_name}]]></groupExpression>
 		<groupHeader>
-			<band height="30">
+			<band height="40">
 				<textField>
 					<reportElement style="SubTitle" x="0" y="4" width="460" height="20" uuid="ffc139c1-36ec-44e6-9577-b511bbaa8dd6"/>
 					<textElement>
@@ -94,6 +91,37 @@ INNER JOIN sakila.film AS film ON filmActor.film_id = film.film_id;]]>
 				</textField>
 			</band>
 		</groupHeader>
+		<groupFooter>
+			<band height="232">
+				<barChart>
+					<chart>
+						<reportElement x="0" y="23" width="551" height="165" uuid="197e3042-ddb2-4ede-ba80-fc30552c39fa"/>
+						<chartTitle/>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<categoryDataset>
+						<dataset resetType="Group" resetGroup="first_name"/>
+						<categorySeries>
+							<seriesExpression><![CDATA[$F{rental_rate}]]></seriesExpression>
+							<categoryExpression><![CDATA[$F{first_name}+" rental rate"]]></categoryExpression>
+							<valueExpression><![CDATA[$F{rental_rate}]]></valueExpression>
+							<labelExpression><![CDATA[$F{first_name}+" rental rate"]]></labelExpression>
+						</categorySeries>
+					</categoryDataset>
+					<barPlot>
+						<plot/>
+						<itemLabel/>
+						<categoryAxisFormat>
+							<axisFormat/>
+						</categoryAxisFormat>
+						<valueAxisFormat>
+							<axisFormat/>
+						</valueAxisFormat>
+					</barPlot>
+				</barChart>
+			</band>
+		</groupFooter>
 	</group>
 	<background>
 		<band splitType="Stretch"/>
@@ -183,7 +211,7 @@ INNER JOIN sakila.film AS film ON filmActor.film_id = film.film_id;]]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="16" splitType="Stretch">
+		<band height="24" splitType="Stretch">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="bcad16fa-baaa-4134-9c0d-ba79dde5b8ca"/>
 				<graphicElement>
@@ -191,125 +219,55 @@ INNER JOIN sakila.film AS film ON filmActor.film_id = film.film_id;]]>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement style="Detail" x="0" y="0" width="39" height="15" uuid="476e16bf-e2ae-4d89-aea4-6986d8a813da"/>
-				<textFieldExpression><![CDATA[$F{actor_id}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="39" y="0" width="39" height="15" uuid="a85a4ce3-edb3-4351-a1d0-3e7f8941106e"/>
+				<reportElement style="Detail" x="0" y="1" width="59" height="15" uuid="a85a4ce3-edb3-4351-a1d0-3e7f8941106e"/>
 				<textFieldExpression><![CDATA[$F{last_name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="78" y="0" width="39" height="15" uuid="48ca35cb-5ba7-4a26-9b16-e8fd1a6f7269"/>
-				<textFieldExpression><![CDATA[$F{last_update}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="117" y="0" width="39" height="15" uuid="02d61ed4-41f3-454a-9dde-9df8967f25e9"/>
-				<textFieldExpression><![CDATA[$F{film_id}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="156" y="0" width="39" height="15" uuid="7d1e665a-b495-4fdf-84fe-324f25f022ff"/>
+				<reportElement style="Detail" x="58" y="0" width="59" height="15" uuid="7d1e665a-b495-4fdf-84fe-324f25f022ff"/>
 				<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="195" y="0" width="39" height="15" uuid="6b58729a-0d6d-4010-a91f-d733984b245b"/>
+				<reportElement style="Detail" x="117" y="0" width="59" height="15" uuid="6b58729a-0d6d-4010-a91f-d733984b245b"/>
 				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="234" y="0" width="39" height="15" uuid="5279e9ac-599a-474b-bf09-1a3f3d22b58e"/>
+				<reportElement style="Detail" x="195" y="1" width="59" height="15" uuid="5279e9ac-599a-474b-bf09-1a3f3d22b58e"/>
 				<textFieldExpression><![CDATA[$F{release_year}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="273" y="0" width="39" height="15" uuid="1361bc22-3304-4cbb-b75a-fd326d444703"/>
-				<textFieldExpression><![CDATA[$F{language_id}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="312" y="0" width="39" height="15" uuid="fec7db75-0ba6-4ec5-ae55-dfaca581c27c"/>
-				<textFieldExpression><![CDATA[$F{original_language_id}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="351" y="0" width="39" height="15" uuid="ca069b40-fd4e-4461-a98f-47a4848d15dd"/>
+				<reportElement style="Detail" x="254" y="0" width="59" height="15" uuid="ca069b40-fd4e-4461-a98f-47a4848d15dd"/>
 				<textFieldExpression><![CDATA[$F{rental_duration}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="390" y="0" width="39" height="15" uuid="55e9b4ac-e079-4dd2-81df-12cfa9eab90f"/>
+				<reportElement style="Detail" x="313" y="0" width="59" height="15" uuid="55e9b4ac-e079-4dd2-81df-12cfa9eab90f"/>
 				<textFieldExpression><![CDATA[$F{rental_rate}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="429" y="0" width="39" height="15" uuid="47424535-cf33-487f-818e-bd7ee2ce4162"/>
+				<reportElement style="Detail" x="370" y="0" width="59" height="15" uuid="47424535-cf33-487f-818e-bd7ee2ce4162"/>
 				<textFieldExpression><![CDATA[$F{length}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="468" y="0" width="39" height="15" uuid="49a2e641-47c5-437c-82f7-8c907e471cd5"/>
+				<reportElement style="Detail" x="429" y="1" width="59" height="15" uuid="49a2e641-47c5-437c-82f7-8c907e471cd5"/>
 				<textFieldExpression><![CDATA[$F{replacement_cost}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="507" y="0" width="39" height="15" uuid="1ae59298-6e25-4d88-bf72-1b2972178f06"/>
+				<reportElement style="Detail" x="488" y="0" width="59" height="15" uuid="1ae59298-6e25-4d88-bf72-1b2972178f06"/>
 				<textFieldExpression><![CDATA[$F{special_features}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="283" splitType="Stretch">
+		<band height="51" splitType="Stretch">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="bbf5e30c-6ce7-4b0f-b8bb-596be751742e"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
 			</line>
-			<barChart>
-				<chart>
-					<reportElement x="0" y="143" width="553" height="122" uuid="0b7b78a8-36f1-4c5f-8a78-e376273a5a06"/>
-					<chartTitle/>
-					<chartSubtitle/>
-					<chartLegend/>
-				</chart>
-				<categoryDataset>
-					<categorySeries>
-						<seriesExpression><![CDATA["Rental duration"]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{rental_duration}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{rental_duration}]]></valueExpression>
-					</categorySeries>
-				</categoryDataset>
-				<barPlot>
-					<plot/>
-					<itemLabel/>
-					<categoryAxisFormat>
-						<axisFormat/>
-					</categoryAxisFormat>
-					<valueAxisFormat>
-						<axisFormat/>
-					</valueAxisFormat>
-				</barPlot>
-			</barChart>
-			<stackedBar3DChart>
-				<chart>
-					<reportElement x="-2" y="14" width="555" height="112" uuid="9f42ba3d-9509-4211-9da1-eb082b34b02d"/>
-					<chartTitle/>
-					<chartSubtitle/>
-					<chartLegend/>
-				</chart>
-				<categoryDataset>
-					<categorySeries>
-						<seriesExpression><![CDATA["Rental rate"]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{rental_rate}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{rental_rate}]]></valueExpression>
-					</categorySeries>
-				</categoryDataset>
-				<bar3DPlot>
-					<plot/>
-					<itemLabel/>
-					<categoryAxisFormat>
-						<axisFormat/>
-					</categoryAxisFormat>
-					<valueAxisFormat>
-						<axisFormat/>
-					</valueAxisFormat>
-				</bar3DPlot>
-			</stackedBar3DChart>
 		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="20" splitType="Stretch">
+		<band height="43" splitType="Stretch">
 			<textField>
 				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="a8f93f3e-a35c-46ee-9c15-0f08ac5f30ba"/>
 				<textElement textAlignment="Right">
