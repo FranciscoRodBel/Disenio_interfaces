@@ -48,7 +48,7 @@ INNER JOIN sakila.film AS film ON filmActor.film_id = film.film_id;]]>
 		<groupHeader>
 			<band height="40">
 				<textField>
-					<reportElement style="SubTitle" x="47" y="13" width="506" height="24" forecolor="#990099" uuid="d5a5df7f-058b-4f1c-bb0b-3804192a177a"/>
+					<reportElement style="SubTitle" x="47" y="13" width="108" height="24" forecolor="#990099" uuid="d5a5df7f-058b-4f1c-bb0b-3804192a177a"/>
 					<textElement>
 						<font isBold="true"/>
 					</textElement>
@@ -57,13 +57,20 @@ INNER JOIN sakila.film AS film ON filmActor.film_id = film.film_id;]]>
 				<rectangle>
 					<reportElement mode="Opaque" x="0" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="e643ade0-05e7-4102-9050-126859cb037e"/>
 				</rectangle>
+				<textField>
+					<reportElement style="SubTitle" x="155" y="13" width="398" height="24" forecolor="#990099" uuid="807156ca-936a-4ed2-80e6-34d1d81c5de1"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{last_name}]]></textFieldExpression>
+				</textField>
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="209">
+			<band height="430">
 				<barChart>
 					<chart>
-						<reportElement x="4" y="28" width="525" height="169" uuid="8f4562b8-1bb2-4817-9bbf-61208f5bb62d"/>
+						<reportElement x="4" y="12" width="549" height="185" uuid="8f4562b8-1bb2-4817-9bbf-61208f5bb62d"/>
 						<chartTitle/>
 						<chartSubtitle/>
 						<chartLegend/>
@@ -72,9 +79,9 @@ INNER JOIN sakila.film AS film ON filmActor.film_id = film.film_id;]]>
 						<dataset resetType="Group" resetGroup="first_name"/>
 						<categorySeries>
 							<seriesExpression><![CDATA[$F{rental_rate}]]></seriesExpression>
-							<categoryExpression><![CDATA[$F{first_name}+" rental rate"]]></categoryExpression>
+							<categoryExpression><![CDATA[$F{first_name}+" - Number of times movies have been rented according to their price"]]></categoryExpression>
 							<valueExpression><![CDATA[$F{rental_rate}]]></valueExpression>
-							<labelExpression><![CDATA[$F{first_name}+" rental rate"]]></labelExpression>
+							<labelExpression><![CDATA[$F{first_name}+" - Number of times movies have been rented according to their price"]]></labelExpression>
 						</categorySeries>
 					</categoryDataset>
 					<barPlot>
@@ -88,13 +95,30 @@ INNER JOIN sakila.film AS film ON filmActor.film_id = film.film_id;]]>
 						</valueAxisFormat>
 					</barPlot>
 				</barChart>
+				<pieChart>
+					<chart>
+						<reportElement x="4" y="197" width="549" height="231" uuid="bc80088a-a0f9-4232-aab2-6014fc158bc1"/>
+						<chartTitle/>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<dataset resetType="Group" resetGroup="first_name"/>
+						<keyExpression><![CDATA[$F{replacement_cost}]]></keyExpression>
+						<valueExpression><![CDATA[$F{rental_duration}]]></valueExpression>
+					</pieDataset>
+					<piePlot>
+						<plot/>
+						<itemLabel/>
+					</piePlot>
+				</pieChart>
 			</band>
 		</groupFooter>
 	</group>
 	<group name="rating">
 		<groupExpression><![CDATA[$F{rating}]]></groupExpression>
 		<groupHeader>
-			<band height="30">
+			<band height="24">
 				<textField>
 					<reportElement style="SubTitle" x="0" y="4" width="460" height="20" uuid="301850f3-03b1-4b28-862a-8c488dbc8cc9"/>
 					<textElement>
@@ -117,12 +141,12 @@ INNER JOIN sakila.film AS film ON filmActor.film_id = film.film_id;]]>
 			<staticText>
 				<reportElement style="Title" x="0" y="13" width="263" height="33" uuid="e8530202-c03d-4a8c-bb71-79ed4c9ca917"/>
 				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[Leaf Violet Title]]></text>
+				<text><![CDATA[Profitability of films]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SubTitle" x="63" y="46" width="200" height="22" uuid="425a649a-59f8-4354-ab34-2533d5084b18"/>
 				<textElement textAlignment="Right"/>
-				<text><![CDATA[Leaf Violet SubTitle]]></text>
+				<text><![CDATA[According to the actor]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -138,36 +162,24 @@ INNER JOIN sakila.film AS film ON filmActor.film_id = film.film_id;]]>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement style="Column header" x="0" y="19" width="69" height="15" uuid="579b70b8-52fc-4cc0-9a88-16c2e0e77a0c"/>
-				<text><![CDATA[last_name]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="69" y="19" width="69" height="15" uuid="47ebfea1-805b-452c-a873-dbf052804e9c"/>
+				<reportElement style="Column header" x="4" y="19" width="169" height="15" uuid="47ebfea1-805b-452c-a873-dbf052804e9c"/>
 				<text><![CDATA[title]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="138" y="19" width="69" height="15" uuid="58c8c6b6-7971-441d-beac-f4a6f0cee197"/>
-				<text><![CDATA[description]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="207" y="19" width="69" height="15" uuid="51c7a39e-ad49-4b0d-8921-1af2131009ba"/>
+				<reportElement style="Column header" x="173" y="19" width="112" height="15" uuid="51c7a39e-ad49-4b0d-8921-1af2131009ba"/>
 				<text><![CDATA[rental_duration]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="276" y="19" width="69" height="15" uuid="c89adde1-bc92-42b5-8089-f3a5d37441ec"/>
+				<reportElement style="Column header" x="285" y="19" width="79" height="15" uuid="c89adde1-bc92-42b5-8089-f3a5d37441ec"/>
 				<text><![CDATA[rental_rate]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="345" y="19" width="69" height="15" uuid="e3fdf46e-0685-46b4-9d5d-d5c6f72e29cb"/>
+				<reportElement style="Column header" x="364" y="19" width="69" height="15" uuid="e3fdf46e-0685-46b4-9d5d-d5c6f72e29cb"/>
 				<text><![CDATA[length]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="414" y="19" width="69" height="15" uuid="55704c91-9e49-4f14-a686-8a7fd6bc8e2b"/>
+				<reportElement style="Column header" x="433" y="19" width="122" height="15" uuid="55704c91-9e49-4f14-a686-8a7fd6bc8e2b"/>
 				<text><![CDATA[replacement_cost]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="483" y="19" width="69" height="15" uuid="08a9a0bc-8eeb-4e80-baac-2329c3475b68"/>
-				<text><![CDATA[special_features]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -180,36 +192,24 @@ INNER JOIN sakila.film AS film ON filmActor.film_id = film.film_id;]]>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement style="Detail" x="0" y="0" width="69" height="15" uuid="11c54014-1121-4485-99c1-0a45dac27d71"/>
-				<textFieldExpression><![CDATA[$F{last_name}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="69" y="0" width="69" height="15" uuid="e181b3d3-ff27-4613-9f6a-b9eb7bc60d2b"/>
+				<reportElement style="Detail" x="4" y="0" width="169" height="15" uuid="e181b3d3-ff27-4613-9f6a-b9eb7bc60d2b"/>
 				<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="138" y="0" width="69" height="15" uuid="9c49fc4a-6aa6-485d-b98b-7b7971e6d8b8"/>
-				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="207" y="0" width="69" height="15" uuid="d6f03252-3f59-43a4-b7aa-4b80e988ed19"/>
+				<reportElement style="Detail" x="173" y="0" width="112" height="15" uuid="d6f03252-3f59-43a4-b7aa-4b80e988ed19"/>
 				<textFieldExpression><![CDATA[$F{rental_duration}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="276" y="0" width="69" height="15" uuid="f0b12af8-b7ef-401f-b51e-4aaec6848f3a"/>
+				<reportElement style="Detail" x="285" y="1" width="79" height="15" uuid="f0b12af8-b7ef-401f-b51e-4aaec6848f3a"/>
 				<textFieldExpression><![CDATA[$F{rental_rate}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="345" y="0" width="69" height="15" uuid="6362b7a3-0a9c-421c-8f37-ad78d51362bd"/>
+				<reportElement style="Detail" x="364" y="0" width="69" height="15" uuid="6362b7a3-0a9c-421c-8f37-ad78d51362bd"/>
 				<textFieldExpression><![CDATA[$F{length}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Detail" x="414" y="0" width="69" height="15" uuid="0ab2b3e8-c339-46b3-9863-dc2cb995c51e"/>
+				<reportElement style="Detail" x="433" y="1" width="122" height="15" uuid="0ab2b3e8-c339-46b3-9863-dc2cb995c51e"/>
 				<textFieldExpression><![CDATA[$F{replacement_cost}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="483" y="0" width="69" height="15" uuid="5b010f79-f703-4953-9a0d-dd4f63bf3efe"/>
-				<textFieldExpression><![CDATA[$F{special_features}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
