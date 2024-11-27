@@ -67,7 +67,7 @@ INNER JOIN sakila.film AS film ON filmActor.film_id = film.film_id;]]>
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="430">
+			<band height="455">
 				<barChart>
 					<chart>
 						<reportElement x="4" y="12" width="549" height="185" uuid="8f4562b8-1bb2-4817-9bbf-61208f5bb62d"/>
@@ -112,6 +112,25 @@ INNER JOIN sakila.film AS film ON filmActor.film_id = film.film_id;]]>
 						<itemLabel/>
 					</piePlot>
 				</pieChart>
+				<textField>
+					<reportElement x="4" y="428" width="549" height="24" uuid="3a062d35-2c77-43b9-81fb-35f20021953f"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["The amount charged to the customer if the film is not returned or is returned in a damaged state"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="443" y="10" width="80" height="20" uuid="e516f599-5d27-47e5-a74e-243af91ce12a"/>
+					<textElement textAlignment="Right">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<elementGroup/>
+				<componentElement>
+					<reportElement x="513" y="358" width="13" height="21" uuid="e04c386e-6f23-4c7d-aaef-8d3e5523d333"/>
+					<sr:sort xmlns:sr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<sr:symbol handlerColor="#000000" sortFieldType="Field" sortFieldName="title" handlerHorizontalAlign="Center" handlerVerticalAlign="Middle"/>
+					</sr:sort>
+				</componentElement>
 			</band>
 		</groupFooter>
 	</group>
@@ -214,7 +233,7 @@ INNER JOIN sakila.film AS film ON filmActor.film_id = film.film_id;]]>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="41" splitType="Stretch">
+		<band height="10" splitType="Stretch">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="43768eb2-2417-42e2-85a5-3637c4192c7b"/>
 				<graphicElement>
