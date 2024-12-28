@@ -5,8 +5,9 @@
 package com.mycompany.tooltipfrb;
 
 /**
+ * Class to test help messages for inputs/buttons
  *
- * @author Propietario
+ * @author Francisco Rodríguez
  */
 public class ToolTipFrame extends javax.swing.JFrame {
 
@@ -40,6 +41,9 @@ public class ToolTipFrame extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Contraseña: ");
 
+        /**
+        * Help message added to TextField1
+        */
         jTextField1.setToolTipText("Introduzca el nombre de usuario");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -47,8 +51,14 @@ public class ToolTipFrame extends javax.swing.JFrame {
             }
         });
 
+        /**
+        * Help message added to TextField2
+        */
         jTextField2.setToolTipText("Introduzca la contraseña");
 
+        /**
+        * The help message, text, and font are added to the button
+        */
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Inicar sesión");
         jButton1.setToolTipText("Pulse aquí para iniciar sesión");
@@ -58,6 +68,9 @@ public class ToolTipFrame extends javax.swing.JFrame {
             }
         });
 
+        /**
+        * The layout is created and the components are positioned on the panel automatically using the graphical interface, both vertically and horizontally.
+        */
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,16 +109,23 @@ public class ToolTipFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+    * When the event occurs on the textField it comes to this method
+    * @param evt event that occurs in the textField
+    */
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-
+    /**
+    * When the event occurs on the button it comes to this method
+    * @param evt event that occurs in the button
+    */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
+     * Main method
      * @param args the command line arguments
      */
     public static void main(String args[]) {
