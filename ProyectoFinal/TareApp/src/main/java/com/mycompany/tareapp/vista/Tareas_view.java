@@ -30,6 +30,7 @@ public class Tareas_view extends javax.swing.JFrame {
     private void initComponents() {
 
         jDialog1 = new javax.swing.JDialog();
+        cabecera1 = new com.mycompany.tareapp.vista.plantillas.Cabecera();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -48,11 +49,15 @@ public class Tareas_view extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1012, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(cabecera1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(cabecera1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 555, Short.MAX_VALUE))
         );
 
         pack();
@@ -95,6 +100,7 @@ public class Tareas_view extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.mycompany.tareapp.vista.plantillas.Cabecera cabecera1;
     private javax.swing.JDialog jDialog1;
     // End of variables declaration//GEN-END:variables
 }

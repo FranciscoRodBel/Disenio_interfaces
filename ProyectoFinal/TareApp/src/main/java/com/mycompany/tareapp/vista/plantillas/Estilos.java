@@ -2,16 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.tareapp.vista.templates;
+package com.mycompany.tareapp.vista.plantillas;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  *
  * @author Propietario
  */
-public class Colores {
-    
+public class Estilos {
+
     private final Color blanco = new Color(255, 255, 255);
     private final Color negro = new Color(0, 0, 0);
     private final Color blanco_claro = new Color(245, 245, 245);
@@ -21,6 +25,22 @@ public class Colores {
     private final Color rojo = new Color(255, 49, 46);
     private final Color naranja = new Color(251, 139, 36);
     private final Color verde = new Color(35, 206, 107);
+    private Font fuente = new Font("Arial", Font.PLAIN, 13);
+    
+    public Estilos() {
+        
+        try {
+            
+            InputStream is = getClass().getResourceAsStream("/com/mycompany/tareapp/vista/recursos/fuentes/Poppins-Regular.ttf"); // Recojo la fuente
+            
+            if (is != null) {
+                
+                fuente = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(13f); // Si se recoge la fuente se pone Poppins
+            }
+            
+        } catch (FontFormatException | IOException e) { }
+        
+    }
     
     public Color getBlanco() {
         return blanco;
@@ -56,5 +76,9 @@ public class Colores {
 
     public Color getVerde() {
         return verde;
+    }
+    
+    public Font getFuente() {
+        return fuente;
     }
 }
