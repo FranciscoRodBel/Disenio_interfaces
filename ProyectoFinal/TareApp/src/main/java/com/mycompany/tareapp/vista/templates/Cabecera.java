@@ -1,0 +1,89 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.tareapp.vista.templates;
+
+import java.awt.Dimension;
+import javax.swing.Box;
+import javax.swing.ImageIcon;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SpringLayout;
+import javax.swing.SwingConstants;
+
+/**
+ *
+ * @author Propietario
+ */
+public class Cabecera extends JPanel {
+    
+    Colores colores = new Colores();
+    
+    JLabel imagenLogo = new JLabel(new ImageIcon(getClass().getResource("/com/mycompany/imagenes/logo.png")));
+    JLabel nombreApp = new JLabel("TareApp");
+    
+    JMenuBar menuBarras = new JMenuBar();
+    
+    JMenuItem itemTareas = new JMenuItem("Tareas");
+    JMenuItem itemListas = new JMenuItem("Listas");
+    
+    JMenu menuIdioma = new JMenu("Idioma");
+    JCheckBoxMenuItem itemEspaniol = new JCheckBoxMenuItem("Español");
+    JCheckBoxMenuItem itemIngles = new JCheckBoxMenuItem("Inglés");
+    JCheckBoxMenuItem itemFrances = new JCheckBoxMenuItem("Francés");
+    
+    JMenu menuCuenta = new JMenu("Cuenta");
+    JMenuItem itemAjustes = new JMenuItem("Ajustes");
+    JMenuItem itemCerrarSesion = new JMenuItem("Cerrar sesión");
+    
+    JSeparator separador = new JSeparator(SwingConstants.VERTICAL);
+    
+    public Cabecera() {
+        
+        SpringLayout layout = new SpringLayout();
+        this.setLayout(layout);
+        this.setPreferredSize(new Dimension(1000, 45));
+        this.setOpaque(true);
+        this.setBackground(colores.getBlanco_claro());
+        this.setVisible(true);
+        
+        this.add(imagenLogo);
+        layout.putConstraint(SpringLayout.WEST, imagenLogo, 10, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.NORTH, imagenLogo, 5, SpringLayout.NORTH, this);
+        
+        this.add(nombreApp);
+        layout.putConstraint(SpringLayout.WEST, menuBarras, 50, SpringLayout.WEST, imagenLogo);
+        layout.putConstraint(SpringLayout.NORTH, menuBarras, 0, SpringLayout.NORTH, this);
+        
+        this.add(menuBarras);
+        menuBarras.setOpaque(false);
+        menuBarras.setPreferredSize(new Dimension(1000, 45));
+        layout.putConstraint(SpringLayout.WEST, menuBarras, 200, SpringLayout.WEST, nombreApp);
+        layout.putConstraint(SpringLayout.NORTH, menuBarras, 0, SpringLayout.NORTH, this);
+        
+        separador.setPreferredSize(new Dimension(5, 20));
+        
+        menuBarras.add(itemTareas);
+        menuBarras.add(separador);
+        menuBarras.add(itemListas);
+        menuBarras.add(separador);
+        menuBarras.add(menuIdioma);
+        menuBarras.add(separador);
+        menuBarras.add(menuCuenta);
+        
+        menuIdioma.add(itemEspaniol);
+        menuIdioma.add(itemIngles);
+        menuIdioma.add(itemFrances);
+        itemEspaniol.setSelected(true);
+        
+        menuCuenta.add(itemAjustes);
+        menuCuenta.add(itemCerrarSesion);
+
+    }
+}
