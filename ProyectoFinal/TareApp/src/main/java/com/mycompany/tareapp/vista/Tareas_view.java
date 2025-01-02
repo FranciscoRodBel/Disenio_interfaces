@@ -4,12 +4,16 @@
  */
 package com.mycompany.tareapp.vista;
 
+import javax.swing.JPanel;
+import javax.swing.SpringLayout;
+
 /**
  *
  * @author Propietario
  */
 public class Tareas_view extends javax.swing.JFrame {
 
+    JPanel panelPrincipal = new JPanel();
     /**
      * Creates new form TareApp
      */
@@ -18,6 +22,11 @@ public class Tareas_view extends javax.swing.JFrame {
         
         this.setSize(1012, 600);
         this.setResizable(false);
+        
+        panelPrincipal.add(barraHerramientas);
+        layout.putConstraint(SpringLayout.WEST, barraHerramientas, 0, SpringLayout.WEST, panelPrincipal);
+        layout.putConstraint(SpringLayout.NORTH, barraHerramientas, 25, SpringLayout.NORTH, menuBarras);
+        layout.putConstraint(SpringLayout.EAST, barraHerramientas, 0, SpringLayout.EAST, panelPrincipal);
     }
 
     /**
