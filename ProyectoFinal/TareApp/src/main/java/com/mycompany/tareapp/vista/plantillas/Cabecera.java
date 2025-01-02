@@ -42,8 +42,6 @@ public class Cabecera extends JPanel {
     JMenuItem itemAjustes = new JMenuItem("Ajustes");
     JMenuItem itemCerrarSesion = new JMenuItem("Cerrar sesión");
     
-    JSeparator separador = new JSeparator(SwingConstants.VERTICAL);
-    
     public Cabecera() {
         
         SpringLayout layout = new SpringLayout();
@@ -64,21 +62,49 @@ public class Cabecera extends JPanel {
         
         this.add(menuBarras);
         menuBarras.setFont(estilos.getFuente());
-        menuBarras.setPreferredSize(new Dimension(400, 45));
         menuBarras.setBackground(estilos.getBlanco_claro());
+        menuBarras.setOpaque(true);
+        menuBarras.setBorder(javax.swing.BorderFactory.createEmptyBorder()); // Para quitar unas franjas que salen a los lados del menú
         layout.putConstraint(SpringLayout.WEST, menuBarras, 250, SpringLayout.WEST, nombreApp);
         layout.putConstraint(SpringLayout.NORTH, menuBarras, 0, SpringLayout.NORTH, this);
         
-        separador.setPreferredSize(new Dimension(5, 20));
+        JPanel separador1 = new JPanel();
+        JPanel separador2 = new JPanel();
+        JPanel separador3 = new JPanel();
+        
+        separador1.setPreferredSize(new Dimension(2, 10));
+        separador2.setPreferredSize(new Dimension(2, 10));
+        separador3.setPreferredSize(new Dimension(2, 10));
+        
+        separador1.setBackground(estilos.getNegro());
+        separador2.setBackground(estilos.getNegro());
+        separador3.setBackground(estilos.getNegro());
+        
+        itemTareas.setPreferredSize(new Dimension(70, 45));
+        itemListas.setPreferredSize(new Dimension(70, 45));
+        menuIdioma.setPreferredSize(new Dimension(70, 45));
+        menuCuenta.setPreferredSize(new Dimension(70, 45));
         
         menuBarras.add(itemTareas);
-        menuBarras.add(separador);
+        menuBarras.add(separador1);
         menuBarras.add(itemListas);
-        menuBarras.add(separador);
+        menuBarras.add(separador2);
         menuBarras.add(menuIdioma);
-        menuBarras.add(separador);
+        menuBarras.add(separador3);
         menuBarras.add(menuCuenta);
         
+        itemTareas.setBackground(estilos.getBlanco_claro());
+        itemTareas.setOpaque(true);
+
+        itemListas.setBackground(estilos.getBlanco_claro());
+        itemListas.setOpaque(true);
+
+        menuIdioma.setBackground(estilos.getBlanco_claro());
+        menuIdioma.setOpaque(true);
+
+        menuCuenta.setBackground(estilos.getBlanco_claro());
+        menuCuenta.setOpaque(true);
+
         menuIdioma.add(itemEspaniol);
         menuIdioma.add(itemIngles);
         menuIdioma.add(itemFrances);
