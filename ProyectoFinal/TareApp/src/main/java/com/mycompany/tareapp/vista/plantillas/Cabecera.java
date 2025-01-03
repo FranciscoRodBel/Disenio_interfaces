@@ -25,7 +25,7 @@ public class Cabecera extends JPanel {
     
     Estilos estilos = new Estilos();
     
-    JLabel imagenLogo = new JLabel(new ImageIcon(getClass().getResource("/com/mycompany/tareapp/vista/recursos/imagenes/logo.png")));
+    JLabel imagenLogo = new JLabel(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/logo.png"));
     JLabel nombreApp = new JLabel("TareApp");
     
     JMenuBar menuBarras = new JMenuBar();

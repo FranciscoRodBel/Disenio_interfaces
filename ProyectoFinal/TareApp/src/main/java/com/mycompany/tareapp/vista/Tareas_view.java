@@ -4,7 +4,13 @@
  */
 package com.mycompany.tareapp.vista;
 
+import com.mycompany.tareapp.vista.plantillas.Estilos;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JToolBar;
 import javax.swing.SpringLayout;
 
 /**
@@ -14,19 +20,67 @@ import javax.swing.SpringLayout;
 public class Tareas_view extends javax.swing.JFrame {
 
     JPanel panelPrincipal = new JPanel();
+    
+    JToolBar barraHerramientas = new JToolBar();
+    JScrollPane panelPrincipalScroll = new JScrollPane(panelPrincipal);
+    
+    JButton botonCrearTarea = new JButton();
+    JButton botonTareasCompletadas = new JButton();
+    JButton botonTareasIncompletas = new JButton();
+    JButton botonPrioridadBaja = new JButton();
+    JButton botonPrioridadMedia = new JButton();
+    JButton botonPrioridadalta = new JButton();
+    JButton botonOrdenadoAZ = new JButton();
+    JButton botonOrdenadoZA = new JButton();
+    JButton botonOrdenado19 = new JButton();
+    JButton botonOrdenado91 = new JButton();
+    
     /**
      * Creates new form TareApp
      */
     public Tareas_view() {
         initComponents();
         
+        Estilos estilos = new Estilos();
+    
         this.setSize(1012, 600);
-        this.setResizable(false);
+        this.setResizable(false);        
+        this.add(panelPrincipalScroll);
+        SpringLayout layout = new SpringLayout();
+        panelPrincipalScroll.setBounds(0, 45, 1012, 600);
+        panelPrincipal.setLayout(layout);
         
+        barraHerramientas.setBackground(estilos.getAzul_oscuro());
+        barraHerramientas.setFloatable(false);
         panelPrincipal.add(barraHerramientas);
         layout.putConstraint(SpringLayout.WEST, barraHerramientas, 0, SpringLayout.WEST, panelPrincipal);
-        layout.putConstraint(SpringLayout.NORTH, barraHerramientas, 25, SpringLayout.NORTH, menuBarras);
+        layout.putConstraint(SpringLayout.NORTH, barraHerramientas, 0, SpringLayout.NORTH, cabecera1);
         layout.putConstraint(SpringLayout.EAST, barraHerramientas, 0, SpringLayout.EAST, panelPrincipal);
+        
+        botonCrearTarea.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/plus-solid.png"));
+        botonTareasCompletadas.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-check-solid.png"));
+        botonTareasIncompletas.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-regular.png"));
+        botonPrioridadBaja.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-down-solid.png"));
+        botonPrioridadMedia.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-right-solid.png"));
+        botonPrioridadalta.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-up-solid.png"));
+        botonOrdenadoAZ.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-a-z-solid.png"));
+        botonOrdenadoZA.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-z-a-solid.png"));
+        botonOrdenado19.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-1-9-solid.png"));
+        botonOrdenado91.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-9-1-solid.png"));
+        
+        barraHerramientas.add(botonCrearTarea);
+        barraHerramientas.add(new JToolBar.Separator());
+        barraHerramientas.add(botonTareasCompletadas);
+        barraHerramientas.add(botonTareasIncompletas);
+        barraHerramientas.add(new JToolBar.Separator());
+        barraHerramientas.add(botonPrioridadBaja);
+        barraHerramientas.add(botonPrioridadMedia);
+        barraHerramientas.add(botonPrioridadalta);
+        barraHerramientas.add(new JToolBar.Separator());
+        barraHerramientas.add(botonOrdenadoAZ);
+        barraHerramientas.add(botonOrdenadoZA);
+        barraHerramientas.add(botonOrdenado19);
+        barraHerramientas.add(botonOrdenado91);
     }
 
     /**
