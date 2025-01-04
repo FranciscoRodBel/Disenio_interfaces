@@ -5,13 +5,16 @@
 package com.mycompany.tareapp.vista;
 
 import com.mycompany.tareapp.vista.plantillas.Estilos;
-import java.awt.Color;
+import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.SpringLayout;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -19,6 +22,7 @@ import javax.swing.SpringLayout;
  */
 public class Tareas_view extends javax.swing.JFrame {
 
+    Estilos estilos = new Estilos();
     JPanel panelPrincipal = new JPanel();
     
     JToolBar barraHerramientas = new JToolBar();
@@ -35,19 +39,21 @@ public class Tareas_view extends javax.swing.JFrame {
     JButton botonOrdenado19 = new JButton();
     JButton botonOrdenado91 = new JButton();
     
+    JLabel tituloPagina = new JLabel("Tareas");
+    JComboBox<String> seleccionarLista = new JComboBox();
+    
     /**
      * Creates new form TareApp
      */
     public Tareas_view() {
         initComponents();
         
-        Estilos estilos = new Estilos();
-    
         this.setSize(1012, 600);
         this.setResizable(false);        
         this.add(panelPrincipalScroll);
         SpringLayout layout = new SpringLayout();
-        panelPrincipalScroll.setBounds(0, 45, 1012, 600);
+        panelPrincipalScroll.setBounds(-3, 43, 1012, 600);
+        panelPrincipal.setBackground(estilos.getGris_claro());
         panelPrincipal.setLayout(layout);
         
         barraHerramientas.setBackground(estilos.getAzul_oscuro());
@@ -81,6 +87,21 @@ public class Tareas_view extends javax.swing.JFrame {
         barraHerramientas.add(botonOrdenadoZA);
         barraHerramientas.add(botonOrdenado19);
         barraHerramientas.add(botonOrdenado91);
+        
+        panelPrincipal.add(tituloPagina);
+        tituloPagina.setHorizontalAlignment(SwingConstants.CENTER);
+        tituloPagina.setFont(estilos.getFuenteTitulo());
+        layout.putConstraint(SpringLayout.WEST, tituloPagina, 0, SpringLayout.WEST, panelPrincipal);
+        layout.putConstraint(SpringLayout.NORTH, tituloPagina, 70, SpringLayout.NORTH, barraHerramientas);
+        layout.putConstraint(SpringLayout.EAST, tituloPagina, 0, SpringLayout.EAST, panelPrincipal);
+        
+        panelPrincipal.add(seleccionarLista);
+        seleccionarLista.setPreferredSize(new Dimension(300, 40));
+        seleccionarLista.setBackground(estilos.getBlanco_claro());
+        seleccionarLista.setFont(estilos.getFuente());
+        layout.putConstraint(SpringLayout.WEST, seleccionarLista, 350, SpringLayout.WEST, panelPrincipal);
+        layout.putConstraint(SpringLayout.NORTH, seleccionarLista, 50, SpringLayout.NORTH, tituloPagina);
+        seleccionarLista.addItem("Selecciona una lista");
     }
 
     /**
@@ -92,19 +113,7 @@ public class Tareas_view extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
         cabecera1 = new com.mycompany.tareapp.vista.plantillas.Cabecera();
-
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -164,6 +173,5 @@ public class Tareas_view extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.mycompany.tareapp.vista.plantillas.Cabecera cabecera1;
-    private javax.swing.JDialog jDialog1;
     // End of variables declaration//GEN-END:variables
 }

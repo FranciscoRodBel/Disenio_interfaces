@@ -25,21 +25,29 @@ public class Estilos {
     private final Color rojo = new Color(255, 49, 46);
     private final Color naranja = new Color(251, 139, 36);
     private final Color verde = new Color(35, 206, 107);
-    private Font fuente = new Font("Arial", Font.PLAIN, 13);
+    private Font fuente;
     
     public Estilos() {
         
+        fuente = cargarFuente(13);
+    }
+    
+    private Font cargarFuente(float tamanio) {
+        
         try {
             
-            InputStream is = getClass().getResourceAsStream("/com/mycompany/tareapp/vista/recursos/fuentes/Poppins-Regular.ttf"); // Recojo la fuente
-            
+            InputStream is = getClass().getResourceAsStream("/recursos/fuentes/Poppins-Regular.ttf");
+
             if (is != null) {
-                
-                fuente = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(13f); // Si se recoge la fuente se pone Poppins
+                   
+                System.out.println("Hola1");
+                return Font.createFont(Font.PLAIN, is).deriveFont(tamanio);
             }
             
         } catch (FontFormatException | IOException e) { }
         
+        System.out.println("Hola2");
+        return new Font("Arial", Font.PLAIN, 19);
     }
     
     public Color getBlanco() {
@@ -80,5 +88,19 @@ public class Estilos {
     
     public Font getFuente() {
         return fuente;
+    }
+    
+    public void setFuente(Font fuente) {
+        this.fuente = fuente;
+    }
+    
+    public Font getFuenteConTamaio(float tamanio) {
+        
+        return cargarFuente(tamanio);
+    }
+    
+    public Font getFuenteTitulo() {
+        
+        return cargarFuente(19).deriveFont(Font.BOLD);
     }
 }
