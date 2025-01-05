@@ -9,6 +9,8 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
 import java.io.InputStream;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -29,23 +31,26 @@ public class Estilos {
     
     public Estilos() {
         
-        fuente = cargarFuente(13);
+        fuente = cargarFuente(14);
     }
     
     private Font cargarFuente(float tamanio) {
         
         try {
             
-            InputStream is = getClass().getResourceAsStream("/recursos/fuentes/Poppins-Regular.ttf");
+            InputStream is = getClass().getResourceAsStream("/com/mycompany/tareapp/vista/recursos/fuentes/Poppins-Regular.ttf");
 
             if (is != null) {
                    
                 return Font.createFont(Font.PLAIN, is).deriveFont(tamanio);
             }
             
-        } catch (FontFormatException | IOException e) { }
+        } catch (FontFormatException | IOException e) { 
+            
+            e.printStackTrace();
+        }
         
-        return new Font("Arial", Font.PLAIN, 13);
+        return new Font("Arial", Font.PLAIN, 14);
     }
     
     public Color getBlanco() {
@@ -99,6 +104,6 @@ public class Estilos {
     
     public Font getFuenteTitulo() {
         
-        return cargarFuente(19).deriveFont(Font.BOLD);
+        return cargarFuente(20).deriveFont(Font.BOLD);
     }
 }

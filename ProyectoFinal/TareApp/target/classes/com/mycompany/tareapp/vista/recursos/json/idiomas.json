@@ -1,0 +1,25 @@
+{
+    "Español" : {
+        
+        "cabecera" : {
+            "tareas" : "Tareas",
+            "listas" : "Listas",
+            "idioma" : "Idioma",
+            "cuenta" : "Cuenta",
+            "ajustes" : "Ajustes",
+            "cerrar_sesion" : "Cerrar sesión"
+        },
+        "pagina_tareas" : {
+            "titulo" : "Tareas",
+            "seleccionar_lista" : "Selecciona una lista"
+        }
+    },
+
+    "English" : {
+        
+    },
+
+    "Français" : {
+        
+    }
+}

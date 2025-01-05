@@ -5,6 +5,8 @@
 package com.mycompany.tareapp.vista.plantillas;
 
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Insets;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
@@ -24,6 +26,7 @@ import javax.swing.SwingConstants;
 public class Cabecera extends JPanel {
     
     Estilos estilos = new Estilos();
+    Font fuente = estilos.getFuente();
     
     JLabel imagenLogo = new JLabel(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/logo.png"));
     JLabel nombreApp = new JLabel("TareApp");
@@ -56,12 +59,11 @@ public class Cabecera extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, imagenLogo, 3, SpringLayout.NORTH, this);
         
         this.add(nombreApp);
-        nombreApp.setFont(estilos.getFuente());
+        nombreApp.setFont(estilos.getFuenteConTamaio(16));
         layout.putConstraint(SpringLayout.WEST, nombreApp, 50, SpringLayout.WEST, imagenLogo);
-        layout.putConstraint(SpringLayout.NORTH, nombreApp, 13, SpringLayout.NORTH, this);
+        layout.putConstraint(SpringLayout.NORTH, nombreApp, 10, SpringLayout.NORTH, this);
         
         this.add(menuBarras);
-        menuBarras.setFont(estilos.getFuente());
         menuBarras.setBackground(estilos.getBlanco_claro());
         menuBarras.setOpaque(true);
         menuBarras.setBorder(javax.swing.BorderFactory.createEmptyBorder()); // Para quitar unas franjas que salen a los lados del menú
@@ -76,7 +78,7 @@ public class Cabecera extends JPanel {
         itemListas.setPreferredSize(new Dimension(70, 45));
         menuIdioma.setPreferredSize(new Dimension(70, 45));
         menuCuenta.setPreferredSize(new Dimension(70, 45));
-        
+
         menuBarras.add(itemTareas);
         menuBarras.add(separador1);
         menuBarras.add(itemListas);
@@ -86,15 +88,19 @@ public class Cabecera extends JPanel {
         menuBarras.add(menuCuenta);
         
         itemTareas.setBackground(estilos.getBlanco_claro());
+        itemTareas.setMargin(new Insets(5, 0, 0, 0));
         itemTareas.setOpaque(true);
 
         itemListas.setBackground(estilos.getBlanco_claro());
+        itemListas.setMargin(new Insets(5, 5, 0, 0));
         itemListas.setOpaque(true);
 
         menuIdioma.setBackground(estilos.getBlanco_claro());
+        menuIdioma.setMargin(new Insets(5, 5, 0, 0));
         menuIdioma.setOpaque(true);
 
         menuCuenta.setBackground(estilos.getBlanco_claro());
+        menuCuenta.setMargin(new Insets(5, 5, 0, 0));
         menuCuenta.setOpaque(true);
 
         menuIdioma.add(itemEspaniol);
@@ -104,6 +110,16 @@ public class Cabecera extends JPanel {
         
         menuCuenta.add(itemAjustes);
         menuCuenta.add(itemCerrarSesion);
+        
+        itemTareas.setFont(fuente);
+        itemListas.setFont(fuente);
+        menuIdioma.setFont(fuente);
+        menuCuenta.setFont(fuente);
+        itemEspaniol.setFont(fuente);
+        itemIngles.setFont(fuente);
+        itemFrances.setFont(fuente);
+        itemAjustes.setFont(fuente);
+        itemCerrarSesion.setFont(fuente);
 
     }
 }
