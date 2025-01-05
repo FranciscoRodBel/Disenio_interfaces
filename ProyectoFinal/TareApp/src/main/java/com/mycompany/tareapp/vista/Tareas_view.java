@@ -115,30 +115,32 @@ public class Tareas_view extends javax.swing.JFrame {
         
         Tarea tarea1 = new Tarea();
         tarea1.setTareaIncompleta();
-        tarea1.setTituloTarea(new JLabel("Primera tarea"));
+        tarea1.setTituloTarea("Primera tarea");
         tarea1.setPrioridadBaja();
-        tarea1.setFechaTarea(new JLabel("05/01/2025"));
+        tarea1.setFechaTarea("05/01/2025");
         panelPrincipal.add(tarea1);
         layout.putConstraint(SpringLayout.WEST, tarea1, 100, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, tarea1, 70, SpringLayout.NORTH, seleccionarLista);
         
         Tarea tarea2 = new Tarea();
         tarea2.setTareaCompletada();
-        tarea2.setTituloTarea(new JLabel("Segunda tarea"));
+        tarea2.setTituloTarea("Segunda tarea");
         tarea2.setPrioridadMedia();
-        tarea2.setFechaTarea(new JLabel("06/01/2025"));
+        tarea2.setFechaTarea("06/01/2025");
         panelPrincipal.add(tarea2);
         layout.putConstraint(SpringLayout.WEST, tarea2, 100, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, tarea2, 50, SpringLayout.NORTH, tarea1);
         
         Tarea tarea3 = new Tarea();
         tarea3.setTareaCompletada();
-        tarea3.setTituloTarea(new JLabel("Tercera tarea"));
+        tarea3.setTituloTarea("Tercera tarea");
         tarea3.setPrioridadAlta();
-        tarea3.setFechaTarea(new JLabel("07/01/2025"));
+        tarea3.setFechaTarea("07/01/2025");
         panelPrincipal.add(tarea3);
         layout.putConstraint(SpringLayout.WEST, tarea3, 100, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, tarea3, 50, SpringLayout.NORTH, tarea2);
+        
+
     }
 
     /**

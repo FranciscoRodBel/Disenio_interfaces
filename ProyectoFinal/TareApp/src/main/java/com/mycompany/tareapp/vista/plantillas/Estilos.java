@@ -40,13 +40,11 @@ public class Estilos {
 
             if (is != null) {
                    
-                System.out.println("Hola1");
                 return Font.createFont(Font.PLAIN, is).deriveFont(tamanio);
             }
             
         } catch (FontFormatException | IOException e) { }
         
-        System.out.println("Hola2");
         return new Font("Arial", Font.PLAIN, 13);
     }
     

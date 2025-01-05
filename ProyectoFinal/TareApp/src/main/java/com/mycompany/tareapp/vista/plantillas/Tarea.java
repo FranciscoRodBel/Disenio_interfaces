@@ -6,6 +6,8 @@ package com.mycompany.tareapp.vista.plantillas;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -21,12 +23,10 @@ public class Tarea extends JPanel {
     Estilos estilos = new Estilos();
     
     JButton botonTareaCompletada = new JButton();
-    ImageIcon iconoTareaCompletada = new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-check-solid-black.png");
     
     JLabel tituloTarea = new JLabel("Título tarea");
     
-    ImageIcon iconoPrioridad = new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-down-solid.png"); 
-    JLabel labelPrioridad = new JLabel(iconoPrioridad);
+    JLabel labelPrioridad = new JLabel(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-down-solid.png"));
     
     JLabel fechaTarea = new JLabel("05/01/2025");
     
@@ -52,7 +52,7 @@ public class Tarea extends JPanel {
         
         this.add(botonTareaCompletada);
         botonTareaCompletada.setPreferredSize(new Dimension(40, 40));
-        botonTareaCompletada.setIcon(iconoTareaCompletada);
+        botonTareaCompletada.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-check-solid-black.png"));
         botonTareaCompletada.setContentAreaFilled(false); // Elimino el fondo
         layout.putConstraint(SpringLayout.WEST, botonTareaCompletada, 10, SpringLayout.WEST, separador1);
         layout.putConstraint(SpringLayout.NORTH, botonTareaCompletada, 5, SpringLayout.NORTH, separador1);
@@ -127,62 +127,79 @@ public class Tarea extends JPanel {
         layout.putConstraint(SpringLayout.EAST, separador6, 0, SpringLayout.EAST, this);
         layout.putConstraint(SpringLayout.NORTH, separador6, 0, SpringLayout.NORTH, this);
         layout.putConstraint(SpringLayout.SOUTH, separador6, 0, SpringLayout.SOUTH, this);
+                
+        botonTareaCompletada.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                
+                if (botonTareaCompletada.getIcon().toString().equals("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-regular-black.png")) {
+                      
+                    botonTareaCompletada.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-check-solid-black.png"));
+
+                } else {
+                
+                    botonTareaCompletada.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-regular-black.png"));
+                }
+            }
+        });
+    }
+
+    public JButton getBotonTareaCompletada() {
+        return botonTareaCompletada;
+    }
+
+    public void setBotonTareaCompletada(JButton botonTareaCompletada) {
+        this.botonTareaCompletada = botonTareaCompletada;
+    }
+
+    public JLabel getLabelPrioridad() {
+        return labelPrioridad;
+    }
+
+    public void setLabelPrioridad(JLabel labelPrioridad) {
+        this.labelPrioridad = labelPrioridad;
     }
     
-    public ImageIcon getIconoTareaCompletada() {
-        return iconoTareaCompletada;
-    }
-
-    public void setIconoTareaCompletada(ImageIcon iconoTareaCompletada) {
-        this.iconoTareaCompletada = iconoTareaCompletada;
-    }
-
     public JLabel getTituloTarea() {
         return tituloTarea;
     }
 
-    public void setTituloTarea(JLabel tituloTarea) {
-        this.tituloTarea = tituloTarea;
-    }
-
-    public ImageIcon getIconoPrioridad() {
-        return iconoPrioridad;
-    }
-
-    public void setIconoPrioridad(ImageIcon iconoPrioridad) {
-        this.iconoPrioridad = iconoPrioridad;
+    public void setTituloTarea(String tituloTarea) {
+        
+        this.getTituloTarea().setText(tituloTarea);
     }
 
     public JLabel getFechaTarea() {
         return fechaTarea;
     }
 
-    public void setFechaTarea(JLabel fechaTarea) {
-        this.fechaTarea = fechaTarea;
+    public void setFechaTarea(String fechaTarea) {
+        
+        this.getFechaTarea().setText(fechaTarea);
     }
     
     public void setTareaCompletada() {
         
-        this.iconoTareaCompletada = new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-check-solid-black.png"); 
+        botonTareaCompletada.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-check-solid-black.png"));
     }
     
     public void setTareaIncompleta() {
         
-        this.iconoTareaCompletada = new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-regular-black.png"); 
+        botonTareaCompletada.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-regular-black.png"));
     }
     
     public void setPrioridadBaja() {
         
-        this.iconoPrioridad = new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-down-solid.png"); 
+        this.getLabelPrioridad().setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-down-solid.png"));
     }
     
     public void setPrioridadMedia() {
         
-        this.iconoPrioridad = new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-right-solid.png"); 
+        this.getLabelPrioridad().setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-right-solid.png"));
     }
     
     public void setPrioridadAlta() {
         
-        this.iconoPrioridad = new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-up-solid.png"); 
+        this.getLabelPrioridad().setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-up-solid.png"));
     }
 }
