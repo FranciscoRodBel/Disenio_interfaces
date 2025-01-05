@@ -4,7 +4,9 @@
  */
 package com.mycompany.tareapp.vista;
 
+import com.mycompany.tareapp.vista.plantillas.Cabecera;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
+import com.mycompany.tareapp.vista.plantillas.Tarea;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,6 +26,8 @@ public class Tareas_view extends javax.swing.JFrame {
 
     Estilos estilos = new Estilos();
     JPanel panelPrincipal = new JPanel();
+    
+    Cabecera cabecera = new Cabecera();
     
     JToolBar barraHerramientas = new JToolBar();
     JScrollPane panelPrincipalScroll = new JScrollPane(panelPrincipal);
@@ -52,15 +56,20 @@ public class Tareas_view extends javax.swing.JFrame {
         this.setResizable(false);        
         this.add(panelPrincipalScroll);
         SpringLayout layout = new SpringLayout();
-        panelPrincipalScroll.setBounds(-3, 43, 1012, 600);
+        panelPrincipalScroll.setBounds(-3, -3, 1012, 600);
         panelPrincipal.setBackground(estilos.getGris_claro());
         panelPrincipal.setLayout(layout);
+        
+        panelPrincipal.add(cabecera);
+        layout.putConstraint(SpringLayout.WEST, cabecera, 0, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.NORTH, cabecera, 0, SpringLayout.NORTH, this);
+        layout.putConstraint(SpringLayout.EAST, cabecera, 0, SpringLayout.EAST, this);
         
         barraHerramientas.setBackground(estilos.getAzul_oscuro());
         barraHerramientas.setFloatable(false);
         panelPrincipal.add(barraHerramientas);
         layout.putConstraint(SpringLayout.WEST, barraHerramientas, 0, SpringLayout.WEST, panelPrincipal);
-        layout.putConstraint(SpringLayout.NORTH, barraHerramientas, 0, SpringLayout.NORTH, cabecera1);
+        layout.putConstraint(SpringLayout.NORTH, barraHerramientas, 45, SpringLayout.NORTH, cabecera);
         layout.putConstraint(SpringLayout.EAST, barraHerramientas, 0, SpringLayout.EAST, panelPrincipal);
         
         botonCrearTarea.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/plus-solid.png"));
@@ -102,6 +111,34 @@ public class Tareas_view extends javax.swing.JFrame {
         layout.putConstraint(SpringLayout.WEST, seleccionarLista, 350, SpringLayout.WEST, panelPrincipal);
         layout.putConstraint(SpringLayout.NORTH, seleccionarLista, 50, SpringLayout.NORTH, tituloPagina);
         seleccionarLista.addItem("Selecciona una lista");
+        
+        
+        Tarea tarea1 = new Tarea();
+        tarea1.setTareaIncompleta();
+        tarea1.setTituloTarea(new JLabel("Primera tarea"));
+        tarea1.setPrioridadBaja();
+        tarea1.setFechaTarea(new JLabel("05/01/2025"));
+        panelPrincipal.add(tarea1);
+        layout.putConstraint(SpringLayout.WEST, tarea1, 100, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.NORTH, tarea1, 70, SpringLayout.NORTH, seleccionarLista);
+        
+        Tarea tarea2 = new Tarea();
+        tarea2.setTareaCompletada();
+        tarea2.setTituloTarea(new JLabel("Segunda tarea"));
+        tarea2.setPrioridadMedia();
+        tarea2.setFechaTarea(new JLabel("06/01/2025"));
+        panelPrincipal.add(tarea2);
+        layout.putConstraint(SpringLayout.WEST, tarea2, 100, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.NORTH, tarea2, 50, SpringLayout.NORTH, tarea1);
+        
+        Tarea tarea3 = new Tarea();
+        tarea3.setTareaCompletada();
+        tarea3.setTituloTarea(new JLabel("Tercera tarea"));
+        tarea3.setPrioridadAlta();
+        tarea3.setFechaTarea(new JLabel("07/01/2025"));
+        panelPrincipal.add(tarea3);
+        layout.putConstraint(SpringLayout.WEST, tarea3, 100, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.NORTH, tarea3, 50, SpringLayout.NORTH, tarea2);
     }
 
     /**
@@ -113,23 +150,17 @@ public class Tareas_view extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cabecera1 = new com.mycompany.tareapp.vista.plantillas.Cabecera();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(cabecera1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+            .addGap(0, 1012, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(cabecera1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 555, Short.MAX_VALUE))
+            .addGap(0, 600, Short.MAX_VALUE)
         );
 
         pack();
@@ -172,6 +203,5 @@ public class Tareas_view extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.mycompany.tareapp.vista.plantillas.Cabecera cabecera1;
     // End of variables declaration//GEN-END:variables
 }

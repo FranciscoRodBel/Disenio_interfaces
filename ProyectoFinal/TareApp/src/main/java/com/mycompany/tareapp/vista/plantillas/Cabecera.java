@@ -68,18 +68,10 @@ public class Cabecera extends JPanel {
         layout.putConstraint(SpringLayout.WEST, menuBarras, 250, SpringLayout.WEST, nombreApp);
         layout.putConstraint(SpringLayout.NORTH, menuBarras, 0, SpringLayout.NORTH, this);
         
-        JPanel separador1 = new JPanel();
-        JPanel separador2 = new JPanel();
-        JPanel separador3 = new JPanel();
-        
-        separador1.setPreferredSize(new Dimension(2, 10));
-        separador2.setPreferredSize(new Dimension(2, 10));
-        separador3.setPreferredSize(new Dimension(2, 10));
-        
-        separador1.setBackground(estilos.getNegro());
-        separador2.setBackground(estilos.getNegro());
-        separador3.setBackground(estilos.getNegro());
-        
+        Separador separador1 = new Separador();
+        Separador separador2 = new Separador();
+        Separador separador3 = new Separador();
+       
         itemTareas.setPreferredSize(new Dimension(70, 45));
         itemListas.setPreferredSize(new Dimension(70, 45));
         menuIdioma.setPreferredSize(new Dimension(70, 45));

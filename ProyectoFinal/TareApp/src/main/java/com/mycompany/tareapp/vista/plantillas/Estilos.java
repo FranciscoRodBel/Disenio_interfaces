@@ -47,7 +47,7 @@ public class Estilos {
         } catch (FontFormatException | IOException e) { }
         
         System.out.println("Hola2");
-        return new Font("Arial", Font.PLAIN, 19);
+        return new Font("Arial", Font.PLAIN, 13);
     }
     
     public Color getBlanco() {
