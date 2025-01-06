@@ -25,6 +25,9 @@ public class Main extends javax.swing.JFrame {
     
     Tareas_view tareas_view = new Tareas_view();
     
+    Iniciar_registrar_view iniciar_registrar_view = new Iniciar_registrar_view();
+    
+    Listas_view listas_view = new Listas_view();
     
     /**
      * Creates new form Main
@@ -46,11 +49,24 @@ public class Main extends javax.swing.JFrame {
         layout.putConstraint(SpringLayout.NORTH, cabecera, 0, SpringLayout.NORTH, panelPrincipal);
         layout.putConstraint(SpringLayout.EAST, cabecera, 0, SpringLayout.EAST, panelPrincipal);
         
+        /*
         panelPrincipal.add(tareas_view);
         layout.putConstraint(SpringLayout.WEST, tareas_view, 0, SpringLayout.WEST, cabecera);
         layout.putConstraint(SpringLayout.NORTH, tareas_view, 45, SpringLayout.NORTH, cabecera);
         layout.putConstraint(SpringLayout.EAST, tareas_view, 0, SpringLayout.EAST, cabecera);
+        */
         
+        /*
+        panelPrincipal.add(iniciar_registrar_view);
+        layout.putConstraint(SpringLayout.WEST, iniciar_registrar_view, 0, SpringLayout.WEST, cabecera);
+        layout.putConstraint(SpringLayout.NORTH, iniciar_registrar_view, 45, SpringLayout.NORTH, cabecera);
+        layout.putConstraint(SpringLayout.EAST, iniciar_registrar_view, 0, SpringLayout.EAST, cabecera);
+        */
+        
+        panelPrincipal.add(listas_view);
+        layout.putConstraint(SpringLayout.WEST, listas_view, 0, SpringLayout.WEST, cabecera);
+        layout.putConstraint(SpringLayout.NORTH, listas_view, 45, SpringLayout.NORTH, cabecera);
+        layout.putConstraint(SpringLayout.EAST, listas_view, 0, SpringLayout.EAST, cabecera);
     }
 
     /**

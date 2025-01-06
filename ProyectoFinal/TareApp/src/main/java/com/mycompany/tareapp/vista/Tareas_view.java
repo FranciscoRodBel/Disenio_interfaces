@@ -44,7 +44,7 @@ public class Tareas_view extends javax.swing.JPanel {
     JButton botonOrdenado19 = new JButton();
     JButton botonOrdenado91 = new JButton();
     
-    JLabel tituloPagina = new JLabel("Tareas");
+    JLabel titulo_pagina = new JLabel("Tareas");
     JComboBox<String> seleccionarLista = new JComboBox();
     
     JPanel panelTareas = new JPanel();
@@ -94,19 +94,19 @@ public class Tareas_view extends javax.swing.JPanel {
         barraHerramientas.add(botonOrdenado19);
         barraHerramientas.add(botonOrdenado91);
         
-        this.add(tituloPagina);
-        tituloPagina.setHorizontalAlignment(SwingConstants.CENTER);
-        tituloPagina.setFont(estilos.getFuenteTitulo());
-        layout.putConstraint(SpringLayout.WEST, tituloPagina, 0, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.NORTH, tituloPagina, 70, SpringLayout.NORTH, barraHerramientas);
-        layout.putConstraint(SpringLayout.EAST, tituloPagina, 0, SpringLayout.EAST, this);
+        this.add(titulo_pagina);
+        titulo_pagina.setHorizontalAlignment(SwingConstants.CENTER);
+        titulo_pagina.setFont(estilos.getFuenteTitulo());
+        layout.putConstraint(SpringLayout.WEST, titulo_pagina, 0, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.NORTH, titulo_pagina, 70, SpringLayout.NORTH, barraHerramientas);
+        layout.putConstraint(SpringLayout.EAST, titulo_pagina, 0, SpringLayout.EAST, this);
         
         this.add(seleccionarLista);
         seleccionarLista.setPreferredSize(new Dimension(300, 40));
         seleccionarLista.setBackground(estilos.getBlanco_claro());
         seleccionarLista.setFont(estilos.getFuente());
         layout.putConstraint(SpringLayout.WEST, seleccionarLista, 350, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.NORTH, seleccionarLista, 50, SpringLayout.NORTH, tituloPagina);
+        layout.putConstraint(SpringLayout.NORTH, seleccionarLista, 50, SpringLayout.NORTH, titulo_pagina);
         seleccionarLista.addItem("Selecciona una lista");
         
         panelTareas.setLayout(new BoxLayout(panelTareas, BoxLayout.Y_AXIS)); // Para colocar una tarea debajo de otra
