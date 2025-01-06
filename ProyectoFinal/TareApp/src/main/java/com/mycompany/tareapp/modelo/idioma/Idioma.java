@@ -1,0 +1,50 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.tareapp.modelo.idioma;
+
+/**
+ *
+ * @author Propietario
+ */
+public class Idioma {
+
+    private String idioma;
+    private Cabecera Cabecera;
+    private Pagina_tareas Pagina_tareas;
+    private Pagina_listas Pagina_listas;
+    
+    public String getIdioma() {
+        return idioma;
+    }
+
+    public void setIdioma(String idioma) {
+        this.idioma = idioma;
+    }
+
+    public Cabecera getCabecera() {
+        return Cabecera;
+    }
+
+    public void setCabecera(Cabecera Cabecera) {
+        this.Cabecera = Cabecera;
+    }
+
+    public Pagina_tareas getPagina_tareas() {
+        return Pagina_tareas;
+    }
+
+    public void setPagina_tareas(Pagina_tareas Pagina_tareas) {
+        this.Pagina_tareas = Pagina_tareas;
+    }
+
+    public Pagina_listas getPagina_listas() {
+        return Pagina_listas;
+    }
+
+    public void setPagina_listas(Pagina_listas Pagina_listas) {
+        this.Pagina_listas = Pagina_listas;
+    }
+    
+}

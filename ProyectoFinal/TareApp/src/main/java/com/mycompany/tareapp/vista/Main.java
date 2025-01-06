@@ -4,6 +4,7 @@
  */
 package com.mycompany.tareapp.vista;
 
+import com.mycompany.tareapp.controlador.Idioma_controlador;
 import com.mycompany.tareapp.vista.plantillas.Cabecera;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
 import com.mycompany.tareapp.vista.plantillas.Lista;
@@ -11,6 +12,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SpringLayout;
@@ -21,6 +25,7 @@ import javax.swing.SpringLayout;
  */
 public class Main extends javax.swing.JFrame {
 
+    Idioma_controlador idioma_controlador;
     Estilos estilos = new Estilos();
     JPanel panelPrincipal = new JPanel();
     
@@ -32,12 +37,22 @@ public class Main extends javax.swing.JFrame {
     
     Listas_view listas_view = new Listas_view();
     
+    public Idioma_controlador getIdioma_controlador() {
+        return idioma_controlador;
+    }
+
+    public void setIdioma_controlador(Idioma_controlador idioma_controlador) {
+        this.idioma_controlador = idioma_controlador;
+    }
+
     /**
      * Creates new form Main
      */
-    public Main() {
+    public Main() throws FileNotFoundException {
         initComponents();
      
+        idioma_controlador = new Idioma_controlador();
+        
         this.setLayout(null);
         this.setResizable(false);        
         this.add(panelPrincipal);
@@ -95,6 +110,30 @@ public class Main extends javax.swing.JFrame {
                 
                 ocultarPaneles();
                 iniciar_registrar_view.setVisible(true);
+            }
+        });
+        
+        cabecera.getItemEspaniol().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                
+                idioma_controlador.cambiarIdioma("Español");
+            }
+        });
+        
+        cabecera.getItemIngles().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                
+                idioma_controlador.cambiarIdioma("English");
+            }
+        });
+                
+        cabecera.getItemFrances().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+            
+                idioma_controlador.cambiarIdioma("Français");
             }
         });
     }
@@ -163,7 +202,11 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                try {
+                    new Main().setVisible(true);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

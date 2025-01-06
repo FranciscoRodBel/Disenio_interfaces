@@ -4,9 +4,14 @@
  */
 package com.mycompany.tareapp.vista.plantillas;
 
+import com.mycompany.tareapp.controlador.Idioma_controlador;
+import com.mycompany.tareapp.vista.Main;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
