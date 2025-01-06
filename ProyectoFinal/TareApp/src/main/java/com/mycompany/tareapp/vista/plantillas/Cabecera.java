@@ -24,7 +24,7 @@ import javax.swing.SwingConstants;
  * @author Propietario
  */
 public class Cabecera extends JPanel {
-    
+
     Estilos estilos = new Estilos();
     Font fuente = estilos.getFuente();
     
@@ -44,6 +44,62 @@ public class Cabecera extends JPanel {
     JMenu menuCuenta = new JMenu("Cuenta");
     JMenuItem itemAjustes = new JMenuItem("Ajustes");
     JMenuItem itemCerrarSesion = new JMenuItem("Cerrar sesión");
+    
+    public JMenuItem getItemTareas() {
+        return itemTareas;
+    }
+
+    public void setItemTareas(JMenuItem itemTareas) {
+        this.itemTareas = itemTareas;
+    }
+
+    public JMenuItem getItemListas() {
+        return itemListas;
+    }
+
+    public void setItemListas(JMenuItem itemListas) {
+        this.itemListas = itemListas;
+    }
+
+    public JCheckBoxMenuItem getItemEspaniol() {
+        return itemEspaniol;
+    }
+
+    public void setItemEspaniol(JCheckBoxMenuItem itemEspaniol) {
+        this.itemEspaniol = itemEspaniol;
+    }
+
+    public JCheckBoxMenuItem getItemIngles() {
+        return itemIngles;
+    }
+
+    public void setItemIngles(JCheckBoxMenuItem itemIngles) {
+        this.itemIngles = itemIngles;
+    }
+
+    public JCheckBoxMenuItem getItemFrances() {
+        return itemFrances;
+    }
+
+    public void setItemFrances(JCheckBoxMenuItem itemFrances) {
+        this.itemFrances = itemFrances;
+    }
+
+    public JMenuItem getItemAjustes() {
+        return itemAjustes;
+    }
+
+    public void setItemAjustes(JMenuItem itemAjustes) {
+        this.itemAjustes = itemAjustes;
+    }
+
+    public JMenuItem getItemCerrarSesion() {
+        return itemCerrarSesion;
+    }
+
+    public void setItemCerrarSesion(JMenuItem itemCerrarSesion) {
+        this.itemCerrarSesion = itemCerrarSesion;
+    }
     
     public Cabecera() {
         

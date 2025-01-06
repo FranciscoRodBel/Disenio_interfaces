@@ -6,8 +6,11 @@ package com.mycompany.tareapp.vista;
 
 import com.mycompany.tareapp.vista.plantillas.Cabecera;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
+import com.mycompany.tareapp.vista.plantillas.Lista;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SpringLayout;
@@ -49,26 +52,60 @@ public class Main extends javax.swing.JFrame {
         layout.putConstraint(SpringLayout.NORTH, cabecera, 0, SpringLayout.NORTH, panelPrincipal);
         layout.putConstraint(SpringLayout.EAST, cabecera, 0, SpringLayout.EAST, panelPrincipal);
         
-        /*
         panelPrincipal.add(tareas_view);
         layout.putConstraint(SpringLayout.WEST, tareas_view, 0, SpringLayout.WEST, cabecera);
         layout.putConstraint(SpringLayout.NORTH, tareas_view, 45, SpringLayout.NORTH, cabecera);
         layout.putConstraint(SpringLayout.EAST, tareas_view, 0, SpringLayout.EAST, cabecera);
-        */
-        
-        /*
-        panelPrincipal.add(iniciar_registrar_view);
-        layout.putConstraint(SpringLayout.WEST, iniciar_registrar_view, 0, SpringLayout.WEST, cabecera);
-        layout.putConstraint(SpringLayout.NORTH, iniciar_registrar_view, 45, SpringLayout.NORTH, cabecera);
-        layout.putConstraint(SpringLayout.EAST, iniciar_registrar_view, 0, SpringLayout.EAST, cabecera);
-        */
         
         panelPrincipal.add(listas_view);
         layout.putConstraint(SpringLayout.WEST, listas_view, 0, SpringLayout.WEST, cabecera);
         layout.putConstraint(SpringLayout.NORTH, listas_view, 45, SpringLayout.NORTH, cabecera);
         layout.putConstraint(SpringLayout.EAST, listas_view, 0, SpringLayout.EAST, cabecera);
+        listas_view.setVisible(false);
+        
+        panelPrincipal.add(iniciar_registrar_view);
+        layout.putConstraint(SpringLayout.WEST, iniciar_registrar_view, 0, SpringLayout.WEST, cabecera);
+        layout.putConstraint(SpringLayout.NORTH, iniciar_registrar_view, 45, SpringLayout.NORTH, cabecera);
+        layout.putConstraint(SpringLayout.EAST, iniciar_registrar_view, 0, SpringLayout.EAST, cabecera);
+        iniciar_registrar_view.setVisible(false);
+        
+        
+        cabecera.getItemTareas().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                
+                ocultarPaneles();
+                tareas_view.setVisible(true);
+            }
+        });
+        
+        cabecera.getItemListas().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                
+                ocultarPaneles();
+                listas_view.setVisible(true);  
+            }
+        });
+                
+                
+        cabecera.getItemCerrarSesion().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                
+                ocultarPaneles();
+                iniciar_registrar_view.setVisible(true);
+            }
+        });
     }
 
+    public void ocultarPaneles() {
+    
+        tareas_view.setVisible(false);
+        listas_view.setVisible(false);
+        iniciar_registrar_view.setVisible(false);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
