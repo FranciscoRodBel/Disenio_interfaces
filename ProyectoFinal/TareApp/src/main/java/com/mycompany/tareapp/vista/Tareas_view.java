@@ -6,7 +6,13 @@ package com.mycompany.tareapp.vista;
 
 import com.mycompany.tareapp.vista.plantillas.Estilos;
 import com.mycompany.tareapp.vista.plantillas.Tarea;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -41,6 +47,9 @@ public class Tareas_view extends javax.swing.JPanel {
     JLabel tituloPagina = new JLabel("Tareas");
     JComboBox<String> seleccionarLista = new JComboBox();
     
+    JPanel panelTareas = new JPanel();
+    JScrollPane scroll_panelTareas = new JScrollPane(panelTareas);
+    
     /**
      * Creates new form Tareas_view2
      */
@@ -49,7 +58,8 @@ public class Tareas_view extends javax.swing.JPanel {
         
         SpringLayout layout = new SpringLayout();
         this.setLayout(layout);
-        this.setPreferredSize(new Dimension(1012, 600));
+        this.setPreferredSize(new Dimension(1000, 555));
+        this.setMaximumSize(new Dimension(1000, 555));
         this.setBackground(estilos.getGris_claro());
         
         barraHerramientas.setBackground(estilos.getAzul_oscuro());
@@ -99,62 +109,41 @@ public class Tareas_view extends javax.swing.JPanel {
         layout.putConstraint(SpringLayout.NORTH, seleccionarLista, 50, SpringLayout.NORTH, tituloPagina);
         seleccionarLista.addItem("Selecciona una lista");
         
+        panelTareas.setLayout(new BoxLayout(panelTareas, BoxLayout.Y_AXIS)); // Para colocar una tarea debajo de otra
+        panelTareas.setBackground(estilos.getGris_claro());
         
-        Tarea tarea1 = new Tarea();
-        tarea1.setTareaIncompleta();
-        tarea1.setTituloTarea("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
-        tarea1.setPrioridadBaja();
-        tarea1.setFechaTarea("05/01/2025");
-        this.add(tarea1);
-        layout.putConstraint(SpringLayout.WEST, tarea1, 100, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.NORTH, tarea1, 70, SpringLayout.NORTH, seleccionarLista);
+        scroll_panelTareas.setPreferredSize(new Dimension(815, 350));
+        scroll_panelTareas.getVerticalScrollBar().setUnitIncrement(15); // Para aumentar la velocidad de la barra de scroll
+        scroll_panelTareas.setBorder(null);
+        this.add(scroll_panelTareas);
+        layout.putConstraint(SpringLayout.WEST, scroll_panelTareas, 100, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.NORTH, scroll_panelTareas, 60, SpringLayout.NORTH, seleccionarLista);
         
-        Tarea tarea2 = new Tarea();
-        tarea2.setTareaCompletada();
-        tarea2.setTituloTarea("Tarea para la clase de matemáticas aplicadas 2º DAM");
-        tarea2.setPrioridadMedia();
-        tarea2.setFechaTarea("06/01/2025");
-        this.add(tarea2);
-        layout.putConstraint(SpringLayout.WEST, tarea2, 100, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.NORTH, tarea2, 50, SpringLayout.NORTH, tarea1);
+        agregarTarea(new Tarea(false, "Tarea 1", 1, "05/01/2025"));
+        agregarTarea(new Tarea(true, "Tarea 2", 2, "06/01/2025"));
+        agregarTarea(new Tarea(false, "Tarea 3", 3, "07/01/2025"));
+        agregarTarea(new Tarea(false, "Tarea 4", 1, "08/01/2025"));
+        agregarTarea(new Tarea(true, "Tarea 5", 1, "09/01/2025"));
         
-        Tarea tarea3 = new Tarea();
-        tarea3.setTareaCompletada();
-        tarea3.setTituloTarea("Tercera tarea");
-        tarea3.setPrioridadAlta();
-        tarea3.setFechaTarea("07/01/2025");
-        this.add(tarea3);
-        layout.putConstraint(SpringLayout.WEST, tarea3, 100, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.NORTH, tarea3, 50, SpringLayout.NORTH, tarea2);
-        
-        Tarea tarea4 = new Tarea(true, "Título de tarea de prueba 1", 1, "18/01/2002");
-        this.add(tarea4);
-        layout.putConstraint(SpringLayout.WEST, tarea4, 100, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.NORTH, tarea4, 50, SpringLayout.NORTH, tarea3);
-        
-        /*
-        Tarea tarea5 = new Tarea(false, "Título de tarea de prueba 2", 2, "19/01/2002");
-        this.add(tarea5);
-        layout.putConstraint(SpringLayout.WEST, tarea5, 100, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.NORTH, tarea5, 50, SpringLayout.NORTH, tarea4);
-        
-        Tarea tarea6 = new Tarea(true, "Título de tarea de prueba 3", 3, "20/01/2002");
-        this.add(tarea6);
-        layout.putConstraint(SpringLayout.WEST, tarea6, 100, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.NORTH, tarea6, 50, SpringLayout.NORTH, tarea5);
-        
-        Tarea tarea7 = new Tarea(true, "Título de tarea de prueba 4", 2, "21/01/2002");
-        this.add(tarea7);
-        layout.putConstraint(SpringLayout.WEST, tarea7, 100, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.NORTH, tarea7, 50, SpringLayout.NORTH, tarea6);
-        
-        Tarea tarea8 = new Tarea(false, "Título de tarea de prueba 5", 1, "22/01/2002");
-        this.add(tarea8);
-        layout.putConstraint(SpringLayout.WEST, tarea8, 100, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.NORTH, tarea8, 50, SpringLayout.NORTH, tarea7);
-        */
-    }
+        botonCrearTarea.addActionListener(new ActionListener() {
 
+            public void actionPerformed(ActionEvent e) {
+                
+                agregarTarea(new Tarea(false, "Tarea 6", 2, "18/01/2002"));
+            }
+        });
+        
+    }
+    
+    private void agregarTarea(Tarea tarea) {
+        
+        tarea.setMaximumSize(new Dimension(800, 50)); // Si no pongo el máximo se estíran las tareas para ocupar todo el panel
+        tarea.setMinimumSize(new Dimension(800, 50)); // Si no pongo el mínimo ocupan la mitad del ancho del panel
+        
+        panelTareas.add(tarea);
+        panelTareas.revalidate();
+        panelTareas.repaint();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

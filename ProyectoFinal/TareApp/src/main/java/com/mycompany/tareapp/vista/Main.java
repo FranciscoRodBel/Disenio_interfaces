@@ -24,7 +24,6 @@ public class Main extends javax.swing.JFrame {
     Cabecera cabecera = new Cabecera();
     
     Tareas_view tareas_view = new Tareas_view();
-    JScrollPane scroll_tareas_view = new JScrollPane(tareas_view);
     
     
     /**
@@ -40,19 +39,17 @@ public class Main extends javax.swing.JFrame {
         SpringLayout layout = new SpringLayout();
         panelPrincipal.setBackground(estilos.getGris_claro());
         panelPrincipal.setLayout(layout);
-        panelPrincipal.setBounds(0, 0, 1012, 600);
+        panelPrincipal.setBounds(0, 0, 1000, 600);
 
         panelPrincipal.add(cabecera);
         layout.putConstraint(SpringLayout.WEST, cabecera, 0, SpringLayout.WEST, panelPrincipal);
         layout.putConstraint(SpringLayout.NORTH, cabecera, 0, SpringLayout.NORTH, panelPrincipal);
         layout.putConstraint(SpringLayout.EAST, cabecera, 0, SpringLayout.EAST, panelPrincipal);
         
-        
-        
-        panelPrincipal.add(scroll_tareas_view);
-        layout.putConstraint(SpringLayout.WEST, scroll_tareas_view, -3, SpringLayout.WEST, cabecera);
-        layout.putConstraint(SpringLayout.NORTH, scroll_tareas_view, 42, SpringLayout.NORTH, cabecera);
-        layout.putConstraint(SpringLayout.EAST, scroll_tareas_view, 2, SpringLayout.EAST, cabecera);
+        panelPrincipal.add(tareas_view);
+        layout.putConstraint(SpringLayout.WEST, tareas_view, 0, SpringLayout.WEST, cabecera);
+        layout.putConstraint(SpringLayout.NORTH, tareas_view, 45, SpringLayout.NORTH, cabecera);
+        layout.putConstraint(SpringLayout.EAST, tareas_view, 0, SpringLayout.EAST, cabecera);
         
     }
 
@@ -66,14 +63,14 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1012, 600));
-        setMinimumSize(new java.awt.Dimension(1012, 600));
+        setMaximumSize(new java.awt.Dimension(1000, 600));
+        setMinimumSize(new java.awt.Dimension(1000, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1012, Short.MAX_VALUE)
+            .addGap(0, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
