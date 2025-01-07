@@ -30,7 +30,7 @@ public class Listas_view extends javax.swing.JPanel {
     Estilos estilos = new Estilos();
     
     JLabel titulo_pagina = new JLabel("Listas");
-    
+
     JTextField input_titulo_lista = new JTextField();
     JButton boton_insertar_lista = new JButton();
     
@@ -97,6 +97,14 @@ public class Listas_view extends javax.swing.JPanel {
         
     }
 
+    public JLabel getTitulo_pagina() {
+        return titulo_pagina;
+    }
+
+    public void setTitulo_pagina(JLabel titulo_pagina) {
+        this.titulo_pagina = titulo_pagina;
+    }
+    
     private void agregarLista(Lista lista) {
         
         lista.setMaximumSize(new Dimension(600, 50)); // Si no pongo el máximo se estíran las tareas para ocupar todo el panel

@@ -5,8 +5,12 @@
 package com.mycompany.tareapp.controlador;
 
 import com.google.gson.Gson;
+import com.mycompany.tareapp.modelo.idioma.Idioma;
 import com.mycompany.tareapp.modelo.idioma.Idiomas;
+import com.mycompany.tareapp.vista.Iniciar_registrar_view;
+import com.mycompany.tareapp.vista.Listas_view;
 import com.mycompany.tareapp.vista.Tareas_view;
+import com.mycompany.tareapp.vista.plantillas.Cabecera;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -18,16 +22,34 @@ import java.util.Scanner;
 public class Idioma_controlador {
 
     private Idiomas idiomas;
-    Tareas_view tareas_view;
+    private Idioma idioma_seleccionado;
     
     public Idioma_controlador() throws FileNotFoundException {
         
         convertirJsonEnClase();
     }
 
-    public void cambiarIdioma(String idioma) {
+    public void cambiarIdioma(String idioma, Cabecera cabecera, Tareas_view tareas_view, Listas_view listas_view, Iniciar_registrar_view iniciar_registrar_view) {
         
-        System.out.println("Idioma cambiado");
+        for (Idioma idioma_json : idiomas.getIdioma()) {
+            
+            if (idioma_json.getIdioma().equals(idioma)) {
+                
+                idioma_seleccionado = idioma_json;
+            }
+        }
+        
+        cabecera.getItemTareas().setText(idioma_seleccionado.getCabecera().getTareas());
+        cabecera.getItemListas().setText(idioma_seleccionado.getCabecera().getListas());
+        cabecera.getMenuIdioma().setText(idioma_seleccionado.getCabecera().getIdioma());
+        cabecera.getMenuCuenta().setText(idioma_seleccionado.getCabecera().getCuenta());
+        cabecera.getItemAjustes().setText(idioma_seleccionado.getCabecera().getAjustes());
+        cabecera.getItemCerrarSesion().setText(idioma_seleccionado.getCabecera().getCerrar_sesion());
+        tareas_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_tareas().getTitulo());
+        tareas_view.getSeleccionarLista().insertItemAt(idioma_seleccionado.getPagina_tareas().getSeleccionar_lista(), 0);
+        tareas_view.getSeleccionarLista().removeItemAt(1);
+        listas_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_tareas().getTitulo());
+        
     }
     
     public void convertirJsonEnClase() throws FileNotFoundException {

@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import javax.swing.Box;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JLabel;
@@ -20,6 +21,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
@@ -42,14 +44,38 @@ public class Cabecera extends JPanel {
     JMenuItem itemListas = new JMenuItem("Listas");
     
     JMenu menuIdioma = new JMenu("Idioma");
-    JCheckBoxMenuItem itemEspaniol = new JCheckBoxMenuItem("Español");
-    JCheckBoxMenuItem itemIngles = new JCheckBoxMenuItem("Inglés");
-    JCheckBoxMenuItem itemFrances = new JCheckBoxMenuItem("Francés");
+    JRadioButtonMenuItem itemEspaniol = new JRadioButtonMenuItem("Español");
+    JRadioButtonMenuItem itemIngles = new JRadioButtonMenuItem("English");
+    JRadioButtonMenuItem itemFrances = new JRadioButtonMenuItem("Français");
+    ButtonGroup grupoIdiomas = new ButtonGroup();
     
     JMenu menuCuenta = new JMenu("Cuenta");
     JMenuItem itemAjustes = new JMenuItem("Ajustes");
     JMenuItem itemCerrarSesion = new JMenuItem("Cerrar sesión");
     
+    public JRadioButtonMenuItem getItemEspaniol() {
+        return itemEspaniol;
+    }
+
+    public void setItemEspaniol(JRadioButtonMenuItem itemEspaniol) {
+        this.itemEspaniol = itemEspaniol;
+    }
+
+    public JRadioButtonMenuItem getItemIngles() {
+        return itemIngles;
+    }
+
+    public void setItemIngles(JRadioButtonMenuItem itemIngles) {
+        this.itemIngles = itemIngles;
+    }
+
+    public JRadioButtonMenuItem getItemFrances() {
+        return itemFrances;
+    }
+
+    public void setItemFrances(JRadioButtonMenuItem itemFrances) {
+        this.itemFrances = itemFrances;
+    }
     public JMenuItem getItemTareas() {
         return itemTareas;
     }
@@ -66,30 +92,6 @@ public class Cabecera extends JPanel {
         this.itemListas = itemListas;
     }
 
-    public JCheckBoxMenuItem getItemEspaniol() {
-        return itemEspaniol;
-    }
-
-    public void setItemEspaniol(JCheckBoxMenuItem itemEspaniol) {
-        this.itemEspaniol = itemEspaniol;
-    }
-
-    public JCheckBoxMenuItem getItemIngles() {
-        return itemIngles;
-    }
-
-    public void setItemIngles(JCheckBoxMenuItem itemIngles) {
-        this.itemIngles = itemIngles;
-    }
-
-    public JCheckBoxMenuItem getItemFrances() {
-        return itemFrances;
-    }
-
-    public void setItemFrances(JCheckBoxMenuItem itemFrances) {
-        this.itemFrances = itemFrances;
-    }
-
     public JMenuItem getItemAjustes() {
         return itemAjustes;
     }
@@ -104,6 +106,21 @@ public class Cabecera extends JPanel {
 
     public void setItemCerrarSesion(JMenuItem itemCerrarSesion) {
         this.itemCerrarSesion = itemCerrarSesion;
+    }
+        public JMenu getMenuIdioma() {
+        return menuIdioma;
+    }
+
+    public void setMenuIdioma(JMenu menuIdioma) {
+        this.menuIdioma = menuIdioma;
+    }
+
+    public JMenu getMenuCuenta() {
+        return menuCuenta;
+    }
+
+    public void setMenuCuenta(JMenu menuCuenta) {
+        this.menuCuenta = menuCuenta;
     }
     
     public Cabecera() {
@@ -129,16 +146,16 @@ public class Cabecera extends JPanel {
         menuBarras.setOpaque(true);
         menuBarras.setBorder(javax.swing.BorderFactory.createEmptyBorder()); // Para quitar unas franjas que salen a los lados del menú
         layout.putConstraint(SpringLayout.WEST, menuBarras, 250, SpringLayout.WEST, nombreApp);
-        layout.putConstraint(SpringLayout.NORTH, menuBarras, 0, SpringLayout.NORTH, this);
+        layout.putConstraint(SpringLayout.NORTH, menuBarras, 10, SpringLayout.NORTH, this);
         
         Separador separador1 = new Separador();
         Separador separador2 = new Separador();
         Separador separador3 = new Separador();
-       
-        itemTareas.setPreferredSize(new Dimension(70, 45));
-        itemListas.setPreferredSize(new Dimension(70, 45));
-        menuIdioma.setPreferredSize(new Dimension(70, 45));
-        menuCuenta.setPreferredSize(new Dimension(70, 45));
+        
+        itemTareas.setHorizontalAlignment(SwingConstants.CENTER);
+        itemListas.setHorizontalAlignment(SwingConstants.CENTER);
+        menuIdioma.setHorizontalAlignment(SwingConstants.CENTER);
+        menuCuenta.setHorizontalAlignment(SwingConstants.CENTER);
 
         menuBarras.add(itemTareas);
         menuBarras.add(separador1);
@@ -149,21 +166,21 @@ public class Cabecera extends JPanel {
         menuBarras.add(menuCuenta);
         
         itemTareas.setBackground(estilos.getBlanco_claro());
-        itemTareas.setMargin(new Insets(5, 0, 0, 0));
         itemTareas.setOpaque(true);
 
         itemListas.setBackground(estilos.getBlanco_claro());
-        itemListas.setMargin(new Insets(5, 5, 0, 0));
         itemListas.setOpaque(true);
 
         menuIdioma.setBackground(estilos.getBlanco_claro());
-        menuIdioma.setMargin(new Insets(5, 5, 0, 0));
         menuIdioma.setOpaque(true);
 
         menuCuenta.setBackground(estilos.getBlanco_claro());
-        menuCuenta.setMargin(new Insets(5, 5, 0, 0));
         menuCuenta.setOpaque(true);
 
+        grupoIdiomas.add(itemEspaniol);
+        grupoIdiomas.add(itemIngles);
+        grupoIdiomas.add(itemFrances);
+                
         menuIdioma.add(itemEspaniol);
         menuIdioma.add(itemIngles);
         menuIdioma.add(itemFrances);

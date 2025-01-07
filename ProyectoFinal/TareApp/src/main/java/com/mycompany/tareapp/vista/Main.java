@@ -117,7 +117,7 @@ public class Main extends javax.swing.JFrame {
 
             public void actionPerformed(ActionEvent e) {
                 
-                idioma_controlador.cambiarIdioma("Español");
+                idioma_controlador.cambiarIdioma("Español", cabecera, tareas_view, listas_view, iniciar_registrar_view);
             }
         });
         
@@ -125,7 +125,7 @@ public class Main extends javax.swing.JFrame {
 
             public void actionPerformed(ActionEvent e) {
                 
-                idioma_controlador.cambiarIdioma("English");
+                idioma_controlador.cambiarIdioma("English", cabecera, tareas_view, listas_view, iniciar_registrar_view);
             }
         });
                 
@@ -133,7 +133,7 @@ public class Main extends javax.swing.JFrame {
 
             public void actionPerformed(ActionEvent e) {
             
-                idioma_controlador.cambiarIdioma("Français");
+                idioma_controlador.cambiarIdioma("Français", cabecera, tareas_view, listas_view, iniciar_registrar_view);
             }
         });
     }
@@ -155,7 +155,6 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1000, 600));
         setMinimumSize(new java.awt.Dimension(1000, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -135,6 +135,22 @@ public class Tareas_view extends javax.swing.JPanel {
         
     }
     
+    public JLabel getTitulo_pagina() {
+        return titulo_pagina;
+    }
+
+    public void setTitulo_pagina(JLabel titulo_pagina) {
+        this.titulo_pagina = titulo_pagina;
+    }
+
+    public JComboBox<String> getSeleccionarLista() {
+        return seleccionarLista;
+    }
+
+    public void setSeleccionarLista(JComboBox<String> seleccionarLista) {
+        this.seleccionarLista = seleccionarLista;
+    }
+    
     private void agregarTarea(Tarea tarea) {
         
         tarea.setMaximumSize(new Dimension(800, 50)); // Si no pongo el máximo se estíran las tareas para ocupar todo el panel
