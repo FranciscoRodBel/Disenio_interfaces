@@ -21,6 +21,7 @@ public class Estilos {
     private final Color blanco = new Color(255, 255, 255);
     private final Color negro = new Color(0, 0, 0);
     private final Color blanco_claro = new Color(245, 245, 245);
+    private final Color gris = new Color(218, 210, 216);
     private final Color gris_claro  = new Color(218, 210, 216);
     private final Color azul_oscuro = new Color(20, 54, 66);
     private final Color amarillo = new Color(255, 212, 59);

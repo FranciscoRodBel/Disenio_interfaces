@@ -13,8 +13,10 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 import com.mycompany.tareapp.modelo.RoundedBorder;
+import com.mycompany.tareapp.modelo.TextPrompt;
 import com.mycompany.tareapp.vista.plantillas.Lista;
 import com.mycompany.tareapp.vista.plantillas.Tarea;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
@@ -31,6 +33,7 @@ public class Listas_view extends javax.swing.JPanel {
     
     JLabel titulo_pagina = new JLabel("Listas");
 
+    TextPrompt placeholder_input_lista;
     JTextField input_titulo_lista = new JTextField();
     JButton boton_insertar_lista = new JButton();
     
@@ -55,6 +58,8 @@ public class Listas_view extends javax.swing.JPanel {
         layout.putConstraint(SpringLayout.WEST, titulo_pagina, 0, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, titulo_pagina, 30, SpringLayout.NORTH, this);
         layout.putConstraint(SpringLayout.EAST, titulo_pagina, 0, SpringLayout.EAST, this);
+        
+        placeholder_input_lista = new TextPrompt("Título lista", input_titulo_lista);
         
         this.add(input_titulo_lista);
         input_titulo_lista.setPreferredSize(new Dimension(250, 35));
@@ -103,6 +108,14 @@ public class Listas_view extends javax.swing.JPanel {
 
     public void setTitulo_pagina(JLabel titulo_pagina) {
         this.titulo_pagina = titulo_pagina;
+    }
+    
+    public void setPlaceholder(TextPrompt placeholder) {
+        this.placeholder_input_lista = placeholder;
+    }
+
+    public TextPrompt getPlaceholder() {
+        return placeholder_input_lista;
     }
     
     private void agregarLista(Lista lista) {
