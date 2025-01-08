@@ -6,6 +6,7 @@ package com.mycompany.tareapp.vista;
 
 import com.mycompany.tareapp.modelo.RoundedBorder;
 import com.mycompany.tareapp.modelo.TextPrompt;
+import com.mycompany.tareapp.vista.plantillas.Boton;
 import com.mycompany.tareapp.vista.plantillas.Cabecera;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
 import com.mycompany.tareapp.vista.plantillas.Input_password;
@@ -27,6 +28,7 @@ import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
  *
@@ -49,7 +51,7 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
     Input_password contrasenia_iniciar = new Input_password("Contraseña");
     
     TextPrompt placeholder_contrasenia_iniciar;
-    JButton boton_enviar_iniciar = new JButton("Inicio de sesión");
+    Boton boton_enviar_inicio = new Boton("Inicio de sesión");
     
     JTextField email_registro = new JTextField();
     Input_password contrasenia_registro = new Input_password("Contraseña");
@@ -85,6 +87,8 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         boton_iniciar.setFont(estilos.getFuente());
         boton_iniciar.setFocusPainted(false);
         boton_iniciar.setFocusPainted(false);
+        boton_iniciar.setUI(new BasicButtonUI());
+        boton_iniciar.setBorder(new RoundedBorder(10, 2));
         boton_iniciar.setBackground(estilos.getBlanco_claro());
         boton_iniciar.setPreferredSize(new Dimension(200, 50));
         panel_inicio_registro.add(boton_iniciar);
@@ -94,6 +98,8 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         boton_registrarse.setFont(estilos.getFuente());
         boton_registrarse.setFocusPainted(false);
         boton_registrarse.setFocusPainted(false);
+        boton_registrarse.setUI(new BasicButtonUI());
+        boton_registrarse.setBorder(new RoundedBorder(10, 2));
         boton_registrarse.setBackground(estilos.getBlanco_claro());
         boton_registrarse.setPreferredSize(new Dimension(200, 50));
         panel_inicio_registro.add(boton_registrarse);
@@ -102,8 +108,8 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         
         this.add(panel_inicio);
         panel_inicio.setLayout(layout);
-        panel_inicio.setBackground(estilos.getBlanco());
-        panel_inicio.setPreferredSize(new Dimension(400, 300));
+        panel_inicio.setBackground(estilos.getBlanco_claro());
+        panel_inicio.setPreferredSize(new Dimension(400, 220));
         layout.putConstraint(SpringLayout.WEST, panel_inicio, 0, SpringLayout.WEST, panel_inicio_registro);
         layout.putConstraint(SpringLayout.NORTH, panel_inicio, 50, SpringLayout.NORTH, panel_inicio_registro);
         
@@ -115,6 +121,9 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         layout.putConstraint(SpringLayout.WEST, contrasenia_iniciar, 70, SpringLayout.WEST, panel_inicio);
         layout.putConstraint(SpringLayout.NORTH, contrasenia_iniciar, 60, SpringLayout.NORTH, email_iniciar);
                 
+        panel_inicio.add(boton_enviar_inicio);
+        layout.putConstraint(SpringLayout.WEST, boton_enviar_inicio, 100, SpringLayout.WEST, panel_inicio);
+        layout.putConstraint(SpringLayout.NORTH, boton_enviar_inicio, 60, SpringLayout.NORTH, contrasenia_iniciar);
         
         
         /*

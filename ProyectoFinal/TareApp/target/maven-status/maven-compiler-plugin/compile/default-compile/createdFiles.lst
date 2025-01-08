@@ -18,6 +18,8 @@ com\mycompany\tareapp\vista\Listas_view$1.class
 com\mycompany\tareapp\vista\Main$7.class
 com\mycompany\tareapp\controlador\Idioma_controlador.class
 com\mycompany\tareapp\vista\Main$4.class
+com\mycompany\tareapp\vista\plantillas\Boton.class
+com\mycompany\tareapp\vista\plantillas\Input_password.class
 com\mycompany\tareapp\modelo\TextPrompt.class
 com\mycompany\tareapp\modelo\idioma\Idiomas.class
 com\mycompany\tareapp\vista\Iniciar_registrar_view.class
