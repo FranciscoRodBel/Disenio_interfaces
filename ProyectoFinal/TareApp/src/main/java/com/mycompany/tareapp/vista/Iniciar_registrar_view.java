@@ -26,8 +26,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
@@ -84,13 +86,15 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         layout.putConstraint(SpringLayout.WEST, panel_inicio_registro, 300, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, panel_inicio_registro, 50, SpringLayout.NORTH, titulo_pagina);
 
+        UIManager.put("TextComponent.arc", 100);
         boton_iniciar.setFont(estilos.getFuente());
         boton_iniciar.setFocusPainted(false);
         boton_iniciar.setFocusPainted(false);
         boton_iniciar.setUI(new BasicButtonUI());
-        boton_iniciar.setBorder(new RoundedBorder(10, 2));
-        boton_iniciar.setBackground(estilos.getBlanco_claro());
-        boton_iniciar.setPreferredSize(new Dimension(200, 50));
+        boton_iniciar.setBorder(new LineBorder(estilos.getNegro(),2,true));
+        boton_iniciar.setBackground(estilos.getAzul_oscuro());
+        boton_iniciar.setForeground(estilos.getBlanco());
+        boton_iniciar.setPreferredSize(new Dimension(201, 50));
         panel_inicio_registro.add(boton_iniciar);
         layout.putConstraint(SpringLayout.WEST, boton_iniciar, 0, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, boton_iniciar, 0, SpringLayout.NORTH, this);
@@ -99,19 +103,20 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         boton_registrarse.setFocusPainted(false);
         boton_registrarse.setFocusPainted(false);
         boton_registrarse.setUI(new BasicButtonUI());
-        boton_registrarse.setBorder(new RoundedBorder(10, 2));
+        boton_registrarse.setBorder(new RoundedBorder(0, 2));
         boton_registrarse.setBackground(estilos.getBlanco_claro());
-        boton_registrarse.setPreferredSize(new Dimension(200, 50));
+        boton_registrarse.setPreferredSize(new Dimension(201, 50));
         panel_inicio_registro.add(boton_registrarse);
-        layout.putConstraint(SpringLayout.WEST, boton_registrarse, 200, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.WEST, boton_registrarse, 199, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, boton_registrarse, 0, SpringLayout.NORTH, this);
         
         this.add(panel_inicio);
         panel_inicio.setLayout(layout);
         panel_inicio.setBackground(estilos.getBlanco_claro());
+        panel_inicio.setBorder(new RoundedBorder(0, 2));
         panel_inicio.setPreferredSize(new Dimension(400, 220));
         layout.putConstraint(SpringLayout.WEST, panel_inicio, 0, SpringLayout.WEST, panel_inicio_registro);
-        layout.putConstraint(SpringLayout.NORTH, panel_inicio, 50, SpringLayout.NORTH, panel_inicio_registro);
+        layout.putConstraint(SpringLayout.NORTH, panel_inicio, 48, SpringLayout.NORTH, panel_inicio_registro);
         
         panel_inicio.add(email_iniciar);
         layout.putConstraint(SpringLayout.WEST, email_iniciar, 70, SpringLayout.WEST, panel_inicio);
