@@ -8,6 +8,8 @@ import com.mycompany.tareapp.modelo.RoundedBorder;
 import com.mycompany.tareapp.modelo.TextPrompt;
 import com.mycompany.tareapp.vista.plantillas.Cabecera;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
+import com.mycompany.tareapp.vista.plantillas.Input_password;
+import com.mycompany.tareapp.vista.plantillas.Input_text;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -43,15 +45,15 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
     JButton boton_iniciar = new JButton("Inicio de sesión");
     JButton boton_registrarse = new JButton("Registrarse");
     
-    JTextField email_iniciar = new JTextField();
-    JPasswordField contrasenia_iniciar = new JPasswordField();
-    TextPrompt placeholder_email_iniciar;
+    Input_text email_iniciar = new Input_text("Email");
+    Input_password contrasenia_iniciar = new Input_password("Contraseña");
+    
     TextPrompt placeholder_contrasenia_iniciar;
     JButton boton_enviar_iniciar = new JButton("Inicio de sesión");
     
     JTextField email_registro = new JTextField();
-    JPasswordField contrasenia_registro = new JPasswordField();
-    JPasswordField repetir_contrasenia_registro = new JPasswordField();
+    Input_password contrasenia_registro = new Input_password("Contraseña");
+    Input_password repetir_contrasenia_registro = new Input_password("Repetir contraseña");
     JButton boton_enviar_registro = new JButton("Registrarse");
     
     /**
@@ -106,20 +108,12 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         layout.putConstraint(SpringLayout.NORTH, panel_inicio, 50, SpringLayout.NORTH, panel_inicio_registro);
         
         panel_inicio.add(email_iniciar);
-        email_iniciar.setBorder(new RoundedBorder(5, 2));
-        email_iniciar.setBackground(estilos.getBlanco_claro());
-        email_iniciar.setPreferredSize(new Dimension(260, 35));
         layout.putConstraint(SpringLayout.WEST, email_iniciar, 70, SpringLayout.WEST, panel_inicio);
         layout.putConstraint(SpringLayout.NORTH, email_iniciar, 30, SpringLayout.NORTH, panel_inicio);
-        placeholder_email_iniciar = new TextPrompt("Email", email_iniciar);
         
         panel_inicio.add(contrasenia_iniciar);
-        contrasenia_iniciar.setBorder(new RoundedBorder(5, 2));
-        contrasenia_iniciar.setBackground(estilos.getBlanco_claro());
-        contrasenia_iniciar.setPreferredSize(new Dimension(260, 35));
         layout.putConstraint(SpringLayout.WEST, contrasenia_iniciar, 70, SpringLayout.WEST, panel_inicio);
         layout.putConstraint(SpringLayout.NORTH, contrasenia_iniciar, 60, SpringLayout.NORTH, email_iniciar);
-        placeholder_contrasenia_iniciar = new TextPrompt("Contraseña", contrasenia_iniciar);
                 
         
         

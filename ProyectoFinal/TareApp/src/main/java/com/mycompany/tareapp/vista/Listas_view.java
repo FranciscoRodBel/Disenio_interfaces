@@ -14,6 +14,7 @@ import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 import com.mycompany.tareapp.modelo.RoundedBorder;
 import com.mycompany.tareapp.modelo.TextPrompt;
+import com.mycompany.tareapp.vista.plantillas.Input_text;
 import com.mycompany.tareapp.vista.plantillas.Lista;
 import com.mycompany.tareapp.vista.plantillas.Tarea;
 import java.awt.Font;
@@ -33,8 +34,8 @@ public class Listas_view extends javax.swing.JPanel {
     
     JLabel titulo_pagina = new JLabel("Listas");
 
-    TextPrompt placeholder_input_lista;
-    JTextField input_titulo_lista = new JTextField();
+    Input_text input_titulo_lista = new Input_text("Título lista");
+    
     JButton boton_insertar_lista = new JButton();
     
     JPanel panel_lista = new JPanel();
@@ -59,12 +60,7 @@ public class Listas_view extends javax.swing.JPanel {
         layout.putConstraint(SpringLayout.NORTH, titulo_pagina, 30, SpringLayout.NORTH, this);
         layout.putConstraint(SpringLayout.EAST, titulo_pagina, 0, SpringLayout.EAST, this);
         
-        placeholder_input_lista = new TextPrompt("Título lista", input_titulo_lista);
-        
         this.add(input_titulo_lista);
-        input_titulo_lista.setPreferredSize(new Dimension(250, 35));
-        input_titulo_lista.setFont(estilos.getFuente());
-        input_titulo_lista.setBorder(new RoundedBorder(5, 2));
         layout.putConstraint(SpringLayout.WEST, input_titulo_lista, 350, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, input_titulo_lista, 50, SpringLayout.NORTH, titulo_pagina);
         
@@ -110,14 +106,14 @@ public class Listas_view extends javax.swing.JPanel {
         this.titulo_pagina = titulo_pagina;
     }
     
-    public void setPlaceholder(TextPrompt placeholder) {
-        this.placeholder_input_lista = placeholder;
+    public Input_text getInput_titulo_lista() {
+        return input_titulo_lista;
     }
 
-    public TextPrompt getPlaceholder() {
-        return placeholder_input_lista;
+    public void setInput_titulo_lista(Input_text input_titulo_lista) {
+        this.input_titulo_lista = input_titulo_lista;
     }
-    
+
     private void agregarLista(Lista lista) {
         
         lista.setMaximumSize(new Dimension(600, 50)); // Si no pongo el máximo se estíran las tareas para ocupar todo el panel

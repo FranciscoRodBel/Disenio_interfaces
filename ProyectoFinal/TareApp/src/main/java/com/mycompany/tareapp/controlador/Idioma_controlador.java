@@ -49,7 +49,8 @@ public class Idioma_controlador {
         tareas_view.getSeleccionarLista().insertItemAt(idioma_seleccionado.getPagina_tareas().getSeleccionar_lista(), 0);
         tareas_view.getSeleccionarLista().removeItemAt(1);
         listas_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_listas().getTitulo());
-        listas_view.getPlaceholder().setText(idioma_seleccionado.getPagina_listas().getInput_lista());
+        //listas_view.getPlaceholder().setText(idioma_seleccionado.getPagina_listas().getInput_lista());
+        listas_view.getInput_titulo_lista().getPlaceholder().setText(idioma_seleccionado.getPagina_listas().getInput_lista());
         
     }
     
