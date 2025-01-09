@@ -1,25 +1,85 @@
 {
-    "Español" : {
-        
-        "cabecera" : {
-            "tareas" : "Tareas",
-            "listas" : "Listas",
-            "idioma" : "Idioma",
-            "cuenta" : "Cuenta",
-            "ajustes" : "Ajustes",
-            "cerrar_sesion" : "Cerrar sesión"
+    "idioma": [
+        {
+            "idioma": "Español",
+            "Cabecera": {
+                "tareas": "Tareas",
+                "listas": "Listas",
+                "idioma": "Idioma",
+                "cuenta": "Cuenta",
+                "ajustes": "Ajustes",
+                "cerrar_sesion": "Cerrar sesión"
+            },
+            "Pagina_tareas": {
+                "titulo": "Tareas",
+                "seleccionar_lista": "Selecciona una lista"
+            },
+            "Pagina_listas": {
+                "titulo": "Listas",
+                "input_lista": "Título lista"
+            },
+            "Pagina_inicio_registro": {
+                "titulo_inicio": "Inicio de sesión",
+                "titulo_registro": "Registro",
+                "iniciar_sesion": "Iniciar sesión",
+                "registrarse": "Registrarse",
+                "contrasenia": "Contraseña",
+                "repetir_contrasenia": "Repetir contraseña"
+            }
         },
-        "pagina_tareas" : {
-            "titulo" : "Tareas",
-            "seleccionar_lista" : "Selecciona una lista"
+        {
+            "idioma": "English",
+            "Cabecera": {
+                "tareas": "Tasks",
+                "listas": "Lists",
+                "idioma": "Language",
+                "cuenta": "Account",
+                "ajustes": "Settings",
+                "cerrar_sesion": "Log out"
+            },
+            "Pagina_tareas": {
+                "titulo": "Tasks",
+                "seleccionar_lista": "Select a list"
+            },
+            "Pagina_listas": {
+                "titulo": "Lists",
+                "input_lista": "List title"
+            },
+            "Pagina_inicio_registro": {
+                "titulo_inicio": "Log in",
+                "titulo_registro": "Sign up",
+                "iniciar_sesion": "Log in",
+                "registrarse": "Sign up",
+                "contrasenia": "Password",
+                "repetir_contrasenia": "Repeat password"
+            }
+        },
+        {
+            "idioma": "Français",
+            "Cabecera": {
+                "tareas": "Tâches",
+                "listas": "Listes",
+                "idioma": "Langue",
+                "cuenta": "Compte",
+                "ajustes": "Paramètres",
+                "cerrar_sesion": "Se déconnecter"
+            },
+            "Pagina_tareas": {
+                "titulo": "Tâches",
+                "seleccionar_lista": "Sélectionner une liste"
+            },
+            "Pagina_listas": {
+                "titulo": "Listes",
+                "input_lista": "Titre de la liste"
+            },
+            "Pagina_inicio_registro": {
+                "titulo_inicio": "Connexion",
+                "titulo_registro": "Inscription",
+                "iniciar_sesion": "Se connecter",
+                "registrarse": "S'inscrire",
+                "contrasenia": "Mot de passe",
+                "repetir_contrasenia": "Répéter le mot de passe"
+            }
         }
-    },
-
-    "English" : {
-        
-    },
-
-    "Français" : {
-        
-    }
+    ]
 }

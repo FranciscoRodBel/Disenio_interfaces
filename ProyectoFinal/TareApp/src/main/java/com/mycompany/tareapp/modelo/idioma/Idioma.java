@@ -14,6 +14,7 @@ public class Idioma {
     private Cabecera Cabecera;
     private Pagina_tareas Pagina_tareas;
     private Pagina_listas Pagina_listas;
+    private Pagina_inicio_registro Pagina_inicio_registro;
     
     public String getIdioma() {
         return idioma;
@@ -47,4 +48,12 @@ public class Idioma {
         this.Pagina_listas = Pagina_listas;
     }
     
+    public Pagina_inicio_registro getPagina_inicio_registro() {
+        return Pagina_inicio_registro;
+    }
+
+    public void setPagina_inicio_registro(Pagina_inicio_registro Pagina_inicio_registro) {
+        this.Pagina_inicio_registro = Pagina_inicio_registro;
+    }
+
 }

@@ -4,19 +4,23 @@
  */
 package com.mycompany.tareapp.vista;
 
-import com.mycompany.tareapp.modelo.RoundedBorder;
-import com.mycompany.tareapp.modelo.TextPrompt;
+import com.mycompany.tareapp.vista.plantillas.RoundedBorder;
+import com.mycompany.tareapp.vista.plantillas.TextPrompt;
 import com.mycompany.tareapp.vista.plantillas.Boton;
 import com.mycompany.tareapp.vista.plantillas.Cabecera;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
 import com.mycompany.tareapp.vista.plantillas.Input_password;
 import com.mycompany.tareapp.vista.plantillas.Input_text;
+import com.mycompany.tareapp.vista.plantillas.Lista;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -40,9 +44,9 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
 
     Estilos estilos = new Estilos();
     
-    JLabel titulo_pagina = new JLabel("Inicio de sesión");
+    JLabel titulo_pagina_inicio = new JLabel("Inicio de sesión");
+    JLabel titulo_pagina_registro = new JLabel("Registro");
     
-    JPanel panel_inicio_registro = new JPanel();
     JPanel panel_inicio = new JPanel();
     JPanel panel_registro = new JPanel();
     
@@ -51,14 +55,13 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
     
     Input_text email_iniciar = new Input_text("Email");
     Input_password contrasenia_iniciar = new Input_password("Contraseña");
-    
-    TextPrompt placeholder_contrasenia_iniciar;
     Boton boton_enviar_inicio = new Boton("Inicio de sesión");
-    
-    JTextField email_registro = new JTextField();
+   
+    Input_text email_registro = new Input_text("Email");
     Input_password contrasenia_registro = new Input_password("Contraseña");
     Input_password repetir_contrasenia_registro = new Input_password("Repetir contraseña");
-    JButton boton_enviar_registro = new JButton("Registrarse");
+    Boton boton_enviar_registro = new Boton("Registrarse");
+    
     
     /**
      * Creates new form Iniciar_registrar_view2
@@ -72,75 +75,203 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         this.setMaximumSize(new Dimension(1000, 555));
         this.setBackground(estilos.getGris_claro());
         
-        this.add(titulo_pagina);
-        titulo_pagina.setHorizontalAlignment(SwingConstants.CENTER);
-        titulo_pagina.setFont(estilos.getFuenteTitulo());
-        layout.putConstraint(SpringLayout.WEST, titulo_pagina, 0, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.NORTH, titulo_pagina, 20, SpringLayout.NORTH, this);
-        layout.putConstraint(SpringLayout.EAST, titulo_pagina, 0, SpringLayout.EAST, this);
+        this.add(titulo_pagina_inicio);
+        titulo_pagina_inicio.setHorizontalAlignment(SwingConstants.CENTER);
+        titulo_pagina_inicio.setFont(estilos.getFuenteTitulo());
+        layout.putConstraint(SpringLayout.WEST, titulo_pagina_inicio, 0, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.NORTH, titulo_pagina_inicio, 20, SpringLayout.NORTH, this);
+        layout.putConstraint(SpringLayout.EAST, titulo_pagina_inicio, 0, SpringLayout.EAST, this);
+        titulo_pagina_inicio.setVisible(true);
         
-        this.add(panel_inicio_registro);
-        panel_inicio_registro.setLayout(layout);
-        panel_inicio_registro.setBackground(estilos.getBlanco_claro());
-        panel_inicio_registro.setPreferredSize(new Dimension(400, 50));
-        layout.putConstraint(SpringLayout.WEST, panel_inicio_registro, 300, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.NORTH, panel_inicio_registro, 50, SpringLayout.NORTH, titulo_pagina);
+        this.add(titulo_pagina_registro);
+        titulo_pagina_registro.setHorizontalAlignment(SwingConstants.CENTER);
+        titulo_pagina_registro.setFont(estilos.getFuenteTitulo());
+        layout.putConstraint(SpringLayout.WEST, titulo_pagina_registro, 0, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.NORTH, titulo_pagina_registro, 20, SpringLayout.NORTH, this);
+        layout.putConstraint(SpringLayout.EAST, titulo_pagina_registro, 0, SpringLayout.EAST, this);
+        titulo_pagina_registro.setVisible(false);
 
-        UIManager.put("TextComponent.arc", 100);
         boton_iniciar.setFont(estilos.getFuente());
         boton_iniciar.setFocusPainted(false);
-        boton_iniciar.setFocusPainted(false);
-        boton_iniciar.setUI(new BasicButtonUI());
+        boton_iniciar.setUI(new BasicButtonUI()); // Eliminar estilos
         boton_iniciar.setBorder(new LineBorder(estilos.getNegro(),2,true));
         boton_iniciar.setBackground(estilos.getAzul_oscuro());
         boton_iniciar.setForeground(estilos.getBlanco());
-        boton_iniciar.setPreferredSize(new Dimension(201, 50));
-        panel_inicio_registro.add(boton_iniciar);
-        layout.putConstraint(SpringLayout.WEST, boton_iniciar, 0, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.NORTH, boton_iniciar, 0, SpringLayout.NORTH, this);
+        boton_iniciar.setPreferredSize(new Dimension(201, 40));
+        this.add(boton_iniciar);
+        layout.putConstraint(SpringLayout.WEST, boton_iniciar, 300, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.NORTH, boton_iniciar, 70, SpringLayout.NORTH, this);
         
         boton_registrarse.setFont(estilos.getFuente());
         boton_registrarse.setFocusPainted(false);
-        boton_registrarse.setFocusPainted(false);
         boton_registrarse.setUI(new BasicButtonUI());
-        boton_registrarse.setBorder(new RoundedBorder(0, 2));
+        boton_registrarse.setBorder(new LineBorder(estilos.getNegro(),2,true));
         boton_registrarse.setBackground(estilos.getBlanco_claro());
-        boton_registrarse.setPreferredSize(new Dimension(201, 50));
-        panel_inicio_registro.add(boton_registrarse);
-        layout.putConstraint(SpringLayout.WEST, boton_registrarse, 199, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.NORTH, boton_registrarse, 0, SpringLayout.NORTH, this);
+        boton_registrarse.setForeground(estilos.getNegro());
+        boton_registrarse.setPreferredSize(new Dimension(201, 40));
+        this.add(boton_registrarse);
+        layout.putConstraint(SpringLayout.WEST, boton_registrarse, 199, SpringLayout.WEST, boton_iniciar);
+        layout.putConstraint(SpringLayout.NORTH, boton_registrarse, 70, SpringLayout.NORTH, this);
         
         this.add(panel_inicio);
-        panel_inicio.setLayout(layout);
+        SpringLayout layout2 = new SpringLayout();
+        panel_inicio.setLayout(layout2);
         panel_inicio.setBackground(estilos.getBlanco_claro());
-        panel_inicio.setBorder(new RoundedBorder(0, 2));
+        panel_inicio.setBorder(new RoundedBorder(2, 2));
         panel_inicio.setPreferredSize(new Dimension(400, 220));
-        layout.putConstraint(SpringLayout.WEST, panel_inicio, 0, SpringLayout.WEST, panel_inicio_registro);
-        layout.putConstraint(SpringLayout.NORTH, panel_inicio, 48, SpringLayout.NORTH, panel_inicio_registro);
+        layout.putConstraint(SpringLayout.WEST, panel_inicio, 300, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.NORTH, panel_inicio, 38, SpringLayout.NORTH, boton_iniciar);
         
         panel_inicio.add(email_iniciar);
-        layout.putConstraint(SpringLayout.WEST, email_iniciar, 70, SpringLayout.WEST, panel_inicio);
-        layout.putConstraint(SpringLayout.NORTH, email_iniciar, 30, SpringLayout.NORTH, panel_inicio);
+        layout2.putConstraint(SpringLayout.WEST, email_iniciar, 70, SpringLayout.WEST, panel_inicio);
+        layout2.putConstraint(SpringLayout.NORTH, email_iniciar, 30, SpringLayout.NORTH, panel_inicio);
         
         panel_inicio.add(contrasenia_iniciar);
-        layout.putConstraint(SpringLayout.WEST, contrasenia_iniciar, 70, SpringLayout.WEST, panel_inicio);
-        layout.putConstraint(SpringLayout.NORTH, contrasenia_iniciar, 60, SpringLayout.NORTH, email_iniciar);
+        layout2.putConstraint(SpringLayout.WEST, contrasenia_iniciar, 70, SpringLayout.WEST, panel_inicio);
+        layout2.putConstraint(SpringLayout.NORTH, contrasenia_iniciar, 60, SpringLayout.NORTH, email_iniciar);
                 
         panel_inicio.add(boton_enviar_inicio);
-        layout.putConstraint(SpringLayout.WEST, boton_enviar_inicio, 100, SpringLayout.WEST, panel_inicio);
-        layout.putConstraint(SpringLayout.NORTH, boton_enviar_inicio, 60, SpringLayout.NORTH, contrasenia_iniciar);
+        layout2.putConstraint(SpringLayout.WEST, boton_enviar_inicio, 100, SpringLayout.WEST, panel_inicio);
+        layout2.putConstraint(SpringLayout.NORTH, boton_enviar_inicio, 60, SpringLayout.NORTH, contrasenia_iniciar);
+        panel_inicio.setVisible(true);
         
-        
-        /*
         this.add(panel_registro);
-        panel_registro.setLayout(layout);
-        panel_registro.setBackground(estilos.getBlanco());
-        panel_registro.setPreferredSize(new Dimension(400, 50));
-        layout.putConstraint(SpringLayout.WEST, panel_registro, 0, SpringLayout.WEST, panel_inicio_registro);
-        layout.putConstraint(SpringLayout.NORTH, panel_registro, 50, SpringLayout.NORTH, panel_inicio_registro);
-        */
+        SpringLayout layout3 = new SpringLayout();
+        panel_registro.setLayout(layout3);
+        panel_registro.setBackground(estilos.getBlanco_claro());
+        panel_registro.setBorder(new RoundedBorder(2, 2));
+        panel_registro.setPreferredSize(new Dimension(400, 280));
+        layout.putConstraint(SpringLayout.WEST, panel_registro, 300, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.NORTH, panel_registro, 38, SpringLayout.NORTH, boton_registrarse);
+        
+        panel_registro.add(email_registro);
+        layout3.putConstraint(SpringLayout.WEST, email_registro, 70, SpringLayout.WEST, panel_registro);
+        layout3.putConstraint(SpringLayout.NORTH, email_registro, 30, SpringLayout.NORTH, panel_registro);
+        
+        panel_registro.add(contrasenia_registro);
+        layout3.putConstraint(SpringLayout.WEST, contrasenia_registro, 70, SpringLayout.WEST, panel_registro);
+        layout3.putConstraint(SpringLayout.NORTH, contrasenia_registro, 60, SpringLayout.NORTH, email_registro);
+        
+        panel_registro.add(repetir_contrasenia_registro);
+        layout3.putConstraint(SpringLayout.WEST, repetir_contrasenia_registro, 70, SpringLayout.WEST, panel_registro);
+        layout3.putConstraint(SpringLayout.NORTH, repetir_contrasenia_registro, 60, SpringLayout.NORTH, contrasenia_registro);
+                
+        panel_registro.add(boton_enviar_registro);
+        layout3.putConstraint(SpringLayout.WEST, boton_enviar_registro, 100, SpringLayout.WEST, panel_registro);
+        layout3.putConstraint(SpringLayout.NORTH, boton_enviar_registro, 60, SpringLayout.NORTH, repetir_contrasenia_registro);
+        panel_registro.setVisible(false);
+        
+        boton_iniciar.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                
+                panel_inicio.setVisible(true);
+                panel_registro.setVisible(false);
+                boton_iniciar.setBackground(estilos.getAzul_oscuro());
+                boton_iniciar.setForeground(estilos.getBlanco());
+                boton_registrarse.setBackground(estilos.getBlanco_claro());
+                boton_registrarse.setForeground(estilos.getNegro());
+                titulo_pagina_inicio.setVisible(true);
+                titulo_pagina_registro.setVisible(false);
+            }
+        });
+        
+        boton_registrarse.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                
+                panel_inicio.setVisible(false);
+                panel_registro.setVisible(true);
+                boton_registrarse.setBackground(estilos.getAzul_oscuro());
+                boton_registrarse.setForeground(estilos.getBlanco());
+                boton_iniciar.setBackground(estilos.getBlanco_claro());
+                boton_iniciar.setForeground(estilos.getNegro());
+                titulo_pagina_inicio.setVisible(false);
+                titulo_pagina_registro.setVisible(true);
+            }
+        });
     }
     
+    public JLabel getTitulo_pagina_inicio() {
+        return titulo_pagina_inicio;
+    }
+
+    public void setTitulo_pagina_inicio(JLabel titulo_pagina_inicio) {
+        this.titulo_pagina_inicio = titulo_pagina_inicio;
+    }
+
+    public JLabel getTitulo_pagina_registro() {
+        return titulo_pagina_registro;
+    }
+
+    public void setTitulo_pagina_registro(JLabel titulo_pagina_registro) {
+        this.titulo_pagina_registro = titulo_pagina_registro;
+    }
+
+    public JButton getBoton_iniciar() {
+        return boton_iniciar;
+    }
+
+    public void setBoton_iniciar(JButton boton_iniciar) {
+        this.boton_iniciar = boton_iniciar;
+    }
+
+    public JButton getBoton_registrarse() {
+        return boton_registrarse;
+    }
+
+    public void setBoton_registrarse(JButton boton_registrarse) {
+        this.boton_registrarse = boton_registrarse;
+    }
+
+    public Input_text getEmail_iniciar() {
+        return email_iniciar;
+    }
+
+    public void setEmail_iniciar(Input_text email_iniciar) {
+        this.email_iniciar = email_iniciar;
+    }
+
+    public Input_password getContrasenia_iniciar() {
+        return contrasenia_iniciar;
+    }
+
+    public void setContrasenia_iniciar(Input_password contrasenia_iniciar) {
+        this.contrasenia_iniciar = contrasenia_iniciar;
+    }
+
+    public Boton getBoton_enviar_inicio() {
+        return boton_enviar_inicio;
+    }
+
+    public void setBoton_enviar_inicio(Boton boton_enviar_inicio) {
+        this.boton_enviar_inicio = boton_enviar_inicio;
+    }
+
+    public Input_password getContrasenia_registro() {
+        return contrasenia_registro;
+    }
+
+    public void setContrasenia_registro(Input_password contrasenia_registro) {
+        this.contrasenia_registro = contrasenia_registro;
+    }
+
+    public Input_password getRepetir_contrasenia_registro() {
+        return repetir_contrasenia_registro;
+    }
+
+    public void setRepetir_contrasenia_registro(Input_password repetir_contrasenia_registro) {
+        this.repetir_contrasenia_registro = repetir_contrasenia_registro;
+    }
+
+    public Boton getBoton_enviar_registro() {
+        return boton_enviar_registro;
+    }
+
+    public void setBoton_enviar_registro(Boton boton_enviar_registro) {
+        this.boton_enviar_registro = boton_enviar_registro;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

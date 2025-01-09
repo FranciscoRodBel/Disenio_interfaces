@@ -1,4 +1,4 @@
-package com.mycompany.tareapp.modelo;
+package com.mycompany.tareapp.vista.plantillas;
 
 import java.awt.BasicStroke;
 import java.awt.Component;

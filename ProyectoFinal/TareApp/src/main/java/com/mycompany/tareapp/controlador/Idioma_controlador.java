@@ -49,8 +49,16 @@ public class Idioma_controlador {
         tareas_view.getSeleccionarLista().insertItemAt(idioma_seleccionado.getPagina_tareas().getSeleccionar_lista(), 0);
         tareas_view.getSeleccionarLista().removeItemAt(1);
         listas_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_listas().getTitulo());
-        //listas_view.getPlaceholder().setText(idioma_seleccionado.getPagina_listas().getInput_lista());
         listas_view.getInput_titulo_lista().getPlaceholder().setText(idioma_seleccionado.getPagina_listas().getInput_lista());
+        iniciar_registrar_view.getTitulo_pagina_inicio().setText(idioma_seleccionado.getPagina_inicio_registro().getTitulo_inicio());
+        iniciar_registrar_view.getTitulo_pagina_registro().setText(idioma_seleccionado.getPagina_inicio_registro().getTitulo_registro());
+        iniciar_registrar_view.getBoton_iniciar().setText(idioma_seleccionado.getPagina_inicio_registro().getIniciar_sesion());
+        iniciar_registrar_view.getBoton_registrarse().setText(idioma_seleccionado.getPagina_inicio_registro().getRegistrarse());
+        iniciar_registrar_view.getContrasenia_iniciar().getPlaceholder().setText(idioma_seleccionado.getPagina_inicio_registro().getContrasenia());
+        iniciar_registrar_view.getContrasenia_registro().getPlaceholder().setText(idioma_seleccionado.getPagina_inicio_registro().getContrasenia());
+        iniciar_registrar_view.getRepetir_contrasenia_registro().getPlaceholder().setText(idioma_seleccionado.getPagina_inicio_registro().getRepetir_contrasenia());
+        iniciar_registrar_view.getBoton_enviar_inicio().setText(idioma_seleccionado.getPagina_inicio_registro().getIniciar_sesion());
+        iniciar_registrar_view.getBoton_enviar_registro().setText(idioma_seleccionado.getPagina_inicio_registro().getRegistrarse());
         
     }
     
@@ -64,7 +72,6 @@ public class Idioma_controlador {
             json += scanner.nextLine(); // Se guarda el texto del archivo en una variable
         }
 
-        System.out.println(json);
         idiomas = new Gson().fromJson(json, Idiomas.class); // Se crea el objeto Gson y se convierte el texto del archivo JSON a la clase Idiomas
     }
 }

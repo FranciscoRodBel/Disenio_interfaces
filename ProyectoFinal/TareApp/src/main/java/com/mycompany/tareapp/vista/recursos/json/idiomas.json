@@ -17,6 +17,14 @@
             "Pagina_listas": {
                 "titulo": "Listas",
                 "input_lista": "Título lista"
+            },
+            "Pagina_inicio_registro": {
+                "titulo_inicio": "Inicio de sesión",
+                "titulo_registro": "Registro",
+                "iniciar_sesion": "Iniciar sesión",
+                "registrarse": "Registrarse",
+                "contrasenia": "Contraseña",
+                "repetir_contrasenia": "Repetir contraseña"
             }
         },
         {
@@ -36,6 +44,14 @@
             "Pagina_listas": {
                 "titulo": "Lists",
                 "input_lista": "List title"
+            },
+            "Pagina_inicio_registro": {
+                "titulo_inicio": "Log in",
+                "titulo_registro": "Sign up",
+                "iniciar_sesion": "Log in",
+                "registrarse": "Sign up",
+                "contrasenia": "Password",
+                "repetir_contrasenia": "Repeat password"
             }
         },
         {
@@ -55,6 +71,14 @@
             "Pagina_listas": {
                 "titulo": "Listes",
                 "input_lista": "Titre de la liste"
+            },
+            "Pagina_inicio_registro": {
+                "titulo_inicio": "Connexion",
+                "titulo_registro": "Inscription",
+                "iniciar_sesion": "Se connecter",
+                "registrarse": "S'inscrire",
+                "contrasenia": "Mot de passe",
+                "repetir_contrasenia": "Répéter le mot de passe"
             }
         }
     ]

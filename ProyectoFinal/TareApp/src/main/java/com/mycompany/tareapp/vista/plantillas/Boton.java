@@ -4,7 +4,6 @@
  */
 package com.mycompany.tareapp.vista.plantillas;
 
-import com.mycompany.tareapp.modelo.RoundedBorder;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.BorderFactory;

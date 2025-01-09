@@ -4,8 +4,6 @@
  */
 package com.mycompany.tareapp.vista.plantillas;
 
-import com.mycompany.tareapp.modelo.RoundedBorder;
-import com.mycompany.tareapp.modelo.TextPrompt;
 import java.awt.Dimension;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
