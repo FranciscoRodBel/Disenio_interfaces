@@ -15,6 +15,7 @@ public class Idioma {
     private Pagina_tareas Pagina_tareas;
     private Pagina_listas Pagina_listas;
     private Pagina_inicio_registro Pagina_inicio_registro;
+    private Pagina_ajustes_cuenta Pagina_ajustes_cuenta;
     
     public String getIdioma() {
         return idioma;
@@ -55,5 +56,14 @@ public class Idioma {
     public void setPagina_inicio_registro(Pagina_inicio_registro Pagina_inicio_registro) {
         this.Pagina_inicio_registro = Pagina_inicio_registro;
     }
+    
+    public Pagina_ajustes_cuenta getPagina_ajustes_cuenta() {
+        return Pagina_ajustes_cuenta;
+    }
+
+    public void setPagina_ajustes_cuenta(Pagina_ajustes_cuenta Pagina_ajustes_cuenta) {
+        this.Pagina_ajustes_cuenta = Pagina_ajustes_cuenta;
+    }
+
 
 }

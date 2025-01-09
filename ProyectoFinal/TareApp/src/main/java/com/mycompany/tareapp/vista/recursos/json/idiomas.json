@@ -25,6 +25,12 @@
                 "registrarse": "Registrarse",
                 "contrasenia": "Contraseña",
                 "repetir_contrasenia": "Repetir contraseña"
+            },
+            "Pagina_ajustes_cuenta": {
+                "titulo_pagina": "Ajustes de la cuenta",
+                "cambiar_email": "Cambiar email",
+                "cambiar_contrasenia": "Cambiar Contraseña",
+                "borrar_cuenta": "Borrar cuenta"
             }
         },
         {
@@ -52,6 +58,12 @@
                 "registrarse": "Sign up",
                 "contrasenia": "Password",
                 "repetir_contrasenia": "Repeat password"
+            },
+            "Pagina_ajustes_cuenta": {
+                "titulo_pagina": "Account settings",
+                "cambiar_email": "Change email",
+                "cambiar_contrasenia": "Change password",
+                "borrar_cuenta": "Delete account"
             }
         },
         {
@@ -79,6 +91,12 @@
                 "registrarse": "S'inscrire",
                 "contrasenia": "Mot de passe",
                 "repetir_contrasenia": "Répéter le mot de passe"
+            },
+            "Pagina_ajustes_cuenta": {
+                "titulo_pagina": "Paramètres du compte",
+                "cambiar_email": "Changer l'email",
+                "cambiar_contrasenia": "Changer le mot de passe",
+                "borrar_cuenta": "Supprimer compte"
             }
         }
     ]

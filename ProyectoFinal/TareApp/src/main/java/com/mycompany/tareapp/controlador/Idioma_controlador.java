@@ -7,6 +7,7 @@ package com.mycompany.tareapp.controlador;
 import com.google.gson.Gson;
 import com.mycompany.tareapp.modelo.idioma.Idioma;
 import com.mycompany.tareapp.modelo.idioma.Idiomas;
+import com.mycompany.tareapp.vista.Ajustes_cuenta_view;
 import com.mycompany.tareapp.vista.Iniciar_registrar_view;
 import com.mycompany.tareapp.vista.Listas_view;
 import com.mycompany.tareapp.vista.Tareas_view;
@@ -29,7 +30,7 @@ public class Idioma_controlador {
         convertirJsonEnClase();
     }
 
-    public void cambiarIdioma(String idioma, Cabecera cabecera, Tareas_view tareas_view, Listas_view listas_view, Iniciar_registrar_view iniciar_registrar_view) {
+    public void cambiarIdioma(String idioma, Cabecera cabecera, Tareas_view tareas_view, Listas_view listas_view, Iniciar_registrar_view iniciar_registrar_view, Ajustes_cuenta_view ajustes_cuenta_view) {
         
         for (Idioma idioma_json : idiomas.getIdioma()) {
             
@@ -45,11 +46,15 @@ public class Idioma_controlador {
         cabecera.getMenuCuenta().setText(idioma_seleccionado.getCabecera().getCuenta());
         cabecera.getItemAjustes().setText(idioma_seleccionado.getCabecera().getAjustes());
         cabecera.getItemCerrarSesion().setText(idioma_seleccionado.getCabecera().getCerrar_sesion());
+        
+        
         tareas_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_tareas().getTitulo());
         tareas_view.getSeleccionarLista().insertItemAt(idioma_seleccionado.getPagina_tareas().getSeleccionar_lista(), 0);
         tareas_view.getSeleccionarLista().removeItemAt(1);
         listas_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_listas().getTitulo());
         listas_view.getInput_titulo_lista().getPlaceholder().setText(idioma_seleccionado.getPagina_listas().getInput_lista());
+        
+        
         iniciar_registrar_view.getTitulo_pagina_inicio().setText(idioma_seleccionado.getPagina_inicio_registro().getTitulo_inicio());
         iniciar_registrar_view.getTitulo_pagina_registro().setText(idioma_seleccionado.getPagina_inicio_registro().getTitulo_registro());
         iniciar_registrar_view.getBoton_iniciar().setText(idioma_seleccionado.getPagina_inicio_registro().getIniciar_sesion());
@@ -59,7 +64,12 @@ public class Idioma_controlador {
         iniciar_registrar_view.getRepetir_contrasenia_registro().getPlaceholder().setText(idioma_seleccionado.getPagina_inicio_registro().getRepetir_contrasenia());
         iniciar_registrar_view.getBoton_enviar_inicio().setText(idioma_seleccionado.getPagina_inicio_registro().getIniciar_sesion());
         iniciar_registrar_view.getBoton_enviar_registro().setText(idioma_seleccionado.getPagina_inicio_registro().getRegistrarse());
+     
         
+        ajustes_cuenta_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_ajustes_cuenta().getTitulo_pagina());
+        ajustes_cuenta_view.getBoton_cambiar_email().setText(idioma_seleccionado.getPagina_ajustes_cuenta().getCambiar_email());
+        ajustes_cuenta_view.getBoton_cambiar_contrasenia().setText(idioma_seleccionado.getPagina_ajustes_cuenta().getCambiar_contrasenia());
+        ajustes_cuenta_view.getBoton_borrar_cuenta().setText(idioma_seleccionado.getPagina_ajustes_cuenta().getBorrar_cuenta());
     }
     
     public void convertirJsonEnClase() throws FileNotFoundException {

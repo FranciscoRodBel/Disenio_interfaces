@@ -4,9 +4,12 @@
  */
 package com.mycompany.tareapp.vista;
 
+import com.mycompany.tareapp.vista.plantillas.Boton;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
+import com.mycompany.tareapp.vista.plantillas.RoundedBorder;
 import java.awt.Dimension;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
@@ -19,6 +22,15 @@ public class Ajustes_cuenta_view extends javax.swing.JPanel {
     Estilos estilos = new Estilos();
     
     JLabel titulo_pagina = new JLabel("Ajustes de la cuenta");
+    
+    JPanel panel_ajustes = new JPanel();
+    
+    JLabel label_email = new JLabel("Email:");
+    JLabel label_email_usuario = new JLabel("franciscorodbel@educeuta.es");
+    
+    Boton boton_cambiar_email = new Boton("Cambiar email");
+    Boton boton_cambiar_contrasenia = new Boton("Cambiar contraseña");
+    Boton boton_borrar_cuenta = new Boton("Borrar cuenta");
     /**
      * Creates new form Ajustes_cuenta_view
      */
@@ -37,8 +49,72 @@ public class Ajustes_cuenta_view extends javax.swing.JPanel {
         layout.putConstraint(SpringLayout.WEST, titulo_pagina, 0, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, titulo_pagina, 20, SpringLayout.NORTH, this);
         layout.putConstraint(SpringLayout.EAST, titulo_pagina, 0, SpringLayout.EAST, this);
+        
+        this.add(panel_ajustes);
+        SpringLayout layout2 = new SpringLayout();
+        panel_ajustes.setLayout(layout2);
+        panel_ajustes.setBackground(estilos.getBlanco_claro());
+        panel_ajustes.setBorder(new RoundedBorder(2, 2));
+        panel_ajustes.setPreferredSize(new Dimension(500, 260));
+        layout.putConstraint(SpringLayout.WEST, panel_ajustes, 250, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.NORTH, panel_ajustes, 60, SpringLayout.NORTH, titulo_pagina);
+        
+        panel_ajustes.add(label_email);
+        label_email.setFont(estilos.getFuenteTitulo());
+        layout2.putConstraint(SpringLayout.WEST, label_email, 20, SpringLayout.WEST, panel_ajustes);
+        layout2.putConstraint(SpringLayout.NORTH, label_email, 20, SpringLayout.NORTH, panel_ajustes);
+        
+        panel_ajustes.add(label_email_usuario);
+        label_email_usuario.setFont(estilos.getFuenteConTamaio(18));
+        layout2.putConstraint(SpringLayout.WEST, label_email_usuario, 75, SpringLayout.WEST, label_email);
+        layout2.putConstraint(SpringLayout.NORTH, label_email_usuario, 0, SpringLayout.NORTH, label_email);
+        
+        panel_ajustes.add(boton_cambiar_email);
+        layout2.putConstraint(SpringLayout.WEST, boton_cambiar_email, 150, SpringLayout.WEST, panel_ajustes);
+        layout2.putConstraint(SpringLayout.NORTH, boton_cambiar_email, 50, SpringLayout.NORTH, label_email);
+        
+        panel_ajustes.add(boton_cambiar_contrasenia);
+        layout2.putConstraint(SpringLayout.WEST, boton_cambiar_contrasenia, 150, SpringLayout.WEST, panel_ajustes);
+        layout2.putConstraint(SpringLayout.NORTH, boton_cambiar_contrasenia, 60, SpringLayout.NORTH, boton_cambiar_email);
+        
+        panel_ajustes.add(boton_borrar_cuenta);
+        boton_borrar_cuenta.setBackground(estilos.getRojo());
+        boton_borrar_cuenta.setPreferredSize(new Dimension(150, 35));
+        layout2.putConstraint(SpringLayout.WEST, boton_borrar_cuenta, 175, SpringLayout.WEST, panel_ajustes);
+        layout2.putConstraint(SpringLayout.NORTH, boton_borrar_cuenta, 60, SpringLayout.NORTH, boton_cambiar_contrasenia);
+    }
+    
+    public JLabel getTitulo_pagina() {
+        return titulo_pagina;
     }
 
+    public void setTitulo_pagina(JLabel titulo_pagina) {
+        this.titulo_pagina = titulo_pagina;
+    }
+
+    public Boton getBoton_cambiar_email() {
+        return boton_cambiar_email;
+    }
+
+    public void setBoton_cambiar_email(Boton boton_cambiar_email) {
+        this.boton_cambiar_email = boton_cambiar_email;
+    }
+
+    public Boton getBoton_cambiar_contrasenia() {
+        return boton_cambiar_contrasenia;
+    }
+
+    public void setBoton_cambiar_contrasenia(Boton boton_cambiar_contrasenia) {
+        this.boton_cambiar_contrasenia = boton_cambiar_contrasenia;
+    }
+
+    public Boton getBoton_borrar_cuenta() {
+        return boton_borrar_cuenta;
+    }
+
+    public void setBoton_borrar_cuenta(Boton boton_borrar_cuenta) {
+        this.boton_borrar_cuenta = boton_borrar_cuenta;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -37,6 +37,8 @@ public class Main extends javax.swing.JFrame {
     
     Listas_view listas_view = new Listas_view();
     
+    Ajustes_cuenta_view ajustes_cuenta_view = new Ajustes_cuenta_view();
+    
     public Idioma_controlador getIdioma_controlador() {
         return idioma_controlador;
     }
@@ -85,6 +87,12 @@ public class Main extends javax.swing.JFrame {
         layout.putConstraint(SpringLayout.EAST, iniciar_registrar_view, 0, SpringLayout.EAST, cabecera);
         iniciar_registrar_view.setVisible(true);
         
+        panelPrincipal.add(ajustes_cuenta_view);
+        layout.putConstraint(SpringLayout.WEST, ajustes_cuenta_view, 0, SpringLayout.WEST, cabecera);
+        layout.putConstraint(SpringLayout.NORTH, ajustes_cuenta_view, 45, SpringLayout.NORTH, cabecera);
+        layout.putConstraint(SpringLayout.EAST, ajustes_cuenta_view, 0, SpringLayout.EAST, cabecera);
+        ajustes_cuenta_view.setVisible(false);
+        
         
         cabecera.getItemTareas().addActionListener(new ActionListener() {
 
@@ -103,7 +111,15 @@ public class Main extends javax.swing.JFrame {
                 listas_view.setVisible(true);  
             }
         });
-                
+            
+        cabecera.getItemAjustes().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+            
+                ocultarPaneles();
+                ajustes_cuenta_view.setVisible(true);
+            }
+        });    
                 
         cabecera.getItemCerrarSesion().addActionListener(new ActionListener() {
 
@@ -118,7 +134,7 @@ public class Main extends javax.swing.JFrame {
 
             public void actionPerformed(ActionEvent e) {
                 
-                idioma_controlador.cambiarIdioma("Español", cabecera, tareas_view, listas_view, iniciar_registrar_view);
+                idioma_controlador.cambiarIdioma("Español", cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
             }
         });
         
@@ -126,7 +142,7 @@ public class Main extends javax.swing.JFrame {
 
             public void actionPerformed(ActionEvent e) {
                 
-                idioma_controlador.cambiarIdioma("English", cabecera, tareas_view, listas_view, iniciar_registrar_view);
+                idioma_controlador.cambiarIdioma("English", cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
             }
         });
                 
@@ -134,9 +150,10 @@ public class Main extends javax.swing.JFrame {
 
             public void actionPerformed(ActionEvent e) {
             
-                idioma_controlador.cambiarIdioma("Français", cabecera, tareas_view, listas_view, iniciar_registrar_view);
+                idioma_controlador.cambiarIdioma("Français", cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
             }
         });
+        
     }
 
     public void ocultarPaneles() {
@@ -144,6 +161,7 @@ public class Main extends javax.swing.JFrame {
         tareas_view.setVisible(false);
         listas_view.setVisible(false);
         iniciar_registrar_view.setVisible(false);
+        ajustes_cuenta_view.setVisible(false);
         
     }
     /**
