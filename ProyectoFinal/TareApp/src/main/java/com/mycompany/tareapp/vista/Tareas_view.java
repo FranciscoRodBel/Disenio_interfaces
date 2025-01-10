@@ -5,6 +5,7 @@
 package com.mycompany.tareapp.vista;
 
 import com.mycompany.tareapp.vista.plantillas.Estilos;
+import com.mycompany.tareapp.vista.plantillas.Popup_crear_tarea;
 import com.mycompany.tareapp.vista.plantillas.Tarea;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -125,11 +126,22 @@ public class Tareas_view extends javax.swing.JPanel {
         agregarTarea(new Tarea(false, "Tarea 4", 1, "08/01/2025"));
         agregarTarea(new Tarea(true, "Tarea 5", 1, "09/01/2025"));
         
+        /*
         botonCrearTarea.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 
                 agregarTarea(new Tarea(false, "Tarea 6", 2, "18/01/2002"));
+            }
+        });
+        */
+        
+        botonCrearTarea.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                
+                Popup_crear_tarea popup_crear_tarea = new Popup_crear_tarea();
+                popup_crear_tarea.setVisible(true);
             }
         });
         

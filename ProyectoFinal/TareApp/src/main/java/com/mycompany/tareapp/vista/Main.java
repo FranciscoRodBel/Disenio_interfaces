@@ -58,6 +58,7 @@ public class Main extends javax.swing.JFrame {
         this.setLayout(null);
         this.setResizable(false);        
         this.add(panelPrincipal);
+        this.setLocationRelativeTo(null);
         
         SpringLayout layout = new SpringLayout();
         panelPrincipal.setBackground(estilos.getGris_claro());
@@ -73,7 +74,7 @@ public class Main extends javax.swing.JFrame {
         layout.putConstraint(SpringLayout.WEST, tareas_view, 0, SpringLayout.WEST, cabecera);
         layout.putConstraint(SpringLayout.NORTH, tareas_view, 45, SpringLayout.NORTH, cabecera);
         layout.putConstraint(SpringLayout.EAST, tareas_view, 0, SpringLayout.EAST, cabecera);
-        tareas_view.setVisible(false);
+        tareas_view.setVisible(true);
         
         panelPrincipal.add(listas_view);
         layout.putConstraint(SpringLayout.WEST, listas_view, 0, SpringLayout.WEST, cabecera);
@@ -85,7 +86,7 @@ public class Main extends javax.swing.JFrame {
         layout.putConstraint(SpringLayout.WEST, iniciar_registrar_view, 0, SpringLayout.WEST, cabecera);
         layout.putConstraint(SpringLayout.NORTH, iniciar_registrar_view, 45, SpringLayout.NORTH, cabecera);
         layout.putConstraint(SpringLayout.EAST, iniciar_registrar_view, 0, SpringLayout.EAST, cabecera);
-        iniciar_registrar_view.setVisible(true);
+        iniciar_registrar_view.setVisible(false);
         
         panelPrincipal.add(ajustes_cuenta_view);
         layout.putConstraint(SpringLayout.WEST, ajustes_cuenta_view, 0, SpringLayout.WEST, cabecera);
