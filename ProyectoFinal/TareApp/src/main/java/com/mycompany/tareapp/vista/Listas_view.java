@@ -34,7 +34,7 @@ public class Listas_view extends javax.swing.JPanel {
     
     JLabel titulo_pagina = new JLabel("Listas");
 
-    Input_text input_titulo_lista = new Input_text("Título lista");
+    Input_text input_titulo_lista = new Input_text("Título lista", "");
     
     JButton boton_insertar_lista = new JButton();
     

@@ -1,4 +1,8 @@
 com\mycompany\tareapp\vista\plantillas\Input_text.class
 com\mycompany\tareapp\vista\plantillas\Lista.class
-com\mycompany\tareapp\vista\Listas_view$1.class
+com\mycompany\tareapp\vista\plantillas\Select_prioridad.class
+com\mycompany\tareapp\vista\plantillas\Text_area_descripcion.class
 com\mycompany\tareapp\vista\Listas_view.class
+com\mycompany\tareapp\vista\plantillas\Popup_crear_editar_tarea.class
+com\mycompany\tareapp\vista\Listas_view$1.class
+com\mycompany\tareapp\vista\plantillas\Tarea$2.class

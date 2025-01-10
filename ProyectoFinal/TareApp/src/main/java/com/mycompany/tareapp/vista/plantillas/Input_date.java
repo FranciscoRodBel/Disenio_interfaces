@@ -24,7 +24,7 @@ public class Input_date extends JFormattedTextField {
     Estilos estilos = new Estilos();
     JButton botonCalendario = new JButton();
     
-    public Input_date() {
+    public Input_date(String texto_fecha) {
         
         super(crearFormato());
         
@@ -34,7 +34,6 @@ public class Input_date extends JFormattedTextField {
         this.setBackground(estilos.getBlanco_claro());
         this.setFont(estilos.getFuente());
         this.setPreferredSize(new Dimension(260, 35));
-        this.setMargin(new Insets(0, 10, 0, 0));
         
         botonCalendario.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/calendar-days-solid.png"));
         botonCalendario.setPreferredSize(new Dimension(30,30));
@@ -42,6 +41,12 @@ public class Input_date extends JFormattedTextField {
         this.add(botonCalendario);
         layout.putConstraint(SpringLayout.EAST, botonCalendario, 0, SpringLayout.EAST, this);
         layout.putConstraint(SpringLayout.NORTH, botonCalendario, -5, SpringLayout.NORTH, this);
+        
+        if (!texto_fecha.isEmpty()) {
+            this.setText(texto_fecha);
+        }
+        
+        
     }
     // Para el icono - https://www.youtube.com/watch?v=yc3sWITm4v8
     

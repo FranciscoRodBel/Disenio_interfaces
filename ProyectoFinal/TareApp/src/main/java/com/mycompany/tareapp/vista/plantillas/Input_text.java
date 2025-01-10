@@ -17,13 +17,18 @@ public class Input_text extends JTextField {
     Estilos estilos = new Estilos();
     TextPrompt placeholder;
     
-    public Input_text(String texto_placeholder) {
+    public Input_text(String texto_placeholder, String texto_input) {
         
         this.setBorder(new RoundedBorder(5, 2));
         this.setBackground(estilos.getBlanco_claro());
         this.setFont(estilos.getFuente());
         this.setPreferredSize(new Dimension(260, 35));
         placeholder = new TextPrompt(texto_placeholder, this);
+        
+        if (!texto_input.isEmpty()) {
+        
+            this.setText(texto_input);
+        }
     }
     
     public TextPrompt getPlaceholder() {

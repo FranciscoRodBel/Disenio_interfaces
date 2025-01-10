@@ -53,11 +53,11 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
     JButton boton_iniciar = new JButton("Inicio de sesión");
     JButton boton_registrarse = new JButton("Registrarse");
     
-    Input_text email_iniciar = new Input_text("Email");
+    Input_text email_iniciar = new Input_text("Email", "");
     Input_password contrasenia_iniciar = new Input_password("Contraseña");
     Boton boton_enviar_inicio = new Boton("Inicio de sesión");
    
-    Input_text email_registro = new Input_text("Email");
+    Input_text email_registro = new Input_text("Email", "");
     Input_password contrasenia_registro = new Input_password("Contraseña");
     Input_password repetir_contrasenia_registro = new Input_password("Repetir contraseña");
     Boton boton_enviar_registro = new Boton("Registrarse");

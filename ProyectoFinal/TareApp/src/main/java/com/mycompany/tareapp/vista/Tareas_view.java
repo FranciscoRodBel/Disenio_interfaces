@@ -5,7 +5,7 @@
 package com.mycompany.tareapp.vista;
 
 import com.mycompany.tareapp.vista.plantillas.Estilos;
-import com.mycompany.tareapp.vista.plantillas.Popup_crear_tarea;
+import com.mycompany.tareapp.vista.plantillas.Popup_crear_editar_tarea;
 import com.mycompany.tareapp.vista.plantillas.Tarea;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -120,11 +120,11 @@ public class Tareas_view extends javax.swing.JPanel {
         layout.putConstraint(SpringLayout.WEST, scroll_panelTareas, 100, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, scroll_panelTareas, 60, SpringLayout.NORTH, seleccionarLista);
         
-        agregarTarea(new Tarea(false, "Tarea 1", 1, "05/01/2025"));
-        agregarTarea(new Tarea(true, "Tarea 2", 2, "06/01/2025"));
-        agregarTarea(new Tarea(false, "Tarea 3", 3, "07/01/2025"));
-        agregarTarea(new Tarea(false, "Tarea 4", 1, "08/01/2025"));
-        agregarTarea(new Tarea(true, "Tarea 5", 1, "09/01/2025"));
+        agregarTarea(new Tarea(false, "Tarea 1", 1, "05/01/2025", "Descripción tarea 1"));
+        agregarTarea(new Tarea(true, "Tarea 2", 2, "06/01/2025", "Descripción tarea 2"));
+        agregarTarea(new Tarea(false, "Tarea 3", 3, "07/01/2025", "Descripción tarea 3"));
+        agregarTarea(new Tarea(false, "Tarea 4", 1, "08/01/2025", "Descripción tarea 4"));
+        agregarTarea(new Tarea(true, "Tarea 5", 1, "09/01/2025", "Descripción tarea 5"));
         
         /*
         botonCrearTarea.addActionListener(new ActionListener() {
@@ -140,11 +140,11 @@ public class Tareas_view extends javax.swing.JPanel {
 
             public void actionPerformed(ActionEvent e) {
                 
-                Popup_crear_tarea popup_crear_tarea = new Popup_crear_tarea();
+                Popup_crear_editar_tarea popup_crear_tarea = new Popup_crear_editar_tarea(null);
                 popup_crear_tarea.setVisible(true);
             }
         });
-        
+
     }
     
     public JLabel getTitulo_pagina() {

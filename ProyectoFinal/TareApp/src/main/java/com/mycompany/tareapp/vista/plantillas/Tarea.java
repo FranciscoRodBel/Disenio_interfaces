@@ -30,6 +30,9 @@ public class Tarea extends JPanel {
     
     JLabel fechaTarea = new JLabel("05/01/2025");
     
+    String prioridadTarea;
+    String descripcionTarea;
+    
     JButton botonVerTarea = new JButton();
     JButton botonEditarTarea = new JButton();
     JButton botonBorrarTarea = new JButton();
@@ -39,7 +42,7 @@ public class Tarea extends JPanel {
         generarEstructura();
     }
     
-    public Tarea(Boolean completada, String titulo, int prioridad, String fecha) { // Si se envía true está completa, si se envía en la prioridad 1 - baja, 2 - media, 3 - alta
+    public Tarea(Boolean completada, String titulo, int prioridad, String fecha, String descripcion) { // Si se envía true está completa, si se envía en la prioridad 1 - baja, 2 - media, 3 - alta
         
         generarEstructura();
         
@@ -55,24 +58,24 @@ public class Tarea extends JPanel {
         this.setTituloTarea(titulo);
         
         switch(prioridad) {
-            case 1:
-                this.setPrioridadBaja();
-                break;
-              
             case 2:
                 this.setPrioridadMedia();
+                prioridadTarea = "Media";
                 break;    
               
             case 3:
                 this.setPrioridadAlta();
+                prioridadTarea = "Alta";
                 break;
               
             default:
                 this.setPrioridadBaja();
-                
+                prioridadTarea = "Baja";
         }
         
         this.setFechaTarea(fecha);
+        
+        this.setDescripcionTarea(descripcion);
     }
 
     public JButton getBotonTareaCompletada() {
@@ -134,6 +137,22 @@ public class Tarea extends JPanel {
         this.getLabelPrioridad().setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-up-solid.png"));
     }
     
+    public String getPrioridadTarea() {
+        return prioridadTarea;
+    }
+
+    public void setPrioridadTarea(String prioridadTarea) {
+        this.prioridadTarea = prioridadTarea;
+    }
+    
+    public String getDescripcionTarea() {
+        return descripcionTarea;
+    }
+
+    public void setDescripcionTarea(String descripcionTarea) {
+        this.descripcionTarea = descripcionTarea;
+    }
+
     public void generarEstructura() {
         
         SpringLayout layout = new SpringLayout();
@@ -142,7 +161,6 @@ public class Tarea extends JPanel {
         this.setOpaque(true);
         this.setBackground(estilos.getGris_claro());
         this.setVisible(true);
-        
         
         Separador separador1 = new Separador();
         this.add(separador1);
@@ -240,6 +258,16 @@ public class Tarea extends JPanel {
                 
                     botonTareaCompletada.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-regular-black.png"));
                 }
+            }
+        });
+        
+        botonEditarTarea.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Popup_crear_editar_tarea popup_crear_editar_tarea = new Popup_crear_editar_tarea(Tarea.this);
+                popup_crear_editar_tarea.setVisible(true);
             }
         });
     }
