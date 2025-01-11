@@ -188,6 +188,13 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
                 titulo_pagina_registro.setVisible(true);
             }
         });
+        
+        boton_enviar_registro.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
     }
     
     public JLabel getTitulo_pagina_inicio() {
