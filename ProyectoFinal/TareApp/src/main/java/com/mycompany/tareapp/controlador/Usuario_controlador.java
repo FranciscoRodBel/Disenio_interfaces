@@ -4,6 +4,7 @@
  */
 package com.mycompany.tareapp.controlador;
 
+import com.mycompany.tareapp.modelo.BBDD_tareapp;
 import com.mycompany.tareapp.modelo.Usuario;
 
 /**
@@ -12,11 +13,18 @@ import com.mycompany.tareapp.modelo.Usuario;
  */
 public class Usuario_controlador {
 
-    Usuario usuario = new Usuario();
+    private final BBDD_tareapp bbdd_tareapp = new BBDD_tareapp();
+
+    public Boolean insertar_usuario(Usuario usuario) {
     
-    public Usuario_controlador() {
+        String email = usuario.getEmail();
+        String contrasenia = usuario.getContrasenia();
         
+        if (usuario.esta_email_repetido()) return false;
         
+        String consulta = "INSERT INTO usuario (email, contrasenia) VALUES ('"+email+"', '"+contrasenia+"')";
+        bbdd_tareapp.insertar(consulta);
+        
+        return true;
     }
-    
 }

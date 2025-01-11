@@ -7,8 +7,11 @@ package com.mycompany.tareapp.modelo;
 import com.mycompany.tareapp.controlador.BBDD_controlador;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,16 +21,30 @@ import java.util.logging.Logger;
  */
 public class BBDD_tareapp {
     
-    public ResultSet consultar(String consulta_consultar) {
+    public ArrayList<HashMap<String, Object>> consultar(String consulta_consultar) { // Devuelvo un array list que tiene dentro HashMaps con nombre_propiedad : valor
         
+        ArrayList<HashMap<String, Object>> resultados = new ArrayList<>(); // Array final que se devuelve con todos los datos
         Connection conexion = BBDD_controlador.abrirConexion();
-
+        
         try {
             
             Statement consulta = conexion.createStatement();
 
-            return consulta.executeQuery(consulta_consultar);
+            ResultSet resultado = consulta.executeQuery(consulta_consultar);
 
+            while (resultado.next()) {
+                
+                HashMap<String, Object> fila = new HashMap<>();
+                ResultSetMetaData metaData = resultado.getMetaData();
+
+                for (int i = 1; i <= metaData.getColumnCount(); i++) {
+
+                    fila.put(metaData.getColumnName(i), resultado.getObject(i)); // Se guarda en el hashMap la columna con el dato
+                }
+
+                resultados.add(fila);
+            }
+            
         } catch (SQLException ex) {
             
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -37,6 +54,8 @@ public class BBDD_tareapp {
             
             BBDD_controlador.cerrarConexion();
         }
+        
+        return resultados;
     }
     
     public boolean insertar(String consulta_insertar) {

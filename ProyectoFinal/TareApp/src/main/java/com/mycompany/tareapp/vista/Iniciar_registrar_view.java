@@ -4,6 +4,8 @@
  */
 package com.mycompany.tareapp.vista;
 
+import com.mycompany.tareapp.controlador.Usuario_controlador;
+import com.mycompany.tareapp.modelo.Usuario;
 import com.mycompany.tareapp.vista.plantillas.RoundedBorder;
 import com.mycompany.tareapp.vista.plantillas.TextPrompt;
 import com.mycompany.tareapp.vista.plantillas.Boton;
@@ -67,6 +69,7 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
     public Iniciar_registrar_view() {
         initComponents();
         
+        Usuario_controlador usuario_controlador = new Usuario_controlador();
         SpringLayout layout = new SpringLayout();
         this.setLayout(layout);
         this.setPreferredSize(new Dimension(1000, 555));
@@ -191,8 +194,16 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         
         boton_enviar_registro.addActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent e) {
                 
+                String contrasenia = new String(contrasenia_registro.getPassword());
+                String repetirContrasenia = new String(repetir_contrasenia_registro.getPassword());
+                
+                if (contrasenia.equals(repetirContrasenia)) {
+                
+                    usuario_controlador.insertar_usuario(new Usuario(email_registro.getText(), contrasenia));
+                }
             }
         });
     }

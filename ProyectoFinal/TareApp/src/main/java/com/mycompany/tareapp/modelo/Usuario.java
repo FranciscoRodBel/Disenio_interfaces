@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,7 +22,13 @@ public class Usuario {
     
     private String email;
     private String contrasenia;
+    private String idioma_seleccionado;
 
+    public Usuario(String email, String contrasenia) {
+        this.email = email;
+        this.contrasenia = contrasenia;
+    }
+    
     public String getEmail() {
         return email;
     }
@@ -37,5 +45,20 @@ public class Usuario {
         this.contrasenia = contrasenia;
     }
     
-        //String consulta_insertar = "INSERT INTO usuario (email, contrasenia) VALUES ("+email+", "+contrasenia+")";
+    public String getIdioma_seleccionado() {
+        return idioma_seleccionado;
+    }
+
+    public void setIdioma_seleccionado(String idioma_seleccionado) {
+        this.idioma_seleccionado = idioma_seleccionado;
+    }
+    
+    public Boolean esta_email_repetido() {
+    
+        
+        String consultaRecoger = "SELECT * FROM usuario WHERE email = '"+ this.getEmail() +"'";
+        ArrayList<HashMap<String, Object>> resultados = new BBDD_tareapp().consultar(consultaRecoger);
+        
+        return !resultados.isEmpty();
+    }
 }
