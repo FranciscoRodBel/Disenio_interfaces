@@ -41,8 +41,6 @@ import javax.swing.plaf.basic.BasicButtonUI;
  * @author Propietario
  */
 public class Iniciar_registrar_view extends javax.swing.JPanel {
-
-    Estilos estilos = new Estilos();
     
     JLabel titulo_pagina_inicio = new JLabel("Inicio de sesión");
     JLabel titulo_pagina_registro = new JLabel("Registro");
@@ -73,11 +71,11 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         this.setLayout(layout);
         this.setPreferredSize(new Dimension(1000, 555));
         this.setMaximumSize(new Dimension(1000, 555));
-        this.setBackground(estilos.getGris_claro());
+        this.setBackground(Estilos.getGris_claro());
         
         this.add(titulo_pagina_inicio);
         titulo_pagina_inicio.setHorizontalAlignment(SwingConstants.CENTER);
-        titulo_pagina_inicio.setFont(estilos.getFuenteTitulo());
+        titulo_pagina_inicio.setFont(Estilos.getFuenteTitulo());
         layout.putConstraint(SpringLayout.WEST, titulo_pagina_inicio, 0, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, titulo_pagina_inicio, 20, SpringLayout.NORTH, this);
         layout.putConstraint(SpringLayout.EAST, titulo_pagina_inicio, 0, SpringLayout.EAST, this);
@@ -85,29 +83,29 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         
         this.add(titulo_pagina_registro);
         titulo_pagina_registro.setHorizontalAlignment(SwingConstants.CENTER);
-        titulo_pagina_registro.setFont(estilos.getFuenteTitulo());
+        titulo_pagina_registro.setFont(Estilos.getFuenteTitulo());
         layout.putConstraint(SpringLayout.WEST, titulo_pagina_registro, 0, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, titulo_pagina_registro, 20, SpringLayout.NORTH, this);
         layout.putConstraint(SpringLayout.EAST, titulo_pagina_registro, 0, SpringLayout.EAST, this);
         titulo_pagina_registro.setVisible(false);
 
-        boton_iniciar.setFont(estilos.getFuente());
+        boton_iniciar.setFont(Estilos.getFuente());
         boton_iniciar.setFocusPainted(false);
         boton_iniciar.setUI(new BasicButtonUI()); // Eliminar estilos
-        boton_iniciar.setBorder(new LineBorder(estilos.getNegro(),2,true));
-        boton_iniciar.setBackground(estilos.getAzul_oscuro());
-        boton_iniciar.setForeground(estilos.getBlanco());
+        boton_iniciar.setBorder(new LineBorder(Estilos.getNegro(),2,true));
+        boton_iniciar.setBackground(Estilos.getAzul_oscuro());
+        boton_iniciar.setForeground(Estilos.getBlanco());
         boton_iniciar.setPreferredSize(new Dimension(201, 40));
         this.add(boton_iniciar);
         layout.putConstraint(SpringLayout.WEST, boton_iniciar, 300, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, boton_iniciar, 70, SpringLayout.NORTH, this);
         
-        boton_registrarse.setFont(estilos.getFuente());
+        boton_registrarse.setFont(Estilos.getFuente());
         boton_registrarse.setFocusPainted(false);
         boton_registrarse.setUI(new BasicButtonUI());
-        boton_registrarse.setBorder(new LineBorder(estilos.getNegro(),2,true));
-        boton_registrarse.setBackground(estilos.getBlanco_claro());
-        boton_registrarse.setForeground(estilos.getNegro());
+        boton_registrarse.setBorder(new LineBorder(Estilos.getNegro(),2,true));
+        boton_registrarse.setBackground(Estilos.getBlanco_claro());
+        boton_registrarse.setForeground(Estilos.getNegro());
         boton_registrarse.setPreferredSize(new Dimension(201, 40));
         this.add(boton_registrarse);
         layout.putConstraint(SpringLayout.WEST, boton_registrarse, 199, SpringLayout.WEST, boton_iniciar);
@@ -116,7 +114,7 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         this.add(panel_inicio);
         SpringLayout layout2 = new SpringLayout();
         panel_inicio.setLayout(layout2);
-        panel_inicio.setBackground(estilos.getBlanco_claro());
+        panel_inicio.setBackground(Estilos.getBlanco_claro());
         panel_inicio.setBorder(new RoundedBorder(2, 2));
         panel_inicio.setPreferredSize(new Dimension(400, 220));
         layout.putConstraint(SpringLayout.WEST, panel_inicio, 300, SpringLayout.WEST, this);
@@ -138,7 +136,7 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         this.add(panel_registro);
         SpringLayout layout3 = new SpringLayout();
         panel_registro.setLayout(layout3);
-        panel_registro.setBackground(estilos.getBlanco_claro());
+        panel_registro.setBackground(Estilos.getBlanco_claro());
         panel_registro.setBorder(new RoundedBorder(2, 2));
         panel_registro.setPreferredSize(new Dimension(400, 280));
         layout.putConstraint(SpringLayout.WEST, panel_registro, 300, SpringLayout.WEST, this);
@@ -167,10 +165,10 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
                 
                 panel_inicio.setVisible(true);
                 panel_registro.setVisible(false);
-                boton_iniciar.setBackground(estilos.getAzul_oscuro());
-                boton_iniciar.setForeground(estilos.getBlanco());
-                boton_registrarse.setBackground(estilos.getBlanco_claro());
-                boton_registrarse.setForeground(estilos.getNegro());
+                boton_iniciar.setBackground(Estilos.getAzul_oscuro());
+                boton_iniciar.setForeground(Estilos.getBlanco());
+                boton_registrarse.setBackground(Estilos.getBlanco_claro());
+                boton_registrarse.setForeground(Estilos.getNegro());
                 titulo_pagina_inicio.setVisible(true);
                 titulo_pagina_registro.setVisible(false);
             }
@@ -182,10 +180,10 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
                 
                 panel_inicio.setVisible(false);
                 panel_registro.setVisible(true);
-                boton_registrarse.setBackground(estilos.getAzul_oscuro());
-                boton_registrarse.setForeground(estilos.getBlanco());
-                boton_iniciar.setBackground(estilos.getBlanco_claro());
-                boton_iniciar.setForeground(estilos.getNegro());
+                boton_registrarse.setBackground(Estilos.getAzul_oscuro());
+                boton_registrarse.setForeground(Estilos.getBlanco());
+                boton_iniciar.setBackground(Estilos.getBlanco_claro());
+                boton_iniciar.setForeground(Estilos.getNegro());
                 titulo_pagina_inicio.setVisible(false);
                 titulo_pagina_registro.setVisible(true);
             }

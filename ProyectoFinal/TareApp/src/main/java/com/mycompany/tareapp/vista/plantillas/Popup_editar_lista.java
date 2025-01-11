@@ -30,7 +30,6 @@ import javax.swing.SwingUtilities;
  */
 public class Popup_editar_lista extends JDialog {
     
-    Estilos estilos = new Estilos();
     JPanel panelPrincipal = new JPanel();
 
     public Popup_editar_lista(Lista lista) {
@@ -46,12 +45,12 @@ public class Popup_editar_lista extends JDialog {
         SpringLayout layout = new SpringLayout();
         panelPrincipal.setLayout(layout);
         panelPrincipal.setBounds(0, 0, 600, 230);
-        panelPrincipal.setBackground(estilos.getGris_claro());
+        panelPrincipal.setBackground(Estilos.getGris_claro());
         
         Pagina_listas idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getPagina_listas();
         
         JLabel labelTitulo = new JLabel(idioma_seleccionado.getEditar_lista(), SwingConstants.CENTER);
-        labelTitulo.setFont(estilos.getFuenteTitulo());
+        labelTitulo.setFont(Estilos.getFuenteTitulo());
         layout.putConstraint(SpringLayout.WEST, labelTitulo, 0, SpringLayout.WEST, panelPrincipal);
         layout.putConstraint(SpringLayout.NORTH, labelTitulo, 20, SpringLayout.NORTH, panelPrincipal);
         layout.putConstraint(SpringLayout.EAST, labelTitulo, 0, SpringLayout.EAST, panelPrincipal);

@@ -14,11 +14,9 @@ import javax.swing.JPanel;
  */
 public class Separador extends JPanel {
         
-    Estilos estilos = new Estilos();
- 
     public Separador() {
         
         this.setPreferredSize(new Dimension(2, 10));
-        this.setBackground(estilos.getNegro());
+        this.setBackground(Estilos.getNegro());
     }
 }

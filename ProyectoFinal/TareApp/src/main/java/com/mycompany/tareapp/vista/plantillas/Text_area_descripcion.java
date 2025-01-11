@@ -17,14 +17,13 @@ import static javax.swing.SwingConstants.CENTER;
  */
 public class Text_area_descripcion extends JScrollPane {
 
-    Estilos estilos = new Estilos();
     JTextArea textArea;
     TextPrompt placeholder;
     
     public Text_area_descripcion(String texto_descripcion) {
         
         textArea = new JTextArea();
-        textArea.setFont(estilos.getFuente());
+        textArea.setFont(Estilos.getFuente());
         
         this.setViewportView(textArea);
         this.setPreferredSize(new Dimension(500, 200));
@@ -61,7 +60,7 @@ public class Text_area_descripcion extends JScrollPane {
         
         this.setBorder(null);
         this.setPreferredSize(new Dimension(700, 200));
-        textArea.setBackground(estilos.getBlanco_claro());
+        textArea.setBackground(Estilos.getBlanco_claro());
         textArea.setCaretColor(null);
         textArea.setFocusable(false);
     }

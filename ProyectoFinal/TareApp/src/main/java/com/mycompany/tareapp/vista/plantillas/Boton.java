@@ -17,16 +17,14 @@ import javax.swing.plaf.basic.BasicButtonUI;
  * @author Propietario
  */
 public class Boton extends JButton {
-
-    Estilos estilos = new Estilos();
     
     public Boton(String texto_boton) {
         
         this.setText(texto_boton);
         this.setUI(new BasicButtonUI());
         this.setBorder(new RoundedBorder(5, 2));
-        this.setBackground(estilos.getAmarillo());
-        this.setFont(estilos.getFuente());
+        this.setBackground(Estilos.getAmarillo());
+        this.setFont(Estilos.getFuente());
         this.setPreferredSize(new Dimension(200, 35));
     }
     

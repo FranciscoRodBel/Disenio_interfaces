@@ -19,8 +19,6 @@ import javax.swing.SpringLayout;
  */
 public class Lista extends JPanel {
 
-    Estilos estilos = new Estilos();
-    
     JLabel titulo_lista = new JLabel("Título tarea");
     
     JButton botonVerLista = new JButton();
@@ -56,7 +54,7 @@ public class Lista extends JPanel {
         this.setLayout(layout);
         this.setPreferredSize(new Dimension(600, 50));
         this.setOpaque(true);
-        this.setBackground(estilos.getGris_claro());
+        this.setBackground(Estilos.getGris_claro());
         this.setVisible(true);
         
         Separador separador1 = new Separador();
@@ -66,7 +64,7 @@ public class Lista extends JPanel {
         layout.putConstraint(SpringLayout.SOUTH, separador1, 0, SpringLayout.SOUTH, this);
         
         this.add(titulo_lista);
-        titulo_lista.setFont(estilos.getFuente());
+        titulo_lista.setFont(Estilos.getFuente());
         titulo_lista.setPreferredSize(new Dimension(400, 50));
         layout.putConstraint(SpringLayout.WEST, titulo_lista, 20, SpringLayout.WEST, separador1);
         layout.putConstraint(SpringLayout.NORTH, titulo_lista, 0, SpringLayout.NORTH, this);

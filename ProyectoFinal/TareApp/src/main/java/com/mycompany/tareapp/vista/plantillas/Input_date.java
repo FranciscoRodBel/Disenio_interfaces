@@ -21,7 +21,6 @@ import javax.swing.text.MaskFormatter;
  */
 public class Input_date extends JFormattedTextField {
     
-    Estilos estilos = new Estilos();
     JButton botonCalendario = new JButton();
     
     public Input_date(String texto_fecha) {
@@ -31,8 +30,8 @@ public class Input_date extends JFormattedTextField {
         SpringLayout layout = new SpringLayout();
         this.setLayout(layout);
         this.setBorder(new RoundedBorder(5, 2));
-        this.setBackground(estilos.getBlanco_claro());
-        this.setFont(estilos.getFuente());
+        this.setBackground(Estilos.getBlanco_claro());
+        this.setFont(Estilos.getFuente());
         this.setPreferredSize(new Dimension(260, 35));
         
         botonCalendario.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/calendar-days-solid.png"));

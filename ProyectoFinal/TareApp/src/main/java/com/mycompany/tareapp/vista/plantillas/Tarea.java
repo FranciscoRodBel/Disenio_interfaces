@@ -22,8 +22,6 @@ import javax.swing.SpringLayout;
  */
 public class Tarea extends JPanel {
 
-    Estilos estilos = new Estilos();
-    
     JButton botonTareaCompletada = new JButton();
     
     JLabel tituloTarea = new JLabel("Título tarea");
@@ -161,7 +159,7 @@ public class Tarea extends JPanel {
         this.setLayout(layout);
         this.setPreferredSize(new Dimension(800, 50));
         this.setOpaque(true);
-        this.setBackground(estilos.getGris_claro());
+        this.setBackground(Estilos.getGris_claro());
         this.setVisible(true);
         
         Separador separador1 = new Separador();
@@ -184,7 +182,7 @@ public class Tarea extends JPanel {
         layout.putConstraint(SpringLayout.SOUTH, separador2, 0, SpringLayout.SOUTH, this);
 
         this.add(tituloTarea);
-        tituloTarea.setFont(estilos.getFuente());
+        tituloTarea.setFont(Estilos.getFuente());
         tituloTarea.setPreferredSize(new Dimension(400, 50));
         layout.putConstraint(SpringLayout.WEST, tituloTarea, 10, SpringLayout.WEST, separador2);
         layout.putConstraint(SpringLayout.NORTH, tituloTarea, 0, SpringLayout.NORTH, this);
@@ -209,7 +207,7 @@ public class Tarea extends JPanel {
         layout.putConstraint(SpringLayout.SOUTH, separador4, 0, SpringLayout.SOUTH, this);
         
         this.add(fechaTarea);
-        fechaTarea.setFont(estilos.getFuente());
+        fechaTarea.setFont(Estilos.getFuente());
         fechaTarea.setPreferredSize(new Dimension(100, 50));
         layout.putConstraint(SpringLayout.WEST, fechaTarea, 80, SpringLayout.WEST, separador3);
         layout.putConstraint(SpringLayout.NORTH, fechaTarea, 0, SpringLayout.NORTH, this);

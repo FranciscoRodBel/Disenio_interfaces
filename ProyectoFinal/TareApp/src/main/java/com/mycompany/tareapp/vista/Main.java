@@ -26,7 +26,6 @@ import javax.swing.SpringLayout;
 public class Main extends javax.swing.JFrame {
 
     Idioma_controlador idioma_controlador;
-    Estilos estilos = new Estilos();
     JPanel panelPrincipal = new JPanel();
     
     Cabecera cabecera = new Cabecera();
@@ -62,7 +61,7 @@ public class Main extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
         SpringLayout layout = new SpringLayout();
-        panelPrincipal.setBackground(estilos.getGris_claro());
+        panelPrincipal.setBackground(Estilos.getGris_claro());
         panelPrincipal.setLayout(layout);
         panelPrincipal.setBounds(0, 0, 1000, 600);
 

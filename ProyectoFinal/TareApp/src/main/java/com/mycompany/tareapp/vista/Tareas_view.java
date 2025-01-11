@@ -29,8 +29,6 @@ import javax.swing.SwingConstants;
  * @author Propietario
  */
 public class Tareas_view extends javax.swing.JPanel {
-
-    Estilos estilos = new Estilos();
     
     JToolBar barraHerramientas = new JToolBar();
     
@@ -61,9 +59,9 @@ public class Tareas_view extends javax.swing.JPanel {
         this.setLayout(layout);
         this.setPreferredSize(new Dimension(1000, 555));
         this.setMaximumSize(new Dimension(1000, 555));
-        this.setBackground(estilos.getGris_claro());
+        this.setBackground(Estilos.getGris_claro());
         
-        barraHerramientas.setBackground(estilos.getAzul_oscuro());
+        barraHerramientas.setBackground(Estilos.getAzul_oscuro());
         barraHerramientas.setFloatable(false);
         this.add(barraHerramientas);
         layout.putConstraint(SpringLayout.WEST, barraHerramientas, 0, SpringLayout.WEST, this);
@@ -97,21 +95,21 @@ public class Tareas_view extends javax.swing.JPanel {
         
         this.add(titulo_pagina);
         titulo_pagina.setHorizontalAlignment(SwingConstants.CENTER);
-        titulo_pagina.setFont(estilos.getFuenteTitulo());
+        titulo_pagina.setFont(Estilos.getFuenteTitulo());
         layout.putConstraint(SpringLayout.WEST, titulo_pagina, 0, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, titulo_pagina, 70, SpringLayout.NORTH, barraHerramientas);
         layout.putConstraint(SpringLayout.EAST, titulo_pagina, 0, SpringLayout.EAST, this);
         
         this.add(seleccionarLista);
         seleccionarLista.setPreferredSize(new Dimension(300, 40));
-        seleccionarLista.setBackground(estilos.getBlanco_claro());
-        seleccionarLista.setFont(estilos.getFuente());
+        seleccionarLista.setBackground(Estilos.getBlanco_claro());
+        seleccionarLista.setFont(Estilos.getFuente());
         layout.putConstraint(SpringLayout.WEST, seleccionarLista, 350, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, seleccionarLista, 50, SpringLayout.NORTH, titulo_pagina);
         seleccionarLista.addItem("Selecciona una lista");
         
         panelTareas.setLayout(new BoxLayout(panelTareas, BoxLayout.Y_AXIS)); // Para colocar una tarea debajo de otra
-        panelTareas.setBackground(estilos.getGris_claro());
+        panelTareas.setBackground(Estilos.getGris_claro());
         
         scroll_panelTareas.setPreferredSize(new Dimension(815, 350));
         scroll_panelTareas.getVerticalScrollBar().setUnitIncrement(15); // Para aumentar la velocidad de la barra de scroll

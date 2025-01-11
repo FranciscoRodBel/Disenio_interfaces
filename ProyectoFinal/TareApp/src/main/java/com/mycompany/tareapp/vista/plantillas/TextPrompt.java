@@ -38,7 +38,6 @@ public class TextPrompt extends JLabel implements FocusListener, DocumentListene
 	private Show show;
 	private boolean showPromptOnce;
 	private int focusLost;
-        Estilos estilos = new Estilos();
 
 	public TextPrompt(String text, JTextComponent component)
 	{
@@ -51,8 +50,8 @@ public class TextPrompt extends JLabel implements FocusListener, DocumentListene
 		setShow( show );
 		document = component.getDocument();
 		setText( text );
-		setFont( estilos.getFuente() );
-		setForeground( estilos.getAzul_oscuro() );
+		setFont( Estilos.getFuente() );
+		setForeground( Estilos.getAzul_oscuro() );
 		setBorder( new EmptyBorder(component.getInsets()) );
 		setHorizontalAlignment(JLabel.LEADING);
 

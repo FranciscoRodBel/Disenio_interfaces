@@ -32,8 +32,7 @@ import javax.swing.SwingConstants;
  */
 public class Cabecera extends JPanel {
 
-    Estilos estilos = new Estilos();
-    Font fuente = estilos.getFuente();
+    Font fuente = Estilos.getFuente();
     
     JLabel imagenLogo = new JLabel(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/logo.png"));
     JLabel nombreApp = new JLabel("TareApp");
@@ -129,7 +128,7 @@ public class Cabecera extends JPanel {
         this.setLayout(layout);
         this.setPreferredSize(new Dimension(1000, 45));
         this.setOpaque(true);
-        this.setBackground(estilos.getBlanco_claro());
+        this.setBackground(Estilos.getBlanco_claro());
         this.setVisible(true);
         
         this.add(imagenLogo);
@@ -137,12 +136,12 @@ public class Cabecera extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, imagenLogo, 3, SpringLayout.NORTH, this);
         
         this.add(nombreApp);
-        nombreApp.setFont(estilos.getFuenteConTamaio(16));
+        nombreApp.setFont(Estilos.getFuenteConTamaio(16));
         layout.putConstraint(SpringLayout.WEST, nombreApp, 50, SpringLayout.WEST, imagenLogo);
         layout.putConstraint(SpringLayout.NORTH, nombreApp, 10, SpringLayout.NORTH, this);
         
         this.add(menuBarras);
-        menuBarras.setBackground(estilos.getBlanco_claro());
+        menuBarras.setBackground(Estilos.getBlanco_claro());
         menuBarras.setOpaque(true);
         menuBarras.setBorder(javax.swing.BorderFactory.createEmptyBorder()); // Para quitar unas franjas que salen a los lados del menú
         layout.putConstraint(SpringLayout.WEST, menuBarras, 250, SpringLayout.WEST, nombreApp);
@@ -165,16 +164,16 @@ public class Cabecera extends JPanel {
         menuBarras.add(separador3);
         menuBarras.add(menuCuenta);
         
-        itemTareas.setBackground(estilos.getBlanco_claro());
+        itemTareas.setBackground(Estilos.getBlanco_claro());
         itemTareas.setOpaque(true);
 
-        itemListas.setBackground(estilos.getBlanco_claro());
+        itemListas.setBackground(Estilos.getBlanco_claro());
         itemListas.setOpaque(true);
 
-        menuIdioma.setBackground(estilos.getBlanco_claro());
+        menuIdioma.setBackground(Estilos.getBlanco_claro());
         menuIdioma.setOpaque(true);
 
-        menuCuenta.setBackground(estilos.getBlanco_claro());
+        menuCuenta.setBackground(Estilos.getBlanco_claro());
         menuCuenta.setOpaque(true);
 
         grupoIdiomas.add(itemEspaniol);

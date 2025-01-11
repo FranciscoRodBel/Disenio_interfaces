@@ -30,7 +30,6 @@ import javax.swing.SwingUtilities;
  */
 public class Popup_cambiar_email_contrasenia extends JDialog {
     
-    Estilos estilos = new Estilos();
     JPanel panelPrincipal = new JPanel();
     
     String texto_titulo_popup;
@@ -50,7 +49,7 @@ public class Popup_cambiar_email_contrasenia extends JDialog {
         SpringLayout layout = new SpringLayout();
         panelPrincipal.setLayout(layout);
         panelPrincipal.setBounds(0, 0, 800, 280);
-        panelPrincipal.setBackground(estilos.getGris_claro());
+        panelPrincipal.setBackground(Estilos.getGris_claro());
         
         Pagina_ajustes_cuenta idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getPagina_ajustes_cuenta();
         
@@ -68,7 +67,7 @@ public class Popup_cambiar_email_contrasenia extends JDialog {
         }
         
         JLabel labelTitulo = new JLabel(texto_titulo_popup, SwingConstants.CENTER);
-        labelTitulo.setFont(estilos.getFuenteTitulo());
+        labelTitulo.setFont(Estilos.getFuenteTitulo());
         layout.putConstraint(SpringLayout.WEST, labelTitulo, 0, SpringLayout.WEST, panelPrincipal);
         layout.putConstraint(SpringLayout.NORTH, labelTitulo, 20, SpringLayout.NORTH, panelPrincipal);
         layout.putConstraint(SpringLayout.EAST, labelTitulo, 0, SpringLayout.EAST, panelPrincipal);

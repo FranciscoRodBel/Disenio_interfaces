@@ -13,17 +13,15 @@ import javax.swing.JPasswordField;
  */
 public class Input_password extends JPasswordField {
 
-    Estilos estilos = new Estilos();
     TextPrompt placeholder;
     
     public Input_password(String texto_placeholder) {
         
         this.setBorder(new RoundedBorder(5, 2));
-        this.setBackground(estilos.getBlanco_claro());
-        this.setFont(estilos.getFuente());
+        this.setBackground(Estilos.getBlanco_claro());
+        this.setFont(Estilos.getFuente());
         this.setPreferredSize(new Dimension(260, 35));
-        placeholder = new TextPrompt(texto_placeholder, this);
-        
+        placeholder = new TextPrompt(texto_placeholder, this);    
     }
     
     public TextPrompt getPlaceholder() {

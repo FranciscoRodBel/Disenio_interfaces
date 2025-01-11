@@ -15,13 +15,11 @@ import javax.swing.JComboBox;
  */
 public class Select_prioridad extends JComboBox<String> {
 
-    Estilos estilos = new Estilos();
-    
     public Select_prioridad(String texto_prioridad) {
         
         //this.setBorder(new RoundedBorder(5, 2));
-        this.setBackground(estilos.getBlanco_claro());
-        this.setFont(estilos.getFuente());
+        this.setBackground(Estilos.getBlanco_claro());
+        this.setFont(Estilos.getFuente());
         this.setPreferredSize(new Dimension(260, 35));
         
         Pagina_tareas idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();

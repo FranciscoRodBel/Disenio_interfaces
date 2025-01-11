@@ -29,8 +29,6 @@ import javax.swing.JScrollPane;
  * @author Propietario
  */
 public class Listas_view extends javax.swing.JPanel {
-
-    Estilos estilos = new Estilos();
     
     JLabel titulo_pagina = new JLabel("Listas");
 
@@ -51,11 +49,11 @@ public class Listas_view extends javax.swing.JPanel {
         this.setLayout(layout);
         this.setPreferredSize(new Dimension(1000, 555));
         this.setMaximumSize(new Dimension(1000, 555));
-        this.setBackground(estilos.getGris_claro());
+        this.setBackground(Estilos.getGris_claro());
         
         this.add(titulo_pagina);
         titulo_pagina.setHorizontalAlignment(SwingConstants.CENTER);
-        titulo_pagina.setFont(estilos.getFuenteTitulo());
+        titulo_pagina.setFont(Estilos.getFuenteTitulo());
         layout.putConstraint(SpringLayout.WEST, titulo_pagina, 0, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, titulo_pagina, 30, SpringLayout.NORTH, this);
         layout.putConstraint(SpringLayout.EAST, titulo_pagina, 0, SpringLayout.EAST, this);
@@ -72,7 +70,7 @@ public class Listas_view extends javax.swing.JPanel {
         layout.putConstraint(SpringLayout.NORTH, boton_insertar_lista, 47, SpringLayout.NORTH, titulo_pagina);
         
         panel_lista.setLayout(new BoxLayout(panel_lista, BoxLayout.Y_AXIS)); // Para colocar una tarea debajo de otra
-        panel_lista.setBackground(estilos.getGris_claro());
+        panel_lista.setBackground(Estilos.getGris_claro());
         
         scroll_panel_lista.setPreferredSize(new Dimension(615, 350));
         scroll_panel_lista.getVerticalScrollBar().setUnitIncrement(15); // Para aumentar la velocidad de la barra de scroll

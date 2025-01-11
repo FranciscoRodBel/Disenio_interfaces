@@ -26,7 +26,6 @@ import javax.swing.SwingConstants;
  */
 public class Ajustes_cuenta_view extends javax.swing.JPanel {
 
-    Estilos estilos = new Estilos();
     
     JLabel titulo_pagina = new JLabel("Ajustes de la cuenta");
     
@@ -48,11 +47,11 @@ public class Ajustes_cuenta_view extends javax.swing.JPanel {
         this.setLayout(layout);
         this.setPreferredSize(new Dimension(1000, 555));
         this.setMaximumSize(new Dimension(1000, 555));
-        this.setBackground(estilos.getGris_claro());
+        this.setBackground(Estilos.getGris_claro());
         
         this.add(titulo_pagina);
         titulo_pagina.setHorizontalAlignment(SwingConstants.CENTER);
-        titulo_pagina.setFont(estilos.getFuenteTitulo());
+        titulo_pagina.setFont(Estilos.getFuenteTitulo());
         layout.putConstraint(SpringLayout.WEST, titulo_pagina, 0, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, titulo_pagina, 20, SpringLayout.NORTH, this);
         layout.putConstraint(SpringLayout.EAST, titulo_pagina, 0, SpringLayout.EAST, this);
@@ -60,19 +59,19 @@ public class Ajustes_cuenta_view extends javax.swing.JPanel {
         this.add(panel_ajustes);
         SpringLayout layout2 = new SpringLayout();
         panel_ajustes.setLayout(layout2);
-        panel_ajustes.setBackground(estilos.getBlanco_claro());
+        panel_ajustes.setBackground(Estilos.getBlanco_claro());
         panel_ajustes.setBorder(new RoundedBorder(2, 2));
         panel_ajustes.setPreferredSize(new Dimension(500, 260));
         layout.putConstraint(SpringLayout.WEST, panel_ajustes, 250, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, panel_ajustes, 60, SpringLayout.NORTH, titulo_pagina);
         
         panel_ajustes.add(label_email);
-        label_email.setFont(estilos.getFuenteTitulo());
+        label_email.setFont(Estilos.getFuenteTitulo());
         layout2.putConstraint(SpringLayout.WEST, label_email, 20, SpringLayout.WEST, panel_ajustes);
         layout2.putConstraint(SpringLayout.NORTH, label_email, 20, SpringLayout.NORTH, panel_ajustes);
         
         panel_ajustes.add(label_email_usuario);
-        label_email_usuario.setFont(estilos.getFuenteConTamaio(18));
+        label_email_usuario.setFont(Estilos.getFuenteConTamaio(18));
         layout2.putConstraint(SpringLayout.WEST, label_email_usuario, 75, SpringLayout.WEST, label_email);
         layout2.putConstraint(SpringLayout.NORTH, label_email_usuario, 0, SpringLayout.NORTH, label_email);
         
@@ -85,7 +84,7 @@ public class Ajustes_cuenta_view extends javax.swing.JPanel {
         layout2.putConstraint(SpringLayout.NORTH, boton_cambiar_contrasenia, 60, SpringLayout.NORTH, boton_cambiar_email);
         
         panel_ajustes.add(boton_borrar_cuenta);
-        boton_borrar_cuenta.setBackground(estilos.getRojo());
+        boton_borrar_cuenta.setBackground(Estilos.getRojo());
         boton_borrar_cuenta.setPreferredSize(new Dimension(150, 35));
         layout2.putConstraint(SpringLayout.WEST, boton_borrar_cuenta, 175, SpringLayout.WEST, panel_ajustes);
         layout2.putConstraint(SpringLayout.NORTH, boton_borrar_cuenta, 60, SpringLayout.NORTH, boton_cambiar_contrasenia);
