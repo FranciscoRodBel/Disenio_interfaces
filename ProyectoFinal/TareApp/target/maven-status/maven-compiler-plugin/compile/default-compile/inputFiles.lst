@@ -1,6 +1,8 @@
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Input_password.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Separador.java
+D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Popup_editar_lista.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Boton.java
+D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Popup_borrar_cuenta_lista.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\RoundedBorder.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Tarea.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\Ajustes_cuenta_view.java
@@ -11,6 +13,7 @@ D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycomp
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\Tareas_view.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\TextPrompt.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Cabecera.java
+D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Popup_cambiar_email_contrasenia.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Input_text.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Popup_ver_borrar_tarea.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Pagina_tareas.java

@@ -105,5 +105,22 @@ public class Lista extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, separador3, 0, SpringLayout.NORTH, this);
         layout.putConstraint(SpringLayout.SOUTH, separador3, 0, SpringLayout.SOUTH, this);
         
+        botonEditarLista.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                
+                Popup_editar_lista popup_editar_lista = new Popup_editar_lista(Lista.this);
+                popup_editar_lista.setVisible(true);
+            }
+        });
+        
+        botonBorrarLista.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                
+                Popup_borrar_cuenta_lista popup_borrar_cuenta_lista = new Popup_borrar_cuenta_lista(Lista.this.getTitulo_lista().getText(),"lista");
+                popup_borrar_cuenta_lista.setVisible(true);
+            }
+        });
     }
 }

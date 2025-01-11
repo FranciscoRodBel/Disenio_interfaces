@@ -25,53 +25,42 @@ import javax.swing.SwingUtilities;
  *
  * @author Propietario
  */
-public class Popup_crear_editar_tarea extends JDialog {
+public class Popup_cambiar_email_contrasenia extends JDialog {
     
     Estilos estilos = new Estilos();
     JPanel panelPrincipal = new JPanel();
     
     String texto_titulo_popup;
-    String texto_input_titulo;
-    String texto_input_fecha;
-    String texto_input_prioridad;
-    String texto_input_descripcion;
-    String texto_boton;
+    String texto_input_nuevo;
+    String texto_input_repetir;
 
-    public Popup_crear_editar_tarea(Tarea tarea) {
+    public Popup_cambiar_email_contrasenia(String tipo_popup) {
         
         super((Window) null, "PopUp", ModalityType.APPLICATION_MODAL);
         
         this.setLayout(null);
         this.setResizable(false);  
-        this.setSize(new Dimension(800, 500));
+        this.setSize(new Dimension(800, 280));
         this.setLocationRelativeTo(null);
-        
-        
-        if (tarea == null) {
-            
-            texto_titulo_popup = "Crear tarea";
-            texto_input_titulo = "";
-            texto_input_fecha = "";
-            texto_input_prioridad = "";
-            texto_input_descripcion = "";
-            texto_boton = "Crear";
-            
-        } else {
-            
-            texto_titulo_popup = "Editar tarea";
-            texto_input_titulo = tarea.getTituloTarea().getText();
-            texto_input_fecha = tarea.getFechaTarea().getText(); 
-            texto_input_prioridad = tarea.getPrioridadTarea();
-            texto_input_descripcion = tarea.getDescripcionTarea();
-            texto_boton = "Editar";
-            
-        }
         
         this.add(panelPrincipal);
         SpringLayout layout = new SpringLayout();
         panelPrincipal.setLayout(layout);
-        panelPrincipal.setBounds(0, 0, 800, 500);
+        panelPrincipal.setBounds(0, 0, 800, 280);
         panelPrincipal.setBackground(estilos.getGris_claro());
+        
+        if (tipo_popup.equals("email")) {
+            
+            texto_titulo_popup = "Cambiar email";
+            texto_input_nuevo = "Nuevo email";
+            texto_input_repetir = "Repetir email";
+            
+        } else {
+        
+            texto_titulo_popup = "Cambiar contraseña";
+            texto_input_nuevo = "Nueva contraseña";
+            texto_input_repetir = "Repetir contraseña";
+        }
         
         JLabel labelTitulo = new JLabel(texto_titulo_popup, SwingConstants.CENTER);
         labelTitulo.setFont(estilos.getFuenteTitulo());
@@ -80,29 +69,19 @@ public class Popup_crear_editar_tarea extends JDialog {
         layout.putConstraint(SpringLayout.EAST, labelTitulo, 0, SpringLayout.EAST, panelPrincipal);
         panelPrincipal.add(labelTitulo);
         
-        Input_text input_titulo_terea = new Input_text("Título Tarea", texto_input_titulo);
-        layout.putConstraint(SpringLayout.WEST, input_titulo_terea, 270, SpringLayout.WEST, labelTitulo);
-        layout.putConstraint(SpringLayout.NORTH, input_titulo_terea, 50, SpringLayout.NORTH, labelTitulo);
-        panelPrincipal.add(input_titulo_terea);
-                   
-        Input_date input_fecha_terea = new Input_date(texto_input_fecha);
-        layout.putConstraint(SpringLayout.WEST, input_fecha_terea, 120, SpringLayout.WEST, panelPrincipal);
-        layout.putConstraint(SpringLayout.NORTH, input_fecha_terea, 50, SpringLayout.NORTH, input_titulo_terea);
-        panelPrincipal.add(input_fecha_terea);
+        Input_text input_nuevo = new Input_text(texto_input_nuevo, "");
+        layout.putConstraint(SpringLayout.WEST, input_nuevo, 270, SpringLayout.WEST, panelPrincipal);
+        layout.putConstraint(SpringLayout.NORTH, input_nuevo, 40, SpringLayout.NORTH, labelTitulo);
+        panelPrincipal.add(input_nuevo);
         
-        Select_prioridad input_prioridad_tarea = new Select_prioridad(texto_input_prioridad);
-        layout.putConstraint(SpringLayout.WEST, input_prioridad_tarea, 300, SpringLayout.WEST, input_fecha_terea);
-        layout.putConstraint(SpringLayout.NORTH, input_prioridad_tarea, 0, SpringLayout.NORTH, input_fecha_terea);
-        panelPrincipal.add(input_prioridad_tarea);
-                
-        Text_area_descripcion input_descripcion = new Text_area_descripcion(texto_input_descripcion);
-        layout.putConstraint(SpringLayout.WEST, input_descripcion, 150, SpringLayout.WEST, panelPrincipal);
-        layout.putConstraint(SpringLayout.NORTH, input_descripcion, 50, SpringLayout.NORTH, input_fecha_terea);
-        panelPrincipal.add(input_descripcion);
+        Input_text input_repetir = new Input_text(texto_input_repetir, "");
+        layout.putConstraint(SpringLayout.WEST, input_repetir, 270, SpringLayout.WEST, panelPrincipal);
+        layout.putConstraint(SpringLayout.NORTH, input_repetir, 60, SpringLayout.NORTH, input_nuevo);
+        panelPrincipal.add(input_repetir);
         
-        Boton bonton_crear = new Boton(texto_boton);
+        Boton bonton_crear = new Boton(texto_titulo_popup);
         layout.putConstraint(SpringLayout.WEST, bonton_crear, 300, SpringLayout.WEST, panelPrincipal);
-        layout.putConstraint(SpringLayout.NORTH, bonton_crear, 230, SpringLayout.NORTH, input_descripcion);
+        layout.putConstraint(SpringLayout.NORTH, bonton_crear, 60, SpringLayout.NORTH, input_repetir);
         panelPrincipal.add(bonton_crear);
     }
 }

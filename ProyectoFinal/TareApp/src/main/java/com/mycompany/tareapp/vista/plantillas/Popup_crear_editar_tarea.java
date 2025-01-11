@@ -45,8 +45,13 @@ public class Popup_crear_editar_tarea extends JDialog {
         this.setResizable(false);  
         this.setSize(new Dimension(800, 500));
         this.setLocationRelativeTo(null);
-        
-        
+
+        this.add(panelPrincipal);
+        SpringLayout layout = new SpringLayout();
+        panelPrincipal.setLayout(layout);
+        panelPrincipal.setBounds(0, 0, 800, 500);
+        panelPrincipal.setBackground(estilos.getGris_claro());
+          
         if (tarea == null) {
             
             texto_titulo_popup = "Crear tarea";
@@ -67,12 +72,6 @@ public class Popup_crear_editar_tarea extends JDialog {
             
         }
         
-        this.add(panelPrincipal);
-        SpringLayout layout = new SpringLayout();
-        panelPrincipal.setLayout(layout);
-        panelPrincipal.setBounds(0, 0, 800, 500);
-        panelPrincipal.setBackground(estilos.getGris_claro());
-        
         JLabel labelTitulo = new JLabel(texto_titulo_popup, SwingConstants.CENTER);
         labelTitulo.setFont(estilos.getFuenteTitulo());
         layout.putConstraint(SpringLayout.WEST, labelTitulo, 0, SpringLayout.WEST, panelPrincipal);
@@ -80,7 +79,7 @@ public class Popup_crear_editar_tarea extends JDialog {
         layout.putConstraint(SpringLayout.EAST, labelTitulo, 0, SpringLayout.EAST, panelPrincipal);
         panelPrincipal.add(labelTitulo);
         
-        Input_text input_titulo_terea = new Input_text("Título Tarea", texto_input_titulo);
+        Input_text input_titulo_terea = new Input_text("Título tarea", texto_input_titulo);
         layout.putConstraint(SpringLayout.WEST, input_titulo_terea, 270, SpringLayout.WEST, labelTitulo);
         layout.putConstraint(SpringLayout.NORTH, input_titulo_terea, 50, SpringLayout.NORTH, labelTitulo);
         panelPrincipal.add(input_titulo_terea);

@@ -6,8 +6,15 @@ package com.mycompany.tareapp.vista;
 
 import com.mycompany.tareapp.vista.plantillas.Boton;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
+import com.mycompany.tareapp.vista.plantillas.Lista;
+import com.mycompany.tareapp.vista.plantillas.Popup_borrar_cuenta_lista;
+import com.mycompany.tareapp.vista.plantillas.Popup_cambiar_email_contrasenia;
+import com.mycompany.tareapp.vista.plantillas.Popup_ver_borrar_tarea;
 import com.mycompany.tareapp.vista.plantillas.RoundedBorder;
+import com.mycompany.tareapp.vista.plantillas.Tarea;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
@@ -82,6 +89,35 @@ public class Ajustes_cuenta_view extends javax.swing.JPanel {
         boton_borrar_cuenta.setPreferredSize(new Dimension(150, 35));
         layout2.putConstraint(SpringLayout.WEST, boton_borrar_cuenta, 175, SpringLayout.WEST, panel_ajustes);
         layout2.putConstraint(SpringLayout.NORTH, boton_borrar_cuenta, 60, SpringLayout.NORTH, boton_cambiar_contrasenia);
+        
+        boton_cambiar_email.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                Popup_cambiar_email_contrasenia popup_cambiar_email_contrasenia = new Popup_cambiar_email_contrasenia("email");
+                popup_cambiar_email_contrasenia.setVisible(true);
+            }
+        });
+                
+        boton_cambiar_contrasenia.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                Popup_cambiar_email_contrasenia popup_cambiar_email_contrasenia = new Popup_cambiar_email_contrasenia("contrasenia");
+                popup_cambiar_email_contrasenia.setVisible(true);
+            }
+        });
+        
+        boton_borrar_cuenta.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                
+                Popup_borrar_cuenta_lista popup_borrar_cuenta_lista = new Popup_borrar_cuenta_lista(label_email_usuario.getText(),"usuario");
+                popup_borrar_cuenta_lista.setVisible(true);
+            }
+        });
     }
     
     public JLabel getTitulo_pagina() {
