@@ -42,6 +42,7 @@ public class Popup_crear_editar_tarea extends JDialog {
         super((Window) null, "PopUp", ModalityType.APPLICATION_MODAL);
         
         this.setLayout(null);
+        this.setResizable(false);  
         this.setSize(new Dimension(800, 500));
         this.setLocationRelativeTo(null);
         

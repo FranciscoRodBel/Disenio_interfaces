@@ -13,24 +13,27 @@ import static javax.swing.SwingConstants.CENTER;
  *
  * @author Francisco
  */
-public class Text_area_descripcion extends JTextArea {
+public class Text_area_descripcion extends JScrollPane {
 
-    JScrollPane scroll_text_area = new JScrollPane(this);
+    Estilos estilos = new Estilos();
+    JTextArea textArea;
     TextPrompt placeholder;
     
     public Text_area_descripcion(String texto_descripcion) {
         
+        textArea = new JTextArea();
+        textArea.setFont(estilos.getFuente());
+        
+        this.setViewportView(textArea);
         this.setPreferredSize(new Dimension(500, 200));
         this.setBorder(new RoundedBorder(2, 2));
-        scroll_text_area.setPreferredSize(new Dimension(500, 200));
-        scroll_text_area.setBorder(new RoundedBorder(2, 2));
-        placeholder = new TextPrompt("Descripción", this);
+        
+        placeholder = new TextPrompt("Descripción", textArea);
         placeholder.setHorizontalAlignment(CENTER);
         
         if (!texto_descripcion.isEmpty()) {
-        
-            this.setText(texto_descripcion);
             
+            textArea.setText(texto_descripcion);
         }
     }
     
@@ -42,4 +45,20 @@ public class Text_area_descripcion extends JTextArea {
         this.placeholder = placeholder;
     }
 
+    public JTextArea getTextArea() {
+        return textArea;
+    }
+
+    public void setTextArea(JTextArea textArea) {
+        this.textArea = textArea;
+    }
+    
+    public void cambiarFormatoVer() {
+        
+        this.setBorder(null);
+        this.setPreferredSize(new Dimension(700, 200));
+        textArea.setBackground(estilos.getBlanco_claro());
+        textArea.setCaretColor(null);
+        textArea.setFocusable(false);
+    }
 }

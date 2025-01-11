@@ -261,6 +261,16 @@ public class Tarea extends JPanel {
             }
         });
         
+        botonVerTarea.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                Popup_ver_borrar_tarea popup_ver_borrar_tarea = new Popup_ver_borrar_tarea(Tarea.this, "ver");
+                popup_ver_borrar_tarea.setVisible(true);
+            }
+        });
+        
         botonEditarTarea.addActionListener(new ActionListener() {
 
             @Override
@@ -268,6 +278,16 @@ public class Tarea extends JPanel {
 
                 Popup_crear_editar_tarea popup_crear_editar_tarea = new Popup_crear_editar_tarea(Tarea.this);
                 popup_crear_editar_tarea.setVisible(true);
+            }
+        });
+        
+        botonBorrarTarea.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                Popup_ver_borrar_tarea popup_ver_borrar_tarea = new Popup_ver_borrar_tarea(Tarea.this, "borrar");
+                popup_ver_borrar_tarea.setVisible(true);
             }
         });
     }
