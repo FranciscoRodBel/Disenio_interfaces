@@ -4,6 +4,9 @@
  */
 package com.mycompany.tareapp.vista.plantillas;
 
+import com.mycompany.tareapp.controlador.Idioma_controlador;
+import com.mycompany.tareapp.modelo.idioma.Idioma;
+import com.mycompany.tareapp.modelo.idioma.Pagina_tareas;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -51,24 +54,26 @@ public class Popup_crear_editar_tarea extends JDialog {
         panelPrincipal.setLayout(layout);
         panelPrincipal.setBounds(0, 0, 800, 500);
         panelPrincipal.setBackground(estilos.getGris_claro());
-          
+        
+        Pagina_tareas idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
+        
         if (tarea == null) {
             
-            texto_titulo_popup = "Crear tarea";
+            texto_titulo_popup = idioma_seleccionado.getTitulo_tarea();
             texto_input_titulo = "";
             texto_input_fecha = "";
             texto_input_prioridad = "";
             texto_input_descripcion = "";
-            texto_boton = "Crear";
+            texto_boton = idioma_seleccionado.getCrear_tarea();
             
         } else {
             
-            texto_titulo_popup = "Editar tarea";
+            texto_titulo_popup = idioma_seleccionado.getEditar_tarea();
             texto_input_titulo = tarea.getTituloTarea().getText();
             texto_input_fecha = tarea.getFechaTarea().getText(); 
-            texto_input_prioridad = tarea.getPrioridadTarea();
+            texto_input_prioridad = tarea.recoger_prioridad_tarea();
             texto_input_descripcion = tarea.getDescripcionTarea();
-            texto_boton = "Editar";
+            texto_boton = idioma_seleccionado.getEditar_tarea();
             
         }
         
@@ -79,7 +84,7 @@ public class Popup_crear_editar_tarea extends JDialog {
         layout.putConstraint(SpringLayout.EAST, labelTitulo, 0, SpringLayout.EAST, panelPrincipal);
         panelPrincipal.add(labelTitulo);
         
-        Input_text input_titulo_terea = new Input_text("Título tarea", texto_input_titulo);
+        Input_text input_titulo_terea = new Input_text(idioma_seleccionado.getTitulo_tarea(), texto_input_titulo);
         layout.putConstraint(SpringLayout.WEST, input_titulo_terea, 270, SpringLayout.WEST, labelTitulo);
         layout.putConstraint(SpringLayout.NORTH, input_titulo_terea, 50, SpringLayout.NORTH, labelTitulo);
         panelPrincipal.add(input_titulo_terea);

@@ -14,7 +14,12 @@ public class Pagina_ajustes_cuenta {
     private String cambiar_email;
     private String cambiar_contrasenia;
     private String borrar_cuenta;
-    
+    private String nuevo_email;
+    private String repetir_email;
+    private String nuevo_contrasenia;
+    private String repetir_contrasenia;
+    private String pregunta_borrar_cuenta;
+
     public String getTitulo_pagina() {
         return titulo_pagina;
     }
@@ -46,4 +51,46 @@ public class Pagina_ajustes_cuenta {
     public void setBorrar_cuenta(String borrar_cuenta) {
         this.borrar_cuenta = borrar_cuenta;
     }
+
+    public String getNuevo_email() {
+        return nuevo_email;
+    }
+
+    public void setNuevo_email(String nuevo_email) {
+        this.nuevo_email = nuevo_email;
+    }
+
+    public String getRepetir_email() {
+        return repetir_email;
+    }
+
+    public void setRepetir_email(String repetir_email) {
+        this.repetir_email = repetir_email;
+    }
+
+    public String getNuevo_contrasenia() {
+        return nuevo_contrasenia;
+    }
+
+    public void setNuevo_contrasenia(String nuevo_contrasenia) {
+        this.nuevo_contrasenia = nuevo_contrasenia;
+    }
+
+    public String getRepetir_contrasenia() {
+        return repetir_contrasenia;
+    }
+
+    public void setRepetir_contrasenia(String repetir_contrasenia) {
+        this.repetir_contrasenia = repetir_contrasenia;
+    }
+
+    public String getPregunta_borrar_cuenta() {
+        return pregunta_borrar_cuenta;
+    }
+
+    public void setPregunta_borrar_cuenta(String pregunta_borrar_cuenta) {
+        this.pregunta_borrar_cuenta = pregunta_borrar_cuenta;
+    }
+    
+    
 }

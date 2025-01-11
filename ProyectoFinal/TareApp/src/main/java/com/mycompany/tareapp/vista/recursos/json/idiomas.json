@@ -12,11 +12,25 @@
             },
             "Pagina_tareas": {
                 "titulo": "Tareas",
-                "seleccionar_lista": "Selecciona una lista"
+                "seleccionar_lista": "Seleccionar lista",
+                "crear_tarea": "Crear tarea",
+                "titulo_tarea": "Título tarea",
+                "prioridad": "Prioridad",
+                "baja": "Baja",
+                "media": "Media",
+                "alta": "Alta",
+                "descripcion": "Descripción",
+                "fecha": "Fecha",
+                "editar_tarea": "Editar tarea",
+                "borrar_tarea": "Borrar tarea",
+                "pregunta_borrar_tarea": "¿Seguro que quiere borrar la tarea?"
             },
             "Pagina_listas": {
                 "titulo": "Listas",
-                "input_lista": "Título lista"
+                "titulo_lista": "Título lista",
+                "editar_lista": "Editar lista",
+                "borrar_lista": "Borrar lista",
+                "pregunta_borrar_lista": "¿Seguro que quiere borrar la lista?"
             },
             "Pagina_inicio_registro": {
                 "titulo_inicio": "Inicio de sesión",
@@ -30,7 +44,12 @@
                 "titulo_pagina": "Ajustes de la cuenta",
                 "cambiar_email": "Cambiar email",
                 "cambiar_contrasenia": "Cambiar Contraseña",
-                "borrar_cuenta": "Borrar cuenta"
+                "borrar_cuenta": "Borrar cuenta",
+                "nuevo_email": "Nuevo email",
+                "repetir_email": "Repetir email",
+                "nuevo_contrasenia": "Nueva contraseña",
+                "repetir_contrasenia": "Repetir contraseña",
+                "pregunta_borrar_cuenta": "¿Seguro que quiere borrar la cuenta?"
             }
         },
         {
@@ -45,15 +64,29 @@
             },
             "Pagina_tareas": {
                 "titulo": "Tasks",
-                "seleccionar_lista": "Select a list"
+                "seleccionar_lista": "Select list",
+                "crear_tarea": "Create task",
+                "titulo_tarea": "Task title",
+                "prioridad": "Priority",
+                "baja": "Low",
+                "media": "Medium",
+                "alta": "High",
+                "descripcion": "Description",
+                "fecha": "Date",
+                "editar_tarea": "Edit task",
+                "borrar_tarea": "Delete task",
+                "pregunta_borrar_tarea": "Are you sure you want to delete the task?"
             },
             "Pagina_listas": {
                 "titulo": "Lists",
-                "input_lista": "List title"
+                "titulo_lista": "List title",
+                "editar_lista": "Edit list",
+                "borrar_lista": "Delete list",
+                "pregunta_borrar_lista": "Are you sure you want to delete the list?"
             },
             "Pagina_inicio_registro": {
                 "titulo_inicio": "Log in",
-                "titulo_registro": "Sign up",
+                "titulo_registro": "Register",
                 "iniciar_sesion": "Log in",
                 "registrarse": "Sign up",
                 "contrasenia": "Password",
@@ -63,7 +96,12 @@
                 "titulo_pagina": "Account settings",
                 "cambiar_email": "Change email",
                 "cambiar_contrasenia": "Change password",
-                "borrar_cuenta": "Delete account"
+                "borrar_cuenta": "Delete account",
+                "nuevo_email": "New email",
+                "repetir_email": "Repeat email",
+                "nuevo_contrasenia": "New password",
+                "repetir_contrasenia": "Repeat password",
+                "pregunta_borrar_cuenta": "Are you sure you want to delete the account?"
             }
         },
         {
@@ -78,11 +116,25 @@
             },
             "Pagina_tareas": {
                 "titulo": "Tâches",
-                "seleccionar_lista": "Sélectionner une liste"
+                "seleccionar_lista": "Sélectionner une liste",
+                "crear_tarea": "Créer une tâche",
+                "titulo_tarea": "Titre de la tâche",
+                "prioridad": "Priorité",
+                "baja": "Bas",
+                "media": "Médias",
+                "alta": "Élevé",
+                "descripcion": "Description",
+                "fecha": "Date",
+                "editar_tarea": "Modifier la tâche",
+                "borrar_tarea": "Supprimer la tâche",
+                "pregunta_borrar_tarea": "Êtes-vous sûr de vouloir supprimer la tâche?"
             },
             "Pagina_listas": {
                 "titulo": "Listes",
-                "input_lista": "Titre de la liste"
+                "titulo_lista": "Titre de la liste",
+                "editar_lista": "Modifier la liste",
+                "borrar_lista": "Supprimer la liste",
+                "pregunta_borrar_lista": "Êtes-vous sûr de vouloir supprimer la liste?"
             },
             "Pagina_inicio_registro": {
                 "titulo_inicio": "Connexion",
@@ -96,7 +148,12 @@
                 "titulo_pagina": "Paramètres du compte",
                 "cambiar_email": "Changer l'email",
                 "cambiar_contrasenia": "Changer le mot de passe",
-                "borrar_cuenta": "Supprimer compte"
+                "borrar_cuenta": "Supprimer compte",
+                "nuevo_email": "Nouvel email",
+                "repetir_email": "Répéter l'email",
+                "nuevo_contrasenia": "Nouveau mot de passe",
+                "repetir_contrasenia": "Répéter le mot de passe",
+                "pregunta_borrar_cuenta": "Êtes-vous sûr de vouloir supprimer le compte?"
             }
         }
     ]

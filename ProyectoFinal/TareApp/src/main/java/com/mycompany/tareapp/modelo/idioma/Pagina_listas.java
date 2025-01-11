@@ -11,8 +11,11 @@ package com.mycompany.tareapp.modelo.idioma;
 public class Pagina_listas {
 
     private String titulo;
-    private String input_lista;
-    
+    private String titulo_lista;
+    private String editar_lista;
+    private String borrar_lista;
+    private String pregunta_borrar_lista;
+
     public String getTitulo() {
         return titulo;
     }
@@ -21,11 +24,36 @@ public class Pagina_listas {
         this.titulo = titulo;
     }
 
-    public String getInput_lista() {
-        return input_lista;
+    public String getTitulo_lista() {
+        return titulo_lista;
     }
 
-    public void setInput_lista(String input_lista) {
-        this.input_lista = input_lista;
+    public void setTitulo_lista(String titulo_lista) {
+        this.titulo_lista = titulo_lista;
     }
+
+    public String getEditar_lista() {
+        return editar_lista;
+    }
+
+    public void setEditar_lista(String editar_lista) {
+        this.editar_lista = editar_lista;
+    }
+
+    public String getBorrar_lista() {
+        return borrar_lista;
+    }
+
+    public void setBorrar_lista(String borrar_lista) {
+        this.borrar_lista = borrar_lista;
+    }
+
+    public String getPregunta_borrar_lista() {
+        return pregunta_borrar_lista;
+    }
+
+    public void setPregunta_borrar_lista(String pregunta_borrar_lista) {
+        this.pregunta_borrar_lista = pregunta_borrar_lista;
+    }
+    
 }

@@ -4,6 +4,8 @@
  */
 package com.mycompany.tareapp.vista.plantillas;
 
+import com.mycompany.tareapp.controlador.Idioma_controlador;
+import com.mycompany.tareapp.modelo.idioma.Pagina_tareas;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -28,7 +30,9 @@ public class Text_area_descripcion extends JScrollPane {
         this.setPreferredSize(new Dimension(500, 200));
         this.setBorder(new RoundedBorder(2, 2));
         
-        placeholder = new TextPrompt("Descripción", textArea);
+        Pagina_tareas idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
+        
+        placeholder = new TextPrompt(idioma_seleccionado.getDescripcion(), textArea);
         placeholder.setHorizontalAlignment(CENTER);
         
         if (!texto_descripcion.isEmpty()) {

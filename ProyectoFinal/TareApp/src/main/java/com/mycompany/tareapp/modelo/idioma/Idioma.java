@@ -10,7 +10,7 @@ package com.mycompany.tareapp.modelo.idioma;
  */
 public class Idioma {
 
-    private String idioma;
+    private String idioma = "Español";
     private Cabecera Cabecera;
     private Pagina_tareas Pagina_tareas;
     private Pagina_listas Pagina_listas;

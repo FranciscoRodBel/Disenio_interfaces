@@ -54,7 +54,8 @@ public class Main extends javax.swing.JFrame {
         initComponents();
      
         idioma_controlador = new Idioma_controlador();
-        
+        idioma_controlador.cambiarIdioma("Español", cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
+
         this.setLayout(null);
         this.setResizable(false);        
         this.add(panelPrincipal);

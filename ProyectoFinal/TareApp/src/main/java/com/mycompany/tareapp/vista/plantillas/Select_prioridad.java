@@ -4,6 +4,8 @@
  */
 package com.mycompany.tareapp.vista.plantillas;
 
+import com.mycompany.tareapp.controlador.Idioma_controlador;
+import com.mycompany.tareapp.modelo.idioma.Pagina_tareas;
 import java.awt.Dimension;
 import javax.swing.JComboBox;
 
@@ -22,23 +24,26 @@ public class Select_prioridad extends JComboBox<String> {
         this.setFont(estilos.getFuente());
         this.setPreferredSize(new Dimension(260, 35));
         
-        this.addItem("Baja");
-        this.addItem("Media");
-        this.addItem("Alta");
+        Pagina_tareas idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
+        
+        this.addItem(idioma_seleccionado.getPrioridad());
+        this.addItem(idioma_seleccionado.getBaja());
+        this.addItem(idioma_seleccionado.getMedia());
+        this.addItem(idioma_seleccionado.getAlta());
         
         if (!texto_prioridad.isEmpty()) {
                     
             switch(texto_prioridad) {
                 case "Media":
-                    this.setSelectedIndex(1);
+                    this.setSelectedIndex(2);
                     break;    
 
                 case "Alta":
-                    this.setSelectedIndex(2);
+                    this.setSelectedIndex(3);
                     break;
 
                 default:
-                    this.setSelectedIndex(0);
+                    this.setSelectedIndex(1);
             }
         }
     }

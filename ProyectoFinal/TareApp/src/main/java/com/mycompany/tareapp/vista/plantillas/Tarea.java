@@ -4,6 +4,8 @@
  */
 package com.mycompany.tareapp.vista.plantillas;
 
+import com.mycompany.tareapp.controlador.Idioma_controlador;
+import com.mycompany.tareapp.modelo.idioma.Pagina_tareas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -30,7 +32,7 @@ public class Tarea extends JPanel {
     
     JLabel fechaTarea = new JLabel("05/01/2025");
     
-    String prioridadTarea;
+    int prioridadTarea;
     String descripcionTarea;
     
     JButton botonVerTarea = new JButton();
@@ -57,20 +59,20 @@ public class Tarea extends JPanel {
         
         this.setTituloTarea(titulo);
         
+        
+        this.setPrioridadTarea(prioridad);
+        
         switch(prioridad) {
             case 2:
                 this.setPrioridadMedia();
-                prioridadTarea = "Media";
                 break;    
               
             case 3:
                 this.setPrioridadAlta();
-                prioridadTarea = "Alta";
                 break;
               
             default:
                 this.setPrioridadBaja();
-                prioridadTarea = "Baja";
         }
         
         this.setFechaTarea(fecha);
@@ -136,12 +138,12 @@ public class Tarea extends JPanel {
         
         this.getLabelPrioridad().setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-up-solid.png"));
     }
-    
-    public String getPrioridadTarea() {
+
+    public int getPrioridadTarea() {
         return prioridadTarea;
     }
 
-    public void setPrioridadTarea(String prioridadTarea) {
+    public void setPrioridadTarea(int prioridadTarea) {
         this.prioridadTarea = prioridadTarea;
     }
     
@@ -290,5 +292,22 @@ public class Tarea extends JPanel {
                 popup_ver_borrar_tarea.setVisible(true);
             }
         });
+    }
+    
+    public String recoger_prioridad_tarea() {
+        
+        
+        Pagina_tareas idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
+        
+        switch(prioridadTarea) {
+            case 2:
+                return idioma_seleccionado.getMedia();
+              
+            case 3:
+                return idioma_seleccionado.getAlta();
+              
+            default:
+                return idioma_seleccionado.getBaja();
+        }
     }
 }

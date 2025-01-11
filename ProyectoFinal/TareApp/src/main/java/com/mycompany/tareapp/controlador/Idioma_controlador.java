@@ -22,15 +22,34 @@ import java.util.Scanner;
  */
 public class Idioma_controlador {
 
-    private Idiomas idiomas;
-    private Idioma idioma_seleccionado;
+    private static Idiomas idiomas;
+    private static Idioma idioma_seleccionado;
     
-    public Idioma_controlador() throws FileNotFoundException {
-        
-        convertirJsonEnClase();
+    static {
+        try {
+            convertirJsonEnClase();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void cambiarIdioma(String idioma, Cabecera cabecera, Tareas_view tareas_view, Listas_view listas_view, Iniciar_registrar_view iniciar_registrar_view, Ajustes_cuenta_view ajustes_cuenta_view) {
+    public static Idiomas getIdiomas() {
+        return idiomas;
+    }
+
+    public static void setIdiomas(Idiomas idiomas) {
+        Idioma_controlador.idiomas = idiomas;
+    }
+
+    public static Idioma getIdioma_seleccionado() {
+        return idioma_seleccionado;
+    }
+
+    public static void setIdioma_seleccionado(Idioma idioma_seleccionado) {
+        Idioma_controlador.idioma_seleccionado = idioma_seleccionado;
+    }
+    
+    public static void cambiarIdioma(String idioma, Cabecera cabecera, Tareas_view tareas_view, Listas_view listas_view, Iniciar_registrar_view iniciar_registrar_view, Ajustes_cuenta_view ajustes_cuenta_view) {
         
         for (Idioma idioma_json : idiomas.getIdioma()) {
             
@@ -52,7 +71,7 @@ public class Idioma_controlador {
         tareas_view.getSeleccionarLista().insertItemAt(idioma_seleccionado.getPagina_tareas().getSeleccionar_lista(), 0);
         tareas_view.getSeleccionarLista().removeItemAt(1);
         listas_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_listas().getTitulo());
-        listas_view.getInput_titulo_lista().getPlaceholder().setText(idioma_seleccionado.getPagina_listas().getInput_lista());
+        listas_view.getInput_titulo_lista().getPlaceholder().setText(idioma_seleccionado.getPagina_listas().getTitulo_lista());
         
         
         iniciar_registrar_view.getTitulo_pagina_inicio().setText(idioma_seleccionado.getPagina_inicio_registro().getTitulo_inicio());
@@ -72,7 +91,7 @@ public class Idioma_controlador {
         ajustes_cuenta_view.getBoton_borrar_cuenta().setText(idioma_seleccionado.getPagina_ajustes_cuenta().getBorrar_cuenta());
     }
     
-    public void convertirJsonEnClase() throws FileNotFoundException {
+    public static void convertirJsonEnClase() throws FileNotFoundException {
 
         Scanner scanner = new Scanner(new File("src/main/java/com/mycompany/tareapp/vista/recursos/json/idiomas.json")); // Se recoge el json
         String json = "";

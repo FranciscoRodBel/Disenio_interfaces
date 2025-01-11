@@ -4,6 +4,9 @@
  */
 package com.mycompany.tareapp.vista.plantillas;
 
+import com.mycompany.tareapp.controlador.Idioma_controlador;
+import com.mycompany.tareapp.modelo.idioma.Idioma;
+import com.mycompany.tareapp.modelo.idioma.Pagina_ajustes_cuenta;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -49,17 +52,19 @@ public class Popup_cambiar_email_contrasenia extends JDialog {
         panelPrincipal.setBounds(0, 0, 800, 280);
         panelPrincipal.setBackground(estilos.getGris_claro());
         
+        Pagina_ajustes_cuenta idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getPagina_ajustes_cuenta();
+        
         if (tipo_popup.equals("email")) {
             
-            texto_titulo_popup = "Cambiar email";
-            texto_input_nuevo = "Nuevo email";
-            texto_input_repetir = "Repetir email";
+            texto_titulo_popup = idioma_seleccionado.getCambiar_email();
+            texto_input_nuevo = idioma_seleccionado.getNuevo_email();
+            texto_input_repetir = idioma_seleccionado.getRepetir_email();
             
         } else {
         
-            texto_titulo_popup = "Cambiar contraseña";
-            texto_input_nuevo = "Nueva contraseña";
-            texto_input_repetir = "Repetir contraseña";
+            texto_titulo_popup = idioma_seleccionado.getCambiar_contrasenia();
+            texto_input_nuevo = idioma_seleccionado.getNuevo_contrasenia();
+            texto_input_repetir = idioma_seleccionado.getRepetir_contrasenia();
         }
         
         JLabel labelTitulo = new JLabel(texto_titulo_popup, SwingConstants.CENTER);

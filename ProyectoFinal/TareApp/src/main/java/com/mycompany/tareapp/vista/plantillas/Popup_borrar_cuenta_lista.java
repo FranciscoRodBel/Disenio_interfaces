@@ -4,6 +4,9 @@
  */
 package com.mycompany.tareapp.vista.plantillas;
 
+import com.mycompany.tareapp.controlador.Idioma_controlador;
+import com.mycompany.tareapp.modelo.idioma.Idioma;
+import com.mycompany.tareapp.modelo.idioma.Pagina_listas;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -49,15 +52,17 @@ public class Popup_borrar_cuenta_lista extends JDialog {
         panelPrincipal.setBounds(0, 0, 800, 230);
         panelPrincipal.setBackground(estilos.getBlanco_claro());
         
+        Idioma idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado();
+        
         if (tipo_popup.equals("usuario")) {
             
-            texto_pregunta_confirmacion = "¿Seguro que quiere borrar la cuenta?";
-            texto_boton_borrar = "Borrar cuenta";
+            texto_pregunta_confirmacion = idioma_seleccionado.getPagina_ajustes_cuenta().getPregunta_borrar_cuenta();
+            texto_boton_borrar = idioma_seleccionado.getPagina_ajustes_cuenta().getBorrar_cuenta();
             
         } else {
         
-            texto_pregunta_confirmacion = "¿Seguro que quiere borrar la lista?";
-            texto_boton_borrar = "Borrar lista";
+            texto_pregunta_confirmacion = idioma_seleccionado.getPagina_listas().getPregunta_borrar_lista();
+            texto_boton_borrar = idioma_seleccionado.getPagina_listas().getBorrar_lista();
         }
         
         JLabel label_titulo_tarea = new JLabel(texto_pregunta_confirmacion, SwingConstants.CENTER);
