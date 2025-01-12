@@ -29,9 +29,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
+import static javax.swing.SwingConstants.CENTER;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -62,7 +64,9 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
     Input_password repetir_contrasenia_registro = new Input_password("Repetir contraseña");
     Boton boton_enviar_registro = new Boton("Registrarse");
     
-    
+    JTextArea label_resultado_inicio = new JTextArea();
+    JTextArea label_resultado_registro = new JTextArea();
+
     /**
      * Creates new form Iniciar_registrar_view2
      */
@@ -119,7 +123,7 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         panel_inicio.setLayout(layout2);
         panel_inicio.setBackground(Estilos.getBlanco_claro());
         panel_inicio.setBorder(new RoundedBorder(2, 2));
-        panel_inicio.setPreferredSize(new Dimension(400, 220));
+        panel_inicio.setPreferredSize(new Dimension(400, 240));
         layout.putConstraint(SpringLayout.WEST, panel_inicio, 300, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, panel_inicio, 38, SpringLayout.NORTH, boton_iniciar);
         
@@ -136,12 +140,24 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         layout2.putConstraint(SpringLayout.NORTH, boton_enviar_inicio, 60, SpringLayout.NORTH, contrasenia_iniciar);
         panel_inicio.setVisible(true);
         
+        panel_inicio.add(label_resultado_inicio);
+        label_resultado_inicio.setFont(Estilos.getFuenteConTamaio(12));
+        label_resultado_inicio.setBackground(new Color(0, 0, 0, 0));
+        label_resultado_inicio.setBorder(BorderFactory.createEmptyBorder());
+        label_resultado_inicio.setFocusable(false);   
+        label_resultado_inicio.setLineWrap(true);
+        label_resultado_inicio.setWrapStyleWord(true);
+        label_resultado_inicio.setBorder(BorderFactory.createEmptyBorder());
+        layout2.putConstraint(SpringLayout.WEST, label_resultado_inicio, 10, SpringLayout.WEST, panel_inicio);
+        layout2.putConstraint(SpringLayout.NORTH, label_resultado_inicio, 45, SpringLayout.NORTH, boton_enviar_inicio);
+        layout2.putConstraint(SpringLayout.EAST, label_resultado_inicio, 10, SpringLayout.EAST, panel_inicio);
+        
         this.add(panel_registro);
         SpringLayout layout3 = new SpringLayout();
         panel_registro.setLayout(layout3);
         panel_registro.setBackground(Estilos.getBlanco_claro());
         panel_registro.setBorder(new RoundedBorder(2, 2));
-        panel_registro.setPreferredSize(new Dimension(400, 280));
+        panel_registro.setPreferredSize(new Dimension(400, 300));
         layout.putConstraint(SpringLayout.WEST, panel_registro, 300, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, panel_registro, 38, SpringLayout.NORTH, boton_registrarse);
         
@@ -161,6 +177,18 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         layout3.putConstraint(SpringLayout.WEST, boton_enviar_registro, 100, SpringLayout.WEST, panel_registro);
         layout3.putConstraint(SpringLayout.NORTH, boton_enviar_registro, 60, SpringLayout.NORTH, repetir_contrasenia_registro);
         panel_registro.setVisible(false);
+        
+        panel_registro.add(label_resultado_registro);
+        label_resultado_registro.setFont(Estilos.getFuenteConTamaio(12));
+        label_resultado_registro.setBackground(new Color(0, 0, 0, 0));
+        label_resultado_registro.setBorder(BorderFactory.createEmptyBorder());
+        label_resultado_registro.setFocusable(false);   
+        label_resultado_registro.setLineWrap(true);
+        label_resultado_registro.setWrapStyleWord(true);
+        label_resultado_registro.setBorder(BorderFactory.createEmptyBorder());
+        layout3.putConstraint(SpringLayout.WEST, label_resultado_registro, 10, SpringLayout.WEST, panel_registro);
+        layout3.putConstraint(SpringLayout.NORTH, label_resultado_registro, 45, SpringLayout.NORTH, boton_enviar_registro);
+        layout3.putConstraint(SpringLayout.EAST, label_resultado_registro, 10, SpringLayout.EAST, panel_registro);
         
         boton_iniciar.addActionListener(new ActionListener() {
 
@@ -198,12 +226,10 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent e) {
                 
                 String contrasenia = new String(contrasenia_registro.getPassword());
-                String repetirContrasenia = new String(repetir_contrasenia_registro.getPassword());
+                String repetir_contrasenia = new String(repetir_contrasenia_registro.getPassword());
                 
-                if (contrasenia.equals(repetirContrasenia)) {
-                
-                    usuario_controlador.insertar_usuario(new Usuario(email_registro.getText(), contrasenia));
-                }
+                String mensaje_resultado = usuario_controlador.insertar_usuario(email_registro.getText(), contrasenia, repetir_contrasenia);
+                label_resultado_registro.setText(mensaje_resultado);
             }
         });
     }

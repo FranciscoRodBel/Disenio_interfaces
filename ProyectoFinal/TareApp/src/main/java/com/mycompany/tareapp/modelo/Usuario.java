@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  *
@@ -53,7 +55,7 @@ public class Usuario {
         this.idioma_seleccionado = idioma_seleccionado;
     }
     
-    public Boolean esta_email_repetido() {
+    public boolean esta_email_repetido() {
     
         
         String consultaRecoger = "SELECT * FROM usuario WHERE email = '"+ this.getEmail() +"'";
@@ -61,4 +63,35 @@ public class Usuario {
         
         return !resultados.isEmpty();
     }
+    
+    public boolean es_email_valido(String email) {
+        
+        // Pattern sacado de: https://www.baeldung.com/java-email-validation-regex
+        String regex = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        Pattern pattern = Pattern.compile(regex);
+        
+        return pattern.matcher(email).matches();
+    }
+    
+    public boolean es_contrasenia_valida(String contrasenia) {
+        
+        // Pattern sacado de: https://www.techiedelight.com/es/validate-password-java/
+        String regex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{4,50}$";
+        Pattern pattern = Pattern.compile(regex);
+        
+        return pattern.matcher(contrasenia).matches();
+    }
+    
+    public String cifrar_contrasenia(String contraseña) {
+        
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(); // He decidido usar esta función ya que permite cifrar pero no descifrar
+        return encoder.encode(contraseña); // El hash siempre tiene 60 caracteres
+    }
+
+    public boolean verificar_contrasenia(String contraseña, String contraseñaCifrada) {
+        
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder.matches(contraseña, contraseñaCifrada);
+    }
+
 }

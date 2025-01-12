@@ -15,16 +15,31 @@ public class Usuario_controlador {
 
     private final BBDD_tareapp bbdd_tareapp = new BBDD_tareapp();
 
-    public Boolean insertar_usuario(Usuario usuario) {
+    public String insertar_usuario(String email,String contrasenia,String repetir_contrasenia) {
     
-        String email = usuario.getEmail();
-        String contrasenia = usuario.getContrasenia();
+        Usuario usuario = new Usuario(email, contrasenia);
         
-        if (usuario.esta_email_repetido()) return false;
+        if (email.length() > 255) return "El email no puede superar los 255 caracteres";
+        
+        if (!usuario.es_email_valido(email)) return "El email no es válido";
+        
+        if (usuario.esta_email_repetido()) return "El email ya está registrado";
+        
+        if (!contrasenia.equals(repetir_contrasenia)) return "Las contraseñas no coinciden";
+        
+        if (!usuario.es_contrasenia_valida(contrasenia)) return "Contraseña inválida: requiere mayúsculas, minúsculas, números y entre 4-50 caracteres";
+        
+        contrasenia = usuario.cifrar_contrasenia(contrasenia);
         
         String consulta = "INSERT INTO usuario (email, contrasenia) VALUES ('"+email+"', '"+contrasenia+"')";
-        bbdd_tareapp.insertar(consulta);
         
-        return true;
+        if(bbdd_tareapp.insertar(consulta)) {
+            
+            return "Cuenta creada";
+            
+        } else {
+            
+            return "No se ha podido crear el usuario";
+        }
     }
 }
