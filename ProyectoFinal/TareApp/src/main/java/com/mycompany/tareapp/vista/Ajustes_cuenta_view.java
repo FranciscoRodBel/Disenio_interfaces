@@ -6,7 +6,7 @@ package com.mycompany.tareapp.vista;
 
 import com.mycompany.tareapp.vista.plantillas.Boton;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
-import com.mycompany.tareapp.vista.plantillas.Lista;
+import com.mycompany.tareapp.vista.plantillas.Lista_plantilla;
 import com.mycompany.tareapp.vista.plantillas.Popup_borrar_cuenta_lista;
 import com.mycompany.tareapp.vista.plantillas.Popup_cambiar_email_contrasenia;
 import com.mycompany.tareapp.vista.plantillas.Popup_ver_borrar_tarea;

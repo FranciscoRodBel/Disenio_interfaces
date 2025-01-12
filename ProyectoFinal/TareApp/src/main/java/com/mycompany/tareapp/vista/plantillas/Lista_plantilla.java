@@ -17,23 +17,32 @@ import javax.swing.SpringLayout;
  *
  * @author Propietario
  */
-public class Lista extends JPanel {
+public class Lista_plantilla extends JPanel {
 
+    int idLista;
     JLabel titulo_lista = new JLabel("Título tarea");
     
     JButton botonVerLista = new JButton();
     JButton botonEditarLista = new JButton();
     JButton botonBorrarLista = new JButton();
     
-    public Lista() {
+    public Lista_plantilla() {
         
         generarEstructura();
     }
     
-    public Lista(String titulo_lista) {
+    public Lista_plantilla(String titulo_lista) {
         
         generarEstructura();
         
+        this.setTitulo_lista(titulo_lista);
+    }
+    
+    public Lista_plantilla(int idLista, String titulo_lista) {
+        
+        generarEstructura();
+        
+        this.setIdLista(idLista);
         this.setTitulo_lista(titulo_lista);
     }
     
@@ -46,8 +55,15 @@ public class Lista extends JPanel {
         
         this.getTitulo_lista().setText(titulo_lista);
     }
-   
 
+    public int getIdLista() {
+        return idLista;
+    }
+
+    public void setIdLista(int idLista) {
+        this.idLista = idLista;
+    }
+   
     public void generarEstructura() {
         
         SpringLayout layout = new SpringLayout();
@@ -107,7 +123,7 @@ public class Lista extends JPanel {
 
             public void actionPerformed(ActionEvent e) {
                 
-                Popup_editar_lista popup_editar_lista = new Popup_editar_lista(Lista.this);
+                Popup_editar_lista popup_editar_lista = new Popup_editar_lista(Lista_plantilla.this);
                 popup_editar_lista.setVisible(true);
             }
         });
@@ -116,7 +132,7 @@ public class Lista extends JPanel {
 
             public void actionPerformed(ActionEvent e) {
                 
-                Popup_borrar_cuenta_lista popup_borrar_cuenta_lista = new Popup_borrar_cuenta_lista(Lista.this.getTitulo_lista().getText(),"lista");
+                Popup_borrar_cuenta_lista popup_borrar_cuenta_lista = new Popup_borrar_cuenta_lista(Lista_plantilla.this.getTitulo_lista().getText(),"lista");
                 popup_borrar_cuenta_lista.setVisible(true);
             }
         });

@@ -4,6 +4,9 @@
  */
 package com.mycompany.tareapp.vista;
 
+import com.mycompany.tareapp.controlador.Lista_controlador;
+import com.mycompany.tareapp.controlador.Usuario_controlador;
+import com.mycompany.tareapp.modelo.Usuario;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
@@ -15,14 +18,18 @@ import javax.swing.SwingConstants;
 import com.mycompany.tareapp.vista.plantillas.RoundedBorder;
 import com.mycompany.tareapp.vista.plantillas.TextPrompt;
 import com.mycompany.tareapp.vista.plantillas.Input_text;
-import com.mycompany.tareapp.vista.plantillas.Lista;
+import com.mycompany.tareapp.vista.plantillas.Lista_plantilla;
 import com.mycompany.tareapp.vista.plantillas.Tarea;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.Timer;
 
 /**
  *
@@ -30,11 +37,17 @@ import javax.swing.JScrollPane;
  */
 public class Listas_view extends javax.swing.JPanel {
     
+    Lista_controlador lista_controlador = new Lista_controlador();
+    
+    Usuario usuario;
+    
     JLabel titulo_pagina = new JLabel("Listas");
 
     Input_text input_titulo_lista = new Input_text("Título lista", "");
     
     JButton boton_insertar_lista = new JButton();
+    
+    JLabel label_resultado_lista = new JLabel();
     
     JPanel panel_lista = new JPanel();
     JScrollPane scroll_panel_lista = new JScrollPane(panel_lista);
@@ -42,8 +55,10 @@ public class Listas_view extends javax.swing.JPanel {
     /**
      * Creates new form Listas_view
      */
-    public Listas_view() {
+    public Listas_view(Usuario usuario) {
         initComponents();
+    
+        this.usuario = usuario;
         
         SpringLayout layout = new SpringLayout();
         this.setLayout(layout);
@@ -69,6 +84,13 @@ public class Listas_view extends javax.swing.JPanel {
         layout.putConstraint(SpringLayout.WEST, boton_insertar_lista, 620, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, boton_insertar_lista, 47, SpringLayout.NORTH, titulo_pagina);
         
+        this.add(label_resultado_lista);
+        label_resultado_lista.setHorizontalAlignment(SwingConstants.CENTER);
+        label_resultado_lista.setFont(Estilos.getFuenteConTamaio(12));
+        layout.putConstraint(SpringLayout.WEST, label_resultado_lista, 0, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.NORTH, label_resultado_lista, 50, SpringLayout.NORTH, input_titulo_lista);
+        layout.putConstraint(SpringLayout.EAST, label_resultado_lista, 0, SpringLayout.EAST, this);
+        
         panel_lista.setLayout(new BoxLayout(panel_lista, BoxLayout.Y_AXIS)); // Para colocar una tarea debajo de otra
         panel_lista.setBackground(Estilos.getGris_claro());
         
@@ -77,23 +99,29 @@ public class Listas_view extends javax.swing.JPanel {
         scroll_panel_lista.setBorder(null);
         this.add(scroll_panel_lista);
         layout.putConstraint(SpringLayout.WEST, scroll_panel_lista, 200, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.NORTH, scroll_panel_lista, 60, SpringLayout.NORTH, input_titulo_lista);
+        layout.putConstraint(SpringLayout.NORTH, scroll_panel_lista, 80, SpringLayout.NORTH, input_titulo_lista);
         
-        agregarLista(new Lista("Lista 1"));
-        agregarLista(new Lista("Lista 2"));
-        agregarLista(new Lista("Lista 3"));
-        agregarLista(new Lista("Lista 4"));
-        agregarLista(new Lista("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"));
-        agregarLista(new Lista("Lista de prueba para el proyecto final de curso 2."));
+        actualizar_panel_lista();
         
         boton_insertar_lista.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 
-                agregarLista(new Lista("Título ejemplo lista"));
+                String mensaje_resultado = lista_controlador.crear_lista(input_titulo_lista.getText(), usuario.getEmail());
+                
+                // Cambiar creada por el texto del idioma seleccionado
+                if (mensaje_resultado.contains("creada")) {
+                
+                    input_titulo_lista.setText("");
+                    actualizar_panel_lista();
+                } 
+                
+                label_resultado_lista.setText(mensaje_resultado);
+                Timer tiempo_espera = new Timer(3000, evt -> label_resultado_lista.setText(""));
+                tiempo_espera.setRepeats(false);
+                tiempo_espera.start();
             }
         });
-        
     }
 
     public JLabel getTitulo_pagina() {
@@ -112,12 +140,24 @@ public class Listas_view extends javax.swing.JPanel {
         this.input_titulo_lista = input_titulo_lista;
     }
 
-    private void agregarLista(Lista lista) {
+    private void actualizar_panel_lista() {
         
-        lista.setMaximumSize(new Dimension(600, 50)); // Si no pongo el máximo se estíran las tareas para ocupar todo el panel
-        lista.setMinimumSize(new Dimension(600, 50)); // Si no pongo el mínimo ocupan la mitad del ancho del panel
+        panel_lista.removeAll();
+    
+        ArrayList<HashMap<String, Object>> listas = lista_controlador.recoger_listas(usuario.getEmail());
         
-        panel_lista.add(lista);
+        for(HashMap<String, Object> fila : listas) {
+        
+            int idLista = (int) fila.get("idLista");
+            String titulo = (String) fila.get("titulo");
+            
+            Lista_plantilla lista_plantilla = new Lista_plantilla(idLista, titulo);
+            lista_plantilla.setMaximumSize(new Dimension(600, 50)); // Si no pongo el máximo se estíran las tareas para ocupar todo el panel
+            lista_plantilla.setMinimumSize(new Dimension(600, 50)); // Si no pongo el mínimo ocupan la mitad del ancho del panel
+            
+            panel_lista.add(lista_plantilla);
+        }
+        
         panel_lista.revalidate();
         panel_lista.repaint();
     }

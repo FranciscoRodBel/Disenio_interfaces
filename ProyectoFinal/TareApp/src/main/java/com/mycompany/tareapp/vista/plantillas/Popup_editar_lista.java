@@ -32,7 +32,7 @@ public class Popup_editar_lista extends JDialog {
     
     JPanel panelPrincipal = new JPanel();
 
-    public Popup_editar_lista(Lista lista) {
+    public Popup_editar_lista(Lista_plantilla lista) {
         
         super((Window) null, "PopUp", ModalityType.APPLICATION_MODAL);
         

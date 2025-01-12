@@ -8,7 +8,7 @@ import com.mycompany.tareapp.controlador.Idioma_controlador;
 import com.mycompany.tareapp.modelo.Usuario;
 import com.mycompany.tareapp.vista.plantillas.Cabecera;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
-import com.mycompany.tareapp.vista.plantillas.Lista;
+import com.mycompany.tareapp.vista.plantillas.Lista_plantilla;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -22,7 +22,7 @@ import javax.swing.SpringLayout;
 
 /**
  *
- * @author Propietario
+ * @author FranciscoRB
  */
 public class Main extends javax.swing.JFrame {
 
@@ -37,9 +37,11 @@ public class Main extends javax.swing.JFrame {
     
     Iniciar_registrar_view iniciar_registrar_view = new Iniciar_registrar_view();
     
-    Listas_view listas_view = new Listas_view();
+    Listas_view listas_view;
     
     Ajustes_cuenta_view ajustes_cuenta_view = new Ajustes_cuenta_view();
+    
+    Usuario usuario = Usuario.recoger_usuario("franciscoRB@franciscoRB.com");
     
     public Idioma_controlador getIdioma_controlador() {
         return idioma_controlador;
@@ -49,14 +51,18 @@ public class Main extends javax.swing.JFrame {
         this.idioma_controlador = idioma_controlador;
     }
 
-    /**
-     * Creates new form Main
-     */
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     public Main() throws FileNotFoundException {
         initComponents();
      
         idioma_controlador = new Idioma_controlador();
-        idioma_controlador.cambiarIdioma("Español", cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
 
         this.setLayout(null);
         this.setResizable(false);        
@@ -76,7 +82,7 @@ public class Main extends javax.swing.JFrame {
         layout.putConstraint(SpringLayout.WEST, iniciar_registrar_view, 0, SpringLayout.WEST, cabecera);
         layout.putConstraint(SpringLayout.NORTH, iniciar_registrar_view, 45, SpringLayout.NORTH, cabecera);
         layout.putConstraint(SpringLayout.EAST, iniciar_registrar_view, 0, SpringLayout.EAST, cabecera);
-        iniciar_registrar_view.setVisible(true);
+        iniciar_registrar_view.setVisible(false);
         
         iniciar_registrar_view.getBoton_enviar_inicio().addActionListener(new ActionListener() {
 
@@ -89,6 +95,7 @@ public class Main extends javax.swing.JFrame {
                 
                 if (mensaje_resultado.isEmpty()) {
                     
+                    usuario = Usuario.recoger_usuario(email);
                     //generarInterfaz();
                     
                 } else {
@@ -99,6 +106,58 @@ public class Main extends javax.swing.JFrame {
         });
        
         generarInterfaz();
+        
+        idioma_controlador.cambiarIdioma(usuario.getIdioma_seleccionado(), cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
+        
+
+        
+        cabecera.getItemEspaniol().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                
+                idioma_controlador.cambiarIdioma("Español", cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
+            }
+        });
+        
+        cabecera.getItemIngles().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                
+                idioma_controlador.cambiarIdioma("English", cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
+            }
+        });
+                
+        cabecera.getItemFrances().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+            
+                idioma_controlador.cambiarIdioma("Français", cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
+            }
+        });
+    }
+    
+    public void generarInterfaz() {
+        
+        listas_view = new Listas_view(usuario);
+        
+        panelPrincipal.add(tareas_view);
+        layout.putConstraint(SpringLayout.WEST, tareas_view, 0, SpringLayout.WEST, cabecera);
+        layout.putConstraint(SpringLayout.NORTH, tareas_view, 45, SpringLayout.NORTH, cabecera);
+        layout.putConstraint(SpringLayout.EAST, tareas_view, 0, SpringLayout.EAST, cabecera);
+        tareas_view.setVisible(false);
+        
+        panelPrincipal.add(listas_view);
+        layout.putConstraint(SpringLayout.WEST, listas_view, 0, SpringLayout.WEST, cabecera);
+        layout.putConstraint(SpringLayout.NORTH, listas_view, 45, SpringLayout.NORTH, cabecera);
+        layout.putConstraint(SpringLayout.EAST, listas_view, 0, SpringLayout.EAST, cabecera);
+        listas_view.setVisible(true);
+
+        panelPrincipal.add(ajustes_cuenta_view);
+        layout.putConstraint(SpringLayout.WEST, ajustes_cuenta_view, 0, SpringLayout.WEST, cabecera);
+        layout.putConstraint(SpringLayout.NORTH, ajustes_cuenta_view, 45, SpringLayout.NORTH, cabecera);
+        layout.putConstraint(SpringLayout.EAST, ajustes_cuenta_view, 0, SpringLayout.EAST, cabecera);
+        ajustes_cuenta_view.setVisible(false);
+        
         
         cabecera.getItemTareas().addActionListener(new ActionListener() {
 
@@ -135,53 +194,6 @@ public class Main extends javax.swing.JFrame {
                 iniciar_registrar_view.setVisible(true);
             }
         });
-        
-        cabecera.getItemEspaniol().addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                
-                idioma_controlador.cambiarIdioma("Español", cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
-            }
-        });
-        
-        cabecera.getItemIngles().addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                
-                idioma_controlador.cambiarIdioma("English", cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
-            }
-        });
-                
-        cabecera.getItemFrances().addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-            
-                idioma_controlador.cambiarIdioma("Français", cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
-            }
-        });
-        
-    }
-    
-    public void generarInterfaz() {
-        
-        panelPrincipal.add(tareas_view);
-        layout.putConstraint(SpringLayout.WEST, tareas_view, 0, SpringLayout.WEST, cabecera);
-        layout.putConstraint(SpringLayout.NORTH, tareas_view, 45, SpringLayout.NORTH, cabecera);
-        layout.putConstraint(SpringLayout.EAST, tareas_view, 0, SpringLayout.EAST, cabecera);
-        tareas_view.setVisible(false);
-        
-        panelPrincipal.add(listas_view);
-        layout.putConstraint(SpringLayout.WEST, listas_view, 0, SpringLayout.WEST, cabecera);
-        layout.putConstraint(SpringLayout.NORTH, listas_view, 45, SpringLayout.NORTH, cabecera);
-        layout.putConstraint(SpringLayout.EAST, listas_view, 0, SpringLayout.EAST, cabecera);
-        listas_view.setVisible(false);
-
-        
-        panelPrincipal.add(ajustes_cuenta_view);
-        layout.putConstraint(SpringLayout.WEST, ajustes_cuenta_view, 0, SpringLayout.WEST, cabecera);
-        layout.putConstraint(SpringLayout.NORTH, ajustes_cuenta_view, 45, SpringLayout.NORTH, cabecera);
-        layout.putConstraint(SpringLayout.EAST, ajustes_cuenta_view, 0, SpringLayout.EAST, cabecera);
-        ajustes_cuenta_view.setVisible(false);
     }
 
     public void ocultarPaneles() {

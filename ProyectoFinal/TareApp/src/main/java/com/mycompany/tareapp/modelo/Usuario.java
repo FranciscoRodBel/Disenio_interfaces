@@ -64,8 +64,8 @@ public class Usuario {
     public boolean es_email_valido() {
         
         // Pattern sacado de: https://www.baeldung.com/java-email-validation-regex
-        String regex = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
-        Pattern pattern = Pattern.compile(regex);
+        String expresion = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        Pattern pattern = Pattern.compile(expresion);
         
         return pattern.matcher(this.getEmail()).matches();
     }
@@ -73,22 +73,22 @@ public class Usuario {
     public boolean es_contrasenia_valida(String contrasenia) {
         
         // Pattern sacado de: https://www.techiedelight.com/es/validate-password-java/
-        String regex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{4,50}$";
-        Pattern pattern = Pattern.compile(regex);
+        String expresion = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{4,50}$";
+        Pattern pattern = Pattern.compile(expresion);
         
         return pattern.matcher(contrasenia).matches();
     }
     
     public String cifrar_contrasenia() {
         
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(); // He decidido usar esta función ya que permite cifrar pero no descifrar
-        return encoder.encode(this.getContrasenia()); // El hash siempre tiene 60 caracteres
+        BCryptPasswordEncoder ecriptador = new BCryptPasswordEncoder(); // He decidido usar esta función ya que permite cifrar pero no descifrar
+        return ecriptador.encode(this.getContrasenia()); // El hash siempre tiene 60 caracteres
     }
 
     public boolean verificar_contrasenia(String contraseña) {
         
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        return encoder.matches(contraseña, this.getContrasenia());
+        BCryptPasswordEncoder ecriptador = new BCryptPasswordEncoder();
+        return ecriptador.matches(contraseña, this.getContrasenia()); // No descifra, cifra y comprueba si son iguales
     }
 
     public static Usuario recoger_usuario(String email) {
@@ -104,7 +104,6 @@ public class Usuario {
             String idioma_seleccionado = (String) fila.get("idioma_seleccionado");
 
             return new Usuario(email, contrasenia, idioma_seleccionado);
-            
         }
         
         return null;

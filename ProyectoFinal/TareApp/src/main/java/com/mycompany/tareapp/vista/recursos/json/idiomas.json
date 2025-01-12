@@ -99,7 +99,16 @@
                 "iniciar_sesion": "Log in",
                 "registrarse": "Sign up",
                 "contrasenia": "Password",
-                "repetir_contrasenia": "Repeat password"
+                "repetir_contrasenia": "Repeat password",
+                "email_supera_caracteres": "The email cannot exceed 255 characters",
+                "email_no_valido": "The email is not valid",
+                "email_ya_registrado": "The email is already registered",
+                "contrasenia_no_coincide": "Passwords do not match",
+                "contrasenia_invalida": "Invalid password: requires uppercase, lowercase, numbers, and between 4-50 characters",
+                "cuenta_creada": "Account created",
+                "no_se_puede": "The user could not be created",
+                "email_no_registrado": "The email is not registered",
+                "email_contrasenia_no_coinciden": "The email and password do not match"
             },
             "Pagina_ajustes_cuenta": {
                 "titulo_pagina": "Account settings",
@@ -151,7 +160,16 @@
                 "iniciar_sesion": "Se connecter",
                 "registrarse": "S'inscrire",
                 "contrasenia": "Mot de passe",
-                "repetir_contrasenia": "Répéter le mot de passe"
+                "repetir_contrasenia": "Répéter le mot de passe",
+                "email_supera_caracteres": "L'email ne peut pas dépasser 255 caractères",
+                "email_no_valido": "L'email n'est pas valide",
+                "email_ya_registrado": "L'email est déjà enregistré",
+                "contrasenia_no_coincide": "Les mots de passe ne correspondent pas",
+                "contrasenia_invalida": "Mot de passe invalide : nécessite des majuscules, des minuscules, des chiffres, et entre 4-50 caractères",
+                "cuenta_creada": "Compte créé",
+                "no_se_puede": "L'utilisateur n'a pas pu être créé",
+                "email_no_registrado": "L'email n'est pas enregistré",
+                "email_contrasenia_no_coinciden": "L'email et le mot de passe ne correspondent pas"
             },
             "Pagina_ajustes_cuenta": {
                 "titulo_pagina": "Paramètres du compte",

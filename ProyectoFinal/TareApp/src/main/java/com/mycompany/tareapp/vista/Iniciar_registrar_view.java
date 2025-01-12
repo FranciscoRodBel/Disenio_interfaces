@@ -15,7 +15,7 @@ import com.mycompany.tareapp.vista.plantillas.Cabecera;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
 import com.mycompany.tareapp.vista.plantillas.Input_password;
 import com.mycompany.tareapp.vista.plantillas.Input_text;
-import com.mycompany.tareapp.vista.plantillas.Lista;
+import com.mycompany.tareapp.vista.plantillas.Lista_plantilla;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
