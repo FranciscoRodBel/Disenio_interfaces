@@ -10,6 +10,7 @@ com\mycompany\tareapp\vista\Iniciar_registrar_view$3.class
 com\mycompany\tareapp\modelo\BBDD_tareapp.class
 com\mycompany\tareapp\vista\plantillas\Popup_crear_editar_tarea.class
 com\mycompany\tareapp\vista\Listas_view$1.class
+com\mycompany\tareapp\vista\Iniciar_registrar_view$4.class
 com\mycompany\tareapp\controlador\Usuario_controlador.class
 com\mycompany\tareapp\vista\plantillas\Tarea$2.class
 com\mycompany\tareapp\controlador\BBDD_controlador.class

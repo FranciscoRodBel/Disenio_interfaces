@@ -26,6 +26,12 @@ public class Usuario {
     private String contrasenia;
     private String idioma_seleccionado;
 
+    public Usuario(String email, String contrasenia, String idioma_seleccionado) {
+        this.email = email;
+        this.contrasenia = contrasenia;
+        this.idioma_seleccionado = idioma_seleccionado;
+    }
+    
     public Usuario(String email, String contrasenia) {
         this.email = email;
         this.contrasenia = contrasenia;
@@ -54,23 +60,14 @@ public class Usuario {
     public void setIdioma_seleccionado(String idioma_seleccionado) {
         this.idioma_seleccionado = idioma_seleccionado;
     }
-    
-    public boolean esta_email_repetido() {
-    
-        
-        String consultaRecoger = "SELECT * FROM usuario WHERE email = '"+ this.getEmail() +"'";
-        ArrayList<HashMap<String, Object>> resultados = new BBDD_tareapp().consultar(consultaRecoger);
-        
-        return !resultados.isEmpty();
-    }
-    
-    public boolean es_email_valido(String email) {
+
+    public boolean es_email_valido() {
         
         // Pattern sacado de: https://www.baeldung.com/java-email-validation-regex
         String regex = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
         Pattern pattern = Pattern.compile(regex);
         
-        return pattern.matcher(email).matches();
+        return pattern.matcher(this.getEmail()).matches();
     }
     
     public boolean es_contrasenia_valida(String contrasenia) {
@@ -82,16 +79,34 @@ public class Usuario {
         return pattern.matcher(contrasenia).matches();
     }
     
-    public String cifrar_contrasenia(String contraseña) {
+    public String cifrar_contrasenia() {
         
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(); // He decidido usar esta función ya que permite cifrar pero no descifrar
-        return encoder.encode(contraseña); // El hash siempre tiene 60 caracteres
+        return encoder.encode(this.getContrasenia()); // El hash siempre tiene 60 caracteres
     }
 
-    public boolean verificar_contrasenia(String contraseña, String contraseñaCifrada) {
+    public boolean verificar_contrasenia(String contraseña) {
         
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        return encoder.matches(contraseña, contraseñaCifrada);
+        return encoder.matches(contraseña, this.getContrasenia());
     }
 
+    public static Usuario recoger_usuario(String email) {
+    
+        String consultaRecoger = "SELECT * FROM usuario WHERE email = '"+ email +"'";
+        ArrayList<HashMap<String, Object>> resultados = new BBDD_tareapp().consultar(consultaRecoger);
+        
+        if (!resultados.isEmpty()) {
+            
+            HashMap<String, Object> fila = resultados.get(0);
+            
+            String contrasenia = (String) fila.get("contrasenia");
+            String idioma_seleccionado = (String) fila.get("idioma_seleccionado");
+
+            return new Usuario(email, contrasenia, idioma_seleccionado);
+            
+        }
+        
+        return null;
+    }
 }

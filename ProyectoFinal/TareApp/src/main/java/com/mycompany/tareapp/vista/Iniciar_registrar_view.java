@@ -4,8 +4,10 @@
  */
 package com.mycompany.tareapp.vista;
 
+import com.mycompany.tareapp.controlador.Idioma_controlador;
 import com.mycompany.tareapp.controlador.Usuario_controlador;
 import com.mycompany.tareapp.modelo.Usuario;
+import com.mycompany.tareapp.modelo.idioma.Pagina_tareas;
 import com.mycompany.tareapp.vista.plantillas.RoundedBorder;
 import com.mycompany.tareapp.vista.plantillas.TextPrompt;
 import com.mycompany.tareapp.vista.plantillas.Boton;
@@ -220,6 +222,18 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
             }
         });
         
+        boton_enviar_inicio.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                String contrasenia = new String(contrasenia_iniciar.getPassword());
+                
+                String mensaje_resultado = usuario_controlador.iniciar_usuario(email_iniciar.getText(), contrasenia);
+                label_resultado_inicio.setText(mensaje_resultado);
+            }
+        });
+                
         boton_enviar_registro.addActionListener(new ActionListener() {
 
             @Override
@@ -228,10 +242,13 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
                 String contrasenia = new String(contrasenia_registro.getPassword());
                 String repetir_contrasenia = new String(repetir_contrasenia_registro.getPassword());
                 
-                String mensaje_resultado = usuario_controlador.insertar_usuario(email_registro.getText(), contrasenia, repetir_contrasenia);
+                String idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getIdioma();
+                
+                String mensaje_resultado = usuario_controlador.registrar_usuario(email_registro.getText(), contrasenia, repetir_contrasenia, idioma_seleccionado);
                 label_resultado_registro.setText(mensaje_resultado);
             }
         });
+        
     }
     
     public JLabel getTitulo_pagina_inicio() {
