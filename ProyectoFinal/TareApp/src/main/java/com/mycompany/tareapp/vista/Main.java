@@ -5,6 +5,7 @@
 package com.mycompany.tareapp.vista;
 
 import com.mycompany.tareapp.controlador.Idioma_controlador;
+import com.mycompany.tareapp.modelo.Usuario;
 import com.mycompany.tareapp.vista.plantillas.Cabecera;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
 import com.mycompany.tareapp.vista.plantillas.Lista;
@@ -28,6 +29,8 @@ public class Main extends javax.swing.JFrame {
     Idioma_controlador idioma_controlador;
     JPanel panelPrincipal = new JPanel();
     
+    SpringLayout layout = new SpringLayout();
+        
     Cabecera cabecera = new Cabecera();
     
     Tareas_view tareas_view = new Tareas_view();
@@ -60,27 +63,14 @@ public class Main extends javax.swing.JFrame {
         this.add(panelPrincipal);
         this.setLocationRelativeTo(null);
         
-        SpringLayout layout = new SpringLayout();
         panelPrincipal.setBackground(Estilos.getGris_claro());
         panelPrincipal.setLayout(layout);
         panelPrincipal.setBounds(0, 0, 1000, 600);
-
+        
         panelPrincipal.add(cabecera);
         layout.putConstraint(SpringLayout.WEST, cabecera, 0, SpringLayout.WEST, panelPrincipal);
         layout.putConstraint(SpringLayout.NORTH, cabecera, 0, SpringLayout.NORTH, panelPrincipal);
         layout.putConstraint(SpringLayout.EAST, cabecera, 0, SpringLayout.EAST, panelPrincipal);
-        
-        panelPrincipal.add(tareas_view);
-        layout.putConstraint(SpringLayout.WEST, tareas_view, 0, SpringLayout.WEST, cabecera);
-        layout.putConstraint(SpringLayout.NORTH, tareas_view, 45, SpringLayout.NORTH, cabecera);
-        layout.putConstraint(SpringLayout.EAST, tareas_view, 0, SpringLayout.EAST, cabecera);
-        tareas_view.setVisible(false);
-        
-        panelPrincipal.add(listas_view);
-        layout.putConstraint(SpringLayout.WEST, listas_view, 0, SpringLayout.WEST, cabecera);
-        layout.putConstraint(SpringLayout.NORTH, listas_view, 45, SpringLayout.NORTH, cabecera);
-        layout.putConstraint(SpringLayout.EAST, listas_view, 0, SpringLayout.EAST, cabecera);
-        listas_view.setVisible(false);
         
         panelPrincipal.add(iniciar_registrar_view);
         layout.putConstraint(SpringLayout.WEST, iniciar_registrar_view, 0, SpringLayout.WEST, cabecera);
@@ -88,12 +78,27 @@ public class Main extends javax.swing.JFrame {
         layout.putConstraint(SpringLayout.EAST, iniciar_registrar_view, 0, SpringLayout.EAST, cabecera);
         iniciar_registrar_view.setVisible(true);
         
-        panelPrincipal.add(ajustes_cuenta_view);
-        layout.putConstraint(SpringLayout.WEST, ajustes_cuenta_view, 0, SpringLayout.WEST, cabecera);
-        layout.putConstraint(SpringLayout.NORTH, ajustes_cuenta_view, 45, SpringLayout.NORTH, cabecera);
-        layout.putConstraint(SpringLayout.EAST, ajustes_cuenta_view, 0, SpringLayout.EAST, cabecera);
-        ajustes_cuenta_view.setVisible(false);
-        
+        iniciar_registrar_view.getBoton_enviar_inicio().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                
+                String email = iniciar_registrar_view.getEmail_iniciar().getText();
+                String contrasenia = new String(iniciar_registrar_view.contrasenia_iniciar.getPassword());
+                
+                String mensaje_resultado = iniciar_registrar_view.getUsuario_controlador().iniciar_usuario(email, contrasenia);
+                
+                if (mensaje_resultado.isEmpty()) {
+                    
+                    //generarInterfaz();
+                    
+                } else {
+                    
+                    iniciar_registrar_view.getLabel_resultado_inicio().setText(mensaje_resultado);
+                }
+            }
+        });
+       
+        generarInterfaz();
         
         cabecera.getItemTareas().addActionListener(new ActionListener() {
 
@@ -155,6 +160,28 @@ public class Main extends javax.swing.JFrame {
             }
         });
         
+    }
+    
+    public void generarInterfaz() {
+        
+        panelPrincipal.add(tareas_view);
+        layout.putConstraint(SpringLayout.WEST, tareas_view, 0, SpringLayout.WEST, cabecera);
+        layout.putConstraint(SpringLayout.NORTH, tareas_view, 45, SpringLayout.NORTH, cabecera);
+        layout.putConstraint(SpringLayout.EAST, tareas_view, 0, SpringLayout.EAST, cabecera);
+        tareas_view.setVisible(false);
+        
+        panelPrincipal.add(listas_view);
+        layout.putConstraint(SpringLayout.WEST, listas_view, 0, SpringLayout.WEST, cabecera);
+        layout.putConstraint(SpringLayout.NORTH, listas_view, 45, SpringLayout.NORTH, cabecera);
+        layout.putConstraint(SpringLayout.EAST, listas_view, 0, SpringLayout.EAST, cabecera);
+        listas_view.setVisible(false);
+
+        
+        panelPrincipal.add(ajustes_cuenta_view);
+        layout.putConstraint(SpringLayout.WEST, ajustes_cuenta_view, 0, SpringLayout.WEST, cabecera);
+        layout.putConstraint(SpringLayout.NORTH, ajustes_cuenta_view, 45, SpringLayout.NORTH, cabecera);
+        layout.putConstraint(SpringLayout.EAST, ajustes_cuenta_view, 0, SpringLayout.EAST, cabecera);
+        ajustes_cuenta_view.setVisible(false);
     }
 
     public void ocultarPaneles() {

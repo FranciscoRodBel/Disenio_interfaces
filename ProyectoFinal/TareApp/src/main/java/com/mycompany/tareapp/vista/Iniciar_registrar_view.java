@@ -48,6 +48,8 @@ import javax.swing.plaf.basic.BasicButtonUI;
  */
 public class Iniciar_registrar_view extends javax.swing.JPanel {
     
+    Usuario_controlador usuario_controlador = new Usuario_controlador();
+    
     JLabel titulo_pagina_inicio = new JLabel("Inicio de sesión");
     JLabel titulo_pagina_registro = new JLabel("Registro");
     
@@ -75,7 +77,6 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
     public Iniciar_registrar_view() {
         initComponents();
         
-        Usuario_controlador usuario_controlador = new Usuario_controlador();
         SpringLayout layout = new SpringLayout();
         this.setLayout(layout);
         this.setPreferredSize(new Dimension(1000, 555));
@@ -221,22 +222,9 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
                 titulo_pagina_registro.setVisible(true);
             }
         });
-        
-        boton_enviar_inicio.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                String contrasenia = new String(contrasenia_iniciar.getPassword());
-                
-                String mensaje_resultado = usuario_controlador.iniciar_usuario(email_iniciar.getText(), contrasenia);
-                label_resultado_inicio.setText(mensaje_resultado);
-            }
-        });
-                
+           
         boton_enviar_registro.addActionListener(new ActionListener() {
 
-            @Override
             public void actionPerformed(ActionEvent e) {
                 
                 String contrasenia = new String(contrasenia_registro.getPassword());
@@ -330,6 +318,40 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
     public void setBoton_enviar_registro(Boton boton_enviar_registro) {
         this.boton_enviar_registro = boton_enviar_registro;
     }
+
+    public Usuario_controlador getUsuario_controlador() {
+        return usuario_controlador;
+    }
+
+    public void setUsuario_controlador(Usuario_controlador usuario_controlador) {
+        this.usuario_controlador = usuario_controlador;
+    }
+
+    public Input_text getEmail_registro() {
+        return email_registro;
+    }
+
+    public void setEmail_registro(Input_text email_registro) {
+        this.email_registro = email_registro;
+    }
+
+    public JTextArea getLabel_resultado_inicio() {
+        return label_resultado_inicio;
+    }
+
+    public void setLabel_resultado_inicio(JTextArea label_resultado_inicio) {
+        this.label_resultado_inicio = label_resultado_inicio;
+    }
+
+    public JTextArea getLabel_resultado_registro() {
+        return label_resultado_registro;
+    }
+
+    public void setLabel_resultado_registro(JTextArea label_resultado_registro) {
+        this.label_resultado_registro = label_resultado_registro;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

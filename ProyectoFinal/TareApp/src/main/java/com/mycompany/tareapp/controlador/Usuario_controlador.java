@@ -57,7 +57,7 @@ public class Usuario_controlador {
         
         if(usuario.verificar_contrasenia(contrasenia)) {
             
-            return "Sesión iniciada";
+            return "";
             
         } else {
             
