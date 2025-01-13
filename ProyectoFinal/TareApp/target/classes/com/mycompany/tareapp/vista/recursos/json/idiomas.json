@@ -12,11 +12,25 @@
             },
             "Pagina_tareas": {
                 "titulo": "Tareas",
-                "seleccionar_lista": "Selecciona una lista"
+                "seleccionar_lista": "Seleccionar lista",
+                "crear_tarea": "Crear tarea",
+                "titulo_tarea": "Título tarea",
+                "prioridad": "Prioridad",
+                "baja": "Baja",
+                "media": "Media",
+                "alta": "Alta",
+                "descripcion": "Descripción",
+                "fecha": "Fecha",
+                "editar_tarea": "Editar tarea",
+                "borrar_tarea": "Borrar tarea",
+                "pregunta_borrar_tarea": "¿Seguro que quiere borrar la tarea?"
             },
             "Pagina_listas": {
                 "titulo": "Listas",
-                "input_lista": "Título lista"
+                "titulo_lista": "Título lista",
+                "editar_lista": "Editar lista",
+                "borrar_lista": "Borrar lista",
+                "pregunta_borrar_lista": "¿Seguro que quiere borrar la lista?"
             },
             "Pagina_inicio_registro": {
                 "titulo_inicio": "Inicio de sesión",
@@ -24,13 +38,27 @@
                 "iniciar_sesion": "Iniciar sesión",
                 "registrarse": "Registrarse",
                 "contrasenia": "Contraseña",
-                "repetir_contrasenia": "Repetir contraseña"
+                "repetir_contrasenia": "Repetir contraseña",
+                "email_supera_caracteres" : "El email no puede superar los 255 caracteres",
+                "email_no_valido": "El email no es válido",
+                "email_ya_registrado": "El email ya está registrado",
+                "contrasenia_no_coincide": "Las contraseñas no coinciden",
+                "contrasenia_invalida" : "Contraseña inválida: requiere mayúsculas, minúsculas, números y entre 4-50 caracteres",
+                "cuenta_creada": "Cuenta creada",
+                "no_se_puede": "No se ha podido crear el usuario",
+                "email_no_registrado": "El email no está registrado",
+                "email_contrasenia_no_coinciden": "El email y la contraseña no coincide"
             },
             "Pagina_ajustes_cuenta": {
                 "titulo_pagina": "Ajustes de la cuenta",
                 "cambiar_email": "Cambiar email",
                 "cambiar_contrasenia": "Cambiar Contraseña",
-                "borrar_cuenta": "Borrar cuenta"
+                "borrar_cuenta": "Borrar cuenta",
+                "nuevo_email": "Nuevo email",
+                "repetir_email": "Repetir email",
+                "nuevo_contrasenia": "Nueva contraseña",
+                "repetir_contrasenia": "Repetir contraseña",
+                "pregunta_borrar_cuenta": "¿Seguro que quiere borrar la cuenta?"
             }
         },
         {
@@ -45,25 +73,53 @@
             },
             "Pagina_tareas": {
                 "titulo": "Tasks",
-                "seleccionar_lista": "Select a list"
+                "seleccionar_lista": "Select list",
+                "crear_tarea": "Create task",
+                "titulo_tarea": "Task title",
+                "prioridad": "Priority",
+                "baja": "Low",
+                "media": "Medium",
+                "alta": "High",
+                "descripcion": "Description",
+                "fecha": "Date",
+                "editar_tarea": "Edit task",
+                "borrar_tarea": "Delete task",
+                "pregunta_borrar_tarea": "Are you sure you want to delete the task?"
             },
             "Pagina_listas": {
                 "titulo": "Lists",
-                "input_lista": "List title"
+                "titulo_lista": "List title",
+                "editar_lista": "Edit list",
+                "borrar_lista": "Delete list",
+                "pregunta_borrar_lista": "Are you sure you want to delete the list?"
             },
             "Pagina_inicio_registro": {
                 "titulo_inicio": "Log in",
-                "titulo_registro": "Sign up",
+                "titulo_registro": "Register",
                 "iniciar_sesion": "Log in",
                 "registrarse": "Sign up",
                 "contrasenia": "Password",
-                "repetir_contrasenia": "Repeat password"
+                "repetir_contrasenia": "Repeat password",
+                "email_supera_caracteres": "The email cannot exceed 255 characters",
+                "email_no_valido": "The email is not valid",
+                "email_ya_registrado": "The email is already registered",
+                "contrasenia_no_coincide": "Passwords do not match",
+                "contrasenia_invalida": "Invalid password: requires uppercase, lowercase, numbers, and between 4-50 characters",
+                "cuenta_creada": "Account created",
+                "no_se_puede": "The user could not be created",
+                "email_no_registrado": "The email is not registered",
+                "email_contrasenia_no_coinciden": "The email and password do not match"
             },
             "Pagina_ajustes_cuenta": {
                 "titulo_pagina": "Account settings",
                 "cambiar_email": "Change email",
                 "cambiar_contrasenia": "Change password",
-                "borrar_cuenta": "Delete account"
+                "borrar_cuenta": "Delete account",
+                "nuevo_email": "New email",
+                "repetir_email": "Repeat email",
+                "nuevo_contrasenia": "New password",
+                "repetir_contrasenia": "Repeat password",
+                "pregunta_borrar_cuenta": "Are you sure you want to delete the account?"
             }
         },
         {
@@ -78,11 +134,25 @@
             },
             "Pagina_tareas": {
                 "titulo": "Tâches",
-                "seleccionar_lista": "Sélectionner une liste"
+                "seleccionar_lista": "Sélectionner une liste",
+                "crear_tarea": "Créer une tâche",
+                "titulo_tarea": "Titre de la tâche",
+                "prioridad": "Priorité",
+                "baja": "Bas",
+                "media": "Médias",
+                "alta": "Élevé",
+                "descripcion": "Description",
+                "fecha": "Date",
+                "editar_tarea": "Modifier la tâche",
+                "borrar_tarea": "Supprimer la tâche",
+                "pregunta_borrar_tarea": "Êtes-vous sûr de vouloir supprimer la tâche?"
             },
             "Pagina_listas": {
                 "titulo": "Listes",
-                "input_lista": "Titre de la liste"
+                "titulo_lista": "Titre de la liste",
+                "editar_lista": "Modifier la liste",
+                "borrar_lista": "Supprimer la liste",
+                "pregunta_borrar_lista": "Êtes-vous sûr de vouloir supprimer la liste?"
             },
             "Pagina_inicio_registro": {
                 "titulo_inicio": "Connexion",
@@ -90,13 +160,27 @@
                 "iniciar_sesion": "Se connecter",
                 "registrarse": "S'inscrire",
                 "contrasenia": "Mot de passe",
-                "repetir_contrasenia": "Répéter le mot de passe"
+                "repetir_contrasenia": "Répéter le mot de passe",
+                "email_supera_caracteres": "L'email ne peut pas dépasser 255 caractères",
+                "email_no_valido": "L'email n'est pas valide",
+                "email_ya_registrado": "L'email est déjà enregistré",
+                "contrasenia_no_coincide": "Les mots de passe ne correspondent pas",
+                "contrasenia_invalida": "Mot de passe invalide : nécessite des majuscules, des minuscules, des chiffres, et entre 4-50 caractères",
+                "cuenta_creada": "Compte créé",
+                "no_se_puede": "L'utilisateur n'a pas pu être créé",
+                "email_no_registrado": "L'email n'est pas enregistré",
+                "email_contrasenia_no_coinciden": "L'email et le mot de passe ne correspondent pas"
             },
             "Pagina_ajustes_cuenta": {
                 "titulo_pagina": "Paramètres du compte",
                 "cambiar_email": "Changer l'email",
                 "cambiar_contrasenia": "Changer le mot de passe",
-                "borrar_cuenta": "Supprimer compte"
+                "borrar_cuenta": "Supprimer compte",
+                "nuevo_email": "Nouvel email",
+                "repetir_email": "Répéter l'email",
+                "nuevo_contrasenia": "Nouveau mot de passe",
+                "repetir_contrasenia": "Répéter le mot de passe",
+                "pregunta_borrar_cuenta": "Êtes-vous sûr de vouloir supprimer le compte?"
             }
         }
     ]
