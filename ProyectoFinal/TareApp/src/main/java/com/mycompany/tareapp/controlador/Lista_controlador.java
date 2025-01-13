@@ -28,7 +28,7 @@ public class Lista_controlador {
         
         if(bbdd_tareapp.insertar(consulta)) {
             
-            return "Lista '"+titulo+"' creada";
+            return "";
             
         } else {
             

@@ -110,8 +110,9 @@ public class Listas_view extends javax.swing.JPanel {
                 String mensaje_resultado = lista_controlador.crear_lista(input_titulo_lista.getText(), usuario.getEmail());
                 
                 // Cambiar creada por el texto del idioma seleccionado
-                if (mensaje_resultado.contains("creada")) {
+                if (mensaje_resultado.isEmpty()) {
                 
+                    mensaje_resultado = "Lista creada";
                     input_titulo_lista.setText("");
                     actualizar_panel_lista();
                 } 

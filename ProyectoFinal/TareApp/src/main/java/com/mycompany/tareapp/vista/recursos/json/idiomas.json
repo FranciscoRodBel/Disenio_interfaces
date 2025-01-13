@@ -30,7 +30,10 @@
                 "titulo_lista": "Título lista",
                 "editar_lista": "Editar lista",
                 "borrar_lista": "Borrar lista",
-                "pregunta_borrar_lista": "¿Seguro que quiere borrar la lista?"
+                "pregunta_borrar_lista": "¿Seguro que quiere borrar la lista?",
+                "lista_creada": "Lista creada",
+                "titulo_no_valido": "El título de la lista no es válido",
+                "lista_no_creada": "No se ha podido crear la lista"
             },
             "Pagina_inicio_registro": {
                 "titulo_inicio": "Inicio de sesión",
@@ -91,7 +94,10 @@
                 "titulo_lista": "List title",
                 "editar_lista": "Edit list",
                 "borrar_lista": "Delete list",
-                "pregunta_borrar_lista": "Are you sure you want to delete the list?"
+                "pregunta_borrar_lista": "Are you sure you want to delete the list?",
+                "lista_creada": "List created",
+                "titulo_no_valido": "The list title is not valid",
+                "lista_no_creada": "The list could not be created"
             },
             "Pagina_inicio_registro": {
                 "titulo_inicio": "Log in",
@@ -152,7 +158,10 @@
                 "titulo_lista": "Titre de la liste",
                 "editar_lista": "Modifier la liste",
                 "borrar_lista": "Supprimer la liste",
-                "pregunta_borrar_lista": "Êtes-vous sûr de vouloir supprimer la liste?"
+                "pregunta_borrar_lista": "Êtes-vous sûr de vouloir supprimer la liste?",
+                "lista_creada": "Liste créée",
+                "titulo_no_valido": "Le titre de la liste n'est pas valide",
+                "lista_no_creada": "La liste n'a pas pu être créée"
             },
             "Pagina_inicio_registro": {
                 "titulo_inicio": "Connexion",
