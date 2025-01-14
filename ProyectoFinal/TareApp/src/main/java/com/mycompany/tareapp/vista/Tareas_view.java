@@ -4,6 +4,8 @@
  */
 package com.mycompany.tareapp.vista;
 
+import com.mycompany.tareapp.controlador.Idioma_controlador;
+import com.mycompany.tareapp.controlador.Tarea_controlador;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
 import com.mycompany.tareapp.vista.plantillas.Popup_crear_editar_tarea;
 import com.mycompany.tareapp.vista.plantillas.Tarea;
@@ -23,12 +25,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 
 /**
  *
  * @author Propietario
  */
 public class Tareas_view extends javax.swing.JPanel {
+    
+    
+    Tarea_controlador tarea_controlador = new Tarea_controlador();
     
     JToolBar barraHerramientas = new JToolBar();
     
@@ -48,6 +54,9 @@ public class Tareas_view extends javax.swing.JPanel {
     
     JPanel panelTareas = new JPanel();
     JScrollPane scroll_panelTareas = new JScrollPane(panelTareas);
+    
+    //Popup_crear_editar_tarea popup_crear_tarea;
+    
     
     /**
      * Creates new form Tareas_view2
@@ -118,31 +127,57 @@ public class Tareas_view extends javax.swing.JPanel {
         layout.putConstraint(SpringLayout.WEST, scroll_panelTareas, 100, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, scroll_panelTareas, 60, SpringLayout.NORTH, seleccionarLista);
         
+        /*
         agregarTarea(new Tarea(false, "Tarea 1", 1, "05/01/2025", "Descripción tarea 1"));
         agregarTarea(new Tarea(true, "Tarea 2", 2, "06/01/2025", "Descripción tarea 2"));
         agregarTarea(new Tarea(false, "Tarea 3", 3, "07/01/2025", "Descripción tarea 3"));
         agregarTarea(new Tarea(false, "Tarea 4", 1, "08/01/2025", "Descripción tarea 4"));
         agregarTarea(new Tarea(true, "Tarea 5", 1, "09/01/2025", "Descripción tarea 5"));
-        
-        /*
-        botonCrearTarea.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                
-                agregarTarea(new Tarea(false, "Tarea 6", 2, "18/01/2002"));
-            }
-        });
         */
         
         botonCrearTarea.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 
-                Popup_crear_editar_tarea popup_crear_tarea = new Popup_crear_editar_tarea(null);
-                popup_crear_tarea.setVisible(true);
+                Popup_crear_editar_tarea popup_crear_editar_tarea = new Popup_crear_editar_tarea(null);
+                popup_crear_editar_tarea.setVisible(true);
+                
+                popup_crear_editar_tarea.getBonton_crear_editar().addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent e) {
+
+                        if (popup_crear_editar_tarea.getTarea() == null) {
+
+                            String titulo = popup_crear_editar_tarea.getInput_titulo_terea().getText();
+                            String prioridad = (String) popup_crear_editar_tarea.getInput_prioridad_tarea().getSelectedItem();
+                            String fecha = popup_crear_editar_tarea.getInput_fecha_terea().getText();
+                            String descripcion = popup_crear_editar_tarea.getInput_descripcion().getTextArea().getText();
+                            int idLista = 1;
+
+                            String mensaje_resultado = tarea_controlador.crear_tarea(titulo, prioridad, fecha, descripcion, idLista);
+
+                            System.out.println(mensaje_resultado);
+
+                            if (mensaje_resultado.isEmpty()) {
+
+                                mensaje_resultado = Idioma_controlador.getIdioma_seleccionado().getPagina_listas().getLista_creada();
+                                //actualizar_panel_lista();
+                            } 
+
+                            popup_crear_editar_tarea.getLabel_resultado_tarea().setText(mensaje_resultado);
+                            Timer tiempo_espera = new Timer(3000, evt -> popup_crear_editar_tarea.getLabel_resultado_tarea().setText(""));
+                            tiempo_espera.setRepeats(false);
+                            tiempo_espera.start();
+
+                        } else {
+
+                            // En caso de que quiera editar
+
+                        }
+                    }
+                });
             }
         });
-
     }
     
     public JLabel getTitulo_pagina() {

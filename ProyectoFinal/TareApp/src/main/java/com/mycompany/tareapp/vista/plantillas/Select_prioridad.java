@@ -14,7 +14,7 @@ import javax.swing.JComboBox;
  * @author Francisco
  */
 public class Select_prioridad extends JComboBox<String> {
-
+    
     public Select_prioridad(String texto_prioridad) {
         
         //this.setBorder(new RoundedBorder(5, 2));

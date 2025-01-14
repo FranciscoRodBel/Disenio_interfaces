@@ -48,7 +48,7 @@
                 "contrasenia_no_coincide": "Las contraseñas no coinciden",
                 "contrasenia_invalida" : "Contraseña inválida: requiere mayúsculas, minúsculas, números y entre 4-50 caracteres",
                 "cuenta_creada": "Cuenta creada",
-                "no_se_puede": "No se ha podido crear el usuario",
+                "no_puede_crear_usuario": "No se ha podido crear el usuario",
                 "email_no_registrado": "El email no está registrado",
                 "email_contrasenia_no_coinciden": "El email y la contraseña no coincide"
             },
@@ -112,7 +112,7 @@
                 "contrasenia_no_coincide": "Passwords do not match",
                 "contrasenia_invalida": "Invalid password: requires uppercase, lowercase, numbers, and between 4-50 characters",
                 "cuenta_creada": "Account created",
-                "no_se_puede": "The user could not be created",
+                "no_puede_crear_usuario": "The user could not be created",
                 "email_no_registrado": "The email is not registered",
                 "email_contrasenia_no_coinciden": "The email and password do not match"
             },
@@ -176,7 +176,7 @@
                 "contrasenia_no_coincide": "Les mots de passe ne correspondent pas",
                 "contrasenia_invalida": "Mot de passe invalide : nécessite des majuscules, des minuscules, des chiffres, et entre 4-50 caractères",
                 "cuenta_creada": "Compte créé",
-                "no_se_puede": "L'utilisateur n'a pas pu être créé",
+                "no_puede_crear_usuario": "L'utilisateur n'a pas pu être créé",
                 "email_no_registrado": "L'email n'est pas enregistré",
                 "email_contrasenia_no_coinciden": "L'email et le mot de passe ne correspondent pas"
             },

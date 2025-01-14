@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SpringLayout;
+import javax.swing.Timer;
 
 /**
  *
@@ -101,6 +102,9 @@ public class Main extends javax.swing.JFrame {
                 } else {
                     
                     iniciar_registrar_view.getLabel_resultado_inicio().setText(mensaje_resultado);
+                    Timer tiempo_espera = new Timer(3000, evt -> iniciar_registrar_view.getLabel_resultado_inicio().setText(""));
+                    tiempo_espera.setRepeats(false);
+                    tiempo_espera.start();
                 }
             }
         });

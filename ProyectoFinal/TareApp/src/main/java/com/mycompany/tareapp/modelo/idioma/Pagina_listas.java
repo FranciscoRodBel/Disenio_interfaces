@@ -15,6 +15,9 @@ public class Pagina_listas {
     private String editar_lista;
     private String borrar_lista;
     private String pregunta_borrar_lista;
+    private String lista_creada;
+    private String titulo_no_valido;
+    private String lista_no_creada;
 
     public String getTitulo() {
         return titulo;
@@ -54,6 +57,30 @@ public class Pagina_listas {
 
     public void setPregunta_borrar_lista(String pregunta_borrar_lista) {
         this.pregunta_borrar_lista = pregunta_borrar_lista;
+    }
+
+    public String getLista_creada() {
+        return lista_creada;
+    }
+
+    public void setLista_creada(String lista_creada) {
+        this.lista_creada = lista_creada;
+    }
+
+    public String getTitulo_no_valido() {
+        return titulo_no_valido;
+    }
+
+    public void setTitulo_no_valido(String titulo_no_valido) {
+        this.titulo_no_valido = titulo_no_valido;
+    }
+
+    public String getLista_no_creada() {
+        return lista_no_creada;
+    }
+
+    public void setLista_no_creada(String lista_no_creada) {
+        this.lista_no_creada = lista_no_creada;
     }
     
 }

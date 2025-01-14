@@ -29,6 +29,9 @@ public class Lista {
         this.email = email;
     }
 
+    public Lista() {
+    }
+
     public int getIdLista() {
         return idLista;
     }
@@ -53,11 +56,11 @@ public class Lista {
         this.email = email;
     }
     
-    public boolean es_titulo_valido(String titulo) {
+    public boolean es_titulo_valido() {
         
         String expresion = "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\\s\\-\\_\\.\\,\\(\\)]+$";
         Pattern pattern = Pattern.compile(expresion);
         
-        return pattern.matcher(titulo).matches();
+        return pattern.matcher(this.getTitulo()).matches();
     }
 }

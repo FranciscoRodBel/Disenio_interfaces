@@ -6,6 +6,7 @@ package com.mycompany.tareapp.controlador;
 
 import com.mycompany.tareapp.modelo.BBDD_tareapp;
 import com.mycompany.tareapp.modelo.Usuario;
+import com.mycompany.tareapp.modelo.idioma.Pagina_inicio_registro;
 
 /**
  *
@@ -19,15 +20,17 @@ public class Usuario_controlador {
     
         Usuario usuario = new Usuario(email, contrasenia);
         
-        if (email.length() > 255) return "El email no puede superar los 255 caracteres";
+        Pagina_inicio_registro idioma = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
         
-        if (!usuario.es_email_valido()) return "El email no es válido";
+        if (email.length() > 255) return idioma.getEmail_supera_caracteres();
         
-        if (Usuario.recoger_usuario(email) != null ) return "El email ya está registrado";
+        if (!usuario.es_email_valido()) return idioma.getEmail_no_valido();
         
-        if (!contrasenia.equals(repetir_contrasenia)) return "Las contraseñas no coinciden";
+        if (Usuario.recoger_usuario(email) != null ) return idioma.getEmail_ya_registrado();
         
-        if (!usuario.es_contrasenia_valida(contrasenia)) return "Contraseña inválida: requiere mayúsculas, minúsculas, números y entre 4-50 caracteres";
+        if (!contrasenia.equals(repetir_contrasenia)) return idioma.getContrasenia_no_coincide();
+        
+        if (!usuario.es_contrasenia_valida(contrasenia)) return idioma.getContrasenia_invalida();
         
         contrasenia = usuario.cifrar_contrasenia();
         
@@ -35,11 +38,11 @@ public class Usuario_controlador {
         
         if(bbdd_tareapp.insertar(consulta)) {
             
-            return "Cuenta creada";
+            return idioma.getCuenta_creada();
             
         } else {
             
-            return "No se ha podido crear el usuario";
+            return idioma.getNo_puede_crear_usuario();
         }
     }
     
@@ -47,13 +50,15 @@ public class Usuario_controlador {
     
         Usuario usuario = new Usuario(email, contrasenia);
         
-        if (!usuario.es_email_valido()) return "El email no es válido";
+        Pagina_inicio_registro idioma = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
+        
+        if (!usuario.es_email_valido()) return idioma.getEmail_no_valido();
         
         usuario = Usuario.recoger_usuario(email);
         
-        if (usuario == null )return "El email no está registrado";
+        if (usuario == null )return idioma.getEmail_no_registrado();
         
-        if (!usuario.es_contrasenia_valida(contrasenia)) return "Contraseña inválida: requiere mayúsculas, minúsculas, números y entre 4-50 caracteres";
+        if (!usuario.es_contrasenia_valida(contrasenia)) return idioma.getContrasenia_invalida();
         
         if(usuario.verificar_contrasenia(contrasenia)) {
             
@@ -61,7 +66,7 @@ public class Usuario_controlador {
             
         } else {
             
-            return "El email y la contraseña no coincide";
+            return idioma.getEmail_contrasenia_no_coinciden();
         }
     }
 }

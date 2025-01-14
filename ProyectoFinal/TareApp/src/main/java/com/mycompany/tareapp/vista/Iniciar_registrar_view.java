@@ -36,6 +36,7 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 import static javax.swing.SwingConstants.CENTER;
+import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -234,6 +235,9 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
                 
                 String mensaje_resultado = usuario_controlador.registrar_usuario(email_registro.getText(), contrasenia, repetir_contrasenia, idioma_seleccionado);
                 label_resultado_registro.setText(mensaje_resultado);
+                Timer tiempo_espera = new Timer(3000, evt -> label_resultado_registro.setText(""));
+                tiempo_espera.setRepeats(false);
+                tiempo_espera.start();
             }
         });
         

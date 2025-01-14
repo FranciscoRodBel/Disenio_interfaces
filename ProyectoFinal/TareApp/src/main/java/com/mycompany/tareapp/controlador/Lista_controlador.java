@@ -22,7 +22,7 @@ public class Lista_controlador {
     
         Lista lista = new Lista(titulo, email);
         
-        if (!lista.es_titulo_valido(titulo)) return "El título de la lista no es válido";
+        if (!lista.es_titulo_valido()) return Idioma_controlador.getIdioma_seleccionado().getPagina_listas().getTitulo_no_valido();
         
         String consulta = "INSERT INTO lista (titulo, email) VALUES ('"+titulo+"', '"+email+"')";
         
@@ -32,7 +32,7 @@ public class Lista_controlador {
             
         } else {
             
-            return "No se ha podido crear la lista";
+            return Idioma_controlador.getIdioma_seleccionado().getPagina_listas().getLista_no_creada();
         }
     }
     

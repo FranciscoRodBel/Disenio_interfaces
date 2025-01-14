@@ -4,6 +4,7 @@
  */
 package com.mycompany.tareapp.vista;
 
+import com.mycompany.tareapp.controlador.Idioma_controlador;
 import com.mycompany.tareapp.controlador.Lista_controlador;
 import com.mycompany.tareapp.controlador.Usuario_controlador;
 import com.mycompany.tareapp.modelo.Usuario;
@@ -109,10 +110,9 @@ public class Listas_view extends javax.swing.JPanel {
                 
                 String mensaje_resultado = lista_controlador.crear_lista(input_titulo_lista.getText(), usuario.getEmail());
                 
-                // Cambiar creada por el texto del idioma seleccionado
                 if (mensaje_resultado.isEmpty()) {
                 
-                    mensaje_resultado = "Lista creada";
+                    mensaje_resultado = Idioma_controlador.getIdioma_seleccionado().getPagina_listas().getLista_creada();
                     input_titulo_lista.setText("");
                     actualizar_panel_lista();
                 } 
@@ -147,20 +147,23 @@ public class Listas_view extends javax.swing.JPanel {
     
         ArrayList<HashMap<String, Object>> listas = lista_controlador.recoger_listas(usuario.getEmail());
         
-        for(HashMap<String, Object> fila : listas) {
+        if (listas != null) {
+            
+            for(HashMap<String, Object> fila : listas) {
         
-            int idLista = (int) fila.get("idLista");
-            String titulo = (String) fila.get("titulo");
-            
-            Lista_plantilla lista_plantilla = new Lista_plantilla(idLista, titulo);
-            lista_plantilla.setMaximumSize(new Dimension(600, 50)); // Si no pongo el máximo se estíran las tareas para ocupar todo el panel
-            lista_plantilla.setMinimumSize(new Dimension(600, 50)); // Si no pongo el mínimo ocupan la mitad del ancho del panel
-            
-            panel_lista.add(lista_plantilla);
+                int idLista = (int) fila.get("idLista");
+                String titulo = (String) fila.get("titulo");
+
+                Lista_plantilla lista_plantilla = new Lista_plantilla(idLista, titulo);
+                lista_plantilla.setMaximumSize(new Dimension(600, 50)); // Si no pongo el máximo se estíran las tareas para ocupar todo el panel
+                lista_plantilla.setMinimumSize(new Dimension(600, 50)); // Si no pongo el mínimo ocupan la mitad del ancho del panel
+
+                panel_lista.add(lista_plantilla);
+            }
+
+            panel_lista.revalidate();
+            panel_lista.repaint();
         }
-        
-        panel_lista.revalidate();
-        panel_lista.repaint();
     }
         
     /**

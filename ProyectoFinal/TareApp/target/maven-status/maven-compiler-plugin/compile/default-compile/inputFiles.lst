@@ -1,38 +1,39 @@
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Input_password.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\controlador\BBDD_controlador.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Separador.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Popup_editar_lista.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Boton.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Popup_borrar_cuenta_lista.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\RoundedBorder.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Tarea.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\Ajustes_cuenta_view.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Cabecera.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\Iniciar_registrar_view.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Idiomas.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\Lista.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Popup_crear_editar_tarea.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\Tareas_view.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\TextPrompt.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Cabecera.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Popup_cambiar_email_contrasenia.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Input_text.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Popup_ver_borrar_tarea.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Pagina_tareas.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Idioma.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\Main.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Select_prioridad.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Text_area_descripcion.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\Usuario.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\controlador\Lista_controlador.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\BBDD_tareapp.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Pagina_inicio_registro.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Pagina_ajustes_cuenta.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Lista_plantilla.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\controlador\Usuario_controlador.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\controlador\Idioma_controlador.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Estilos.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Input_date.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\Tarea.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Pagina_listas.java
-D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\Listas_view.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Popup_ver_borrar_tarea.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\Tarea.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Popup_crear_editar_tarea.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Cabecera.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\BBDD_tareapp.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Input_text.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Separador.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Pagina_inicio_registro.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Estilos.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Tarea.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\Main.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Popup_borrar_cuenta_lista.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Pagina_listas.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Text_area_descripcion.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Idiomas.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Boton.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Idioma.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\Ajustes_cuenta_view.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\Tareas_view.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\controlador\Idioma_controlador.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Input_password.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Popup_editar_lista.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\TextPrompt.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\controlador\BBDD_controlador.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Input_date.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\controlador\Tarea_controlador.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Pagina_tareas.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\controlador\Usuario_controlador.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Lista_plantilla.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\Listas_view.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\Lista.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Cabecera.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\Usuario.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Select_prioridad.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\controlador\Lista_controlador.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Popup_cambiar_email_contrasenia.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\RoundedBorder.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Pagina_ajustes_cuenta.java
+D:\DAM_2\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\Iniciar_registrar_view.java
