@@ -11,7 +11,7 @@ import com.mycompany.tareapp.vista.plantillas.Popup_borrar_cuenta_lista;
 import com.mycompany.tareapp.vista.plantillas.Popup_cambiar_email_contrasenia;
 import com.mycompany.tareapp.vista.plantillas.Popup_ver_borrar_tarea;
 import com.mycompany.tareapp.vista.plantillas.RoundedBorder;
-import com.mycompany.tareapp.vista.plantillas.Tarea;
+import com.mycompany.tareapp.vista.plantillas.Tarea_plantilla;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

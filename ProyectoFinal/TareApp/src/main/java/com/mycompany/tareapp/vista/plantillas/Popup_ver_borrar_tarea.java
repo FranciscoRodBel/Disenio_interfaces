@@ -36,7 +36,7 @@ public class Popup_ver_borrar_tarea extends JDialog {
     String texto_prioridad_tarea;
     String texto_descripcion_tarea;
 
-    public Popup_ver_borrar_tarea(Tarea tarea, String tipo_popup) {
+    public Popup_ver_borrar_tarea(Tarea_plantilla tarea, String tipo_popup) {
         
         super((Window) null, "PopUp", ModalityType.APPLICATION_MODAL);
         

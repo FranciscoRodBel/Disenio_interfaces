@@ -20,7 +20,7 @@ import com.mycompany.tareapp.vista.plantillas.RoundedBorder;
 import com.mycompany.tareapp.vista.plantillas.TextPrompt;
 import com.mycompany.tareapp.vista.plantillas.Input_text;
 import com.mycompany.tareapp.vista.plantillas.Lista_plantilla;
-import com.mycompany.tareapp.vista.plantillas.Tarea;
+import com.mycompany.tareapp.vista.plantillas.Tarea_plantilla;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

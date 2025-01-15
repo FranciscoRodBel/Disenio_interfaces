@@ -148,13 +148,13 @@ public class Main extends javax.swing.JFrame {
         layout.putConstraint(SpringLayout.WEST, tareas_view, 0, SpringLayout.WEST, cabecera);
         layout.putConstraint(SpringLayout.NORTH, tareas_view, 45, SpringLayout.NORTH, cabecera);
         layout.putConstraint(SpringLayout.EAST, tareas_view, 0, SpringLayout.EAST, cabecera);
-        tareas_view.setVisible(false);
+        tareas_view.setVisible(true);
         
         panelPrincipal.add(listas_view);
         layout.putConstraint(SpringLayout.WEST, listas_view, 0, SpringLayout.WEST, cabecera);
         layout.putConstraint(SpringLayout.NORTH, listas_view, 45, SpringLayout.NORTH, cabecera);
         layout.putConstraint(SpringLayout.EAST, listas_view, 0, SpringLayout.EAST, cabecera);
-        listas_view.setVisible(true);
+        listas_view.setVisible(false);
 
         panelPrincipal.add(ajustes_cuenta_view);
         layout.putConstraint(SpringLayout.WEST, ajustes_cuenta_view, 0, SpringLayout.WEST, cabecera);

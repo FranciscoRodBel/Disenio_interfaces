@@ -25,6 +25,7 @@ import javax.swing.JTextArea;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
+import static javax.swing.SwingConstants.CENTER;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
@@ -34,7 +35,7 @@ import javax.swing.Timer;
  */
 public class Popup_crear_editar_tarea extends JDialog {
     
-    Tarea tarea;
+    Tarea_plantilla tarea;
     
     JPanel panelPrincipal = new JPanel();
     
@@ -52,20 +53,20 @@ public class Popup_crear_editar_tarea extends JDialog {
     Input_text input_titulo_terea;
     JLabel label_resultado_tarea;
             
-    public Popup_crear_editar_tarea(Tarea tarea) {
+    public Popup_crear_editar_tarea(Tarea_plantilla tarea) {
         
         super((Window) null, "PopUp", ModalityType.APPLICATION_MODAL);
         
         this.tarea = tarea;
         this.setLayout(null);
         this.setResizable(false);  
-        this.setSize(new Dimension(800, 500));
+        this.setSize(new Dimension(800, 520));
         this.setLocationRelativeTo(null);
 
         this.add(panelPrincipal);
         SpringLayout layout = new SpringLayout();
         panelPrincipal.setLayout(layout);
-        panelPrincipal.setBounds(0, 0, 800, 500);
+        panelPrincipal.setBounds(0, 0, 800, 520);
         panelPrincipal.setBackground(Estilos.getGris_claro());
         
         Pagina_tareas idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
@@ -122,9 +123,10 @@ public class Popup_crear_editar_tarea extends JDialog {
         panelPrincipal.add(bonton_crear_editar);
         
         label_resultado_tarea = new JLabel("");
+        label_resultado_tarea.setHorizontalAlignment(CENTER);
         label_resultado_tarea.setFont(Estilos.getFuenteConTamaio(14));
         layout.putConstraint(SpringLayout.WEST, label_resultado_tarea, 0, SpringLayout.WEST, panelPrincipal);
-        layout.putConstraint(SpringLayout.NORTH, label_resultado_tarea, 60, SpringLayout.NORTH, bonton_crear_editar);
+        layout.putConstraint(SpringLayout.NORTH, label_resultado_tarea, 45, SpringLayout.NORTH, bonton_crear_editar);
         layout.putConstraint(SpringLayout.EAST, label_resultado_tarea, 0, SpringLayout.EAST, panelPrincipal);
         panelPrincipal.add(label_resultado_tarea);
     }
@@ -169,11 +171,11 @@ public class Popup_crear_editar_tarea extends JDialog {
         this.input_titulo_terea = input_titulo_terea;
     }
 
-    public Tarea getTarea() {
+    public Tarea_plantilla getTarea() {
         return tarea;
     }
 
-    public void setTarea(Tarea tarea) {
+    public void setTarea(Tarea_plantilla tarea) {
         this.tarea = tarea;
     }
 

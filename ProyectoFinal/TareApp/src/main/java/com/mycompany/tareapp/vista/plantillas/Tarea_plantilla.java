@@ -20,7 +20,7 @@ import javax.swing.SpringLayout;
  *
  * @author Propietario
  */
-public class Tarea extends JPanel {
+public class Tarea_plantilla extends JPanel {
 
     JButton botonTareaCompletada = new JButton();
     
@@ -37,16 +37,16 @@ public class Tarea extends JPanel {
     JButton botonEditarTarea = new JButton();
     JButton botonBorrarTarea = new JButton();
     
-    public Tarea() {
+    public Tarea_plantilla() {
         
         generarEstructura();
     }
     
-    public Tarea(Boolean completada, String titulo, int prioridad, String fecha, String descripcion) { // Si se envía true está completa, si se envía en la prioridad 1 - baja, 2 - media, 3 - alta
+    public Tarea_plantilla(int idTarea,int completada, String titulo, int prioridad, String fecha, String descripcion, int idLista) { // Si se envía true está completa, si se envía en la prioridad 1 - baja, 2 - media, 3 - alta
         
         generarEstructura();
         
-        if(completada) {
+        if(completada == 1) {
             
             this.setTareaCompletada();
         
@@ -266,7 +266,7 @@ public class Tarea extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                Popup_ver_borrar_tarea popup_ver_borrar_tarea = new Popup_ver_borrar_tarea(Tarea.this, "ver");
+                Popup_ver_borrar_tarea popup_ver_borrar_tarea = new Popup_ver_borrar_tarea(Tarea_plantilla.this, "ver");
                 popup_ver_borrar_tarea.setVisible(true);
             }
         });
@@ -276,7 +276,7 @@ public class Tarea extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                Popup_crear_editar_tarea popup_crear_editar_tarea = new Popup_crear_editar_tarea(Tarea.this);
+                Popup_crear_editar_tarea popup_crear_editar_tarea = new Popup_crear_editar_tarea(Tarea_plantilla.this);
                 popup_crear_editar_tarea.setVisible(true);
             }
         });
@@ -286,7 +286,7 @@ public class Tarea extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                Popup_ver_borrar_tarea popup_ver_borrar_tarea = new Popup_ver_borrar_tarea(Tarea.this, "borrar");
+                Popup_ver_borrar_tarea popup_ver_borrar_tarea = new Popup_ver_borrar_tarea(Tarea_plantilla.this, "borrar");
                 popup_ver_borrar_tarea.setVisible(true);
             }
         });
