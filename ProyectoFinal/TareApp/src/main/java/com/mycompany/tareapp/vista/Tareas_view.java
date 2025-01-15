@@ -5,7 +5,9 @@
 package com.mycompany.tareapp.vista;
 
 import com.mycompany.tareapp.controlador.Idioma_controlador;
+import com.mycompany.tareapp.controlador.Lista_controlador;
 import com.mycompany.tareapp.controlador.Tarea_controlador;
+import com.mycompany.tareapp.modelo.Usuario;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
 import com.mycompany.tareapp.vista.plantillas.Lista_plantilla;
 import com.mycompany.tareapp.vista.plantillas.Popup_crear_editar_tarea;
@@ -36,8 +38,10 @@ import javax.swing.Timer;
  */
 public class Tareas_view extends javax.swing.JPanel {
     
-    
     Tarea_controlador tarea_controlador = new Tarea_controlador();
+    Lista_controlador lista_controlador = new Lista_controlador();
+    
+    Usuario usuario;
     
     JToolBar barraHerramientas = new JToolBar();
     
@@ -61,7 +65,7 @@ public class Tareas_view extends javax.swing.JPanel {
     /**
      * Creates new form Tareas_view2
      */
-    public Tareas_view() {
+    public Tareas_view(Usuario usuario) {
         initComponents();
         
         SpringLayout layout = new SpringLayout();
@@ -69,6 +73,7 @@ public class Tareas_view extends javax.swing.JPanel {
         this.setPreferredSize(new Dimension(1000, 555));
         this.setMaximumSize(new Dimension(1000, 555));
         this.setBackground(Estilos.getGris_claro());
+        this.usuario = usuario;
         
         barraHerramientas.setBackground(Estilos.getAzul_oscuro());
         barraHerramientas.setFloatable(false);
@@ -225,6 +230,25 @@ public class Tareas_view extends javax.swing.JPanel {
 
             panelTareas.revalidate();
             panelTareas.repaint();
+        }
+    }
+    
+    public void actualizar_select_listas() {
+    
+        seleccionarLista.removeAllItems();
+        
+        ArrayList<HashMap<String, Object>> listas = lista_controlador.recoger_listas(usuario.getEmail());
+        
+        if (listas != null) {
+            
+            for(HashMap<String, Object> fila : listas) {
+        
+                
+                int idLista = (int) fila.get("idLista");
+                String titulo = (String) fila.get("titulo");
+
+                // Añadir al select
+            }
         }
     }
     /*

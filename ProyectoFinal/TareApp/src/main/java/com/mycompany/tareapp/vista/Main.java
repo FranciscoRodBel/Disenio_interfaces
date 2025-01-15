@@ -27,6 +27,8 @@ import javax.swing.Timer;
  */
 public class Main extends javax.swing.JFrame {
 
+    Usuario usuario = Usuario.recoger_usuario("franciscoRB@franciscoRB.com");
+    
     Idioma_controlador idioma_controlador;
     JPanel panelPrincipal = new JPanel();
     
@@ -34,7 +36,7 @@ public class Main extends javax.swing.JFrame {
         
     Cabecera cabecera = new Cabecera();
     
-    Tareas_view tareas_view = new Tareas_view();
+    Tareas_view tareas_view = new Tareas_view(usuario);
     
     Iniciar_registrar_view iniciar_registrar_view = new Iniciar_registrar_view();
     
@@ -42,7 +44,6 @@ public class Main extends javax.swing.JFrame {
     
     Ajustes_cuenta_view ajustes_cuenta_view = new Ajustes_cuenta_view();
     
-    Usuario usuario = Usuario.recoger_usuario("franciscoRB@franciscoRB.com");
     
     public Idioma_controlador getIdioma_controlador() {
         return idioma_controlador;
