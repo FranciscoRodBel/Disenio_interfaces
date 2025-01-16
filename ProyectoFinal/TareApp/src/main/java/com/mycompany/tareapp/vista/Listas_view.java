@@ -56,7 +56,7 @@ public class Listas_view extends javax.swing.JPanel {
     /**
      * Creates new form Listas_view
      */
-    public Listas_view(Usuario usuario) {
+    public Listas_view(Usuario usuario,Tareas_view tareas_view) {
         initComponents();
     
         this.usuario = usuario;
@@ -115,6 +115,7 @@ public class Listas_view extends javax.swing.JPanel {
                     mensaje_resultado = Idioma_controlador.getIdioma_seleccionado().getPagina_listas().getLista_creada();
                     input_titulo_lista.setText("");
                     actualizar_panel_lista();
+                    tareas_view.actualizar_select_listas();
                 } 
                 
                 label_resultado_lista.setText(mensaje_resultado);

@@ -5,6 +5,7 @@
 package com.mycompany.tareapp.controlador;
 
 import com.google.gson.Gson;
+import com.mycompany.tareapp.modelo.Lista;
 import com.mycompany.tareapp.modelo.idioma.Idioma;
 import com.mycompany.tareapp.modelo.idioma.Idiomas;
 import com.mycompany.tareapp.vista.Ajustes_cuenta_view;
@@ -68,7 +69,7 @@ public class Idioma_controlador {
         
         
         tareas_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_tareas().getTitulo());
-        tareas_view.getSeleccionarLista().insertItemAt(idioma_seleccionado.getPagina_tareas().getSeleccionar_lista(), 0);
+        tareas_view.getSeleccionarLista().insertItemAt(new Lista(0, idioma_seleccionado.getPagina_tareas().getSeleccionar_lista(), ""), 0);
         tareas_view.getSeleccionarLista().removeItemAt(1);
         listas_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_listas().getTitulo());
         listas_view.getInput_titulo_lista().getPlaceholder().setText(idioma_seleccionado.getPagina_listas().getTitulo_lista());

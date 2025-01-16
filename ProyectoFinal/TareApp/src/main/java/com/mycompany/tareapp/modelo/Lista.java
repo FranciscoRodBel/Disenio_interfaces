@@ -56,6 +56,10 @@ public class Lista {
         this.email = email;
     }
     
+    public String toString() {
+        return titulo;
+    }
+    
     public boolean es_titulo_valido() {
         
         String expresion = "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\\s\\-\\_\\.\\,\\(\\)]+$";

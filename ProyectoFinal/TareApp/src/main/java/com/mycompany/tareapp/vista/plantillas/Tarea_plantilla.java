@@ -42,11 +42,11 @@ public class Tarea_plantilla extends JPanel {
         generarEstructura();
     }
     
-    public Tarea_plantilla(int idTarea,int completada, String titulo, int prioridad, String fecha, String descripcion, int idLista) { // Si se envía true está completa, si se envía en la prioridad 1 - baja, 2 - media, 3 - alta
+    public Tarea_plantilla(int idTarea,boolean completada, String titulo, int prioridad, String fecha, String descripcion, int idLista) { // Si se envía true está completa, si se envía en la prioridad 1 - baja, 2 - media, 3 - alta
         
         generarEstructura();
         
-        if(completada == 1) {
+        if(completada) {
             
             this.setTareaCompletada();
         

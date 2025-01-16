@@ -7,7 +7,9 @@ package com.mycompany.tareapp.vista;
 import com.mycompany.tareapp.controlador.Idioma_controlador;
 import com.mycompany.tareapp.controlador.Lista_controlador;
 import com.mycompany.tareapp.controlador.Tarea_controlador;
+import com.mycompany.tareapp.modelo.Lista;
 import com.mycompany.tareapp.modelo.Usuario;
+import com.mycompany.tareapp.modelo.idioma.Pagina_tareas;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
 import com.mycompany.tareapp.vista.plantillas.Lista_plantilla;
 import com.mycompany.tareapp.vista.plantillas.Popup_crear_editar_tarea;
@@ -36,7 +38,7 @@ import javax.swing.Timer;
  *
  * @author Propietario
  */
-public class Tareas_view extends javax.swing.JPanel {
+public final class Tareas_view extends javax.swing.JPanel {
     
     Tarea_controlador tarea_controlador = new Tarea_controlador();
     Lista_controlador lista_controlador = new Lista_controlador();
@@ -57,11 +59,10 @@ public class Tareas_view extends javax.swing.JPanel {
     JButton botonOrdenado91 = new JButton();
     
     JLabel titulo_pagina = new JLabel("Tareas");
-    JComboBox<String> seleccionarLista = new JComboBox();
+    JComboBox<Lista> seleccionarLista = new JComboBox();
     
     JPanel panelTareas = new JPanel();
     JScrollPane scroll_panelTareas = new JScrollPane(panelTareas);
-    
     /**
      * Creates new form Tareas_view2
      */
@@ -120,7 +121,8 @@ public class Tareas_view extends javax.swing.JPanel {
         seleccionarLista.setFont(Estilos.getFuente());
         layout.putConstraint(SpringLayout.WEST, seleccionarLista, 350, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, seleccionarLista, 50, SpringLayout.NORTH, titulo_pagina);
-        seleccionarLista.addItem("Selecciona una lista");
+        actualizar_select_listas();
+        seleccionarLista.insertItemAt(new Lista(0,"Seleccionar lista", ""),0);
         
         panelTareas.setLayout(new BoxLayout(panelTareas, BoxLayout.Y_AXIS)); // Para colocar una tarea debajo de otra
         panelTareas.setBackground(Estilos.getGris_claro());
@@ -165,7 +167,7 @@ public class Tareas_view extends javax.swing.JPanel {
                             if (mensaje_resultado.isEmpty()) {
 
                                 mensaje_resultado = "Tarea creada";
-                                //new Tareas_view().actualizar_panel_tareas();
+                                actualizar_panel_tareas();
                             } 
 
                             popup_crear_editar_tarea.getLabel_resultado_tarea().setText(mensaje_resultado);
@@ -184,6 +186,13 @@ public class Tareas_view extends javax.swing.JPanel {
                 popup_crear_editar_tarea.setVisible(true);
             }
         });
+        
+        seleccionarLista.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                actualizar_panel_tareas();
+            }
+        });
     }
     
     public JLabel getTitulo_pagina() {
@@ -194,27 +203,28 @@ public class Tareas_view extends javax.swing.JPanel {
         this.titulo_pagina = titulo_pagina;
     }
 
-    public JComboBox<String> getSeleccionarLista() {
+    public JComboBox<Lista> getSeleccionarLista() {
         return seleccionarLista;
     }
 
-    public void setSeleccionarLista(JComboBox<String> seleccionarLista) {
+    public void setSeleccionarLista(JComboBox<Lista> seleccionarLista) {
         this.seleccionarLista = seleccionarLista;
     }
-    
     
     public void actualizar_panel_tareas() {
         
         panelTareas.removeAll();
     
-        ArrayList<HashMap<String, Object>> tareas = Tarea_controlador.recoger_tareas(1);
+        Lista listaSeleccionada = (Lista) seleccionarLista.getSelectedItem();
+        
+        ArrayList<HashMap<String, Object>> tareas = Tarea_controlador.recoger_tareas(listaSeleccionada.getIdLista());
         
         if (tareas != null) {
             
             for(HashMap<String, Object> fila : tareas) {
         
                 int idTarea = (int) fila.get("idTarea");
-                int completada = (int) fila.get("completada");
+                boolean completada = (boolean) fila.get("completada");
                 String titulo = (String) fila.get("titulo");
                 int prioridad = (int) fila.get("prioridad");
                 String fecha = (String) fila.get("fecha");
@@ -236,21 +246,38 @@ public class Tareas_view extends javax.swing.JPanel {
     public void actualizar_select_listas() {
     
         seleccionarLista.removeAllItems();
-        
+       
         ArrayList<HashMap<String, Object>> listas = lista_controlador.recoger_listas(usuario.getEmail());
         
         if (listas != null) {
             
             for(HashMap<String, Object> fila : listas) {
         
-                
                 int idLista = (int) fila.get("idLista");
                 String titulo = (String) fila.get("titulo");
-
-                // Añadir al select
+                String email = (String) fila.get("email");
+                
+                Lista lista = new Lista(idLista, titulo, email);
+                
+                seleccionarLista.addItem(lista);
             }
         }
     }
+    
+    public void recoger_lista_seleccionada() {
+        
+        Lista listaSeleccionada = (Lista) seleccionarLista.getSelectedItem();
+        
+        if (listaSeleccionada != null) {
+            
+            int id = listaSeleccionada.getIdLista();
+            String titulo = listaSeleccionada.getTitulo();
+            String email = listaSeleccionada.getEmail();
+
+            System.out.println("ID: " + id + ", Título: " + titulo + ", Email: " + email);
+        }
+    }
+
     /*
     private void agregarTarea(Tarea tarea) {
         

@@ -36,7 +36,7 @@ public class Main extends javax.swing.JFrame {
         
     Cabecera cabecera = new Cabecera();
     
-    Tareas_view tareas_view = new Tareas_view(usuario);
+    Tareas_view tareas_view;
     
     Iniciar_registrar_view iniciar_registrar_view = new Iniciar_registrar_view();
     
@@ -114,7 +114,6 @@ public class Main extends javax.swing.JFrame {
         
         idioma_controlador.cambiarIdioma(usuario.getIdioma_seleccionado(), cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
         
-
         
         cabecera.getItemEspaniol().addActionListener(new ActionListener() {
 
@@ -143,7 +142,8 @@ public class Main extends javax.swing.JFrame {
     
     public void generarInterfaz() {
         
-        listas_view = new Listas_view(usuario);
+        tareas_view = new Tareas_view(usuario);
+        listas_view = new Listas_view(usuario, tareas_view);
         
         panelPrincipal.add(tareas_view);
         layout.putConstraint(SpringLayout.WEST, tareas_view, 0, SpringLayout.WEST, cabecera);
