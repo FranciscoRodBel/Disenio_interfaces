@@ -4,6 +4,7 @@
  */
 package com.mycompany.tareapp.vista.plantillas;
 
+import com.mycompany.tareapp.controlador.Lista_controlador;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
+import javax.swing.Timer;
 
 /**
  *
@@ -21,6 +23,7 @@ public class Lista_plantilla extends JPanel {
 
     int idLista;
     JLabel titulo_lista = new JLabel("Título tarea");
+    Lista_controlador lista_controlador = new Lista_controlador();
     
     JButton botonVerLista = new JButton();
     JButton botonEditarLista = new JButton();
@@ -125,6 +128,23 @@ public class Lista_plantilla extends JPanel {
                 
                 Popup_editar_lista popup_editar_lista = new Popup_editar_lista(Lista_plantilla.this);
                 popup_editar_lista.setVisible(true);
+                
+                String titulo = titulo_lista.getText();
+
+                String mensaje_resultado = lista_controlador.actualizar_lista(idLista, popup_editar_lista.getInput_titulo_terea().getText());
+                
+                if (mensaje_resultado.isEmpty()) {
+
+                    mensaje_resultado = "Lista actualizada";
+                    //Lista_view.actualizar_panel_listas();
+                } 
+                /*
+                popup_crear_editar_tarea.getLabel_resultado_tarea().setText(mensaje_resultado);
+                Timer tiempo_espera = new Timer(3000, evt -> popup_crear_editar_tarea.getLabel_resultado_tarea().setText(""));
+                tiempo_espera.setRepeats(false);
+                tiempo_espera.start();
+                */
+                
             }
         });
         
@@ -134,6 +154,15 @@ public class Lista_plantilla extends JPanel {
                 
                 Popup_borrar_cuenta_lista popup_borrar_cuenta_lista = new Popup_borrar_cuenta_lista(Lista_plantilla.this.getTitulo_lista().getText(),"lista");
                 popup_borrar_cuenta_lista.setVisible(true);
+                
+                
+                String mensaje_resultado = lista_controlador.borrar_lista(idLista);
+                
+                if (mensaje_resultado.isEmpty()) {
+
+                    mensaje_resultado = "Lista actualizada";
+                    //Lista_view.actualizar_panel_listas();
+                } 
             }
         });
     }

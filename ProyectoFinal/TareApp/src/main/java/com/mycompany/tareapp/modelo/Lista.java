@@ -60,11 +60,11 @@ public class Lista {
         return titulo;
     }
     
-    public boolean es_titulo_valido() {
+    public static boolean es_titulo_valido(String titulo) {
         
         String expresion = "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\\s\\-\\_\\.\\,\\(\\)]+$";
         Pattern pattern = Pattern.compile(expresion);
         
-        return pattern.matcher(this.getTitulo()).matches();
+        return pattern.matcher(titulo).matches();
     }
 }

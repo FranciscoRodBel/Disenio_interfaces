@@ -31,7 +31,8 @@ import javax.swing.SwingUtilities;
 public class Popup_editar_lista extends JDialog {
     
     JPanel panelPrincipal = new JPanel();
-
+    Input_text input_titulo_terea;
+        
     public Popup_editar_lista(Lista_plantilla lista) {
         
         super((Window) null, "PopUp", ModalityType.APPLICATION_MODAL);
@@ -56,7 +57,7 @@ public class Popup_editar_lista extends JDialog {
         layout.putConstraint(SpringLayout.EAST, labelTitulo, 0, SpringLayout.EAST, panelPrincipal);
         panelPrincipal.add(labelTitulo);
         
-        Input_text input_titulo_terea = new Input_text(idioma_seleccionado.getTitulo_lista(), lista.getTitulo_lista().getText());
+        input_titulo_terea = new Input_text(idioma_seleccionado.getTitulo_lista(), lista.getTitulo_lista().getText());
         input_titulo_terea.setPreferredSize(new Dimension(350, 35));
         layout.putConstraint(SpringLayout.WEST, input_titulo_terea, 125, SpringLayout.WEST, labelTitulo);
         layout.putConstraint(SpringLayout.NORTH, input_titulo_terea, 50, SpringLayout.NORTH, labelTitulo);
@@ -66,5 +67,13 @@ public class Popup_editar_lista extends JDialog {
         layout.putConstraint(SpringLayout.WEST, bonton_editar, 200, SpringLayout.WEST, panelPrincipal);
         layout.putConstraint(SpringLayout.NORTH, bonton_editar, 60, SpringLayout.NORTH, input_titulo_terea);
         panelPrincipal.add(bonton_editar);
+    }
+
+    public Input_text getInput_titulo_terea() {
+        return input_titulo_terea;
+    }
+
+    public void setInput_titulo_terea(Input_text input_titulo_terea) {
+        this.input_titulo_terea = input_titulo_terea;
     }
 }

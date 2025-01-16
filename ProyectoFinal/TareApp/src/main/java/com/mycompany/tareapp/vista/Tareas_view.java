@@ -134,13 +134,6 @@ public final class Tareas_view extends javax.swing.JPanel {
         layout.putConstraint(SpringLayout.WEST, scroll_panelTareas, 100, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, scroll_panelTareas, 60, SpringLayout.NORTH, seleccionarLista);
         
-        /*
-        agregarTarea(new Tarea(false, "Tarea 1", 1, "05/01/2025", "Descripción tarea 1"));
-        agregarTarea(new Tarea(true, "Tarea 2", 2, "06/01/2025", "Descripción tarea 2"));
-        agregarTarea(new Tarea(false, "Tarea 3", 3, "07/01/2025", "Descripción tarea 3"));
-        agregarTarea(new Tarea(false, "Tarea 4", 1, "08/01/2025", "Descripción tarea 4"));
-        agregarTarea(new Tarea(true, "Tarea 5", 1, "09/01/2025", "Descripción tarea 5"));
-        */
         
         botonCrearTarea.addActionListener(new ActionListener() {
 
@@ -278,17 +271,6 @@ public final class Tareas_view extends javax.swing.JPanel {
         }
     }
 
-    /*
-    private void agregarTarea(Tarea tarea) {
-        
-        tarea.setMaximumSize(new Dimension(800, 50)); // Si no pongo el máximo se estíran las tareas para ocupar todo el panel
-        tarea.setMinimumSize(new Dimension(800, 50)); // Si no pongo el mínimo ocupan la mitad del ancho del panel
-        
-        panelTareas.add(tarea);
-        panelTareas.revalidate();
-        panelTareas.repaint();
-    }
-*/
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
