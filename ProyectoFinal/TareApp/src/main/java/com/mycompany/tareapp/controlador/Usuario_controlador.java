@@ -14,7 +14,16 @@ import com.mycompany.tareapp.modelo.idioma.Pagina_inicio_registro;
  */
 public class Usuario_controlador {
 
+    private static Usuario usuario = Usuario.recoger_usuario("franciscoRB@franciscoRB.com");
     private final BBDD_tareapp bbdd_tareapp = new BBDD_tareapp();
+
+    public static Usuario getUsuario() {
+        return usuario;
+    }
+
+    public static void setUsuario(Usuario usuario) {
+        Usuario_controlador.usuario = usuario;
+    }
 
     public String registrar_usuario(String email,String contrasenia,String repetir_contrasenia, String idioma_seleccionado) {
     
@@ -62,6 +71,7 @@ public class Usuario_controlador {
         
         if(usuario.verificar_contrasenia(contrasenia)) {
             
+            this.usuario = usuario;
             return "";
             
         } else {

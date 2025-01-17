@@ -6,12 +6,9 @@ package com.mycompany.tareapp.vista;
 
 import com.mycompany.tareapp.vista.plantillas.Boton;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
-import com.mycompany.tareapp.vista.plantillas.Lista_plantilla;
 import com.mycompany.tareapp.vista.plantillas.Popup_borrar_cuenta_lista;
 import com.mycompany.tareapp.vista.plantillas.Popup_cambiar_email_contrasenia;
-import com.mycompany.tareapp.vista.plantillas.Popup_ver_borrar_tarea;
 import com.mycompany.tareapp.vista.plantillas.RoundedBorder;
-import com.mycompany.tareapp.vista.plantillas.Tarea_plantilla;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,6 +23,7 @@ import javax.swing.SwingConstants;
  */
 public class Ajustes_cuenta_view extends javax.swing.JPanel {
 
+    static Ajustes_cuenta_view ajustes_cuenta_view;
     
     JLabel titulo_pagina = new JLabel("Ajustes de la cuenta");
     
@@ -150,6 +148,17 @@ public class Ajustes_cuenta_view extends javax.swing.JPanel {
     public void setBoton_borrar_cuenta(Boton boton_borrar_cuenta) {
         this.boton_borrar_cuenta = boton_borrar_cuenta;
     }
+    
+    public static Ajustes_cuenta_view recoger_instancia() {
+        
+        if (ajustes_cuenta_view == null) {
+            
+            ajustes_cuenta_view = new Ajustes_cuenta_view();
+        }
+        
+        return ajustes_cuenta_view;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

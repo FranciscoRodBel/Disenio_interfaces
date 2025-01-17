@@ -5,19 +5,16 @@
 package com.mycompany.tareapp.vista;
 
 import com.mycompany.tareapp.controlador.Idioma_controlador;
+import com.mycompany.tareapp.controlador.Usuario_controlador;
 import com.mycompany.tareapp.modelo.Usuario;
 import com.mycompany.tareapp.vista.plantillas.Cabecera;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
-import com.mycompany.tareapp.vista.plantillas.Lista_plantilla;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.SpringLayout;
 import javax.swing.Timer;
 
@@ -27,44 +24,20 @@ import javax.swing.Timer;
  */
 public class Main extends javax.swing.JFrame {
 
-    Usuario usuario = Usuario.recoger_usuario("franciscoRB@franciscoRB.com");
-    
-    Idioma_controlador idioma_controlador;
-    JPanel panelPrincipal = new JPanel();
+    Usuario usuario = Usuario_controlador.getUsuario();
     
     SpringLayout layout = new SpringLayout();
-        
+    
+    JPanel panelPrincipal = new JPanel();
     Cabecera cabecera = new Cabecera();
     
-    Tareas_view tareas_view;
-    
-    Iniciar_registrar_view iniciar_registrar_view = new Iniciar_registrar_view();
-    
-    Listas_view listas_view;
-    
-    Ajustes_cuenta_view ajustes_cuenta_view = new Ajustes_cuenta_view();
-    
-    
-    public Idioma_controlador getIdioma_controlador() {
-        return idioma_controlador;
-    }
-
-    public void setIdioma_controlador(Idioma_controlador idioma_controlador) {
-        this.idioma_controlador = idioma_controlador;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+    Iniciar_registrar_view iniciar_registrar_view = Iniciar_registrar_view.recoger_instancia();
+    Ajustes_cuenta_view ajustes_cuenta_view = Ajustes_cuenta_view.recoger_instancia();
+    Listas_view listas_view = Listas_view.recoger_instancia();
+    Tareas_view tareas_view = Tareas_view.recoger_instancia();
 
     public Main() throws FileNotFoundException {
         initComponents();
-     
-        idioma_controlador = new Idioma_controlador();
 
         this.setLayout(null);
         this.setResizable(false);        
@@ -86,64 +59,49 @@ public class Main extends javax.swing.JFrame {
         layout.putConstraint(SpringLayout.EAST, iniciar_registrar_view, 0, SpringLayout.EAST, cabecera);
         iniciar_registrar_view.setVisible(false);
         
-        iniciar_registrar_view.getBoton_enviar_inicio().addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
+        iniciar_registrar_view.getBoton_enviar_inicio().addActionListener((ActionEvent e) -> {
+            
+            String email = iniciar_registrar_view.getEmail_iniciar().getText();
+            String contrasenia = new String(iniciar_registrar_view.contrasenia_iniciar.getPassword());
+            
+            String mensaje_resultado = iniciar_registrar_view.getUsuario_controlador().iniciar_usuario(email, contrasenia);
+            
+            if (mensaje_resultado.isEmpty()) {
                 
-                String email = iniciar_registrar_view.getEmail_iniciar().getText();
-                String contrasenia = new String(iniciar_registrar_view.contrasenia_iniciar.getPassword());
+                usuario = Usuario.recoger_usuario(email);
+                //generarInterfaz();
                 
-                String mensaje_resultado = iniciar_registrar_view.getUsuario_controlador().iniciar_usuario(email, contrasenia);
+            } else {
                 
-                if (mensaje_resultado.isEmpty()) {
-                    
-                    usuario = Usuario.recoger_usuario(email);
-                    //generarInterfaz();
-                    
-                } else {
-                    
-                    iniciar_registrar_view.getLabel_resultado_inicio().setText(mensaje_resultado);
-                    Timer tiempo_espera = new Timer(3000, evt -> iniciar_registrar_view.getLabel_resultado_inicio().setText(""));
-                    tiempo_espera.setRepeats(false);
-                    tiempo_espera.start();
-                }
+                iniciar_registrar_view.getLabel_resultado_inicio().setText(mensaje_resultado);
+                Timer tiempo_espera = new Timer(3000, evt -> iniciar_registrar_view.getLabel_resultado_inicio().setText(""));
+                tiempo_espera.setRepeats(false);
+                tiempo_espera.start();
             }
         });
        
         generarInterfaz();
         
-        idioma_controlador.cambiarIdioma(usuario.getIdioma_seleccionado(), cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
+        Idioma_controlador.cambiarIdioma(usuario.getIdioma_seleccionado(), cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
         
         
-        cabecera.getItemEspaniol().addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                
-                idioma_controlador.cambiarIdioma("Español", cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
-            }
+        cabecera.getItemEspaniol().addActionListener((ActionEvent e) -> {
+            Idioma_controlador.cambiarIdioma("Español", cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
         });
         
-        cabecera.getItemIngles().addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                
-                idioma_controlador.cambiarIdioma("English", cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
-            }
+        cabecera.getItemIngles().addActionListener((ActionEvent e) -> {
+            Idioma_controlador.cambiarIdioma("English", cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
         });
                 
-        cabecera.getItemFrances().addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-            
-                idioma_controlador.cambiarIdioma("Français", cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
-            }
+        cabecera.getItemFrances().addActionListener((ActionEvent e) -> {
+            Idioma_controlador.cambiarIdioma("Français", cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
         });
     }
     
     public void generarInterfaz() {
         
-        tareas_view = new Tareas_view(usuario);
-        listas_view = new Listas_view(usuario, tareas_view);
+        tareas_view = new Tareas_view();
+        listas_view = new Listas_view();
         
         panelPrincipal.add(tareas_view);
         layout.putConstraint(SpringLayout.WEST, tareas_view, 0, SpringLayout.WEST, cabecera);
@@ -164,40 +122,24 @@ public class Main extends javax.swing.JFrame {
         ajustes_cuenta_view.setVisible(false);
         
         
-        cabecera.getItemTareas().addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                
-                ocultarPaneles();
-                tareas_view.setVisible(true);
-            }
+        cabecera.getItemTareas().addActionListener((ActionEvent e) -> {
+            ocultarPaneles();
+            tareas_view.setVisible(true);
         });
         
-        cabecera.getItemListas().addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                
-                ocultarPaneles();
-                listas_view.setVisible(true);  
-            }
+        cabecera.getItemListas().addActionListener((ActionEvent e) -> {
+            ocultarPaneles();
+            listas_view.setVisible(true);
         });
             
-        cabecera.getItemAjustes().addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-            
-                ocultarPaneles();
-                ajustes_cuenta_view.setVisible(true);
-            }
+        cabecera.getItemAjustes().addActionListener((ActionEvent e) -> {
+            ocultarPaneles();
+            ajustes_cuenta_view.setVisible(true);
         });    
                 
-        cabecera.getItemCerrarSesion().addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                
-                ocultarPaneles();
-                iniciar_registrar_view.setVisible(true);
-            }
+        cabecera.getItemCerrarSesion().addActionListener((ActionEvent e) -> {
+            ocultarPaneles();
+            iniciar_registrar_view.setVisible(true);
         });
     }
 
@@ -264,6 +206,7 @@ public class Main extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 try {
                     new Main().setVisible(true);

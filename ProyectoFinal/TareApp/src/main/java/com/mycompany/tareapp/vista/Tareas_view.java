@@ -4,24 +4,19 @@
  */
 package com.mycompany.tareapp.vista;
 
-import com.mycompany.tareapp.controlador.Idioma_controlador;
 import com.mycompany.tareapp.controlador.Lista_controlador;
 import com.mycompany.tareapp.controlador.Tarea_controlador;
+import com.mycompany.tareapp.controlador.Usuario_controlador;
 import com.mycompany.tareapp.modelo.Lista;
 import com.mycompany.tareapp.modelo.Usuario;
-import com.mycompany.tareapp.modelo.idioma.Pagina_tareas;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
-import com.mycompany.tareapp.vista.plantillas.Lista_plantilla;
 import com.mycompany.tareapp.vista.plantillas.Popup_crear_editar_tarea;
 import com.mycompany.tareapp.vista.plantillas.Tarea_plantilla;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -40,10 +35,12 @@ import javax.swing.Timer;
  */
 public final class Tareas_view extends javax.swing.JPanel {
     
+    static Tareas_view tareas_view;
+    
     Tarea_controlador tarea_controlador = new Tarea_controlador();
     Lista_controlador lista_controlador = new Lista_controlador();
     
-    Usuario usuario;
+    Usuario usuario = Usuario_controlador.getUsuario();
     
     JToolBar barraHerramientas = new JToolBar();
     
@@ -63,10 +60,11 @@ public final class Tareas_view extends javax.swing.JPanel {
     
     JPanel panelTareas = new JPanel();
     JScrollPane scroll_panelTareas = new JScrollPane(panelTareas);
+    
     /**
      * Creates new form Tareas_view2
      */
-    public Tareas_view(Usuario usuario) {
+    public Tareas_view() {
         initComponents();
         
         SpringLayout layout = new SpringLayout();
@@ -74,7 +72,6 @@ public final class Tareas_view extends javax.swing.JPanel {
         this.setPreferredSize(new Dimension(1000, 555));
         this.setMaximumSize(new Dimension(1000, 555));
         this.setBackground(Estilos.getGris_claro());
-        this.usuario = usuario;
         
         barraHerramientas.setBackground(Estilos.getAzul_oscuro());
         barraHerramientas.setFloatable(false);
@@ -135,56 +132,47 @@ public final class Tareas_view extends javax.swing.JPanel {
         layout.putConstraint(SpringLayout.NORTH, scroll_panelTareas, 60, SpringLayout.NORTH, seleccionarLista);
         
         
-        botonCrearTarea.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
+        botonCrearTarea.addActionListener((ActionEvent e) -> {
+            
+            Popup_crear_editar_tarea popup_crear_editar_tarea = new Popup_crear_editar_tarea(null);
+            
+            popup_crear_editar_tarea.getBonton_crear_editar().addActionListener((ActionEvent e1) -> {
                 
-                Popup_crear_editar_tarea popup_crear_editar_tarea = new Popup_crear_editar_tarea(null);
-                
-                popup_crear_editar_tarea.getBonton_crear_editar().addActionListener(new ActionListener() {
-
-                    public void actionPerformed(ActionEvent e) {
-
-                        if (popup_crear_editar_tarea.getTarea() == null) {
-
-                            String titulo = popup_crear_editar_tarea.getInput_titulo_terea().getText();
-                            String prioridad = (String) popup_crear_editar_tarea.getInput_prioridad_tarea().getSelectedItem();
-                            String fecha = popup_crear_editar_tarea.getInput_fecha_terea().getText();
-                            String descripcion = popup_crear_editar_tarea.getInput_descripcion().getTextArea().getText();
-                            int idLista = 1;
-
-                            String mensaje_resultado = tarea_controlador.crear_tarea(titulo, prioridad, fecha, descripcion, idLista);
-
-                            System.out.println(mensaje_resultado);
-
-                            if (mensaje_resultado.isEmpty()) {
-
-                                mensaje_resultado = "Tarea creada";
-                                actualizar_panel_tareas();
-                            } 
-
-                            popup_crear_editar_tarea.getLabel_resultado_tarea().setText(mensaje_resultado);
-                            Timer tiempo_espera = new Timer(3000, evt -> popup_crear_editar_tarea.getLabel_resultado_tarea().setText(""));
-                            tiempo_espera.setRepeats(false);
-                            tiempo_espera.start();
-
-                        } else {
-
-                            // En caso de que quiera editar
-
-                        }
+                if (popup_crear_editar_tarea.getTarea() == null) {
+                    
+                    String titulo = popup_crear_editar_tarea.getInput_titulo_terea().getText();
+                    String prioridad = (String) popup_crear_editar_tarea.getInput_prioridad_tarea().getSelectedItem();
+                    String fecha = popup_crear_editar_tarea.getInput_fecha_terea().getText();
+                    String descripcion = popup_crear_editar_tarea.getInput_descripcion().getTextArea().getText();
+                    int idLista = 1;
+                    
+                    String mensaje_resultado = tarea_controlador.crear_tarea(titulo, prioridad, fecha, descripcion, idLista);
+                    
+                    System.out.println(mensaje_resultado);
+                    
+                    if (mensaje_resultado.isEmpty()) {
+                        
+                        mensaje_resultado = "Tarea creada";
+                        actualizar_panel_tareas();                        
                     }
-                });
-                
-                popup_crear_editar_tarea.setVisible(true);
-            }
+                    
+                    popup_crear_editar_tarea.getLabel_resultado_tarea().setText(mensaje_resultado);
+                    Timer tiempo_espera = new Timer(3000, evt -> popup_crear_editar_tarea.getLabel_resultado_tarea().setText(""));
+                    tiempo_espera.setRepeats(false);
+                    tiempo_espera.start();
+                    
+                } else {
+                    
+                    // En caso de que quiera editar
+                    
+                }
+            });
+            
+            popup_crear_editar_tarea.setVisible(true);
         });
         
-        seleccionarLista.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                actualizar_panel_tareas();
-            }
+        seleccionarLista.addActionListener((ActionEvent e) -> {
+            actualizar_panel_tareas();
         });
     }
     
@@ -240,7 +228,7 @@ public final class Tareas_view extends javax.swing.JPanel {
     
         seleccionarLista.removeAllItems();
        
-        ArrayList<HashMap<String, Object>> listas = lista_controlador.recoger_listas(usuario.getEmail());
+        ArrayList<HashMap<String, Object>> listas = Lista_controlador.recoger_listas(usuario.getEmail());
         
         if (listas != null) {
             
@@ -269,6 +257,16 @@ public final class Tareas_view extends javax.swing.JPanel {
 
             System.out.println("ID: " + id + ", Título: " + titulo + ", Email: " + email);
         }
+    }
+    
+    public static Tareas_view recoger_instancia() {
+        
+        if (tareas_view == null) {
+            
+            tareas_view = new Tareas_view();
+        }
+        
+        return tareas_view;
     }
 
     @SuppressWarnings("unchecked")

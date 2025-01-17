@@ -6,40 +6,23 @@ package com.mycompany.tareapp.vista;
 
 import com.mycompany.tareapp.controlador.Idioma_controlador;
 import com.mycompany.tareapp.controlador.Usuario_controlador;
-import com.mycompany.tareapp.modelo.Usuario;
-import com.mycompany.tareapp.modelo.idioma.Pagina_tareas;
 import com.mycompany.tareapp.vista.plantillas.RoundedBorder;
-import com.mycompany.tareapp.vista.plantillas.TextPrompt;
 import com.mycompany.tareapp.vista.plantillas.Boton;
-import com.mycompany.tareapp.vista.plantillas.Cabecera;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
 import com.mycompany.tareapp.vista.plantillas.Input_password;
 import com.mycompany.tareapp.vista.plantillas.Input_text;
-import com.mycompany.tareapp.vista.plantillas.Lista_plantilla;
-import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
-import static javax.swing.SwingConstants.CENTER;
 import javax.swing.Timer;
-import javax.swing.UIManager;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicButtonUI;
 
@@ -48,6 +31,8 @@ import javax.swing.plaf.basic.BasicButtonUI;
  * @author Propietario
  */
 public class Iniciar_registrar_view extends javax.swing.JPanel {
+    
+    static Iniciar_registrar_view iniciar_registrar_view;
     
     Usuario_controlador usuario_controlador = new Usuario_controlador();
     
@@ -355,7 +340,16 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         this.label_resultado_registro = label_resultado_registro;
     }
     
-    
+    public static Iniciar_registrar_view recoger_instancia() {
+        
+        if (iniciar_registrar_view == null) {
+            
+            iniciar_registrar_view = new Iniciar_registrar_view();
+        }
+        
+        return iniciar_registrar_view;
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
