@@ -5,24 +5,19 @@
 package com.mycompany.tareapp.vista.plantillas;
 
 import com.mycompany.tareapp.controlador.Idioma_controlador;
+import com.mycompany.tareapp.controlador.Lista_controlador;
 import com.mycompany.tareapp.modelo.idioma.Pagina_listas;
-import com.mycompany.tareapp.modelo.idioma.Pagina_tareas;
-import java.awt.BorderLayout;
-import java.awt.Component;
+import com.mycompany.tareapp.vista.Listas_view;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Window;
-import java.util.Date;
+import java.awt.event.ActionEvent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
-import javax.swing.SpinnerDateModel;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
+import static javax.swing.SwingConstants.CENTER;
+import javax.swing.Timer;
 
 /**
  *
@@ -30,8 +25,12 @@ import javax.swing.SwingUtilities;
  */
 public class Popup_editar_lista extends JDialog {
     
+    Lista_controlador lista_controlador = new Lista_controlador();
+    Listas_view listas_view = Listas_view.recoger_instancia();
+    
     JPanel panelPrincipal = new JPanel();
     Input_text input_titulo_terea;
+    JLabel label_resultado_lista = new JLabel("");
         
     public Popup_editar_lista(Lista_plantilla lista) {
         
@@ -39,13 +38,13 @@ public class Popup_editar_lista extends JDialog {
         
         this.setLayout(null);
         this.setResizable(false);  
-        this.setSize(new Dimension(600, 230));
+        this.setSize(new Dimension(600, 250));
         this.setLocationRelativeTo(null);
 
         this.add(panelPrincipal);
         SpringLayout layout = new SpringLayout();
         panelPrincipal.setLayout(layout);
-        panelPrincipal.setBounds(0, 0, 600, 230);
+        panelPrincipal.setBounds(0, 0, 600, 250);
         panelPrincipal.setBackground(Estilos.getGris_claro());
         
         Pagina_listas idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getPagina_listas();
@@ -67,13 +66,28 @@ public class Popup_editar_lista extends JDialog {
         layout.putConstraint(SpringLayout.WEST, bonton_editar, 200, SpringLayout.WEST, panelPrincipal);
         layout.putConstraint(SpringLayout.NORTH, bonton_editar, 60, SpringLayout.NORTH, input_titulo_terea);
         panelPrincipal.add(bonton_editar);
-    }
+        
+        label_resultado_lista.setHorizontalAlignment(CENTER);
+        label_resultado_lista.setFont(Estilos.getFuenteConTamaio(14));
+        layout.putConstraint(SpringLayout.WEST, label_resultado_lista, 0, SpringLayout.WEST, panelPrincipal);
+        layout.putConstraint(SpringLayout.NORTH, label_resultado_lista, 45, SpringLayout.NORTH, bonton_editar);
+        layout.putConstraint(SpringLayout.EAST, label_resultado_lista, 0, SpringLayout.EAST, panelPrincipal);
+        panelPrincipal.add(label_resultado_lista);
 
-    public Input_text getInput_titulo_terea() {
-        return input_titulo_terea;
-    }
+        bonton_editar.addActionListener((ActionEvent e) -> {
 
-    public void setInput_titulo_terea(Input_text input_titulo_terea) {
-        this.input_titulo_terea = input_titulo_terea;
+            String mensaje_resultado = lista_controlador.actualizar_lista(lista.idLista, input_titulo_terea.getText());
+
+            if (mensaje_resultado.isEmpty()) {
+
+                mensaje_resultado = "Lista editada";
+                listas_view.actualizar_panel_lista();
+            }
+
+            label_resultado_lista.setText(mensaje_resultado);
+            Timer tiempo_espera = new Timer(3000, evt -> label_resultado_lista.setText(""));
+            tiempo_espera.setRepeats(false);
+            tiempo_espera.start();
+        });
     }
 }

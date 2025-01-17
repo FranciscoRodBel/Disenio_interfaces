@@ -18,7 +18,6 @@ import javax.swing.SwingConstants;
 import com.mycompany.tareapp.vista.plantillas.Input_text;
 import com.mycompany.tareapp.vista.plantillas.Lista_plantilla;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.BoxLayout;
@@ -132,7 +131,7 @@ public class Listas_view extends javax.swing.JPanel {
         this.input_titulo_lista = input_titulo_lista;
     }
 
-    private void actualizar_panel_lista() {
+    public void actualizar_panel_lista() {
         
         panel_lista.removeAll();
     
@@ -159,12 +158,12 @@ public class Listas_view extends javax.swing.JPanel {
        
     public static Listas_view recoger_instancia() {
         
-        if (listas_view == null) {
+        if (Listas_view.listas_view == null) {
             
-            listas_view = new Listas_view();
+            Listas_view.listas_view = new Listas_view();
         }
         
-        return listas_view;
+        return Listas_view.listas_view;
     }
     /**
      * This method is called from within the constructor to initialize the form.

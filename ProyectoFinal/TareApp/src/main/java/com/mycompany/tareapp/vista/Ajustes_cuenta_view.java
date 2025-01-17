@@ -111,7 +111,7 @@ public class Ajustes_cuenta_view extends javax.swing.JPanel {
 
             public void actionPerformed(ActionEvent e) {
                 
-                Popup_borrar_cuenta_lista popup_borrar_cuenta_lista = new Popup_borrar_cuenta_lista(label_email_usuario.getText(),"usuario");
+                Popup_borrar_cuenta_lista popup_borrar_cuenta_lista = new Popup_borrar_cuenta_lista(label_email_usuario.getText(), label_email_usuario.getText() ,"usuario");
                 popup_borrar_cuenta_lista.setVisible(true);
             }
         });

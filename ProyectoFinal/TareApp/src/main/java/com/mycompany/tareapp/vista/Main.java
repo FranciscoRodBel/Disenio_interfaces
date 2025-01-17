@@ -73,10 +73,11 @@ public class Main extends javax.swing.JFrame {
                 
             } else {
                 
-                iniciar_registrar_view.getLabel_resultado_inicio().setText(mensaje_resultado);
+                iniciar_registrar_view.getLabel_resultado_inicio().setText("<html><body><p style='text-align: center;'>"+mensaje_resultado+"</p></body></html>");
                 Timer tiempo_espera = new Timer(3000, evt -> iniciar_registrar_view.getLabel_resultado_inicio().setText(""));
                 tiempo_espera.setRepeats(false);
                 tiempo_espera.start();
+                
             }
         });
        
@@ -99,9 +100,6 @@ public class Main extends javax.swing.JFrame {
     }
     
     public void generarInterfaz() {
-        
-        tareas_view = new Tareas_view();
-        listas_view = new Listas_view();
         
         panelPrincipal.add(tareas_view);
         layout.putConstraint(SpringLayout.WEST, tareas_view, 0, SpringLayout.WEST, cabecera);

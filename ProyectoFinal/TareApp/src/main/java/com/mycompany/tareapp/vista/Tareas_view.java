@@ -148,8 +148,6 @@ public final class Tareas_view extends javax.swing.JPanel {
                     
                     String mensaje_resultado = tarea_controlador.crear_tarea(titulo, prioridad, fecha, descripcion, idLista);
                     
-                    System.out.println(mensaje_resultado);
-                    
                     if (mensaje_resultado.isEmpty()) {
                         
                         mensaje_resultado = "Tarea creada";
@@ -244,7 +242,7 @@ public final class Tareas_view extends javax.swing.JPanel {
             }
         }
     }
-    
+    /*
     public void recoger_lista_seleccionada() {
         
         Lista listaSeleccionada = (Lista) seleccionarLista.getSelectedItem();
@@ -258,6 +256,7 @@ public final class Tareas_view extends javax.swing.JPanel {
             System.out.println("ID: " + id + ", Título: " + titulo + ", Email: " + email);
         }
     }
+    */
     
     public static Tareas_view recoger_instancia() {
         

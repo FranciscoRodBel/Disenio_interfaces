@@ -55,7 +55,8 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
     Boton boton_enviar_registro = new Boton("Registrarse");
     
     JTextArea label_resultado_inicio = new JTextArea();
-    JTextArea label_resultado_registro = new JTextArea();
+    //JTextArea label_resultado_registro = new JTextArea();
+    JLabel label_resultado_registro = new JLabel();
 
     /**
      * Creates new form Iniciar_registrar_view2
@@ -168,13 +169,8 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         panel_registro.setVisible(false);
         
         panel_registro.add(label_resultado_registro);
+        label_resultado_registro.setHorizontalAlignment(SwingConstants.CENTER);
         label_resultado_registro.setFont(Estilos.getFuenteConTamaio(12));
-        label_resultado_registro.setBackground(new Color(0, 0, 0, 0));
-        label_resultado_registro.setBorder(BorderFactory.createEmptyBorder());
-        label_resultado_registro.setFocusable(false);   
-        label_resultado_registro.setLineWrap(true);
-        label_resultado_registro.setWrapStyleWord(true);
-        label_resultado_registro.setBorder(BorderFactory.createEmptyBorder());
         layout3.putConstraint(SpringLayout.WEST, label_resultado_registro, 10, SpringLayout.WEST, panel_registro);
         layout3.putConstraint(SpringLayout.NORTH, label_resultado_registro, 45, SpringLayout.NORTH, boton_enviar_registro);
         layout3.putConstraint(SpringLayout.EAST, label_resultado_registro, 10, SpringLayout.EAST, panel_registro);
@@ -219,7 +215,7 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
                 String idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getIdioma();
                 
                 String mensaje_resultado = usuario_controlador.registrar_usuario(email_registro.getText(), contrasenia, repetir_contrasenia, idioma_seleccionado);
-                label_resultado_registro.setText(mensaje_resultado);
+                label_resultado_registro.setText("<html><body><p style='text-align: center;'>"+mensaje_resultado+"</p></body></html>");
                 Timer tiempo_espera = new Timer(3000, evt -> label_resultado_registro.setText(""));
                 tiempo_espera.setRepeats(false);
                 tiempo_espera.start();
@@ -330,14 +326,6 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
 
     public void setLabel_resultado_inicio(JTextArea label_resultado_inicio) {
         this.label_resultado_inicio = label_resultado_inicio;
-    }
-
-    public JTextArea getLabel_resultado_registro() {
-        return label_resultado_registro;
-    }
-
-    public void setLabel_resultado_registro(JTextArea label_resultado_registro) {
-        this.label_resultado_registro = label_resultado_registro;
     }
     
     public static Iniciar_registrar_view recoger_instancia() {
