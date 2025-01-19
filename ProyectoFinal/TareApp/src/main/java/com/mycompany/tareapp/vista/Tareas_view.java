@@ -39,9 +39,6 @@ public final class Tareas_view extends javax.swing.JPanel {
     
     static Tareas_view tareas_view;
     
-    Tarea_controlador tarea_controlador = new Tarea_controlador();
-    Lista_controlador lista_controlador = new Lista_controlador();
-    
     Usuario usuario = Usuario_controlador.getUsuario();
     
     JToolBar barraHerramientas = new JToolBar();
@@ -138,37 +135,6 @@ public final class Tareas_view extends javax.swing.JPanel {
         botonCrearTarea.addActionListener((ActionEvent e) -> {
             
             Popup_crear_editar_tarea popup_crear_editar_tarea = new Popup_crear_editar_tarea(null);
-            
-            popup_crear_editar_tarea.getBonton_crear_editar().addActionListener((ActionEvent e1) -> {
-                
-                if (popup_crear_editar_tarea.getTarea() == null) {
-                    
-                    String titulo = popup_crear_editar_tarea.getInput_titulo_terea().getText();
-                    String prioridad = (String) popup_crear_editar_tarea.getInput_prioridad_tarea().getSelectedItem();
-                    String fecha = popup_crear_editar_tarea.getInput_fecha_terea().getText();
-                    String descripcion = popup_crear_editar_tarea.getInput_descripcion().getTextArea().getText();
-                    int idLista = recoger_id_lista_seleccionada();
-                    
-                    String mensaje_resultado = tarea_controlador.crear_tarea(titulo, prioridad, fecha, descripcion, idLista);
-                    
-                    if (mensaje_resultado.isEmpty()) {
-                        
-                        mensaje_resultado = "Tarea creada";
-                        actualizar_panel_tareas();                        
-                    }
-                    
-                    popup_crear_editar_tarea.getLabel_resultado_tarea().setText(mensaje_resultado);
-                    Timer tiempo_espera = new Timer(3000, evt -> popup_crear_editar_tarea.getLabel_resultado_tarea().setText(""));
-                    tiempo_espera.setRepeats(false);
-                    tiempo_espera.start();
-                    
-                } else {
-                    
-                    // En caso de que quiera editar
-                    
-                }
-            });
-            
             popup_crear_editar_tarea.setVisible(true);
         });
         
@@ -238,13 +204,10 @@ public final class Tareas_view extends javax.swing.JPanel {
         seleccionarLista.addItem(new Lista(0, "Seleccionar lista", ""));
         ArrayList<HashMap<String, Object>> listas = Lista_controlador.recoger_listas(usuario.getEmail());
         
-        System.out.println(listas);
-        
         if (listas != null) {
             
             for(HashMap<String, Object> fila : listas) {
         
-                System.out.println(fila.get("idLista"));
                 int idLista = (int) fila.get("idLista");
                 String titulo = (String) fila.get("titulo");
                 String email = (String) fila.get("email");

@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
+import static javax.swing.SwingConstants.CENTER;
 
 /**
  *
@@ -28,6 +29,7 @@ public final class Tarea_plantilla extends JPanel {
     
     JLabel fechaTarea = new JLabel("05/01/2025");
     
+    int idTarea;
     int prioridadTarea;
     String descripcionTarea;
     
@@ -41,6 +43,8 @@ public final class Tarea_plantilla extends JPanel {
     }
     
     public Tarea_plantilla(int idTarea,boolean completada, String titulo, int prioridad, String fecha, String descripcion, int idLista) { // Si se envía true está completa, si se envía en la prioridad 1 - baja, 2 - media, 3 - alta
+        
+        this.idTarea = idTarea;
         
         generarEstructura();
         
@@ -144,6 +148,14 @@ public final class Tarea_plantilla extends JPanel {
         this.descripcionTarea = descripcionTarea;
     }
 
+    public int getIdTarea() {
+        return idTarea;
+    }
+
+    public void setIdTarea(int idTarea) {
+        this.idTarea = idTarea;
+    }
+    
     public void generarEstructura() {
         
         SpringLayout layout = new SpringLayout();
@@ -198,8 +210,9 @@ public final class Tarea_plantilla extends JPanel {
         layout.putConstraint(SpringLayout.SOUTH, separador4, 0, SpringLayout.SOUTH, this);
         
         this.add(fechaTarea);
+        fechaTarea.setHorizontalAlignment(CENTER);
         fechaTarea.setFont(Estilos.getFuente());
-        fechaTarea.setPreferredSize(new Dimension(100, 50));
+        fechaTarea.setPreferredSize(new Dimension(85, 50));
         layout.putConstraint(SpringLayout.WEST, fechaTarea, 80, SpringLayout.WEST, separador3);
         layout.putConstraint(SpringLayout.NORTH, fechaTarea, 0, SpringLayout.NORTH, this);
         layout.putConstraint(SpringLayout.SOUTH, fechaTarea, 0, SpringLayout.SOUTH, this);

@@ -34,9 +34,13 @@ public class Tarea_controlador {
         
         Tarea tarea = new Tarea(titulo, prioridad_seleccionada, fecha, descripcion, idLista);
         
+        if (titulo.length() > 50) return "El título no puede superar los 50 caracteres";
+        
         if (!tarea.es_texto_valido(titulo)) return "El título de la tarea no es válido";
         
         if (!tarea.es_fecha_valida()) return "La fecha no es válida, debe ser posterior al año 2000";
+        
+        if (titulo.length() > 500) return "La descripción no puede superar los 500 caracteres";
         
         if (!tarea.es_texto_valido(descripcion)) return "La descripción de la tarea no es válida";
         
@@ -66,6 +70,47 @@ public class Tarea_controlador {
         } else {
         
             return resultados;
+        }
+    }
+    
+    public String editar_tarea(int idTarea, String titulo, String prioridad, String fecha, String descripcion, int idLista) {
+    
+        Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
+        int prioridad_seleccionada = 1;
+        
+        if (prioridad.equals(idioma_tareas.getAlta())) {
+            
+            prioridad_seleccionada = 3;
+            
+        } else if (prioridad.equals(idioma_tareas.getMedia())) {
+            
+            prioridad_seleccionada = 2;
+        }
+        
+        Tarea tarea = new Tarea(titulo, prioridad_seleccionada, fecha, descripcion, idLista);
+        
+        if (titulo.length() > 50) return "El título no puede superar los 50 caracteres";
+        
+        if (!tarea.es_texto_valido(titulo)) return "El título de la tarea no es válido";
+        
+        if (!tarea.es_fecha_valida()) return "La fecha no es válida, debe ser posterior al año 2000";
+        
+        if (titulo.length() > 500) return "La descripción no puede superar los 500 caracteres";
+        
+        if (!tarea.es_texto_valido(descripcion)) return "La descripción de la tarea no es válida";
+        
+        fecha = tarea.cambiar_string_a_date();
+        
+        String consulta = "UPDATE tarea SET titulo = '" + titulo + "', prioridad = '" + prioridad_seleccionada + "', fecha = '" + fecha + "', descripcion = '" + descripcion + "', idLista = '" + idLista + "' WHERE idTarea = " + idTarea;
+
+        
+        if(bbdd_tareapp.insertar(consulta)) {
+            
+            return "";
+            
+        } else {
+            
+            return "No se ha podido editar la tarea";
         }
     }
 }

@@ -9,6 +9,7 @@ import com.mycompany.tareapp.controlador.Lista_controlador;
 import com.mycompany.tareapp.modelo.idioma.Idioma;
 import com.mycompany.tareapp.modelo.idioma.Pagina_listas;
 import com.mycompany.tareapp.vista.Listas_view;
+import com.mycompany.tareapp.vista.Tareas_view;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -38,6 +39,7 @@ public class Popup_borrar_cuenta_lista extends JDialog {
     
     Lista_controlador lista_controlador = new Lista_controlador();
     Listas_view listas_view = Listas_view.recoger_instancia();
+    Tareas_view tareas_view = Tareas_view.recoger_instancia();
     
     JPanel panelPrincipal = new JPanel();
     
@@ -118,6 +120,8 @@ public class Popup_borrar_cuenta_lista extends JDialog {
 
                     mensaje_resultado = "Lista borrada";
                     listas_view.actualizar_panel_lista();
+                    tareas_view.actualizar_select_listas();
+                    tareas_view.actualizar_panel_tareas();
                 } 
 
                 label_resultado.setText(mensaje_resultado);

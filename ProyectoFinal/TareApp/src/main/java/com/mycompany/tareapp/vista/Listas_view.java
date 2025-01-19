@@ -133,6 +133,7 @@ public class Listas_view extends javax.swing.JPanel {
 
     public void actualizar_panel_lista() {
         
+        panel_lista.setVisible(false);
         panel_lista.removeAll();
     
         ArrayList<HashMap<String, Object>> listas = Lista_controlador.recoger_listas(usuario.getEmail());
@@ -150,10 +151,11 @@ public class Listas_view extends javax.swing.JPanel {
 
                 panel_lista.add(lista_plantilla);
             }
-
-            panel_lista.revalidate();
-            panel_lista.repaint();
         }
+        
+        panel_lista.setVisible(true);
+        panel_lista.revalidate();
+        panel_lista.repaint();
     }
        
     public static Listas_view recoger_instancia() {
