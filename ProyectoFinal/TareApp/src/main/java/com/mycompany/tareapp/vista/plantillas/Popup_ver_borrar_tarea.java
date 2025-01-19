@@ -5,23 +5,19 @@
 package com.mycompany.tareapp.vista.plantillas;
 
 import com.mycompany.tareapp.controlador.Idioma_controlador;
+import com.mycompany.tareapp.controlador.Tarea_controlador;
 import com.mycompany.tareapp.modelo.idioma.Pagina_tareas;
-import java.awt.BorderLayout;
-import java.awt.Component;
+import com.mycompany.tareapp.vista.Tareas_view;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Window;
-import java.util.Date;
+import java.awt.event.ActionEvent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
-import javax.swing.SpinnerDateModel;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
+import static javax.swing.SwingConstants.CENTER;
+import javax.swing.Timer;
 
 /**
  *
@@ -29,12 +25,16 @@ import javax.swing.SwingUtilities;
  */
 public class Popup_ver_borrar_tarea extends JDialog {
     
+    Tareas_view tareas_view = Tareas_view.recoger_instancia();
+    Tarea_controlador tarea_controlador = new Tarea_controlador();
     JPanel panelPrincipal = new JPanel();
     
     String texto_titulo_tarea;
     String texto_fecha_tarea;
     String texto_prioridad_tarea;
     String texto_descripcion_tarea;
+    
+    JLabel label_resultado = new JLabel();
 
     public Popup_ver_borrar_tarea(Tarea_plantilla tarea, String tipo_popup) {
         
@@ -109,8 +109,8 @@ public class Popup_ver_borrar_tarea extends JDialog {
         
         if (tipo_popup.equals("borrar")) {
         
-            this.setSize(new Dimension(800, 550));
-            panelPrincipal.setBounds(0, 0, 800, 550);
+            this.setSize(new Dimension(800, 570));
+            panelPrincipal.setBounds(0, 0, 800, 570);
             
             JLabel label_borrar_tarea = new JLabel(idioma_seleccionado.getPregunta_borrar_tarea(), SwingConstants.CENTER);
             label_borrar_tarea.setFont(Estilos.getFuenteTitulo());
@@ -126,6 +126,29 @@ public class Popup_ver_borrar_tarea extends JDialog {
             layout.putConstraint(SpringLayout.WEST, bonton_borrar, 300, SpringLayout.WEST, panelPrincipal);
             layout.putConstraint(SpringLayout.NORTH, bonton_borrar, 230, SpringLayout.NORTH, panel_descripcion_tarea);
             panelPrincipal.add(bonton_borrar);
+            
+            label_resultado.setHorizontalAlignment(CENTER);
+            label_resultado.setFont(Estilos.getFuenteConTamaio(14));
+            layout.putConstraint(SpringLayout.WEST, label_resultado, 0, SpringLayout.WEST, panelPrincipal);
+            layout.putConstraint(SpringLayout.NORTH, label_resultado, 45, SpringLayout.NORTH, bonton_borrar);
+            layout.putConstraint(SpringLayout.EAST, label_resultado, 0, SpringLayout.EAST, panelPrincipal);
+            panelPrincipal.add(label_resultado);
+            
+            bonton_borrar.addActionListener((ActionEvent e) -> {
+
+                String mensaje_resultado = tarea_controlador.borrar_tarea(tarea.getIdTarea());
+
+                if (mensaje_resultado.isEmpty()) {
+
+                    mensaje_resultado = "Tarea borrada";
+                    tareas_view.actualizar_panel_tareas();
+                } 
+
+                label_resultado.setText(mensaje_resultado);
+                Timer tiempo_espera = new Timer(3000, evt -> label_resultado.setText(""));
+                tiempo_espera.setRepeats(false);
+                tiempo_espera.start();
+            });
         }
     }
 }

@@ -113,4 +113,18 @@ public class Tarea_controlador {
             return "No se ha podido editar la tarea";
         }
     }
+    
+    public String borrar_tarea(int idTarea) {
+        
+        String consulta = "DELETE FROM tarea WHERE idTarea = '" + idTarea + "'";
+        
+        if(bbdd_tareapp.borrar(consulta)) {
+            
+            return "";
+            
+        } else {
+            
+            return "Tarea no borrada";
+        }
+    }
 }
