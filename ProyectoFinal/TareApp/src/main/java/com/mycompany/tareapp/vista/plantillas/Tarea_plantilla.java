@@ -6,10 +6,8 @@ package com.mycompany.tareapp.vista.plantillas;
 
 import com.mycompany.tareapp.controlador.Idioma_controlador;
 import com.mycompany.tareapp.modelo.idioma.Pagina_tareas;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -20,7 +18,7 @@ import javax.swing.SpringLayout;
  *
  * @author Propietario
  */
-public class Tarea_plantilla extends JPanel {
+public final class Tarea_plantilla extends JPanel {
 
     JButton botonTareaCompletada = new JButton();
     
@@ -61,16 +59,9 @@ public class Tarea_plantilla extends JPanel {
         this.setPrioridadTarea(prioridad);
         
         switch(prioridad) {
-            case 2:
-                this.setPrioridadMedia();
-                break;    
-              
-            case 3:
-                this.setPrioridadAlta();
-                break;
-              
-            default:
-                this.setPrioridadBaja();
+            case 2 -> this.setPrioridadMedia();    
+            case 3 -> this.setPrioridadAlta();
+            default -> this.setPrioridadBaja();
         }
         
         this.setFechaTarea(fecha);
@@ -246,66 +237,45 @@ public class Tarea_plantilla extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, separador6, 0, SpringLayout.NORTH, this);
         layout.putConstraint(SpringLayout.SOUTH, separador6, 0, SpringLayout.SOUTH, this);
                 
-        botonTareaCompletada.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
+        botonTareaCompletada.addActionListener((ActionEvent e) -> {
+            
+            if (botonTareaCompletada.getIcon().toString().equals("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-regular-black.png")) {
                 
-                if (botonTareaCompletada.getIcon().toString().equals("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-regular-black.png")) {
-                      
-                    botonTareaCompletada.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-check-solid-black.png"));
-
-                } else {
+                botonTareaCompletada.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-check-solid-black.png"));
                 
-                    botonTareaCompletada.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-regular-black.png"));
-                }
+            } else {
+                
+                botonTareaCompletada.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-regular-black.png"));
             }
         });
         
-        botonVerTarea.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                Popup_ver_borrar_tarea popup_ver_borrar_tarea = new Popup_ver_borrar_tarea(Tarea_plantilla.this, "ver");
-                popup_ver_borrar_tarea.setVisible(true);
-            }
+        botonVerTarea.addActionListener((ActionEvent e) -> {
+            
+            Popup_ver_borrar_tarea popup_ver_borrar_tarea = new Popup_ver_borrar_tarea(Tarea_plantilla.this, "ver");
+            popup_ver_borrar_tarea.setVisible(true);
         });
         
-        botonEditarTarea.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                Popup_crear_editar_tarea popup_crear_editar_tarea = new Popup_crear_editar_tarea(Tarea_plantilla.this);
-                popup_crear_editar_tarea.setVisible(true);
-            }
+        botonEditarTarea.addActionListener((ActionEvent e) -> {
+            
+            Popup_crear_editar_tarea popup_crear_editar_tarea = new Popup_crear_editar_tarea(Tarea_plantilla.this);
+            popup_crear_editar_tarea.setVisible(true);
         });
         
-        botonBorrarTarea.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                Popup_ver_borrar_tarea popup_ver_borrar_tarea = new Popup_ver_borrar_tarea(Tarea_plantilla.this, "borrar");
-                popup_ver_borrar_tarea.setVisible(true);
-            }
+        botonBorrarTarea.addActionListener((ActionEvent e) -> {
+            
+            Popup_ver_borrar_tarea popup_ver_borrar_tarea = new Popup_ver_borrar_tarea(Tarea_plantilla.this, "borrar");
+            popup_ver_borrar_tarea.setVisible(true);
         });
     }
     
     public String recoger_prioridad_tarea() {
         
-        
         Pagina_tareas idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
         
-        switch(prioridadTarea) {
-            case 2:
-                return idioma_seleccionado.getMedia();
-              
-            case 3:
-                return idioma_seleccionado.getAlta();
-              
-            default:
-                return idioma_seleccionado.getBaja();
-        }
+        return switch (prioridadTarea) {
+            case 2 -> idioma_seleccionado.getMedia();
+            case 3 -> idioma_seleccionado.getAlta();
+            default -> idioma_seleccionado.getBaja();
+        };
     }
 }

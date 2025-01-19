@@ -8,6 +8,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 /**
@@ -115,16 +117,16 @@ public class Tarea {
 
             Date fechaIngresada = formatoFecha.parse(fecha); // Intento convertir la fecha a un tipo date, si no es válida generará un error
 
-            // si la fecha está en el formato válido y existe
-            Date fechaActual = new Date(); // Recojo la fecha actual
+            // Si la fecha está en el formato válido y existe
             Date fechaMinima = formatoFecha.parse("01/01/2000"); // Creo una fecha mínima
+            Date fechaMaxima = formatoFecha.parse("01/01/3000"); // Creo una fecha máxima
 
             // Si está entre la fecha mínima y la fecha actual, devolverá la fecha como válida y si no devolverá un mensaje de error
-            if (fechaIngresada.before(fechaMinima)) {
+            if (fechaIngresada.before(fechaMinima)|| fechaIngresada.after(fechaMaxima)) {
                 
                 return false;
             }
-
+ 
             return true; // Fecha válida
 
         } catch (ParseException e) { // Si da error es que la fecha no era válida
@@ -132,4 +134,23 @@ public class Tarea {
             return false;
         }
     }
+
+    public String cambiar_string_a_date() {
+        
+        try {
+            
+            SimpleDateFormat formatoEntrada = new SimpleDateFormat("dd/MM/yyyy");
+            Date fecha_transformada;
+            fecha_transformada = formatoEntrada.parse(fecha);
+            SimpleDateFormat formatoSalida = new SimpleDateFormat("yyyy-MM-dd");
+            return formatoSalida.format(fecha_transformada);
+            
+        } catch (ParseException ex) {
+            
+            Logger.getLogger(Tarea.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
+    }
+    
 }

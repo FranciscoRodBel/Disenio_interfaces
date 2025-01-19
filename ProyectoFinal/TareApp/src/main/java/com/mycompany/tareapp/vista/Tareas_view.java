@@ -15,6 +15,8 @@ import com.mycompany.tareapp.vista.plantillas.Tarea_plantilla;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.BoxLayout;
@@ -119,14 +121,15 @@ public final class Tareas_view extends javax.swing.JPanel {
         layout.putConstraint(SpringLayout.WEST, seleccionarLista, 350, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, seleccionarLista, 50, SpringLayout.NORTH, titulo_pagina);
         actualizar_select_listas();
-        seleccionarLista.insertItemAt(new Lista(0,"Seleccionar lista", ""),0);
         
         panelTareas.setLayout(new BoxLayout(panelTareas, BoxLayout.Y_AXIS)); // Para colocar una tarea debajo de otra
         panelTareas.setBackground(Estilos.getGris_claro());
+        panelTareas.setVisible(true);
         
         scroll_panelTareas.setPreferredSize(new Dimension(815, 350));
         scroll_panelTareas.getVerticalScrollBar().setUnitIncrement(15); // Para aumentar la velocidad de la barra de scroll
         scroll_panelTareas.setBorder(null);
+        scroll_panelTareas.setBackground(Estilos.getGris_claro());
         this.add(scroll_panelTareas);
         layout.putConstraint(SpringLayout.WEST, scroll_panelTareas, 100, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, scroll_panelTareas, 60, SpringLayout.NORTH, seleccionarLista);
@@ -144,7 +147,7 @@ public final class Tareas_view extends javax.swing.JPanel {
                     String prioridad = (String) popup_crear_editar_tarea.getInput_prioridad_tarea().getSelectedItem();
                     String fecha = popup_crear_editar_tarea.getInput_fecha_terea().getText();
                     String descripcion = popup_crear_editar_tarea.getInput_descripcion().getTextArea().getText();
-                    int idLista = 1;
+                    int idLista = recoger_id_lista_seleccionada();
                     
                     String mensaje_resultado = tarea_controlador.crear_tarea(titulo, prioridad, fecha, descripcion, idLista);
                     
@@ -192,31 +195,37 @@ public final class Tareas_view extends javax.swing.JPanel {
     
     public void actualizar_panel_tareas() {
         
+        panelTareas.setVisible(false);
         panelTareas.removeAll();
     
         Lista listaSeleccionada = (Lista) seleccionarLista.getSelectedItem();
         
-        ArrayList<HashMap<String, Object>> tareas = Tarea_controlador.recoger_tareas(listaSeleccionada.getIdLista());
-        
-        if (tareas != null) {
+        if (listaSeleccionada != null) {
             
-            for(HashMap<String, Object> fila : tareas) {
-        
-                int idTarea = (int) fila.get("idTarea");
-                boolean completada = (boolean) fila.get("completada");
-                String titulo = (String) fila.get("titulo");
-                int prioridad = (int) fila.get("prioridad");
-                String fecha = (String) fila.get("fecha");
-                String descripcion = (String) fila.get("descripcion");
-                int idLista = (int) fila.get("idLista");
+            ArrayList<HashMap<String, Object>> tareas = Tarea_controlador.recoger_tareas(listaSeleccionada.getIdLista());
 
-                Tarea_plantilla tarea_plantilla = new Tarea_plantilla(idTarea, completada, titulo, prioridad, fecha, descripcion, idLista);
-                tarea_plantilla.setMaximumSize(new Dimension(800, 50)); // Si no pongo el máximo se estíran las tareas para ocupar todo el panel
-                tarea_plantilla.setMinimumSize(new Dimension(800, 50)); // Si no pongo el mínimo ocupan la mitad del ancho del panel
+            if (tareas != null) {
 
-                panelTareas.add(tarea_plantilla);
+                for(HashMap<String, Object> fila : tareas) {
+
+                    int idTarea = (int) fila.get("idTarea");
+                    boolean completada = (boolean) fila.get("completada");
+                    String titulo = (String) fila.get("titulo");
+                    int prioridad = (int) fila.get("prioridad");
+                    String fecha = convertir_fecha_a_string((Date) fila.get("fecha"));
+                    String descripcion = (String) fila.get("descripcion");
+                    int idLista = (int) fila.get("idLista");
+
+                    Tarea_plantilla tarea_plantilla = new Tarea_plantilla(idTarea, completada, titulo, prioridad, fecha, descripcion, idLista);
+                    tarea_plantilla.setMaximumSize(new Dimension(800, 50)); // Si no pongo el máximo se estíran las tareas para ocupar todo el panel
+                    tarea_plantilla.setMinimumSize(new Dimension(800, 50)); // Si no pongo el mínimo ocupan la mitad del ancho del panel
+
+                    panelTareas.add(tarea_plantilla);
+                }
+
             }
-
+            
+            panelTareas.setVisible(true);
             panelTareas.revalidate();
             panelTareas.repaint();
         }
@@ -226,12 +235,16 @@ public final class Tareas_view extends javax.swing.JPanel {
     
         seleccionarLista.removeAllItems();
        
+        seleccionarLista.addItem(new Lista(0, "Seleccionar lista", ""));
         ArrayList<HashMap<String, Object>> listas = Lista_controlador.recoger_listas(usuario.getEmail());
+        
+        System.out.println(listas);
         
         if (listas != null) {
             
             for(HashMap<String, Object> fila : listas) {
         
+                System.out.println(fila.get("idLista"));
                 int idLista = (int) fila.get("idLista");
                 String titulo = (String) fila.get("titulo");
                 String email = (String) fila.get("email");
@@ -241,22 +254,28 @@ public final class Tareas_view extends javax.swing.JPanel {
                 seleccionarLista.addItem(lista);
             }
         }
+
+        seleccionarLista.setSelectedIndex(seleccionarLista.getItemCount() - 1);
     }
-    /*
-    public void recoger_lista_seleccionada() {
+    
+    public int recoger_id_lista_seleccionada() {
         
         Lista listaSeleccionada = (Lista) seleccionarLista.getSelectedItem();
         
         if (listaSeleccionada != null) {
             
-            int id = listaSeleccionada.getIdLista();
-            String titulo = listaSeleccionada.getTitulo();
-            String email = listaSeleccionada.getEmail();
+            return listaSeleccionada.getIdLista();
 
-            System.out.println("ID: " + id + ", Título: " + titulo + ", Email: " + email);
         }
+        
+        return 0;
     }
-    */
+    
+    public String convertir_fecha_a_string(Date fechaSQL) {
+        
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        return formato.format(fechaSQL);
+    }
     
     public static Tareas_view recoger_instancia() {
         

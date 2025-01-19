@@ -42,7 +42,7 @@ public class Popup_crear_editar_tarea extends JDialog {
     String texto_titulo_popup;
     String texto_input_titulo;
     String texto_input_fecha;
-    String texto_input_prioridad;
+    int texto_input_prioridad;
     String texto_input_descripcion;
     String texto_boton;
 
@@ -76,7 +76,7 @@ public class Popup_crear_editar_tarea extends JDialog {
             texto_titulo_popup = idioma_seleccionado.getTitulo_tarea();
             texto_input_titulo = "";
             texto_input_fecha = "";
-            texto_input_prioridad = "";
+            texto_input_prioridad = 0;
             texto_input_descripcion = "";
             texto_boton = idioma_seleccionado.getCrear_tarea();
             
@@ -85,7 +85,7 @@ public class Popup_crear_editar_tarea extends JDialog {
             texto_titulo_popup = idioma_seleccionado.getEditar_tarea();
             texto_input_titulo = tarea.getTituloTarea().getText();
             texto_input_fecha = tarea.getFechaTarea().getText(); 
-            texto_input_prioridad = tarea.recoger_prioridad_tarea();
+            texto_input_prioridad = tarea.getPrioridadTarea();
             texto_input_descripcion = tarea.getDescripcionTarea();
             texto_boton = idioma_seleccionado.getEditar_tarea();
         }

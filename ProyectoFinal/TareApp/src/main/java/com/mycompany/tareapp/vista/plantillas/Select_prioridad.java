@@ -15,7 +15,7 @@ import javax.swing.JComboBox;
  */
 public class Select_prioridad extends JComboBox<String> {
     
-    public Select_prioridad(String texto_prioridad) {
+    public Select_prioridad(int prioridad) {
         
         //this.setBorder(new RoundedBorder(5, 2));
         this.setBackground(Estilos.getBlanco_claro());
@@ -24,25 +24,14 @@ public class Select_prioridad extends JComboBox<String> {
         
         Pagina_tareas idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
         
+        String prioridad_media = idioma_seleccionado.getMedia(); 
+        String prioridad_alta = idioma_seleccionado.getAlta(); 
+        
         this.addItem(idioma_seleccionado.getPrioridad());
         this.addItem(idioma_seleccionado.getBaja());
-        this.addItem(idioma_seleccionado.getMedia());
-        this.addItem(idioma_seleccionado.getAlta());
+        this.addItem(prioridad_media);
+        this.addItem(prioridad_alta);
         
-        if (!texto_prioridad.isEmpty()) {
-                    
-            switch(texto_prioridad) {
-                case "Media":
-                    this.setSelectedIndex(2);
-                    break;    
-
-                case "Alta":
-                    this.setSelectedIndex(3);
-                    break;
-
-                default:
-                    this.setSelectedIndex(1);
-            }
-        }
+        this.setSelectedIndex(prioridad);  
     }
 }

@@ -8,6 +8,7 @@ import com.mycompany.tareapp.controlador.Idioma_controlador;
 import com.mycompany.tareapp.controlador.Lista_controlador;
 import com.mycompany.tareapp.modelo.idioma.Pagina_listas;
 import com.mycompany.tareapp.vista.Listas_view;
+import com.mycompany.tareapp.vista.Tareas_view;
 import java.awt.Dimension;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -27,6 +28,7 @@ public class Popup_editar_lista extends JDialog {
     
     Lista_controlador lista_controlador = new Lista_controlador();
     Listas_view listas_view = Listas_view.recoger_instancia();
+    Tareas_view tareas_view = Tareas_view.recoger_instancia();
     
     JPanel panelPrincipal = new JPanel();
     Input_text input_titulo_terea;
@@ -73,7 +75,7 @@ public class Popup_editar_lista extends JDialog {
         layout.putConstraint(SpringLayout.NORTH, label_resultado_lista, 45, SpringLayout.NORTH, bonton_editar);
         layout.putConstraint(SpringLayout.EAST, label_resultado_lista, 0, SpringLayout.EAST, panelPrincipal);
         panelPrincipal.add(label_resultado_lista);
-
+        
         bonton_editar.addActionListener((ActionEvent e) -> {
 
             String mensaje_resultado = lista_controlador.actualizar_lista(lista.idLista, input_titulo_terea.getText());
@@ -81,6 +83,7 @@ public class Popup_editar_lista extends JDialog {
             if (mensaje_resultado.isEmpty()) {
 
                 mensaje_resultado = "Lista editada";
+                tareas_view.actualizar_select_listas();
                 listas_view.actualizar_panel_lista();
             }
 
