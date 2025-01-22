@@ -55,8 +55,7 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
     Input_password repetir_contrasenia_registro = new Input_password("Repetir contraseña");
     Boton boton_enviar_registro = new Boton("Registrarse");
     
-    JTextArea label_resultado_inicio = new JTextArea();
-    //JTextArea label_resultado_registro = new JTextArea();
+    JLabel label_resultado_inicio = new JLabel();
     JLabel label_resultado_registro = new JLabel();
 
     /**
@@ -132,16 +131,11 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         panel_inicio.setVisible(true);
         
         panel_inicio.add(label_resultado_inicio);
+        label_resultado_inicio.setHorizontalAlignment(SwingConstants.CENTER);
         label_resultado_inicio.setFont(Estilos.getFuenteConTamaio(12));
-        label_resultado_inicio.setBackground(new Color(0, 0, 0, 0));
-        label_resultado_inicio.setBorder(BorderFactory.createEmptyBorder());
-        label_resultado_inicio.setFocusable(false);   
-        label_resultado_inicio.setLineWrap(true);
-        label_resultado_inicio.setWrapStyleWord(true);
-        label_resultado_inicio.setBorder(BorderFactory.createEmptyBorder());
-        layout2.putConstraint(SpringLayout.WEST, label_resultado_inicio, 10, SpringLayout.WEST, panel_inicio);
+        layout2.putConstraint(SpringLayout.WEST, label_resultado_inicio, 0, SpringLayout.WEST, panel_inicio);
         layout2.putConstraint(SpringLayout.NORTH, label_resultado_inicio, 45, SpringLayout.NORTH, boton_enviar_inicio);
-        layout2.putConstraint(SpringLayout.EAST, label_resultado_inicio, 10, SpringLayout.EAST, panel_inicio);
+        layout2.putConstraint(SpringLayout.EAST, label_resultado_inicio, 0, SpringLayout.EAST, panel_inicio);
         
         this.add(panel_registro);
         SpringLayout layout3 = new SpringLayout();
@@ -172,9 +166,9 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         panel_registro.add(label_resultado_registro);
         label_resultado_registro.setHorizontalAlignment(SwingConstants.CENTER);
         label_resultado_registro.setFont(Estilos.getFuenteConTamaio(12));
-        layout3.putConstraint(SpringLayout.WEST, label_resultado_registro, 10, SpringLayout.WEST, panel_registro);
+        layout3.putConstraint(SpringLayout.WEST, label_resultado_registro, 0, SpringLayout.WEST, panel_registro);
         layout3.putConstraint(SpringLayout.NORTH, label_resultado_registro, 45, SpringLayout.NORTH, boton_enviar_registro);
-        layout3.putConstraint(SpringLayout.EAST, label_resultado_registro, 10, SpringLayout.EAST, panel_registro);
+        layout3.putConstraint(SpringLayout.EAST, label_resultado_registro, 0, SpringLayout.EAST, panel_registro);
         
         boton_iniciar.addActionListener(new ActionListener() {
 
@@ -225,7 +219,7 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         
         boton_enviar_inicio.addActionListener((ActionEvent e) -> {
             
-            String email = boton_enviar_inicio.getText();
+            String email = email_iniciar.getText();
             String contrasenia = new String(contrasenia_iniciar.getPassword());
             
             String mensaje_resultado = usuario_controlador.iniciar_usuario(email, contrasenia);
@@ -233,7 +227,6 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
             if (mensaje_resultado.isEmpty()) {
                 
                 Usuario_controlador.setUsuario(Usuario.recoger_usuario(email));
-                mensaje_resultado = "Usuario iniciado";
                 
                 //generarInterfaz();
                 
@@ -342,14 +335,6 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
 
     public void setEmail_registro(Input_text email_registro) {
         this.email_registro = email_registro;
-    }
-
-    public JTextArea getLabel_resultado_inicio() {
-        return label_resultado_inicio;
-    }
-
-    public void setLabel_resultado_inicio(JTextArea label_resultado_inicio) {
-        this.label_resultado_inicio = label_resultado_inicio;
     }
     
     public static Iniciar_registrar_view recoger_instancia() {

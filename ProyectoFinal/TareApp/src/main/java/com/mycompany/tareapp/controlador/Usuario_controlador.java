@@ -24,10 +24,35 @@ public class Usuario_controlador {
     public static void setUsuario(Usuario usuario) {
         Usuario_controlador.usuario = usuario;
     }
-
-    public String registrar_usuario(String email,String contrasenia,String repetir_contrasenia, String idioma_seleccionado) {
     
-        Usuario usuario = new Usuario(email, contrasenia);
+    public String iniciar_usuario(String email,String contrasenia) {
+    
+        email = email.trim().toLowerCase();
+        
+        Pagina_inicio_registro idioma = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
+        
+        if (!Usuario.es_email_valido(email)) return idioma.getEmail_no_valido();
+        
+        Usuario usuario = Usuario.recoger_usuario(email);
+        
+        if (usuario == null )return idioma.getEmail_no_registrado();
+        
+        if (!Usuario.es_contrasenia_valida(contrasenia)) return idioma.getContrasenia_invalida();
+        
+        if(usuario.verificar_contrasenia(contrasenia)) {
+            
+            this.usuario = usuario;
+            return "";
+            
+        } else {
+            
+            return idioma.getEmail_contrasenia_no_coinciden();
+        }
+    }
+    
+    public String registrar_usuario(String email,String contrasenia,String repetir_contrasenia, String idioma_seleccionado) {
+        
+        email = email.trim().toLowerCase();
         
         Pagina_inicio_registro idioma = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
         
@@ -58,6 +83,8 @@ public class Usuario_controlador {
     public String actualizar_email(String email, String email_repetido) {
         
         Pagina_inicio_registro idioma = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
+        
+        email = email.trim().toLowerCase();
         
         if(!email.equals(email_repetido)) return "Los emails no son iguales";
         
@@ -99,31 +126,6 @@ public class Usuario_controlador {
         } else {
             
             return "Error al actualizar la contrasenia";
-        }
-    }
-    
-    public String iniciar_usuario(String email,String contrasenia) {
-    
-        Usuario usuario = new Usuario(email, contrasenia);
-        
-        Pagina_inicio_registro idioma = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
-        
-        if (!Usuario.es_email_valido(email)) return idioma.getEmail_no_valido();
-        
-        usuario = Usuario.recoger_usuario(email);
-        
-        if (usuario == null )return idioma.getEmail_no_registrado();
-        
-        if (!usuario.es_contrasenia_valida(contrasenia)) return idioma.getContrasenia_invalida();
-        
-        if(usuario.verificar_contrasenia(contrasenia)) {
-            
-            this.usuario = usuario;
-            return "";
-            
-        } else {
-            
-            return idioma.getEmail_contrasenia_no_coinciden();
         }
     }
 }
