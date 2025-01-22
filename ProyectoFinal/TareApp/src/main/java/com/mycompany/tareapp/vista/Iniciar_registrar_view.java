@@ -6,6 +6,7 @@ package com.mycompany.tareapp.vista;
 
 import com.mycompany.tareapp.controlador.Idioma_controlador;
 import com.mycompany.tareapp.controlador.Usuario_controlador;
+import com.mycompany.tareapp.modelo.Usuario;
 import com.mycompany.tareapp.vista.plantillas.RoundedBorder;
 import com.mycompany.tareapp.vista.plantillas.Boton;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
@@ -217,6 +218,29 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
                 String mensaje_resultado = usuario_controlador.registrar_usuario(email_registro.getText(), contrasenia, repetir_contrasenia, idioma_seleccionado);
                 label_resultado_registro.setText("<html><body><p style='text-align: center;'>"+mensaje_resultado+"</p></body></html>");
                 Timer tiempo_espera = new Timer(3000, evt -> label_resultado_registro.setText(""));
+                tiempo_espera.setRepeats(false);
+                tiempo_espera.start();
+            }
+        });
+        
+        boton_enviar_inicio.addActionListener((ActionEvent e) -> {
+            
+            String email = boton_enviar_inicio.getText();
+            String contrasenia = new String(contrasenia_iniciar.getPassword());
+            
+            String mensaje_resultado = usuario_controlador.iniciar_usuario(email, contrasenia);
+            
+            if (mensaje_resultado.isEmpty()) {
+                
+                Usuario_controlador.setUsuario(Usuario.recoger_usuario(email));
+                mensaje_resultado = "Usuario iniciado";
+                
+                //generarInterfaz();
+                
+            } else {
+                
+                label_resultado_inicio.setText("<html><body><p style='text-align: center;'>"+mensaje_resultado+"</p></body></html>");
+                Timer tiempo_espera = new Timer(3000, evt -> label_resultado_inicio.setText(""));
                 tiempo_espera.setRepeats(false);
                 tiempo_espera.start();
             }

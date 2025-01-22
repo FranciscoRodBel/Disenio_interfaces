@@ -59,6 +59,7 @@ public class Main extends javax.swing.JFrame {
         layout.putConstraint(SpringLayout.EAST, iniciar_registrar_view, 0, SpringLayout.EAST, cabecera);
         iniciar_registrar_view.setVisible(false);
         
+        /*
         iniciar_registrar_view.getBoton_enviar_inicio().addActionListener((ActionEvent e) -> {
             
             String email = iniciar_registrar_view.getEmail_iniciar().getText();
@@ -80,7 +81,7 @@ public class Main extends javax.swing.JFrame {
                 
             }
         });
-       
+       */
         generarInterfaz();
         
         Idioma_controlador.cambiarIdioma(usuario.getIdioma_seleccionado(), cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);

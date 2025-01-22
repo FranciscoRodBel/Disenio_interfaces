@@ -4,6 +4,7 @@
  */
 package com.mycompany.tareapp.vista;
 
+import com.mycompany.tareapp.controlador.Usuario_controlador;
 import com.mycompany.tareapp.vista.plantillas.Boton;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
 import com.mycompany.tareapp.vista.plantillas.Popup_borrar_cuenta_lista;
@@ -24,13 +25,14 @@ import javax.swing.SwingConstants;
 public class Ajustes_cuenta_view extends javax.swing.JPanel {
 
     static Ajustes_cuenta_view ajustes_cuenta_view;
+    Usuario_controlador usuario_controlador = new Usuario_controlador();
     
     JLabel titulo_pagina = new JLabel("Ajustes de la cuenta");
     
     JPanel panel_ajustes = new JPanel();
     
     JLabel label_email = new JLabel("Email:");
-    JLabel label_email_usuario = new JLabel("franciscorodbel@educeuta.es");
+    JLabel label_email_usuario = new JLabel(Usuario_controlador.getUsuario().getEmail());
     
     Boton boton_cambiar_email = new Boton("Cambiar email");
     Boton boton_cambiar_contrasenia = new Boton("Cambiar contraseña");
@@ -147,6 +149,14 @@ public class Ajustes_cuenta_view extends javax.swing.JPanel {
 
     public void setBoton_borrar_cuenta(Boton boton_borrar_cuenta) {
         this.boton_borrar_cuenta = boton_borrar_cuenta;
+    }
+
+    public JLabel getLabel_email_usuario() {
+        return label_email_usuario;
+    }
+
+    public void setLabel_email_usuario(JLabel label_email_usuario) {
+        this.label_email_usuario = label_email_usuario;
     }
     
     public static Ajustes_cuenta_view recoger_instancia() {

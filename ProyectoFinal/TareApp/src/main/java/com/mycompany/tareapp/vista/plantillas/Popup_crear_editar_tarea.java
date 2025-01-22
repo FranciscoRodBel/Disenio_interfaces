@@ -136,6 +136,7 @@ public class Popup_crear_editar_tarea extends JDialog {
         
         bonton_crear_editar.addActionListener((ActionEvent e1) -> {
             
+            String mensaje_resultado = "";
             String titulo = this.getInput_titulo_terea().getText();
             String prioridad = (String) this.getInput_prioridad_tarea().getSelectedItem();
             String fecha = this.getInput_fecha_terea().getText();
@@ -145,7 +146,7 @@ public class Popup_crear_editar_tarea extends JDialog {
             if (this.getTarea() == null) {
 
 
-                String mensaje_resultado = tarea_controlador.crear_tarea(titulo, prioridad, fecha, descripcion, idLista);
+                mensaje_resultado = tarea_controlador.crear_tarea(titulo, prioridad, fecha, descripcion, idLista);
 
                 if (mensaje_resultado.isEmpty()) {
 
@@ -153,28 +154,22 @@ public class Popup_crear_editar_tarea extends JDialog {
                     tareas_view.actualizar_panel_tareas();                   
                 }
 
-                this.getLabel_resultado_tarea().setText(mensaje_resultado);
-                Timer tiempo_espera = new Timer(3000, evt -> this.getLabel_resultado_tarea().setText(""));
-                tiempo_espera.setRepeats(false);
-                tiempo_espera.start();
-
             } else {
 
                 
-                String mensaje_resultado = tarea_controlador.editar_tarea(this.getTarea().getIdTarea(), titulo, prioridad, fecha, descripcion, idLista);
+                mensaje_resultado = tarea_controlador.editar_tarea(this.getTarea().getIdTarea(), titulo, prioridad, fecha, descripcion, idLista);
 
                 if (mensaje_resultado.isEmpty()) {
 
                     mensaje_resultado = "Tarea editada";
                     tareas_view.actualizar_panel_tareas();                   
                 }
-
-                this.getLabel_resultado_tarea().setText(mensaje_resultado);
-                Timer tiempo_espera = new Timer(3000, evt -> this.getLabel_resultado_tarea().setText(""));
-                tiempo_espera.setRepeats(false);
-                tiempo_espera.start();
-                
             }
+            
+            this.getLabel_resultado_tarea().setText(mensaje_resultado);
+            Timer tiempo_espera = new Timer(3000, evt -> this.getLabel_resultado_tarea().setText(""));
+            tiempo_espera.setRepeats(false);
+            tiempo_espera.start();
         });
     }
 

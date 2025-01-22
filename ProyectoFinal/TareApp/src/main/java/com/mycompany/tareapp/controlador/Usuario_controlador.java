@@ -33,15 +33,15 @@ public class Usuario_controlador {
         
         if (email.length() > 255) return idioma.getEmail_supera_caracteres();
         
-        if (!usuario.es_email_valido()) return idioma.getEmail_no_valido();
+        if (!Usuario.es_email_valido(email)) return idioma.getEmail_no_valido();
         
         if (Usuario.recoger_usuario(email) != null ) return idioma.getEmail_ya_registrado();
         
         if (!contrasenia.equals(repetir_contrasenia)) return idioma.getContrasenia_no_coincide();
         
-        if (!usuario.es_contrasenia_valida(contrasenia)) return idioma.getContrasenia_invalida();
+        if (!Usuario.es_contrasenia_valida(contrasenia)) return idioma.getContrasenia_invalida();
         
-        contrasenia = usuario.cifrar_contrasenia();
+        contrasenia = Usuario.cifrar_contrasenia(contrasenia);
         
         String consulta = "INSERT INTO usuario (email, contrasenia, idioma_seleccionado) VALUES ('"+email+"', '"+contrasenia+"', '"+idioma_seleccionado+"')";
         
@@ -55,13 +55,60 @@ public class Usuario_controlador {
         }
     }
     
+    public String actualizar_email(String email, String email_repetido) {
+        
+        Pagina_inicio_registro idioma = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
+        
+        if(!email.equals(email_repetido)) return "Los emails no son iguales";
+        
+        if (email.length() > 255) return idioma.getEmail_supera_caracteres();
+        
+        if (!Usuario.es_email_valido(email)) return idioma.getEmail_no_valido();
+        
+        if (Usuario.recoger_usuario(email) != null ) return idioma.getEmail_ya_registrado();
+        
+        String consulta = "UPDATE usuario SET email = '" + email + "' WHERE email = '" + usuario.getEmail() + "'";
+
+        if(bbdd_tareapp.actualizar(consulta)) {
+            
+            usuario.setEmail(email);
+            return "";
+            
+        } else {
+            
+            return "Error al actualizar el email";
+        }
+    }
+    
+    public String actualizar_contrasenia(String contrasenia, String repetir_contrasenia) {
+        
+        Pagina_inicio_registro idioma = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
+        
+        if (!contrasenia.equals(repetir_contrasenia)) return idioma.getContrasenia_no_coincide();
+        
+        if (!Usuario.es_contrasenia_valida(contrasenia)) return idioma.getContrasenia_invalida();
+        
+        contrasenia = Usuario.cifrar_contrasenia(contrasenia);
+        
+        String consulta = "UPDATE usuario SET contrasenia = '" + contrasenia + "' WHERE email = '" + usuario.getEmail() + "'";
+
+        if(bbdd_tareapp.actualizar(consulta)) {
+            
+            return "";
+            
+        } else {
+            
+            return "Error al actualizar la contrasenia";
+        }
+    }
+    
     public String iniciar_usuario(String email,String contrasenia) {
     
         Usuario usuario = new Usuario(email, contrasenia);
         
         Pagina_inicio_registro idioma = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
         
-        if (!usuario.es_email_valido()) return idioma.getEmail_no_valido();
+        if (!Usuario.es_email_valido(email)) return idioma.getEmail_no_valido();
         
         usuario = Usuario.recoger_usuario(email);
         
