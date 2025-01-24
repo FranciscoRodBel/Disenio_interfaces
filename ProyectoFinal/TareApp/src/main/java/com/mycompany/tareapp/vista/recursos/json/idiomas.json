@@ -23,7 +23,19 @@
                 "fecha": "Fecha",
                 "editar_tarea": "Editar tarea",
                 "borrar_tarea": "Borrar tarea",
-                "pregunta_borrar_tarea": "¿Seguro que quiere borrar la tarea?"
+                "pregunta_borrar_tarea": "¿Seguro que quiere borrar la tarea?",
+
+                "titulo_supera_caracteres": "El título no puede superar los 50 caracteres",
+                "titulo_no_valido": "El título no es válido",
+                "fecha_no_valida": "La fecha no es válida, debe estar entre el año 2000-3000",
+                "descripcion_supera_caracteres": "La descripción no puede superar los 500 caracteres",
+                "descripcion_no_valida": "La descripción de no es válida",
+                "tarea_creada": "Tarea creada",
+                "tarea_no_creada": "No se ha podido crear la tarea",
+                "tarea_editada": "Tarea editada",
+                "tarea_no_editada": "No se ha podido editar la tarea",
+                "tarea_borrada": "Tarea borrada",
+                "tarea_no_borrada": "No se ha podido borrar la tarea"
             },
             "Pagina_listas": {
                 "titulo": "Listas",
@@ -33,7 +45,12 @@
                 "pregunta_borrar_lista": "¿Seguro que quiere borrar la lista?",
                 "lista_creada": "Lista creada",
                 "titulo_no_valido": "El título de la lista no es válido",
-                "lista_no_creada": "No se ha podido crear la lista"
+                "lista_no_creada": "No se ha podido crear la lista",
+
+                "lista_editada": "Lista editada",
+                "lista_no_editada": "No se ha podido editar la lista",
+                "lista_borrada" : "Lista borrada",
+                "lista_no_borrada": "La lista no se ha podido borrar"
             },
             "Pagina_inicio_registro": {
                 "titulo_inicio": "Inicio de sesión",
@@ -61,7 +78,13 @@
                 "repetir_email": "Repetir email",
                 "nuevo_contrasenia": "Nueva contraseña",
                 "repetir_contrasenia": "Repetir contraseña",
-                "pregunta_borrar_cuenta": "¿Seguro que quiere borrar la cuenta?"
+                "pregunta_borrar_cuenta": "¿Seguro que quiere borrar la cuenta?",
+
+                "emails_no_coinciden": "Los emails no coinciden",
+                "email_actualizado": "Email actualizado",
+                "email_no_actualizado": "No se ha podido actualizar el email",
+                "contrasenia_actualizada": "Contraseña actualizada",
+                "contrasenia_no_actualizada": "No se ha podido actualizar la contrasenia"
             }
         },
         {

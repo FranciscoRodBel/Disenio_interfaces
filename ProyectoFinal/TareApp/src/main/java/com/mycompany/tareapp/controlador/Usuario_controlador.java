@@ -86,7 +86,7 @@ public class Usuario_controlador {
         
         email = email.trim().toLowerCase();
         
-        if(!email.equals(email_repetido)) return "Los emails no son iguales";
+        if(!email.equals(email_repetido)) return "Los emails no coinciden";
         
         if (email.length() > 255) return idioma.getEmail_supera_caracteres();
         
@@ -103,7 +103,7 @@ public class Usuario_controlador {
             
         } else {
             
-            return "Error al actualizar el email";
+            return "No se ha podido actualizar el email";
         }
     }
     
@@ -125,7 +125,21 @@ public class Usuario_controlador {
             
         } else {
             
-            return "Error al actualizar la contrasenia";
+            return "No se ha podido actualizar la contrasenia";
+        }
+    }
+    
+    public String borrar_usuario() {
+        
+        String consulta = "DELETE FROM usuario WHERE email = '" + usuario.getEmail() + "'";
+        
+        if(bbdd_tareapp.borrar(consulta)) {
+            
+            return "";
+            
+        } else {
+            
+            return "La cuenta no se ha podido borrar";
         }
     }
 }

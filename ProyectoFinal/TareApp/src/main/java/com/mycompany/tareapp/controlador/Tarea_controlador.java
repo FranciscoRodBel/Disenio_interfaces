@@ -36,13 +36,13 @@ public class Tarea_controlador {
         
         if (titulo.length() > 50) return "El título no puede superar los 50 caracteres";
         
-        if (!tarea.es_texto_valido(titulo)) return "El título de la tarea no es válido";
+        if (!tarea.es_texto_valido(titulo)) return "El título no es válido";
         
-        if (!tarea.es_fecha_valida()) return "La fecha no es válida, debe ser posterior al año 2000";
+        if (!tarea.es_fecha_valida()) return "La fecha no es válida, debe estar entre el año 2000-3000";
         
         if (titulo.length() > 500) return "La descripción no puede superar los 500 caracteres";
         
-        if (!tarea.es_texto_valido(descripcion)) return "La descripción de la tarea no es válida";
+        if (!tarea.es_texto_valido(descripcion)) return "La descripción de no es válida";
         
         fecha = tarea.cambiar_string_a_date();
         
@@ -91,13 +91,13 @@ public class Tarea_controlador {
         
         if (titulo.length() > 50) return "El título no puede superar los 50 caracteres";
         
-        if (!tarea.es_texto_valido(titulo)) return "El título de la tarea no es válido";
+        if (!tarea.es_texto_valido(titulo)) return "El título no es válido";
         
-        if (!tarea.es_fecha_valida()) return "La fecha no es válida, debe ser posterior al año 2000";
+        if (!tarea.es_fecha_valida()) return "La fecha no es válida, debe estar entre el año 2000-3000";
         
         if (titulo.length() > 500) return "La descripción no puede superar los 500 caracteres";
         
-        if (!tarea.es_texto_valido(descripcion)) return "La descripción de la tarea no es válida";
+        if (!tarea.es_texto_valido(descripcion)) return "La descripción no es válida";
         
         fecha = tarea.cambiar_string_a_date();
         
@@ -124,7 +124,7 @@ public class Tarea_controlador {
             
         } else {
             
-            return "Tarea no borrada";
+            return "No se ha podido borrar la tarea";
         }
     }
 }

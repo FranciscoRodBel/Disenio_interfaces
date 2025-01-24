@@ -36,7 +36,6 @@ public class Listas_view extends javax.swing.JPanel {
     Lista_controlador lista_controlador = new Lista_controlador();
 
     Tareas_view tareas_view = Tareas_view.recoger_instancia();
-    Usuario usuario = Usuario_controlador.getUsuario();
     
     JPanel panel_lista = new JPanel();
     JScrollPane scroll_panel_lista = new JScrollPane(panel_lista);
@@ -98,7 +97,7 @@ public class Listas_view extends javax.swing.JPanel {
         
         boton_insertar_lista.addActionListener((ActionEvent e) -> {
             
-            String mensaje_resultado = lista_controlador.crear_lista(input_titulo_lista.getText(), usuario.getEmail());
+            String mensaje_resultado = lista_controlador.crear_lista(input_titulo_lista.getText());
             
             if (mensaje_resultado.isEmpty()) {
                 
@@ -136,7 +135,7 @@ public class Listas_view extends javax.swing.JPanel {
         panel_lista.setVisible(false);
         panel_lista.removeAll();
     
-        ArrayList<HashMap<String, Object>> listas = Lista_controlador.recoger_listas(usuario.getEmail());
+        ArrayList<HashMap<String, Object>> listas = Lista_controlador.recoger_listas();
         
         if (listas != null) {
             

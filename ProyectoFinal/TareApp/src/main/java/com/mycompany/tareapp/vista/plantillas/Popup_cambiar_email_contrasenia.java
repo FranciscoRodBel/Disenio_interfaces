@@ -119,7 +119,7 @@ public class Popup_cambiar_email_contrasenia extends JDialog {
 
                 if (mensaje_resultado.isEmpty()) {
 
-                    mensaje_resultado = "Contraseña actualizado";              
+                    mensaje_resultado = "Contraseña actualizada";              
                 }
                 
             }

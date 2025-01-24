@@ -39,8 +39,6 @@ public final class Tareas_view extends javax.swing.JPanel {
     
     static Tareas_view tareas_view;
     
-    Usuario usuario = Usuario_controlador.getUsuario();
-    
     JToolBar barraHerramientas = new JToolBar();
     
     JButton botonCrearTarea = new JButton();
@@ -202,7 +200,7 @@ public final class Tareas_view extends javax.swing.JPanel {
         seleccionarLista.removeAllItems();
        
         seleccionarLista.addItem(new Lista(0, "Seleccionar lista", ""));
-        ArrayList<HashMap<String, Object>> listas = Lista_controlador.recoger_listas(usuario.getEmail());
+        ArrayList<HashMap<String, Object>> listas = Lista_controlador.recoger_listas();
         
         if (listas != null) {
             

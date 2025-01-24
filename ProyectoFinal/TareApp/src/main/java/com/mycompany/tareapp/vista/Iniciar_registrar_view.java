@@ -228,6 +228,8 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
                 
                 Usuario_controlador.setUsuario(Usuario.recoger_usuario(email));
                 
+                System.out.println(Usuario_controlador.getUsuario().getEmail());
+                
                 //generarInterfaz();
                 
             } else {

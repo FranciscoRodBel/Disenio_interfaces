@@ -6,6 +6,7 @@ package com.mycompany.tareapp.vista.plantillas;
 
 import com.mycompany.tareapp.controlador.Idioma_controlador;
 import com.mycompany.tareapp.controlador.Lista_controlador;
+import com.mycompany.tareapp.controlador.Usuario_controlador;
 import com.mycompany.tareapp.modelo.idioma.Idioma;
 import com.mycompany.tareapp.modelo.idioma.Pagina_listas;
 import com.mycompany.tareapp.vista.Listas_view;
@@ -37,6 +38,7 @@ import javax.swing.Timer;
  */
 public class Popup_borrar_cuenta_lista extends JDialog {
     
+    Usuario_controlador usuario_controlador = new Usuario_controlador();
     Lista_controlador lista_controlador = new Lista_controlador();
     Listas_view listas_view = Listas_view.recoger_instancia();
     Tareas_view tareas_view = Tareas_view.recoger_instancia();
@@ -108,13 +110,20 @@ public class Popup_borrar_cuenta_lista extends JDialog {
         
         bonton_borrar.addActionListener((ActionEvent e) -> {
 
+            String mensaje_resultado = "";
+            
             if (tipo_popup.equals("cuenta")) {
 
-                // Borrar cuenta
+                mensaje_resultado = usuario_controlador.borrar_usuario();
+
+                if (mensaje_resultado.isEmpty()) {
+
+                    mensaje_resultado = "Cuenta borrada";
+                } 
 
             } else {
 
-                String mensaje_resultado = lista_controlador.borrar_lista(Integer.parseInt(dato_borrar));
+                mensaje_resultado = lista_controlador.borrar_lista(Integer.parseInt(dato_borrar));
 
                 if (mensaje_resultado.isEmpty()) {
 
@@ -123,12 +132,12 @@ public class Popup_borrar_cuenta_lista extends JDialog {
                     tareas_view.actualizar_select_listas();
                     tareas_view.actualizar_panel_tareas();
                 } 
-
-                label_resultado.setText(mensaje_resultado);
-                Timer tiempo_espera = new Timer(3000, evt -> label_resultado.setText(""));
-                tiempo_espera.setRepeats(false);
-                tiempo_espera.start();
             }
+            
+            label_resultado.setText(mensaje_resultado);
+            Timer tiempo_espera = new Timer(3000, evt -> label_resultado.setText(""));
+            tiempo_espera.setRepeats(false);
+            tiempo_espera.start();
         });
     }
 }

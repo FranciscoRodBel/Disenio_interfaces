@@ -18,11 +18,11 @@ public class Lista_controlador {
     
     private final BBDD_tareapp bbdd_tareapp = new BBDD_tareapp();
     
-    public String crear_lista(String titulo, String email) {
+    public String crear_lista(String titulo) {
     
         if (!Lista.es_titulo_valido(titulo)) return Idioma_controlador.getIdioma_seleccionado().getPagina_listas().getTitulo_no_valido();
         
-        String consulta = "INSERT INTO lista (titulo, email) VALUES ('"+titulo+"', '"+email+"')";
+        String consulta = "INSERT INTO lista (titulo, email) VALUES ('"+titulo+"', '"+Usuario_controlador.getUsuario().getEmail()+"')";
         
         if(bbdd_tareapp.insertar(consulta)) {
             
@@ -46,14 +46,14 @@ public class Lista_controlador {
             
         } else {
             
-            return "Lista no editada";
+            return "No se ha podido editar la lista";
         }
         
     }
     
-    public static ArrayList<HashMap<String, Object>> recoger_listas(String email) {
+    public static ArrayList<HashMap<String, Object>> recoger_listas() {
     
-        String consultaRecoger = "SELECT * FROM lista WHERE email = '"+ email +"'";
+        String consultaRecoger = "SELECT * FROM lista WHERE email = '"+ Usuario_controlador.getUsuario().getEmail() +"'";
         ArrayList<HashMap<String, Object>> resultados = new BBDD_tareapp().consultar(consultaRecoger);
         
         if (resultados.isEmpty()) {
@@ -76,7 +76,7 @@ public class Lista_controlador {
             
         } else {
             
-            return "Lista no borrada";
+            return "La lista no se ha podido borrar";
         }
     }
 }
