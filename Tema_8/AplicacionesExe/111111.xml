@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>C:\Users\Propietario\.m2\repository\com\mycompany\ToolTipFRB\1.0-SNAPSHOT\ToolTipFRB-1.0-SNAPSHOT-jar-with-dependencies.jar</jar>
+  <outfile>D:\clase\2 DAM\Disenio_interfaces\Tema_8\AplicacionesExe\Activity_8_1.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl></downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon>D:\Descargas\Tooltip-Best-Practices-min.png.ico</icon>
+  <jre>
+    <path>%JAVA_HOME%;%PATH%</path>
+    <requiresJdk>false</requiresJdk>
+    <requires64Bit>false</requires64Bit>
+    <minVersion>1.0</minVersion>
+    <maxVersion></maxVersion>
+  </jre>
+</launch4jConfig>
