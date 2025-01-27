@@ -18,6 +18,10 @@ public class Pagina_listas {
     private String lista_creada;
     private String titulo_no_valido;
     private String lista_no_creada;
+    private String lista_editada;
+    private String lista_no_editada;
+    private String lista_borrada;
+    private String lista_no_borrada;
 
     public String getTitulo() {
         return titulo;
@@ -81,6 +85,38 @@ public class Pagina_listas {
 
     public void setLista_no_creada(String lista_no_creada) {
         this.lista_no_creada = lista_no_creada;
+    }
+
+    public String getLista_editada() {
+        return lista_editada;
+    }
+
+    public void setLista_editada(String lista_editada) {
+        this.lista_editada = lista_editada;
+    }
+
+    public String getLista_no_editada() {
+        return lista_no_editada;
+    }
+
+    public void setLista_no_editada(String lista_no_editada) {
+        this.lista_no_editada = lista_no_editada;
+    }
+
+    public String getLista_borrada() {
+        return lista_borrada;
+    }
+
+    public void setLista_borrada(String lista_borrada) {
+        this.lista_borrada = lista_borrada;
+    }
+
+    public String getLista_no_borrada() {
+        return lista_no_borrada;
+    }
+
+    public void setLista_no_borrada(String lista_no_borrada) {
+        this.lista_no_borrada = lista_no_borrada;
     }
     
 }

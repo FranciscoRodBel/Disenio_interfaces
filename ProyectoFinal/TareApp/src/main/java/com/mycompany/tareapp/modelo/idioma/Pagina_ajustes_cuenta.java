@@ -19,6 +19,12 @@ public class Pagina_ajustes_cuenta {
     private String nuevo_contrasenia;
     private String repetir_contrasenia;
     private String pregunta_borrar_cuenta;
+    private String emails_no_coinciden;
+    private String email_actualizado;
+    private String email_no_actualizado;
+    private String contrasenia_actualizada;
+    private String contrasenia_no_actualizada;
+    
 
     public String getTitulo_pagina() {
         return titulo_pagina;
@@ -90,6 +96,46 @@ public class Pagina_ajustes_cuenta {
 
     public void setPregunta_borrar_cuenta(String pregunta_borrar_cuenta) {
         this.pregunta_borrar_cuenta = pregunta_borrar_cuenta;
+    }
+
+    public String getEmails_no_coinciden() {
+        return emails_no_coinciden;
+    }
+
+    public void setEmails_no_coinciden(String emails_no_coinciden) {
+        this.emails_no_coinciden = emails_no_coinciden;
+    }
+
+    public String getEmail_actualizado() {
+        return email_actualizado;
+    }
+
+    public void setEmail_actualizado(String email_actualizado) {
+        this.email_actualizado = email_actualizado;
+    }
+
+    public String getEmail_no_actualizado() {
+        return email_no_actualizado;
+    }
+
+    public void setEmail_no_actualizado(String email_no_actualizado) {
+        this.email_no_actualizado = email_no_actualizado;
+    }
+
+    public String getContrasenia_actualizada() {
+        return contrasenia_actualizada;
+    }
+
+    public void setContrasenia_actualizada(String contrasenia_actualizada) {
+        this.contrasenia_actualizada = contrasenia_actualizada;
+    }
+
+    public String getContrasenia_no_actualizada() {
+        return contrasenia_no_actualizada;
+    }
+
+    public void setContrasenia_no_actualizada(String contrasenia_no_actualizada) {
+        this.contrasenia_no_actualizada = contrasenia_no_actualizada;
     }
     
     

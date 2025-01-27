@@ -86,7 +86,7 @@ public class Usuario_controlador {
         
         email = email.trim().toLowerCase();
         
-        if(!email.equals(email_repetido)) return "Los emails no coinciden";
+        if(!email.equals(email_repetido)) return Idioma_controlador.getIdioma_seleccionado().getPagina_ajustes_cuenta().getEmails_no_coinciden();
         
         if (email.length() > 255) return idioma.getEmail_supera_caracteres();
         
@@ -103,7 +103,7 @@ public class Usuario_controlador {
             
         } else {
             
-            return "No se ha podido actualizar el email";
+            return Idioma_controlador.getIdioma_seleccionado().getPagina_ajustes_cuenta().getEmail_no_actualizado();
         }
     }
     
@@ -125,7 +125,8 @@ public class Usuario_controlador {
             
         } else {
             
-            return "No se ha podido actualizar la contrasenia";
+            
+            return Idioma_controlador.getIdioma_seleccionado().getPagina_ajustes_cuenta().getContrasenia_no_actualizada();
         }
     }
     

@@ -24,7 +24,6 @@
                 "editar_tarea": "Editar tarea",
                 "borrar_tarea": "Borrar tarea",
                 "pregunta_borrar_tarea": "¿Seguro que quiere borrar la tarea?",
-
                 "titulo_supera_caracteres": "El título no puede superar los 50 caracteres",
                 "titulo_no_valido": "El título no es válido",
                 "fecha_no_valida": "La fecha no es válida, debe estar entre el año 2000-3000",
@@ -46,7 +45,6 @@
                 "lista_creada": "Lista creada",
                 "titulo_no_valido": "El título de la lista no es válido",
                 "lista_no_creada": "No se ha podido crear la lista",
-
                 "lista_editada": "Lista editada",
                 "lista_no_editada": "No se ha podido editar la lista",
                 "lista_borrada" : "Lista borrada",
@@ -79,7 +77,6 @@
                 "nuevo_contrasenia": "Nueva contraseña",
                 "repetir_contrasenia": "Repetir contraseña",
                 "pregunta_borrar_cuenta": "¿Seguro que quiere borrar la cuenta?",
-
                 "emails_no_coinciden": "Los emails no coinciden",
                 "email_actualizado": "Email actualizado",
                 "email_no_actualizado": "No se ha podido actualizar el email",
