@@ -24,6 +24,8 @@ public class Pagina_ajustes_cuenta {
     private String email_no_actualizado;
     private String contrasenia_actualizada;
     private String contrasenia_no_actualizada;
+    private String cuenta_borrada;
+    private String cuenta_no_borrada;
     
 
     public String getTitulo_pagina() {
@@ -137,6 +139,21 @@ public class Pagina_ajustes_cuenta {
     public void setContrasenia_no_actualizada(String contrasenia_no_actualizada) {
         this.contrasenia_no_actualizada = contrasenia_no_actualizada;
     }
-    
+
+    public String getCuenta_borrada() {
+        return cuenta_borrada;
+    }
+
+    public void setCuenta_borrada(String cuenta_borrada) {
+        this.cuenta_borrada = cuenta_borrada;
+    }
+
+    public String getCuenta_no_borrada() {
+        return cuenta_no_borrada;
+    }
+
+    public void setCuenta_no_borrada(String cuenta_no_borrada) {
+        this.cuenta_no_borrada = cuenta_no_borrada;
+    }
     
 }

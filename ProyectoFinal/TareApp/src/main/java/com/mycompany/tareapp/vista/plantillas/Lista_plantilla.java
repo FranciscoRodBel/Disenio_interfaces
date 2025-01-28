@@ -127,7 +127,7 @@ public final class Lista_plantilla extends JPanel {
         
         botonBorrarLista.addActionListener((ActionEvent e) -> {
 
-            Popup_borrar_cuenta_lista popup_borrar_cuenta_lista = new Popup_borrar_cuenta_lista(String.valueOf(Lista_plantilla.this.getIdLista()), Lista_plantilla.this.getTitulo_lista().getText() ,"lista");
+            Popup_borrar_cuenta_lista popup_borrar_cuenta_lista = new Popup_borrar_cuenta_lista(Lista_plantilla.this.getIdLista(), Lista_plantilla.this.getTitulo_lista().getText() ,"lista");
             popup_borrar_cuenta_lista.setVisible(true);  
         });
     }

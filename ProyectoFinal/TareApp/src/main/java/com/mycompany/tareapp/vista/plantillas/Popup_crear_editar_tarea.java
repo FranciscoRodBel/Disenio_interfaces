@@ -5,30 +5,18 @@
 package com.mycompany.tareapp.vista.plantillas;
 
 import com.mycompany.tareapp.controlador.Idioma_controlador;
-import com.mycompany.tareapp.controlador.Lista_controlador;
 import com.mycompany.tareapp.controlador.Tarea_controlador;
-import com.mycompany.tareapp.modelo.idioma.Idioma;
 import com.mycompany.tareapp.modelo.idioma.Pagina_tareas;
 import com.mycompany.tareapp.vista.Tareas_view;
-import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Date;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
-import javax.swing.SpinnerDateModel;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 import static javax.swing.SwingConstants.CENTER;
-import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 /**
@@ -37,6 +25,7 @@ import javax.swing.Timer;
  */
 public class Popup_crear_editar_tarea extends JDialog {
     
+    Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
     Tareas_view tareas_view = Tareas_view.recoger_instancia();
     Tarea_controlador tarea_controlador = new Tarea_controlador();
     Tarea_plantilla tarea;
@@ -73,25 +62,24 @@ public class Popup_crear_editar_tarea extends JDialog {
         panelPrincipal.setBounds(0, 0, 800, 520);
         panelPrincipal.setBackground(Estilos.getGris_claro());
         
-        Pagina_tareas idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
         
         if (tarea == null) {
             
-            texto_titulo_popup = idioma_seleccionado.getTitulo_tarea();
+            texto_titulo_popup = idioma_tareas.getTitulo_tarea();
             texto_input_titulo = "";
             texto_input_fecha = "";
             texto_input_prioridad = 0;
             texto_input_descripcion = "";
-            texto_boton = idioma_seleccionado.getCrear_tarea();
+            texto_boton = idioma_tareas.getCrear_tarea();
             
         } else {
             
-            texto_titulo_popup = idioma_seleccionado.getEditar_tarea();
+            texto_titulo_popup = idioma_tareas.getEditar_tarea();
             texto_input_titulo = tarea.getTituloTarea().getText();
             texto_input_fecha = tarea.getFechaTarea().getText(); 
             texto_input_prioridad = tarea.getPrioridadTarea();
             texto_input_descripcion = tarea.getDescripcionTarea();
-            texto_boton = idioma_seleccionado.getEditar_tarea();
+            texto_boton = idioma_tareas.getEditar_tarea();
         }
         
         JLabel labelTitulo = new JLabel(texto_titulo_popup, SwingConstants.CENTER);
@@ -101,7 +89,7 @@ public class Popup_crear_editar_tarea extends JDialog {
         layout.putConstraint(SpringLayout.EAST, labelTitulo, 0, SpringLayout.EAST, panelPrincipal);
         panelPrincipal.add(labelTitulo);
         
-        input_titulo_terea = new Input_text(idioma_seleccionado.getTitulo_tarea(), texto_input_titulo);
+        input_titulo_terea = new Input_text(idioma_tareas.getTitulo_tarea(), texto_input_titulo);
         layout.putConstraint(SpringLayout.WEST, input_titulo_terea, 270, SpringLayout.WEST, labelTitulo);
         layout.putConstraint(SpringLayout.NORTH, input_titulo_terea, 50, SpringLayout.NORTH, labelTitulo);
         panelPrincipal.add(input_titulo_terea);
@@ -150,7 +138,7 @@ public class Popup_crear_editar_tarea extends JDialog {
 
                 if (mensaje_resultado.isEmpty()) {
 
-                    mensaje_resultado = "Tarea creada";
+                    mensaje_resultado = idioma_tareas.getTarea_creada();
                     tareas_view.actualizar_panel_tareas();                   
                 }
 
@@ -161,7 +149,7 @@ public class Popup_crear_editar_tarea extends JDialog {
 
                 if (mensaje_resultado.isEmpty()) {
 
-                    mensaje_resultado = "Tarea editada";
+                    mensaje_resultado = idioma_tareas.getTarea_editada();
                     tareas_view.actualizar_panel_tareas();                   
                 }
             }

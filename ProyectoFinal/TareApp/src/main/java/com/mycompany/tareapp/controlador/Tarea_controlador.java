@@ -34,15 +34,15 @@ public class Tarea_controlador {
         
         Tarea tarea = new Tarea(titulo, prioridad_seleccionada, fecha, descripcion, idLista);
         
-        if (titulo.length() > 50) return "El título no puede superar los 50 caracteres";
+        if (titulo.length() > 50) return idioma_tareas.getTitulo_supera_caracteres();
         
-        if (!tarea.es_texto_valido(titulo)) return "El título no es válido";
+        if (!tarea.es_texto_valido(titulo)) return idioma_tareas.getTitulo_no_valido();
         
-        if (!tarea.es_fecha_valida()) return "La fecha no es válida, debe estar entre el año 2000-3000";
+        if (!tarea.es_fecha_valida()) return idioma_tareas.getFecha_no_valida();
         
-        if (titulo.length() > 500) return "La descripción no puede superar los 500 caracteres";
+        if (titulo.length() > 500) return idioma_tareas.getDescripcion_supera_caracteres();
         
-        if (!tarea.es_texto_valido(descripcion)) return "La descripción de no es válida";
+        if (!tarea.es_texto_valido(descripcion)) return idioma_tareas.getDescripcion_no_valida();
         
         fecha = tarea.cambiar_string_a_date();
         
@@ -54,7 +54,7 @@ public class Tarea_controlador {
             
         } else {
             
-            return "No se ha podido crear la tarea";
+            return idioma_tareas.getTarea_no_borrada();
         }
     }
     
@@ -89,15 +89,15 @@ public class Tarea_controlador {
         
         Tarea tarea = new Tarea(titulo, prioridad_seleccionada, fecha, descripcion, idLista);
         
-        if (titulo.length() > 50) return "El título no puede superar los 50 caracteres";
+        if (titulo.length() > 50) return idioma_tareas.getTitulo_supera_caracteres();
         
-        if (!tarea.es_texto_valido(titulo)) return "El título no es válido";
+        if (!tarea.es_texto_valido(titulo)) return idioma_tareas.getTitulo_no_valido();
         
-        if (!tarea.es_fecha_valida()) return "La fecha no es válida, debe estar entre el año 2000-3000";
+        if (!tarea.es_fecha_valida()) return idioma_tareas.getFecha_no_valida();
         
-        if (titulo.length() > 500) return "La descripción no puede superar los 500 caracteres";
+        if (titulo.length() > 500) return idioma_tareas.getDescripcion_supera_caracteres();
         
-        if (!tarea.es_texto_valido(descripcion)) return "La descripción no es válida";
+        if (!tarea.es_texto_valido(descripcion)) return idioma_tareas.getDescripcion_no_valida();
         
         fecha = tarea.cambiar_string_a_date();
         
@@ -110,7 +110,7 @@ public class Tarea_controlador {
             
         } else {
             
-            return "No se ha podido editar la tarea";
+            return idioma_tareas.getTarea_no_editada();
         }
     }
     
@@ -124,7 +124,7 @@ public class Tarea_controlador {
             
         } else {
             
-            return "No se ha podido borrar la tarea";
+            return Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getTarea_no_borrada();
         }
     }
 }

@@ -5,7 +5,6 @@
 package com.mycompany.tareapp.controlador;
 
 import com.mycompany.tareapp.modelo.BBDD_tareapp;
-import com.mycompany.tareapp.modelo.Usuario;
 import com.mycompany.tareapp.modelo.Lista;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,7 +45,7 @@ public class Lista_controlador {
             
         } else {
             
-            return "No se ha podido editar la lista";
+            return Idioma_controlador.getIdioma_seleccionado().getPagina_listas().getLista_no_editada();
         }
         
     }
@@ -76,7 +75,7 @@ public class Lista_controlador {
             
         } else {
             
-            return "La lista no se ha podido borrar";
+            return Idioma_controlador.getIdioma_seleccionado().getPagina_listas().getLista_no_borrada();
         }
     }
 }

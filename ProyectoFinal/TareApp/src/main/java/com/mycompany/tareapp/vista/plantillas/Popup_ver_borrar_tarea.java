@@ -25,6 +25,7 @@ import javax.swing.Timer;
  */
 public class Popup_ver_borrar_tarea extends JDialog {
     
+    Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
     Tareas_view tareas_view = Tareas_view.recoger_instancia();
     Tarea_controlador tarea_controlador = new Tarea_controlador();
     JPanel panelPrincipal = new JPanel();
@@ -56,8 +57,6 @@ public class Popup_ver_borrar_tarea extends JDialog {
         panelPrincipal.setBounds(0, 0, 800, 450);
         panelPrincipal.setBackground(Estilos.getBlanco_claro());
         
-        Pagina_tareas idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
-        
         JLabel label_titulo_tarea = new JLabel(texto_titulo_tarea, SwingConstants.CENTER);
         label_titulo_tarea.setFont(Estilos.getFuenteConTamaio(20));
         layout.putConstraint(SpringLayout.WEST, label_titulo_tarea, 0, SpringLayout.WEST, panelPrincipal);
@@ -65,7 +64,7 @@ public class Popup_ver_borrar_tarea extends JDialog {
         layout.putConstraint(SpringLayout.EAST, label_titulo_tarea, 0, SpringLayout.EAST, panelPrincipal);
         panelPrincipal.add(label_titulo_tarea);
         
-        JLabel label_fecha = new JLabel(idioma_seleccionado.getFecha()+":", SwingConstants.RIGHT);
+        JLabel label_fecha = new JLabel(idioma_tareas.getFecha()+":", SwingConstants.RIGHT);
         label_fecha.setPreferredSize(new Dimension(100, 30));
         label_fecha.setFont(Estilos.getFuenteTitulo());
         layout.putConstraint(SpringLayout.WEST, label_fecha, 20, SpringLayout.WEST, panelPrincipal);
@@ -86,14 +85,14 @@ public class Popup_ver_borrar_tarea extends JDialog {
         layout.putConstraint(SpringLayout.NORTH, label_prioridad_tarea, 0, SpringLayout.NORTH, label_fecha_tarea);
         panelPrincipal.add(label_prioridad_tarea);
         
-        JLabel label_prioridad = new JLabel(idioma_seleccionado.getPrioridad()+":", SwingConstants.RIGHT);
+        JLabel label_prioridad = new JLabel(idioma_tareas.getPrioridad()+":", SwingConstants.RIGHT);
         label_prioridad.setPreferredSize(new Dimension(150, 30));
         label_prioridad.setFont(Estilos.getFuenteTitulo());
         layout.putConstraint(SpringLayout.EAST, label_prioridad, -110, SpringLayout.EAST, label_prioridad_tarea);
         layout.putConstraint(SpringLayout.NORTH, label_prioridad, 0, SpringLayout.NORTH, label_prioridad_tarea);
         panelPrincipal.add(label_prioridad);
         
-        JLabel label_descripcion = new JLabel(idioma_seleccionado.getDescripcion(), SwingConstants.CENTER);
+        JLabel label_descripcion = new JLabel(idioma_tareas.getDescripcion(), SwingConstants.CENTER);
         label_descripcion.setFont(Estilos.getFuenteTitulo());
         layout.putConstraint(SpringLayout.WEST, label_descripcion, 0, SpringLayout.WEST, panelPrincipal);
         layout.putConstraint(SpringLayout.NORTH, label_descripcion, 50, SpringLayout.NORTH, label_prioridad);
@@ -112,7 +111,7 @@ public class Popup_ver_borrar_tarea extends JDialog {
             this.setSize(new Dimension(800, 570));
             panelPrincipal.setBounds(0, 0, 800, 570);
             
-            JLabel label_borrar_tarea = new JLabel(idioma_seleccionado.getPregunta_borrar_tarea(), SwingConstants.CENTER);
+            JLabel label_borrar_tarea = new JLabel(idioma_tareas.getPregunta_borrar_tarea(), SwingConstants.CENTER);
             label_borrar_tarea.setFont(Estilos.getFuenteTitulo());
             layout.putConstraint(SpringLayout.WEST, label_borrar_tarea, 0, SpringLayout.WEST, panelPrincipal);
             layout.putConstraint(SpringLayout.NORTH, label_borrar_tarea, 20, SpringLayout.NORTH, panelPrincipal);
@@ -121,7 +120,7 @@ public class Popup_ver_borrar_tarea extends JDialog {
             
             layout.putConstraint(SpringLayout.NORTH, label_titulo_tarea, 50, SpringLayout.NORTH, label_borrar_tarea);
             
-            Boton bonton_borrar = new Boton(idioma_seleccionado.getBorrar_tarea());
+            Boton bonton_borrar = new Boton(idioma_tareas.getBorrar_tarea());
             bonton_borrar.setBackground(Estilos.getRojo());
             layout.putConstraint(SpringLayout.WEST, bonton_borrar, 300, SpringLayout.WEST, panelPrincipal);
             layout.putConstraint(SpringLayout.NORTH, bonton_borrar, 230, SpringLayout.NORTH, panel_descripcion_tarea);
@@ -140,7 +139,7 @@ public class Popup_ver_borrar_tarea extends JDialog {
 
                 if (mensaje_resultado.isEmpty()) {
 
-                    mensaje_resultado = "Tarea borrada";
+                    mensaje_resultado = idioma_tareas.getTarea_borrada();
                     tareas_view.actualizar_panel_tareas();
                 } 
 

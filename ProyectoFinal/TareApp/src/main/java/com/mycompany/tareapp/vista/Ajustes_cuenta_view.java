@@ -63,7 +63,7 @@ public class Ajustes_cuenta_view extends javax.swing.JPanel {
         panel_ajustes.setBorder(new RoundedBorder(2, 2));
         panel_ajustes.setPreferredSize(new Dimension(500, 260));
         layout.putConstraint(SpringLayout.WEST, panel_ajustes, 250, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.NORTH, panel_ajustes, 60, SpringLayout.NORTH, titulo_pagina);
+        layout.putConstraint(SpringLayout.NORTH, panel_ajustes, 50, SpringLayout.NORTH, titulo_pagina);
         
         panel_ajustes.add(label_email);
         label_email.setFont(Estilos.getFuenteTitulo());
@@ -113,7 +113,7 @@ public class Ajustes_cuenta_view extends javax.swing.JPanel {
 
             public void actionPerformed(ActionEvent e) {
                 
-                Popup_borrar_cuenta_lista popup_borrar_cuenta_lista = new Popup_borrar_cuenta_lista(label_email_usuario.getText(), label_email_usuario.getText() ,"usuario");
+                Popup_borrar_cuenta_lista popup_borrar_cuenta_lista = new Popup_borrar_cuenta_lista(0, label_email_usuario.getText() ,"cuenta");
                 popup_borrar_cuenta_lista.setVisible(true);
             }
         });

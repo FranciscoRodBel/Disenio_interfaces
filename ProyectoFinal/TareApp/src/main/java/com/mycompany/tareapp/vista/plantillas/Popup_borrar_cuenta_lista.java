@@ -8,28 +8,17 @@ import com.mycompany.tareapp.controlador.Idioma_controlador;
 import com.mycompany.tareapp.controlador.Lista_controlador;
 import com.mycompany.tareapp.controlador.Usuario_controlador;
 import com.mycompany.tareapp.modelo.idioma.Idioma;
-import com.mycompany.tareapp.modelo.idioma.Pagina_listas;
 import com.mycompany.tareapp.vista.Listas_view;
 import com.mycompany.tareapp.vista.Tareas_view;
-import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Date;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
-import javax.swing.SpinnerDateModel;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 import static javax.swing.SwingConstants.CENTER;
-import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 /**
@@ -52,7 +41,7 @@ public class Popup_borrar_cuenta_lista extends JDialog {
     
     JLabel label_resultado = new JLabel();
 
-    public Popup_borrar_cuenta_lista(String dato_borrar, String dato_mostrar, String tipo_popup) {
+    public Popup_borrar_cuenta_lista(int idLista, String dato_mostrar, String tipo_popup) {
         
         super((Window) null, "PopUp", ModalityType.APPLICATION_MODAL);
         
@@ -70,7 +59,7 @@ public class Popup_borrar_cuenta_lista extends JDialog {
         
         Idioma idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado();
         
-        if (tipo_popup.equals("usuario")) {
+        if (tipo_popup.equals("cuenta")) {
             
             texto_pregunta_confirmacion = idioma_seleccionado.getPagina_ajustes_cuenta().getPregunta_borrar_cuenta();
             texto_boton_borrar = idioma_seleccionado.getPagina_ajustes_cuenta().getBorrar_cuenta();
@@ -118,16 +107,16 @@ public class Popup_borrar_cuenta_lista extends JDialog {
 
                 if (mensaje_resultado.isEmpty()) {
 
-                    mensaje_resultado = "Cuenta borrada";
+                    mensaje_resultado = idioma_seleccionado.getPagina_ajustes_cuenta().getCuenta_borrada();
                 } 
 
             } else {
 
-                mensaje_resultado = lista_controlador.borrar_lista(Integer.parseInt(dato_borrar));
+                mensaje_resultado = lista_controlador.borrar_lista(idLista);
 
                 if (mensaje_resultado.isEmpty()) {
 
-                    mensaje_resultado = "Lista borrada";
+                    mensaje_resultado = idioma_seleccionado.getPagina_listas().getLista_borrada();
                     listas_view.actualizar_panel_lista();
                     tareas_view.actualizar_select_listas();
                     tareas_view.actualizar_panel_tareas();

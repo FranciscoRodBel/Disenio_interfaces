@@ -81,7 +81,9 @@
                 "email_actualizado": "Email actualizado",
                 "email_no_actualizado": "No se ha podido actualizar el email",
                 "contrasenia_actualizada": "Contraseña actualizada",
-                "contrasenia_no_actualizada": "No se ha podido actualizar la contrasenia"
+                "contrasenia_no_actualizada": "No se ha podido actualizar la contrasenia",
+                "cuenta_borrada": "Cuenta borrada",
+                "cuenta_no_borrada": "La cuenta no se ha podido borrar"
             }
         },
         {
@@ -165,7 +167,9 @@
                 "email_actualizado": "Email updated",
                 "email_no_actualizado": "The email could not be updated",
                 "contrasenia_actualizada": "Password updated",
-                "contrasenia_no_actualizada": "The password could not be updated"
+                "contrasenia_no_actualizada": "The password could not be updated",
+                "cuenta_borrada": "Account deleted",
+                "cuenta_no_borrada": "The account could not be deleted"
             }
         },
         {
@@ -249,7 +253,9 @@
                 "email_actualizado": "Email mis à jour",
                 "email_no_actualizado": "L'email n'a pas pu être mis à jour",
                 "contrasenia_actualizada": "Mot de passe mis à jour",
-                "contrasenia_no_actualizada": "Le mot de passe n'a pas pu être mis à jour"
+                "contrasenia_no_actualizada": "Le mot de passe n'a pas pu être mis à jour",
+                "cuenta_borrada": "Compte supprimé",
+                "cuenta_no_borrada": "Le compte n'a pas pu être supprimé"
             }
         }
     ]

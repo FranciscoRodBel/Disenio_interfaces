@@ -82,7 +82,7 @@ public class Popup_editar_lista extends JDialog {
 
             if (mensaje_resultado.isEmpty()) {
 
-                mensaje_resultado = "Lista editada";
+                mensaje_resultado = idioma_seleccionado.getLista_editada();
                 tareas_view.actualizar_select_listas();
                 listas_view.actualizar_panel_lista();
             }

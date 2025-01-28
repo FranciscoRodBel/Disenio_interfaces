@@ -132,6 +132,8 @@ public class Usuario_controlador {
     
     public String borrar_usuario() {
         
+        System.out.println(usuario.getEmail());
+        
         String consulta = "DELETE FROM usuario WHERE email = '" + usuario.getEmail() + "'";
         
         if(bbdd_tareapp.borrar(consulta)) {
@@ -140,7 +142,7 @@ public class Usuario_controlador {
             
         } else {
             
-            return "La cuenta no se ha podido borrar";
+            return Idioma_controlador.getIdioma_seleccionado().getPagina_ajustes_cuenta().getCuenta_no_borrada();
         }
     }
 }

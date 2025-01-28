@@ -28,7 +28,9 @@ public class Idioma_controlador {
     
     static {
         try {
+            
             convertirJsonEnClase();
+            
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

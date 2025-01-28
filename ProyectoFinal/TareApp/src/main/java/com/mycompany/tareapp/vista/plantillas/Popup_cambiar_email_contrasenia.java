@@ -26,6 +26,7 @@ import javax.swing.Timer;
  */
 public class Popup_cambiar_email_contrasenia extends JDialog {
     
+    Pagina_ajustes_cuenta idioma_ajustes = Idioma_controlador.getIdioma_seleccionado().getPagina_ajustes_cuenta();
     Ajustes_cuenta_view ajustes_cuenta_view = Ajustes_cuenta_view.recoger_instancia();
     Usuario_controlador usuario_controlador = new Usuario_controlador();
     JPanel panelPrincipal = new JPanel();
@@ -50,19 +51,18 @@ public class Popup_cambiar_email_contrasenia extends JDialog {
         panelPrincipal.setBounds(0, 0, 800, 300);
         panelPrincipal.setBackground(Estilos.getGris_claro());
         
-        Pagina_ajustes_cuenta idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getPagina_ajustes_cuenta();
         
         if (tipo_popup.equals("email")) {
             
-            texto_titulo_popup = idioma_seleccionado.getCambiar_email();
-            texto_input_nuevo = idioma_seleccionado.getNuevo_email();
-            texto_input_repetir = idioma_seleccionado.getRepetir_email();
+            texto_titulo_popup = idioma_ajustes.getCambiar_email();
+            texto_input_nuevo = idioma_ajustes.getNuevo_email();
+            texto_input_repetir = idioma_ajustes.getRepetir_email();
             
         } else {
         
-            texto_titulo_popup = idioma_seleccionado.getCambiar_contrasenia();
-            texto_input_nuevo = idioma_seleccionado.getNuevo_contrasenia();
-            texto_input_repetir = idioma_seleccionado.getRepetir_contrasenia();
+            texto_titulo_popup = idioma_ajustes.getCambiar_contrasenia();
+            texto_input_nuevo = idioma_ajustes.getNuevo_contrasenia();
+            texto_input_repetir = idioma_ajustes.getRepetir_contrasenia();
         }
         
         JLabel labelTitulo = new JLabel(texto_titulo_popup, SwingConstants.CENTER);
@@ -108,7 +108,7 @@ public class Popup_cambiar_email_contrasenia extends JDialog {
 
                 if (mensaje_resultado.isEmpty()) {
 
-                    mensaje_resultado = "Email actualizado";    
+                    mensaje_resultado = idioma_ajustes.getEmail_actualizado();    
                     ajustes_cuenta_view.getLabel_email_usuario().setText(texto_input_nuevo);          
                 }
                 
@@ -119,9 +119,8 @@ public class Popup_cambiar_email_contrasenia extends JDialog {
 
                 if (mensaje_resultado.isEmpty()) {
 
-                    mensaje_resultado = "Contraseña actualizada";              
+                    mensaje_resultado = idioma_ajustes.getContrasenia_actualizada();              
                 }
-                
             }
             
             label_resultado.setText(mensaje_resultado);
