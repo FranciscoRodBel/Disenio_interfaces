@@ -17,6 +17,7 @@ import java.util.HashMap;
 public class Tarea_controlador {
     
     private final BBDD_tareapp bbdd_tareapp = new BBDD_tareapp();
+    private static String consulta;
     
     public String crear_tarea(String titulo, String prioridad, String fecha, String descripcion, int idLista) {
     
@@ -58,10 +59,19 @@ public class Tarea_controlador {
         }
     }
     
-    public static ArrayList<HashMap<String, Object>> recoger_tareas(int idLista) {
+    public static ArrayList<HashMap<String, Object>> recoger_tareas(int idLista, String consulta) {
     
-        String consultaRecoger = "SELECT * FROM tarea WHERE idLista = '"+ idLista +"'";
-        ArrayList<HashMap<String, Object>> resultados = new BBDD_tareapp().consultar(consultaRecoger);
+        if (consulta.isEmpty()) {
+            
+            consulta = Tarea_controlador.consulta;
+                    
+        } else {
+            
+            Tarea_controlador.consulta = consulta;
+        }
+        
+        //String consultaRecoger = "SELECT * FROM tarea WHERE idLista = '"+ idLista +"'";
+        ArrayList<HashMap<String, Object>> resultados = new BBDD_tareapp().consultar(consulta);
         
         if (resultados.isEmpty()) {
             
@@ -126,5 +136,12 @@ public class Tarea_controlador {
             
             return Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getTarea_no_borrada();
         }
+    }
+    
+    public Boolean completarTarea(int idTarea, int completada) {
+        
+        String consulta = "UPDATE tarea SET completada = '" + completada + "' WHERE idTarea = " + idTarea;
+
+        return bbdd_tareapp.insertar(consulta);
     }
 }

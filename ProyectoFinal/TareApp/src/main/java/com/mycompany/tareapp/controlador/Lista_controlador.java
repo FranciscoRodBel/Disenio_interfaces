@@ -39,7 +39,7 @@ public class Lista_controlador {
         
         String consulta = "UPDATE lista SET titulo = '"+titulo+"' WHERE idLista = '"+idLista+"';";
         
-        if(bbdd_tareapp.actualizar(consulta)) {
+        if(bbdd_tareapp.insertar(consulta)) {
             
             return "";
             

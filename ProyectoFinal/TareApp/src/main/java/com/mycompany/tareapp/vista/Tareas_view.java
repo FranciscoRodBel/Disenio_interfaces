@@ -6,30 +6,31 @@ package com.mycompany.tareapp.vista;
 
 import com.mycompany.tareapp.controlador.Lista_controlador;
 import com.mycompany.tareapp.controlador.Tarea_controlador;
-import com.mycompany.tareapp.controlador.Usuario_controlador;
 import com.mycompany.tareapp.modelo.Lista;
-import com.mycompany.tareapp.modelo.Usuario;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
 import com.mycompany.tareapp.vista.plantillas.Popup_crear_editar_tarea;
 import com.mycompany.tareapp.vista.plantillas.Tarea_plantilla;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
-import javax.swing.Timer;
 
 /**
  *
@@ -42,15 +43,16 @@ public final class Tareas_view extends javax.swing.JPanel {
     JToolBar barraHerramientas = new JToolBar();
     
     JButton botonCrearTarea = new JButton();
-    JButton botonTareasCompletadas = new JButton();
-    JButton botonTareasIncompletas = new JButton();
+    JCheckBox botonTareasCompletadas = new JCheckBox();
+    JCheckBox botonTareasIncompletas = new JCheckBox();
     JButton botonPrioridadBaja = new JButton();
     JButton botonPrioridadMedia = new JButton();
     JButton botonPrioridadalta = new JButton();
-    JButton botonOrdenadoAZ = new JButton();
-    JButton botonOrdenadoZA = new JButton();
-    JButton botonOrdenado19 = new JButton();
-    JButton botonOrdenado91 = new JButton();
+    JRadioButton botonOrdenadoAZ = new JRadioButton();
+    JRadioButton botonOrdenadoZA = new JRadioButton();
+    JRadioButton botonOrdenado19 = new JRadioButton();
+    JRadioButton botonOrdenado91 = new JRadioButton();
+    ButtonGroup grupoBotonesOdenacion = new ButtonGroup();
     
     JLabel titulo_pagina = new JLabel("Tareas");
     JComboBox<Lista> seleccionarLista = new JComboBox();
@@ -87,6 +89,16 @@ public final class Tareas_view extends javax.swing.JPanel {
         botonOrdenadoZA.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-z-a-solid.png"));
         botonOrdenado19.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-1-9-solid.png"));
         botonOrdenado91.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-9-1-solid.png"));
+        botonTareasCompletadas.setMargin(new Insets(5,5,5,5));
+        botonTareasIncompletas.setMargin(new Insets(5,5,5,5));
+        botonOrdenadoAZ.setMargin(new Insets(5,5,5,5));
+        botonOrdenadoZA.setMargin(new Insets(5,5,5,5));
+        botonOrdenado19.setMargin(new Insets(5,5,5,5));
+        botonOrdenado91.setMargin(new Insets(5,5,5,5));
+        botonOrdenadoAZ.setName("AZ");
+        botonOrdenadoZA.setName("ZA");
+        botonOrdenado19.setName("19");
+        botonOrdenado91.setName("91");
         
         barraHerramientas.add(botonCrearTarea);
         barraHerramientas.add(new JToolBar.Separator());
@@ -101,6 +113,10 @@ public final class Tareas_view extends javax.swing.JPanel {
         barraHerramientas.add(botonOrdenadoZA);
         barraHerramientas.add(botonOrdenado19);
         barraHerramientas.add(botonOrdenado91);
+        grupoBotonesOdenacion.add(botonOrdenadoAZ);
+        grupoBotonesOdenacion.add(botonOrdenadoZA);
+        grupoBotonesOdenacion.add(botonOrdenado19);
+        grupoBotonesOdenacion.add(botonOrdenado91);
         
         this.add(titulo_pagina);
         titulo_pagina.setHorizontalAlignment(SwingConstants.CENTER);
@@ -139,6 +155,49 @@ public final class Tareas_view extends javax.swing.JPanel {
         seleccionarLista.addActionListener((ActionEvent e) -> {
             actualizar_panel_tareas();
         });
+        
+        botonTareasCompletadas.addActionListener((ActionEvent e) -> {
+            // Filtrar
+            
+            botonTareasCompletadas.setOpaque(!botonTareasCompletadas.isOpaque());
+            actualizar_panel_tareas();
+            
+            System.out.println(grupoBotonesOdenacion.getSelection().getClass().getName());
+        });
+        
+        botonTareasIncompletas.addActionListener((ActionEvent e) -> {
+           
+            //actualizar_panel_tareas("");
+        });
+        
+        botonOrdenadoAZ.addActionListener((ActionEvent e) -> {
+            
+            mostrarBotonesOrden();
+            this.botonOrdenadoAZ.setEnabled(false);
+            //actualizar_panel_tareas("");
+        });
+        
+        botonOrdenadoZA.addActionListener((ActionEvent e) -> {
+
+            mostrarBotonesOrden();
+            this.botonOrdenadoZA.setEnabled(false);
+            //actualizar_panel_tareas("");
+        });
+              
+        botonOrdenado19.addActionListener((ActionEvent e) -> {
+            
+            mostrarBotonesOrden();
+            this.botonOrdenado19.setEnabled(false);
+            //actualizar_panel_tareas("");
+        });
+                    
+        botonOrdenado91.addActionListener((ActionEvent e) -> {
+
+            mostrarBotonesOrden();
+            this.botonOrdenado91.setEnabled(false);
+            //actualizar_panel_tareas("");
+        });
+        
     }
     
     public JLabel getTitulo_pagina() {
@@ -157,6 +216,14 @@ public final class Tareas_view extends javax.swing.JPanel {
         this.seleccionarLista = seleccionarLista;
     }
     
+    public void mostrarBotonesOrden() {
+        
+        this.botonOrdenadoAZ.setEnabled(true);
+        this.botonOrdenadoZA.setEnabled(true);
+        this.botonOrdenado19.setEnabled(true);
+        this.botonOrdenado91.setEnabled(true);
+    }
+    
     public void actualizar_panel_tareas() {
         
         panelTareas.setVisible(false);
@@ -164,9 +231,24 @@ public final class Tareas_view extends javax.swing.JPanel {
     
         Lista listaSeleccionada = (Lista) seleccionarLista.getSelectedItem();
         
+        
+        botonPrioridadBaja.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-down-solid.png"));
+        botonPrioridadMedia.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-right-solid.png"));
+        botonPrioridadalta.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-up-solid.png"));
+        botonOrdenadoAZ.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-a-z-solid.png"));
+        botonOrdenadoZA.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-z-a-solid.png"));
+        botonOrdenado19.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-1-9-solid.png"));
+        botonOrdenado91.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-9-1-solid.png"));
+        
+        
+        //String consulta = Tarea_controlador.generarConsulta(botonTareasIncompletas.isOpaque(), botonTareasIncompletas.isOpaque(), botonPrioridadBaja.isOpaque());
+        
+        
         if (listaSeleccionada != null) {
             
-            ArrayList<HashMap<String, Object>> tareas = Tarea_controlador.recoger_tareas(listaSeleccionada.getIdLista());
+            String consulta = "SELECT * FROM tarea WHERE idLista = '"+ listaSeleccionada.getIdLista() +"'";
+        
+            ArrayList<HashMap<String, Object>> tareas = Tarea_controlador.recoger_tareas(listaSeleccionada.getIdLista(), consulta);
 
             if (tareas != null) {
 

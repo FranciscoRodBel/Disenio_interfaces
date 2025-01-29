@@ -79,27 +79,6 @@ public class BBDD_tareapp {
         }
     }
     
-    public boolean actualizar(String consulta_actualizar) {
-        
-        Connection conexion = BBDD_controlador.abrirConexion();
-
-        try {
-            
-            Statement consulta = conexion.createStatement();
-
-            return consulta.executeUpdate(consulta_actualizar) > 0;
-
-        } catch (SQLException ex) {
-            
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-
-        } finally {
-            
-            BBDD_controlador.cerrarConexion();
-        }
-    }
-    
     public boolean borrar(String consulta_borrar) {
         
         Connection conexion = BBDD_controlador.abrirConexion();

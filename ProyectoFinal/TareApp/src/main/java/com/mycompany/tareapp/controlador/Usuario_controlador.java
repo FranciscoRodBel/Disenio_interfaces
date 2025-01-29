@@ -96,7 +96,7 @@ public class Usuario_controlador {
         
         String consulta = "UPDATE usuario SET email = '" + email + "' WHERE email = '" + usuario.getEmail() + "'";
 
-        if(bbdd_tareapp.actualizar(consulta)) {
+        if(bbdd_tareapp.insertar(consulta)) {
             
             usuario.setEmail(email);
             return "";
@@ -119,7 +119,7 @@ public class Usuario_controlador {
         
         String consulta = "UPDATE usuario SET contrasenia = '" + contrasenia + "' WHERE email = '" + usuario.getEmail() + "'";
 
-        if(bbdd_tareapp.actualizar(consulta)) {
+        if(bbdd_tareapp.insertar(consulta)) {
             
             return "";
             

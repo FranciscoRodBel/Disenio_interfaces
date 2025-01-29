@@ -5,6 +5,7 @@
 package com.mycompany.tareapp.vista.plantillas;
 
 import com.mycompany.tareapp.controlador.Idioma_controlador;
+import com.mycompany.tareapp.controlador.Tarea_controlador;
 import com.mycompany.tareapp.modelo.idioma.Pagina_tareas;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -21,6 +22,7 @@ import static javax.swing.SwingConstants.CENTER;
  */
 public final class Tarea_plantilla extends JPanel {
 
+    Tarea_controlador tarea_controlador = new Tarea_controlador();
     JButton botonTareaCompletada = new JButton();
     
     JLabel tituloTarea = new JLabel("Título tarea");
@@ -31,6 +33,7 @@ public final class Tarea_plantilla extends JPanel {
     
     int idTarea;
     int prioridadTarea;
+    boolean completada;
     String descripcionTarea;
     
     JButton botonVerTarea = new JButton();
@@ -42,9 +45,10 @@ public final class Tarea_plantilla extends JPanel {
         generarEstructura();
     }
     
-    public Tarea_plantilla(int idTarea,boolean completada, String titulo, int prioridad, String fecha, String descripcion, int idLista) { // Si se envía true está completa, si se envía en la prioridad 1 - baja, 2 - media, 3 - alta
+    public Tarea_plantilla(int idTarea, boolean completada, String titulo, int prioridad, String fecha, String descripcion, int idLista) { // Si se envía true está completa, si se envía en la prioridad 1 - baja, 2 - media, 3 - alta
         
         this.idTarea = idTarea;
+        this.completada = completada;
         
         generarEstructura();
         
@@ -252,13 +256,22 @@ public final class Tarea_plantilla extends JPanel {
                 
         botonTareaCompletada.addActionListener((ActionEvent e) -> {
             
-            if (botonTareaCompletada.getIcon().toString().equals("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-regular-black.png")) {
+            if (completada) {
                 
-                botonTareaCompletada.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-check-solid-black.png"));
+                if (tarea_controlador.completarTarea(idTarea, 0)) {
+                
+                    this.setTareaIncompleta();
+                    completada = false;
+                }
+                
                 
             } else {
                 
-                botonTareaCompletada.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-regular-black.png"));
+                if (tarea_controlador.completarTarea(idTarea, 1)) {
+                
+                    this.setTareaCompletada();
+                    completada = true;
+                }
             }
         });
         
@@ -279,6 +292,7 @@ public final class Tarea_plantilla extends JPanel {
             Popup_ver_borrar_tarea popup_ver_borrar_tarea = new Popup_ver_borrar_tarea(Tarea_plantilla.this, "borrar");
             popup_ver_borrar_tarea.setVisible(true);
         });
+        
     }
     
     public String recoger_prioridad_tarea() {
