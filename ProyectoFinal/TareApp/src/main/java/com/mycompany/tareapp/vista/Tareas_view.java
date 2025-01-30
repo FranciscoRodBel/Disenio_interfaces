@@ -47,7 +47,7 @@ public final class Tareas_view extends javax.swing.JPanel {
     JCheckBox botonTareasIncompletas = new JCheckBox();
     JButton botonPrioridadBaja = new JButton();
     JButton botonPrioridadMedia = new JButton();
-    JButton botonPrioridadalta = new JButton();
+    JButton botonPrioridadAlta = new JButton();
     JRadioButton botonOrdenadoAZ = new JRadioButton();
     JRadioButton botonOrdenadoZA = new JRadioButton();
     JRadioButton botonOrdenado19 = new JRadioButton();
@@ -84,7 +84,7 @@ public final class Tareas_view extends javax.swing.JPanel {
         botonTareasIncompletas.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-regular.png"));
         botonPrioridadBaja.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-down-solid.png"));
         botonPrioridadMedia.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-right-solid.png"));
-        botonPrioridadalta.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-up-solid.png"));
+        botonPrioridadAlta.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-up-solid.png"));
         botonOrdenadoAZ.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-a-z-solid.png"));
         botonOrdenadoZA.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-z-a-solid.png"));
         botonOrdenado19.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-1-9-solid.png"));
@@ -107,16 +107,17 @@ public final class Tareas_view extends javax.swing.JPanel {
         barraHerramientas.add(new JToolBar.Separator());
         barraHerramientas.add(botonPrioridadBaja);
         barraHerramientas.add(botonPrioridadMedia);
-        barraHerramientas.add(botonPrioridadalta);
+        barraHerramientas.add(botonPrioridadAlta);
         barraHerramientas.add(new JToolBar.Separator());
-        barraHerramientas.add(botonOrdenadoAZ);
-        barraHerramientas.add(botonOrdenadoZA);
         barraHerramientas.add(botonOrdenado19);
         barraHerramientas.add(botonOrdenado91);
+        barraHerramientas.add(botonOrdenadoAZ);
+        barraHerramientas.add(botonOrdenadoZA);
         grupoBotonesOdenacion.add(botonOrdenadoAZ);
         grupoBotonesOdenacion.add(botonOrdenadoZA);
         grupoBotonesOdenacion.add(botonOrdenado19);
         grupoBotonesOdenacion.add(botonOrdenado91);
+        botonOrdenado19.setSelected(true);
         
         this.add(titulo_pagina);
         titulo_pagina.setHorizontalAlignment(SwingConstants.CENTER);
@@ -157,45 +158,44 @@ public final class Tareas_view extends javax.swing.JPanel {
         });
         
         botonTareasCompletadas.addActionListener((ActionEvent e) -> {
-            // Filtrar
-            
+
             botonTareasCompletadas.setOpaque(!botonTareasCompletadas.isOpaque());
             actualizar_panel_tareas();
             
-            System.out.println(grupoBotonesOdenacion.getSelection().getActionCommand());
         });
         
         botonTareasIncompletas.addActionListener((ActionEvent e) -> {
            
-            //actualizar_panel_tareas("");
+            botonTareasIncompletas.setOpaque(!botonTareasIncompletas.isOpaque());
+            actualizar_panel_tareas();
         });
         
         botonOrdenadoAZ.addActionListener((ActionEvent e) -> {
             
             mostrarBotonesOrden();
             this.botonOrdenadoAZ.setEnabled(false);
-            //actualizar_panel_tareas("");
+            actualizar_panel_tareas();
         });
         
         botonOrdenadoZA.addActionListener((ActionEvent e) -> {
 
             mostrarBotonesOrden();
             this.botonOrdenadoZA.setEnabled(false);
-            //actualizar_panel_tareas("");
+            actualizar_panel_tareas();
         });
               
         botonOrdenado19.addActionListener((ActionEvent e) -> {
             
             mostrarBotonesOrden();
             this.botonOrdenado19.setEnabled(false);
-            //actualizar_panel_tareas("");
+            actualizar_panel_tareas();
         });
                     
         botonOrdenado91.addActionListener((ActionEvent e) -> {
 
             mostrarBotonesOrden();
             this.botonOrdenado91.setEnabled(false);
-            //actualizar_panel_tareas("");
+            actualizar_panel_tareas();
         });
         
     }
@@ -231,24 +231,19 @@ public final class Tareas_view extends javax.swing.JPanel {
     
         Lista listaSeleccionada = (Lista) seleccionarLista.getSelectedItem();
         
-        
         botonPrioridadBaja.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-down-solid.png"));
         botonPrioridadMedia.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-right-solid.png"));
-        botonPrioridadalta.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-up-solid.png"));
+        botonPrioridadAlta.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-up-solid.png"));
         botonOrdenadoAZ.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-a-z-solid.png"));
         botonOrdenadoZA.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-z-a-solid.png"));
         botonOrdenado19.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-1-9-solid.png"));
         botonOrdenado91.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-9-1-solid.png"));
         
-        
-        //String consulta = Tarea_controlador.generarConsulta(botonTareasIncompletas.isOpaque(), botonTareasIncompletas.isOpaque(), botonPrioridadBaja.isOpaque());
-        
-        
         if (listaSeleccionada != null) {
             
-            String consulta = "SELECT * FROM tarea WHERE idLista = '"+ listaSeleccionada.getIdLista() +"'";
-        
-            ArrayList<HashMap<String, Object>> tareas = Tarea_controlador.recoger_tareas(listaSeleccionada.getIdLista(), consulta);
+            String consulta = Tarea_controlador.generarConsulta(listaSeleccionada.getIdLista(), botonTareasCompletadas.isOpaque(), botonTareasIncompletas.isOpaque(), botonPrioridadBaja.isOpaque(), botonPrioridadMedia.isOpaque(),botonPrioridadAlta.isOpaque(), grupoBotonesOdenacion.getSelection().getActionCommand());
+
+            ArrayList<HashMap<String, Object>> tareas = Tarea_controlador.recoger_tareas(consulta);
 
             if (tareas != null) {
 

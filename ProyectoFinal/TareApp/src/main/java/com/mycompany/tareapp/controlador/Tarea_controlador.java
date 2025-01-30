@@ -59,7 +59,7 @@ public class Tarea_controlador {
         }
     }
     
-    public static ArrayList<HashMap<String, Object>> recoger_tareas(int idLista, String consulta) {
+    public static ArrayList<HashMap<String, Object>> recoger_tareas(String consulta) {
     
         if (consulta.isEmpty()) {
             
@@ -70,7 +70,6 @@ public class Tarea_controlador {
             Tarea_controlador.consulta = consulta;
         }
         
-        //String consultaRecoger = "SELECT * FROM tarea WHERE idLista = '"+ idLista +"'";
         ArrayList<HashMap<String, Object>> resultados = new BBDD_tareapp().consultar(consulta);
         
         if (resultados.isEmpty()) {
@@ -143,5 +142,25 @@ public class Tarea_controlador {
         String consulta = "UPDATE tarea SET completada = '" + completada + "' WHERE idTarea = " + idTarea;
 
         return bbdd_tareapp.insertar(consulta);
+    }
+    
+    public static String generarConsulta(int idLista, boolean completadas, boolean incompletas, boolean prioridadBaja, boolean prioridadMedia, boolean prioridadAlta, String ordenacion) {
+    
+        String consulta = "SELECT * FROM tarea WHERE idLista = '"+ idLista +"' ";
+        
+        if (completadas) consulta += "AND conpletada = 1 ";
+        if (incompletas) consulta += "AND conpletada = 0 ";
+        if (prioridadBaja) consulta += "AND prioridad = 1 ";
+        if (prioridadMedia) consulta += "AND prioridad = 2 ";
+        if (prioridadAlta) consulta += "AND prioridad = 3 ";
+        
+        switch(ordenacion) {
+            case "AZ" -> consulta += "ORDER BY titulo ASC";
+            case "ZA" -> consulta += "ORDER BY titulo DESC";
+            case "91" -> consulta += "ORDER BY fecha DESC";
+            default -> consulta += "ORDER BY fecha ASC";
+         }
+        
+        return consulta;
     }
 }
