@@ -95,10 +95,10 @@ public final class Tareas_view extends javax.swing.JPanel {
         botonOrdenadoZA.setMargin(new Insets(5,5,5,5));
         botonOrdenado19.setMargin(new Insets(5,5,5,5));
         botonOrdenado91.setMargin(new Insets(5,5,5,5));
-        botonOrdenadoAZ.setName("AZ");
-        botonOrdenadoZA.setName("ZA");
-        botonOrdenado19.setName("19");
-        botonOrdenado91.setName("91");
+        botonOrdenadoAZ.setActionCommand("AZ");
+        botonOrdenadoZA.setActionCommand("ZA");
+        botonOrdenado19.setActionCommand("19");
+        botonOrdenado91.setActionCommand("91");
         
         barraHerramientas.add(botonCrearTarea);
         barraHerramientas.add(new JToolBar.Separator());
@@ -162,7 +162,7 @@ public final class Tareas_view extends javax.swing.JPanel {
             botonTareasCompletadas.setOpaque(!botonTareasCompletadas.isOpaque());
             actualizar_panel_tareas();
             
-            System.out.println(grupoBotonesOdenacion.getSelection().getClass().getName());
+            System.out.println(grupoBotonesOdenacion.getSelection().getActionCommand());
         });
         
         botonTareasIncompletas.addActionListener((ActionEvent e) -> {
