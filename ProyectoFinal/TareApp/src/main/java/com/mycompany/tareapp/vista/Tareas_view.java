@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -45,12 +46,12 @@ public final class Tareas_view extends javax.swing.JPanel {
     JButton botonCrearTarea = new JButton();
     JCheckBox botonTareasCompletadas = new JCheckBox();
     JCheckBox botonTareasIncompletas = new JCheckBox();
-    JButton botonPrioridadBaja = new JButton();
-    JButton botonPrioridadMedia = new JButton();
-    JButton botonPrioridadAlta = new JButton();
+    JCheckBox botonPrioridadBaja = new JCheckBox();
+    JCheckBox botonPrioridadMedia = new JCheckBox();
+    JCheckBox botonPrioridadAlta = new JCheckBox();
     JRadioButton botonOrdenadoAZ = new JRadioButton();
     JRadioButton botonOrdenadoZA = new JRadioButton();
-    JRadioButton botonOrdenado19 = new JRadioButton();
+    JRadioButton botonOrdenado19 = new JRadioButton("", true);
     JRadioButton botonOrdenado91 = new JRadioButton();
     ButtonGroup grupoBotonesOdenacion = new ButtonGroup();
     
@@ -91,14 +92,35 @@ public final class Tareas_view extends javax.swing.JPanel {
         botonOrdenado91.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-9-1-solid.png"));
         botonTareasCompletadas.setMargin(new Insets(5,5,5,5));
         botonTareasIncompletas.setMargin(new Insets(5,5,5,5));
+        botonPrioridadBaja.setMargin(new Insets(5,5,5,5));
+        botonPrioridadMedia.setMargin(new Insets(5,5,5,5));
+        botonPrioridadAlta.setMargin(new Insets(5,5,5,5));
         botonOrdenadoAZ.setMargin(new Insets(5,5,5,5));
         botonOrdenadoZA.setMargin(new Insets(5,5,5,5));
         botonOrdenado19.setMargin(new Insets(5,5,5,5));
         botonOrdenado91.setMargin(new Insets(5,5,5,5));
+        
+        botonCrearTarea.setToolTipText("Crear tarea");
+        botonTareasCompletadas.setToolTipText("Mostrar tareas completadas");
+        botonTareasIncompletas.setToolTipText("Mostrar tareas incompletas");
+        botonPrioridadBaja.setToolTipText("Mostrar tareas prioridad baja");
+        botonPrioridadMedia.setToolTipText("Mostrar tareas prioridad media");
+        botonPrioridadAlta.setToolTipText("Mostrar tareas prioridad alta");
+        botonOrdenadoAZ.setToolTipText("Mostrar tareas ordenadas por el título de la A a la Z");
+        botonOrdenadoZA.setToolTipText("Mostrar tareas ordenadas por el título de la Z a la A");
+        botonOrdenado19.setToolTipText("Mostrar tareas ordenadas por la fecha de menor a mayor");
+        botonOrdenado91.setToolTipText("Mostrar tareas ordenadas por la fecha de mayor a menor");
+        
+        botonTareasCompletadas.setOpaque(true);
+        botonTareasIncompletas.setOpaque(true);
+        botonPrioridadBaja.setOpaque(true);
+        botonPrioridadMedia.setOpaque(true);
+        botonPrioridadAlta.setOpaque(true);
         botonOrdenadoAZ.setActionCommand("AZ");
         botonOrdenadoZA.setActionCommand("ZA");
         botonOrdenado19.setActionCommand("19");
         botonOrdenado91.setActionCommand("91");
+        botonOrdenado19.setEnabled(false);
         
         barraHerramientas.add(botonCrearTarea);
         barraHerramientas.add(new JToolBar.Separator());
@@ -117,7 +139,6 @@ public final class Tareas_view extends javax.swing.JPanel {
         grupoBotonesOdenacion.add(botonOrdenadoZA);
         grupoBotonesOdenacion.add(botonOrdenado19);
         grupoBotonesOdenacion.add(botonOrdenado91);
-        botonOrdenado19.setSelected(true);
         
         this.add(titulo_pagina);
         titulo_pagina.setHorizontalAlignment(SwingConstants.CENTER);
@@ -170,6 +191,24 @@ public final class Tareas_view extends javax.swing.JPanel {
             actualizar_panel_tareas();
         });
         
+        botonPrioridadBaja.addActionListener((ActionEvent e) -> {
+           
+            botonPrioridadBaja.setOpaque(!botonPrioridadBaja.isOpaque());
+            actualizar_panel_tareas();
+        });
+        
+        botonPrioridadMedia.addActionListener((ActionEvent e) -> {
+           
+            botonPrioridadMedia.setOpaque(!botonPrioridadMedia.isOpaque());
+            actualizar_panel_tareas();
+        });
+        
+        botonPrioridadAlta.addActionListener((ActionEvent e) -> {
+           
+            botonPrioridadAlta.setOpaque(!botonPrioridadAlta.isOpaque());
+            actualizar_panel_tareas();
+        });
+        
         botonOrdenadoAZ.addActionListener((ActionEvent e) -> {
             
             mostrarBotonesOrden();
@@ -215,6 +254,87 @@ public final class Tareas_view extends javax.swing.JPanel {
     public void setSeleccionarLista(JComboBox<Lista> seleccionarLista) {
         this.seleccionarLista = seleccionarLista;
     }
+
+    public JButton getBotonCrearTarea() {
+        return botonCrearTarea;
+    }
+
+    public void setBotonCrearTarea(JButton botonCrearTarea) {
+        this.botonCrearTarea = botonCrearTarea;
+    }
+
+    public JCheckBox getBotonTareasCompletadas() {
+        return botonTareasCompletadas;
+    }
+
+    public void setBotonTareasCompletadas(JCheckBox botonTareasCompletadas) {
+        this.botonTareasCompletadas = botonTareasCompletadas;
+    }
+
+    public JCheckBox getBotonTareasIncompletas() {
+        return botonTareasIncompletas;
+    }
+
+    public void setBotonTareasIncompletas(JCheckBox botonTareasIncompletas) {
+        this.botonTareasIncompletas = botonTareasIncompletas;
+    }
+
+    public JCheckBox getBotonPrioridadBaja() {
+        return botonPrioridadBaja;
+    }
+
+    public void setBotonPrioridadBaja(JCheckBox botonPrioridadBaja) {
+        this.botonPrioridadBaja = botonPrioridadBaja;
+    }
+
+    public JCheckBox getBotonPrioridadMedia() {
+        return botonPrioridadMedia;
+    }
+
+    public void setBotonPrioridadMedia(JCheckBox botonPrioridadMedia) {
+        this.botonPrioridadMedia = botonPrioridadMedia;
+    }
+    
+    public JCheckBox getBotonPrioridadAlta() {
+        return botonPrioridadAlta;
+    }
+
+    public void setBotonPrioridadAlta(JCheckBox botonPrioridadAlta) {
+        this.botonPrioridadAlta = botonPrioridadAlta;
+    }
+
+    public JRadioButton getBotonOrdenadoAZ() {
+        return botonOrdenadoAZ;
+    }
+
+    public void setBotonOrdenadoAZ(JRadioButton botonOrdenadoAZ) {
+        this.botonOrdenadoAZ = botonOrdenadoAZ;
+    }
+
+    public JRadioButton getBotonOrdenadoZA() {
+        return botonOrdenadoZA;
+    }
+
+    public void setBotonOrdenadoZA(JRadioButton botonOrdenadoZA) {
+        this.botonOrdenadoZA = botonOrdenadoZA;
+    }
+
+    public JRadioButton getBotonOrdenado19() {
+        return botonOrdenado19;
+    }
+
+    public void setBotonOrdenado19(JRadioButton botonOrdenado19) {
+        this.botonOrdenado19 = botonOrdenado19;
+    }
+
+    public JRadioButton getBotonOrdenado91() {
+        return botonOrdenado91;
+    }
+
+    public void setBotonOrdenado91(JRadioButton botonOrdenado91) {
+        this.botonOrdenado91 = botonOrdenado91;
+    }
+
     
     public void mostrarBotonesOrden() {
         
@@ -263,7 +383,6 @@ public final class Tareas_view extends javax.swing.JPanel {
 
                     panelTareas.add(tarea_plantilla);
                 }
-
             }
             
             panelTareas.setVisible(true);

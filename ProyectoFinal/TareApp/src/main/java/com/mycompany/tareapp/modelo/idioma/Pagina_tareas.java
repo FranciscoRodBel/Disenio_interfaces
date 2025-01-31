@@ -34,6 +34,17 @@ public class Pagina_tareas {
     private String tarea_no_editada;
     private String tarea_borrada;
     private String tarea_no_borrada;
+    private String mostrar_tareas_completadas;
+    private String mostrar_tareas_incompletas;
+    private String mostrar_prioridad_baja;
+    private String mostrar_prioridad_media;
+    private String mostrar_prioridad_alta;
+    private String mostrar_tareas_az;
+    private String mostrar_tareas_za;
+    private String mostrar_tareas_19;
+    private String mostrar_tareas_91;
+    private String marcar_completa_incompleta;
+    private String ver_tarea;
     
     public String getTitulo() {
         return titulo;
@@ -225,6 +236,94 @@ public class Pagina_tareas {
 
     public void setTarea_no_borrada(String tarea_no_borrada) {
         this.tarea_no_borrada = tarea_no_borrada;
+    }
+
+    public String getMostrar_tareas_completadas() {
+        return mostrar_tareas_completadas;
+    }
+
+    public void setMostrar_tareas_completadas(String mostrar_tareas_completadas) {
+        this.mostrar_tareas_completadas = mostrar_tareas_completadas;
+    }
+
+    public String getMostrar_tareas_incompletas() {
+        return mostrar_tareas_incompletas;
+    }
+
+    public void setMostrar_tareas_incompletas(String mostrar_tareas_incompletas) {
+        this.mostrar_tareas_incompletas = mostrar_tareas_incompletas;
+    }
+
+    public String getMostrar_prioridad_baja() {
+        return mostrar_prioridad_baja;
+    }
+
+    public void setMostrar_prioridad_baja(String mostrar_prioridad_baja) {
+        this.mostrar_prioridad_baja = mostrar_prioridad_baja;
+    }
+
+    public String getMostrar_prioridad_media() {
+        return mostrar_prioridad_media;
+    }
+
+    public void setMostrar_prioridad_media(String mostrar_prioridad_media) {
+        this.mostrar_prioridad_media = mostrar_prioridad_media;
+    }
+
+    public String getMostrar_prioridad_alta() {
+        return mostrar_prioridad_alta;
+    }
+
+    public void setMostrar_prioridad_alta(String mostrar_prioridad_alta) {
+        this.mostrar_prioridad_alta = mostrar_prioridad_alta;
+    }
+
+    public String getMostrar_tareas_az() {
+        return mostrar_tareas_az;
+    }
+
+    public void setMostrar_tareas_az(String mostrar_tareas_az) {
+        this.mostrar_tareas_az = mostrar_tareas_az;
+    }
+
+    public String getMostrar_tareas_za() {
+        return mostrar_tareas_za;
+    }
+
+    public void setMostrar_tareas_za(String mostrar_tareas_za) {
+        this.mostrar_tareas_za = mostrar_tareas_za;
+    }
+
+    public String getMostrar_tareas_19() {
+        return mostrar_tareas_19;
+    }
+
+    public void setMostrar_tareas_19(String mostrar_tareas_19) {
+        this.mostrar_tareas_19 = mostrar_tareas_19;
+    }
+
+    public String getMostrar_tareas_91() {
+        return mostrar_tareas_91;
+    }
+
+    public void setMostrar_tareas_91(String mostrar_tareas_91) {
+        this.mostrar_tareas_91 = mostrar_tareas_91;
+    }
+
+    public String getMarcar_completa_incompleta() {
+        return marcar_completa_incompleta;
+    }
+
+    public void setMarcar_completa_incompleta(String marcar_completa_incompleta) {
+        this.marcar_completa_incompleta = marcar_completa_incompleta;
+    }
+
+    public String getVer_tarea() {
+        return ver_tarea;
+    }
+
+    public void setVer_tarea(String ver_tarea) {
+        this.ver_tarea = ver_tarea;
     }
 
     

@@ -34,7 +34,19 @@
                 "tarea_editada": "Tarea editada",
                 "tarea_no_editada": "No se ha podido editar la tarea",
                 "tarea_borrada": "Tarea borrada",
-                "tarea_no_borrada": "No se ha podido borrar la tarea"
+                "tarea_no_borrada": "No se ha podido borrar la tarea",
+
+                "mostrar_tareas_completadas": "Mostrar tareas completadas",
+                "mostrar_tareas_incompletas": "Mostrar tareas incompletas",
+                "mostrar_prioridad_baja": "Mostrar tareas prioridad baja",
+                "mostrar_prioridad_media": "Mostrar tareas prioridad media",
+                "mostrar_prioridad_alta": "Mostrar tareas prioridad alta",
+                "mostrar_tareas_az": "Mostrar tareas ordenadas por el título de la A a la Z",
+                "mostrar_tareas_za": "Mostrar tareas ordenadas por el título de la Z a la A",
+                "mostrar_tareas_19": "Mostrar tareas ordenadas por la fecha de menor a mayor",
+                "mostrar_tareas_91": "Mostrar tareas ordenadas por la fecha de mayor a menor",
+                "marcar_completa_incompleta": "Marcar tarea como completa o incompleta",
+                "ver_tarea": "Ver tarea"
             },
             "Pagina_listas": {
                 "titulo": "Listas",
@@ -48,7 +60,10 @@
                 "lista_editada": "Lista editada",
                 "lista_no_editada": "No se ha podido editar la lista",
                 "lista_borrada" : "Lista borrada",
-                "lista_no_borrada": "La lista no se ha podido borrar"
+                "lista_no_borrada": "La lista no se ha podido borrar",
+
+                "crear_lista": "Crear lista",
+                "ver_tareas_lista": "Ver tareas de la lista"
             },
             "Pagina_inicio_registro": {
                 "titulo_inicio": "Inicio de sesión",

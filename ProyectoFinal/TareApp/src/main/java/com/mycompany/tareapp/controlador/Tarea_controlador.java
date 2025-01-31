@@ -146,13 +146,22 @@ public class Tarea_controlador {
     
     public static String generarConsulta(int idLista, boolean completadas, boolean incompletas, boolean prioridadBaja, boolean prioridadMedia, boolean prioridadAlta, String ordenacion) {
     
-        String consulta = "SELECT * FROM tarea WHERE idLista = '"+ idLista +"' ";
+        String consulta = "SELECT * FROM tarea WHERE idLista = '"+ idLista +"'";
         
-        if (completadas) consulta += "AND conpletada = 1 ";
-        if (incompletas) consulta += "AND conpletada = 0 ";
-        if (prioridadBaja) consulta += "AND prioridad = 1 ";
-        if (prioridadMedia) consulta += "AND prioridad = 2 ";
-        if (prioridadAlta) consulta += "AND prioridad = 3 ";
+        //SELECT * FROM tareapp.tarea WHERE idLista = 8 AND (completada = 1 OR completada = 0) AND (prioridad = 1 OR prioridad = 2 OR prioridad = 3) ORDER BY titulo ASC;
+        
+        if (completadas && !incompletas) consulta += "AND (completada = 1) ";
+        if (!completadas && incompletas) consulta += "AND (completada = 0) ";
+        if (completadas && incompletas) consulta += "AND (completada = 1 OR completada = 0) ";
+       
+        
+        if (prioridadBaja && !prioridadMedia && !prioridadAlta) consulta += "AND (prioridad = 1) ";
+        if (!prioridadBaja && prioridadMedia && !prioridadAlta) consulta += "AND (prioridad = 2) ";
+        if (!prioridadBaja && !prioridadMedia && prioridadAlta) consulta += "AND (prioridad = 3) ";
+        if (prioridadBaja && prioridadMedia && !prioridadAlta) consulta += "AND (prioridad = 1 OR prioridad = 2) ";
+        if (!prioridadBaja && prioridadMedia && prioridadAlta) consulta += "AND (prioridad = 2 OR prioridad = 3) ";
+        if (prioridadBaja && !prioridadMedia && prioridadAlta) consulta += "AND (prioridad = 3 OR prioridad = 1) ";
+        if (prioridadBaja && prioridadMedia && prioridadAlta) consulta += "AND (prioridad = 1 OR prioridad = 2 OR prioridad = 3) ";
         
         switch(ordenacion) {
             case "AZ" -> consulta += "ORDER BY titulo ASC";

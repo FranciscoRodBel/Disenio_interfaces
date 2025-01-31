@@ -254,6 +254,12 @@ public final class Tarea_plantilla extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, separador6, 0, SpringLayout.NORTH, this);
         layout.putConstraint(SpringLayout.SOUTH, separador6, 0, SpringLayout.SOUTH, this);
                 
+        botonTareaCompletada.setToolTipText("Marcar tarea como completa o incompleta");
+        botonVerTarea.setToolTipText("Ver tarea");
+        botonEditarTarea.setToolTipText("Editar tarea");
+        botonBorrarTarea.setToolTipText("Borrar tarea");
+        
+        
         botonTareaCompletada.addActionListener((ActionEvent e) -> {
             
             if (completada) {

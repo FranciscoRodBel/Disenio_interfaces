@@ -22,6 +22,8 @@ public class Pagina_listas {
     private String lista_no_editada;
     private String lista_borrada;
     private String lista_no_borrada;
+    private String crear_lista;
+    private String ver_tareas_lista;
 
     public String getTitulo() {
         return titulo;
@@ -117,6 +119,22 @@ public class Pagina_listas {
 
     public void setLista_no_borrada(String lista_no_borrada) {
         this.lista_no_borrada = lista_no_borrada;
+    }
+
+    public String getCrear_lista() {
+        return crear_lista;
+    }
+
+    public void setCrear_lista(String crear_lista) {
+        this.crear_lista = crear_lista;
+    }
+
+    public String getVer_tareas_lista() {
+        return ver_tareas_lista;
+    }
+
+    public void setVer_tareas_lista(String ver_tareas_lista) {
+        this.ver_tareas_lista = ver_tareas_lista;
     }
     
 }

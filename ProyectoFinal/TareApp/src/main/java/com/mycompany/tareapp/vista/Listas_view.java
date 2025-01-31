@@ -75,6 +75,7 @@ public class Listas_view extends javax.swing.JPanel {
         boton_insertar_lista.setContentAreaFilled(false); // Elimino el fondo
         layout.putConstraint(SpringLayout.WEST, boton_insertar_lista, 620, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, boton_insertar_lista, 47, SpringLayout.NORTH, titulo_pagina);
+        boton_insertar_lista.setToolTipText("Crear lista");
         
         this.add(label_resultado_lista);
         label_resultado_lista.setHorizontalAlignment(SwingConstants.CENTER);

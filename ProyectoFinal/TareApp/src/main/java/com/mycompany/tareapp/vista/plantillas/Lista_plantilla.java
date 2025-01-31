@@ -119,6 +119,10 @@ public final class Lista_plantilla extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, separador3, 0, SpringLayout.NORTH, this);
         layout.putConstraint(SpringLayout.SOUTH, separador3, 0, SpringLayout.SOUTH, this);
 
+        botonVerLista.setToolTipText("Ver tareas de la lista");
+        botonEditarLista.setToolTipText("Editar lista");
+        botonBorrarLista.setToolTipText("Borrar lista");
+        
         botonEditarLista.addActionListener((ActionEvent e) -> {
 
             Popup_editar_lista popup_editar_lista = new Popup_editar_lista(Lista_plantilla.this);

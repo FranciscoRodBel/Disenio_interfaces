@@ -82,19 +82,19 @@ public class Main extends javax.swing.JFrame {
        */
         generarInterfaz();
         
-        Idioma_controlador.cambiarIdioma(usuario.getIdioma_seleccionado(), cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
+        Idioma_controlador.cambiarIdioma(usuario.getIdioma_seleccionado(), cabecera);
         
         
         cabecera.getItemEspaniol().addActionListener((ActionEvent e) -> {
-            Idioma_controlador.cambiarIdioma("Español", cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
+            Idioma_controlador.cambiarIdioma("Español", cabecera);
         });
         
         cabecera.getItemIngles().addActionListener((ActionEvent e) -> {
-            Idioma_controlador.cambiarIdioma("English", cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
+            Idioma_controlador.cambiarIdioma("English", cabecera);
         });
                 
         cabecera.getItemFrances().addActionListener((ActionEvent e) -> {
-            Idioma_controlador.cambiarIdioma("Français", cabecera, tareas_view, listas_view, iniciar_registrar_view, ajustes_cuenta_view);
+            Idioma_controlador.cambiarIdioma("Français", cabecera);
         });
     }
     
