@@ -11,11 +11,14 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -197,6 +200,28 @@ public class Cabecera extends JPanel {
         itemFrances.setFont(fuente);
         itemAjustes.setFont(fuente);
         itemCerrarSesion.setFont(fuente);
+        
+        agregarEfectoHover(itemTareas);
+        agregarEfectoHover(itemListas);
+        agregarEfectoHover(menuIdioma);
+        agregarEfectoHover(menuCuenta);
 
+    }
+    private static void agregarEfectoHover(JComponent componente) {
+
+        componente.addMouseListener(new MouseAdapter() {
+
+            public void mouseEntered(MouseEvent e) {
+                
+                componente.setBackground(Estilos.getAzul_oscuro());
+                componente.setForeground(Estilos.getBlanco_claro());
+            }
+
+            public void mouseExited(MouseEvent e) {
+                
+                componente.setBackground(Estilos.getBlanco_claro());
+                componente.setForeground(Estilos.getNegro());
+            }
+        });
     }
 }
