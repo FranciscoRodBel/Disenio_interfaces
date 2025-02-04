@@ -167,6 +167,10 @@ public class Listas_view extends javax.swing.JPanel {
         
         return Listas_view.listas_view;
     }
+    
+    public static void reiniciar_instancia() {
+        Listas_view.listas_view = null;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

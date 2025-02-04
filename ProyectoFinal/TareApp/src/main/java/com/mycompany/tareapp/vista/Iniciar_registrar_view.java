@@ -167,61 +167,52 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         layout3.putConstraint(SpringLayout.NORTH, label_resultado_registro, 45, SpringLayout.NORTH, boton_enviar_registro);
         layout3.putConstraint(SpringLayout.EAST, label_resultado_registro, 0, SpringLayout.EAST, panel_registro);
         
-        boton_iniciar.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                
-                panel_inicio.setVisible(true);
-                panel_registro.setVisible(false);
-                boton_iniciar.setBackground(Estilos.getAzul_oscuro());
-                boton_iniciar.setForeground(Estilos.getBlanco());
-                boton_registrarse.setBackground(Estilos.getBlanco_claro());
-                boton_registrarse.setForeground(Estilos.getNegro());
-                titulo_pagina_inicio.setVisible(true);
-                titulo_pagina_registro.setVisible(false);
-            }
+        boton_iniciar.addActionListener((ActionEvent e) -> {
+            
+            panel_inicio.setVisible(true);
+            panel_registro.setVisible(false);
+            boton_iniciar.setBackground(Estilos.getAzul_oscuro());
+            boton_iniciar.setForeground(Estilos.getBlanco());
+            boton_registrarse.setBackground(Estilos.getBlanco_claro());
+            boton_registrarse.setForeground(Estilos.getNegro());
+            titulo_pagina_inicio.setVisible(true);
+            titulo_pagina_registro.setVisible(false);
         });
         
-        boton_registrarse.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                
-                panel_inicio.setVisible(false);
-                panel_registro.setVisible(true);
-                boton_registrarse.setBackground(Estilos.getAzul_oscuro());
-                boton_registrarse.setForeground(Estilos.getBlanco());
-                boton_iniciar.setBackground(Estilos.getBlanco_claro());
-                boton_iniciar.setForeground(Estilos.getNegro());
-                titulo_pagina_inicio.setVisible(false);
-                titulo_pagina_registro.setVisible(true);
-            }
+        boton_registrarse.addActionListener((ActionEvent e) -> {
+            
+            panel_inicio.setVisible(false);
+            panel_registro.setVisible(true);
+            boton_registrarse.setBackground(Estilos.getAzul_oscuro());
+            boton_registrarse.setForeground(Estilos.getBlanco());
+            boton_iniciar.setBackground(Estilos.getBlanco_claro());
+            boton_iniciar.setForeground(Estilos.getNegro());
+            titulo_pagina_inicio.setVisible(false);
+            titulo_pagina_registro.setVisible(true);
         });
            
-        boton_enviar_registro.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
+        boton_enviar_registro.addActionListener((ActionEvent e) -> {
+            
+            String contrasenia = new String(contrasenia_registro.getPassword());
+            String repetir_contrasenia = new String(repetir_contrasenia_registro.getPassword());
+            
+            String idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getIdioma();
+            
+            String mensaje_resultado = usuario_controlador.registrar_usuario(email_registro.getText(), contrasenia, repetir_contrasenia, idioma_seleccionado);
+            
+            if (mensaje_resultado.isEmpty()){
                 
-                String contrasenia = new String(contrasenia_registro.getPassword());
-                String repetir_contrasenia = new String(repetir_contrasenia_registro.getPassword());
+                email_registro.setText("");
+                contrasenia_registro.setText("");
+                repetir_contrasenia_registro.setText("");
                 
-                String idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getIdioma();
-                
-                String mensaje_resultado = usuario_controlador.registrar_usuario(email_registro.getText(), contrasenia, repetir_contrasenia, idioma_seleccionado);
-                
-                if (mensaje_resultado.isEmpty()){
-                    
-                    email_registro.setText("");
-                    contrasenia_registro.setText("");
-                    repetir_contrasenia_registro.setText("");
-                    
-                    mensaje_resultado = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro().getCuenta_creada();
-                }
-                
-                label_resultado_registro.setText("<html><body><p style='text-align: center;'>"+mensaje_resultado+"</p></body></html>");
-                Timer tiempo_espera = new Timer(3000, evt -> label_resultado_registro.setText(""));
-                tiempo_espera.setRepeats(false);
-                tiempo_espera.start();
+                mensaje_resultado = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro().getCuenta_creada();
             }
+            
+            label_resultado_registro.setText("<html><body><p style='text-align: center;'>"+mensaje_resultado+"</p></body></html>");
+            Timer tiempo_espera = new Timer(3000, evt -> label_resultado_registro.setText(""));
+            tiempo_espera.setRepeats(false);
+            tiempo_espera.start();
         });
         
         boton_enviar_inicio.addActionListener((ActionEvent e) -> {
@@ -233,6 +224,9 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
             
             if (mensaje_resultado.isEmpty()) {
                 
+                email_iniciar.setText("");
+                contrasenia_iniciar.setText("");
+                        
                 Usuario usuario_iniciado = Usuario.recoger_usuario(email);
                 Usuario_controlador.setUsuario(usuario_iniciado);
                 

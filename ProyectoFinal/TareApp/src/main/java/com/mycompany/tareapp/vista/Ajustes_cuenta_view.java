@@ -168,7 +168,10 @@ public class Ajustes_cuenta_view extends javax.swing.JPanel {
         
         return ajustes_cuenta_view;
     }
-
+    
+    public static void reiniciar_instancia() {
+        Ajustes_cuenta_view.ajustes_cuenta_view = null;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

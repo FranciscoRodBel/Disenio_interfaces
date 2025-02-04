@@ -33,6 +33,11 @@ public class Main extends javax.swing.JFrame {
     static Listas_view listas_view;
     static Tareas_view tareas_view;
 
+    static ActionListener listenerTareas;
+    static ActionListener listenerListas;
+    static ActionListener listenerAjustes;
+    static ActionListener listenerCerrarSesion;
+   
     public Main() throws FileNotFoundException {
         initComponents();
 
@@ -60,21 +65,36 @@ public class Main extends javax.swing.JFrame {
         iniciar_registrar_view.setVisible(true);
 
         cabecera.getItemEspaniol().addActionListener((ActionEvent e) -> {
+            
             Idioma_controlador.cambiarIdioma("Español");
-            listas_view.actualizar_panel_lista();
-            tareas_view.actualizar_panel_tareas();
+            
+            if (Usuario_controlador.getUsuario() != null) {
+                
+                listas_view.actualizar_panel_lista();
+                tareas_view.actualizar_panel_tareas();
+            }
         });
         
         cabecera.getItemIngles().addActionListener((ActionEvent e) -> {
+            
             Idioma_controlador.cambiarIdioma("English");
-            listas_view.actualizar_panel_lista();
-            tareas_view.actualizar_panel_tareas();
+            
+            if (Usuario_controlador.getUsuario() != null) {
+                
+                listas_view.actualizar_panel_lista();
+                tareas_view.actualizar_panel_tareas();
+            }
         });
                 
         cabecera.getItemFrances().addActionListener((ActionEvent e) -> {
+            
             Idioma_controlador.cambiarIdioma("Français");
-            listas_view.actualizar_panel_lista();
-            tareas_view.actualizar_panel_tareas();
+            
+            if (Usuario_controlador.getUsuario() != null) {
+                
+                listas_view.actualizar_panel_lista();
+                tareas_view.actualizar_panel_tareas();
+            }
         });
     }
     
@@ -104,34 +124,47 @@ public class Main extends javax.swing.JFrame {
         layout.putConstraint(SpringLayout.EAST, ajustes_cuenta_view, 0, SpringLayout.EAST, cabecera);
         ajustes_cuenta_view.setVisible(false);
         
-        cabecera.getItemTareas().addActionListener((ActionEvent e) -> {
+        listenerTareas = (ActionEvent e) -> {
             ocultarPaneles();
             tareas_view.setVisible(true);
-        });
-        
-        cabecera.getItemListas().addActionListener((ActionEvent e) -> {
+        };
+
+        listenerListas = (ActionEvent e) -> {
             ocultarPaneles();
             listas_view.setVisible(true);
-        });
-            
-        cabecera.getItemAjustes().addActionListener((ActionEvent e) -> {
+        };
+
+        listenerAjustes = (ActionEvent e) -> {
             ocultarPaneles();
             ajustes_cuenta_view.setVisible(true);
-        });    
-                
-        cabecera.getItemCerrarSesion().addActionListener((ActionEvent e) -> {
-           
-            
+        };
+        
+        listenerCerrarSesion = (ActionEvent e) -> {
+
             panelPrincipal.remove(ajustes_cuenta_view);
             panelPrincipal.remove(listas_view);
             panelPrincipal.remove(tareas_view);
             Usuario_controlador.setUsuario(null);
-            
+
+            Listas_view.reiniciar_instancia();
+            Tareas_view.reiniciar_instancia();
+            Ajustes_cuenta_view.reiniciar_instancia();
+
             listas_view.removeAll();
             tareas_view.removeAll();
             ocultarPaneles();
             iniciar_registrar_view.setVisible(true);
-        });
+            
+            cabecera.getItemTareas().removeActionListener(listenerTareas);
+            cabecera.getItemListas().removeActionListener(listenerListas);
+            cabecera.getItemAjustes().removeActionListener(listenerAjustes);
+            cabecera.getItemCerrarSesion().removeActionListener(listenerCerrarSesion);
+        };  
+        
+        cabecera.getItemTareas().addActionListener(listenerTareas);
+        cabecera.getItemListas().addActionListener(listenerListas);
+        cabecera.getItemAjustes().addActionListener(listenerAjustes);
+        cabecera.getItemCerrarSesion().addActionListener(listenerCerrarSesion);
     }
 
     public static void ocultarPaneles() {

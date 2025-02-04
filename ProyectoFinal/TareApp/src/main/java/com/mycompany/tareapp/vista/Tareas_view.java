@@ -444,7 +444,10 @@ public final class Tareas_view extends javax.swing.JPanel {
         
         return tareas_view;
     }
-
+    
+    public static void reiniciar_instancia() {
+        Tareas_view.tareas_view = null;
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

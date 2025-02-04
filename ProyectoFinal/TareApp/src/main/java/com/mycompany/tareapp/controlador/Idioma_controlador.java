@@ -55,9 +55,6 @@ public class Idioma_controlador {
     public static void cambiarIdioma(String idioma) {
         
         Cabecera cabecera = Cabecera.recoger_instancia();
-        Tareas_view tareas_view = Tareas_view.recoger_instancia();
-        Listas_view listas_view = Listas_view.recoger_instancia();
-        Ajustes_cuenta_view ajustes_cuenta_view = Ajustes_cuenta_view.recoger_instancia();
         Iniciar_registrar_view iniciar_registrar_view = Iniciar_registrar_view.recoger_instancia();
         
         for (Idioma idioma_json : idiomas.getIdioma()) {
@@ -68,34 +65,12 @@ public class Idioma_controlador {
             }
         }
         
-        
         cabecera.getItemTareas().setText(idioma_seleccionado.getCabecera().getTareas());
         cabecera.getItemListas().setText(idioma_seleccionado.getCabecera().getListas());
         cabecera.getMenuIdioma().setText(idioma_seleccionado.getCabecera().getIdioma());
         cabecera.getMenuCuenta().setText(idioma_seleccionado.getCabecera().getCuenta());
         cabecera.getItemAjustes().setText(idioma_seleccionado.getCabecera().getAjustes());
         cabecera.getItemCerrarSesion().setText(idioma_seleccionado.getCabecera().getCerrar_sesion());
-        
-        
-        tareas_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_tareas().getTitulo());
-        tareas_view.getSeleccionarLista().insertItemAt(new Lista(0, idioma_seleccionado.getPagina_tareas().getSeleccionar_lista(), ""), 0);
-        tareas_view.getSeleccionarLista().removeItemAt(1);
-        
-        // Idioma del Tooltip
-        tareas_view.getBotonCrearTarea().setToolTipText(idioma_seleccionado.getPagina_tareas().getCrear_tarea());
-        tareas_view.getBotonTareasCompletadas().setToolTipText(idioma_seleccionado.getPagina_tareas().getMostrar_tareas_completadas());
-        tareas_view.getBotonTareasIncompletas().setToolTipText(idioma_seleccionado.getPagina_tareas().getMostrar_tareas_incompletas());
-        tareas_view.getBotonPrioridadBaja().setToolTipText(idioma_seleccionado.getPagina_tareas().getMostrar_prioridad_baja());
-        tareas_view.getBotonPrioridadMedia().setToolTipText(idioma_seleccionado.getPagina_tareas().getMostrar_prioridad_media());
-        tareas_view.getBotonPrioridadAlta().setToolTipText(idioma_seleccionado.getPagina_tareas().getMostrar_prioridad_alta());
-        tareas_view.getBotonOrdenado19().setToolTipText(idioma_seleccionado.getPagina_tareas().getMostrar_tareas_19());
-        tareas_view.getBotonOrdenado91().setToolTipText(idioma_seleccionado.getPagina_tareas().getMostrar_tareas_91());
-        tareas_view.getBotonOrdenadoAZ().setToolTipText(idioma_seleccionado.getPagina_tareas().getMostrar_tareas_az());
-        tareas_view.getBotonOrdenadoZA().setToolTipText(idioma_seleccionado.getPagina_tareas().getMostrar_tareas_za());
-        
-        listas_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_listas().getTitulo());
-        listas_view.getInput_titulo_lista().getPlaceholder().setText(idioma_seleccionado.getPagina_listas().getTitulo_lista());
-        
         
         iniciar_registrar_view.getTitulo_pagina_inicio().setText(idioma_seleccionado.getPagina_inicio_registro().getTitulo_inicio());
         iniciar_registrar_view.getTitulo_pagina_registro().setText(idioma_seleccionado.getPagina_inicio_registro().getTitulo_registro());
@@ -106,12 +81,38 @@ public class Idioma_controlador {
         iniciar_registrar_view.getRepetir_contrasenia_registro().getPlaceholder().setText(idioma_seleccionado.getPagina_inicio_registro().getRepetir_contrasenia());
         iniciar_registrar_view.getBoton_enviar_inicio().setText(idioma_seleccionado.getPagina_inicio_registro().getIniciar_sesion());
         iniciar_registrar_view.getBoton_enviar_registro().setText(idioma_seleccionado.getPagina_inicio_registro().getRegistrarse());
-     
         
-        ajustes_cuenta_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_ajustes_cuenta().getTitulo_pagina());
-        ajustes_cuenta_view.getBoton_cambiar_email().setText(idioma_seleccionado.getPagina_ajustes_cuenta().getCambiar_email());
-        ajustes_cuenta_view.getBoton_cambiar_contrasenia().setText(idioma_seleccionado.getPagina_ajustes_cuenta().getCambiar_contrasenia());
-        ajustes_cuenta_view.getBoton_borrar_cuenta().setText(idioma_seleccionado.getPagina_ajustes_cuenta().getBorrar_cuenta());
+        if (Usuario_controlador.getUsuario() != null) {
+        
+            Tareas_view tareas_view = Tareas_view.recoger_instancia();
+            Listas_view listas_view = Listas_view.recoger_instancia();
+            Ajustes_cuenta_view ajustes_cuenta_view = Ajustes_cuenta_view.recoger_instancia();
+            
+            tareas_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_tareas().getTitulo());
+            tareas_view.getSeleccionarLista().insertItemAt(new Lista(0, idioma_seleccionado.getPagina_tareas().getSeleccionar_lista(), ""), 0);
+            tareas_view.getSeleccionarLista().removeItemAt(1);
+
+            // Idioma del Tooltip
+            tareas_view.getBotonCrearTarea().setToolTipText(idioma_seleccionado.getPagina_tareas().getCrear_tarea());
+            tareas_view.getBotonTareasCompletadas().setToolTipText(idioma_seleccionado.getPagina_tareas().getMostrar_tareas_completadas());
+            tareas_view.getBotonTareasIncompletas().setToolTipText(idioma_seleccionado.getPagina_tareas().getMostrar_tareas_incompletas());
+            tareas_view.getBotonPrioridadBaja().setToolTipText(idioma_seleccionado.getPagina_tareas().getMostrar_prioridad_baja());
+            tareas_view.getBotonPrioridadMedia().setToolTipText(idioma_seleccionado.getPagina_tareas().getMostrar_prioridad_media());
+            tareas_view.getBotonPrioridadAlta().setToolTipText(idioma_seleccionado.getPagina_tareas().getMostrar_prioridad_alta());
+            tareas_view.getBotonOrdenado19().setToolTipText(idioma_seleccionado.getPagina_tareas().getMostrar_tareas_19());
+            tareas_view.getBotonOrdenado91().setToolTipText(idioma_seleccionado.getPagina_tareas().getMostrar_tareas_91());
+            tareas_view.getBotonOrdenadoAZ().setToolTipText(idioma_seleccionado.getPagina_tareas().getMostrar_tareas_az());
+            tareas_view.getBotonOrdenadoZA().setToolTipText(idioma_seleccionado.getPagina_tareas().getMostrar_tareas_za());
+
+            listas_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_listas().getTitulo());
+            listas_view.getInput_titulo_lista().getPlaceholder().setText(idioma_seleccionado.getPagina_listas().getTitulo_lista());
+
+            ajustes_cuenta_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_ajustes_cuenta().getTitulo_pagina());
+            ajustes_cuenta_view.getBoton_cambiar_email().setText(idioma_seleccionado.getPagina_ajustes_cuenta().getCambiar_email());
+            ajustes_cuenta_view.getBoton_cambiar_contrasenia().setText(idioma_seleccionado.getPagina_ajustes_cuenta().getCambiar_contrasenia());
+            ajustes_cuenta_view.getBoton_borrar_cuenta().setText(idioma_seleccionado.getPagina_ajustes_cuenta().getBorrar_cuenta());
+        }
+
     }
     
     public static void convertirJsonEnClase() throws FileNotFoundException {
