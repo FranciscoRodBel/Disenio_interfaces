@@ -52,8 +52,9 @@ public class Idioma_controlador {
         Idioma_controlador.idioma_seleccionado = idioma_seleccionado;
     }
     
-    public static void cambiarIdioma(String idioma, Cabecera cabecera) {
+    public static void cambiarIdioma(String idioma) {
         
+        Cabecera cabecera = Cabecera.recoger_instancia();
         Tareas_view tareas_view = Tareas_view.recoger_instancia();
         Listas_view listas_view = Listas_view.recoger_instancia();
         Ajustes_cuenta_view ajustes_cuenta_view = Ajustes_cuenta_view.recoger_instancia();
@@ -124,6 +125,7 @@ public class Idioma_controlador {
         }
 
         idiomas = new Gson().fromJson(json, Idiomas.class); // Se crea el objeto Gson y se convierte el texto del archivo JSON a la clase Idiomas
+        idioma_seleccionado = idiomas.getIdioma().getFirst();
     }
 }
 

@@ -413,6 +413,7 @@ public final class Tareas_view extends javax.swing.JPanel {
         }
 
         seleccionarLista.setSelectedIndex(seleccionarLista.getItemCount() - 1);
+        actualizar_panel_tareas();
     }
     
     public int recoger_id_lista_seleccionada() {

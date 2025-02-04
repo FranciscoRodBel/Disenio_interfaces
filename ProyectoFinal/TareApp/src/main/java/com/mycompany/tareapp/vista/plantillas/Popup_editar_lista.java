@@ -64,7 +64,7 @@ public class Popup_editar_lista extends JDialog {
         layout.putConstraint(SpringLayout.NORTH, input_titulo_terea, 50, SpringLayout.NORTH, labelTitulo);
         panelPrincipal.add(input_titulo_terea);
         
-        Boton bonton_editar = new Boton(idioma_seleccionado.getEditar_lista());
+        Boton bonton_editar = new Boton(idioma_seleccionado.getEditar_lista(), "amarillo");
         layout.putConstraint(SpringLayout.WEST, bonton_editar, 200, SpringLayout.WEST, panelPrincipal);
         layout.putConstraint(SpringLayout.NORTH, bonton_editar, 60, SpringLayout.NORTH, input_titulo_terea);
         panelPrincipal.add(bonton_editar);

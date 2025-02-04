@@ -120,7 +120,7 @@ public class Popup_ver_borrar_tarea extends JDialog {
             
             layout.putConstraint(SpringLayout.NORTH, label_titulo_tarea, 50, SpringLayout.NORTH, label_borrar_tarea);
             
-            Boton bonton_borrar = new Boton(idioma_tareas.getBorrar_tarea());
+            Boton bonton_borrar = new Boton(idioma_tareas.getBorrar_tarea(), "rojo");
             bonton_borrar.setBackground(Estilos.getRojo());
             layout.putConstraint(SpringLayout.WEST, bonton_borrar, 300, SpringLayout.WEST, panelPrincipal);
             layout.putConstraint(SpringLayout.NORTH, bonton_borrar, 230, SpringLayout.NORTH, panel_descripcion_tarea);

@@ -14,7 +14,7 @@ import com.mycompany.tareapp.modelo.idioma.Pagina_inicio_registro;
  */
 public class Usuario_controlador {
 
-    private static Usuario usuario = Usuario.recoger_usuario("franciscoRB@franciscoRB.com");
+    private static Usuario usuario;
     private final BBDD_tareapp bbdd_tareapp = new BBDD_tareapp();
 
     public static Usuario getUsuario() {
@@ -72,7 +72,7 @@ public class Usuario_controlador {
         
         if(bbdd_tareapp.insertar(consulta)) {
             
-            return idioma.getCuenta_creada();
+            return "";
             
         } else {
             

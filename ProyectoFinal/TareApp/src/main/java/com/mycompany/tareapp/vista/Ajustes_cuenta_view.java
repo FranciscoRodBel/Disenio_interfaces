@@ -34,9 +34,9 @@ public class Ajustes_cuenta_view extends javax.swing.JPanel {
     JLabel label_email = new JLabel("Email:");
     JLabel label_email_usuario = new JLabel(Usuario_controlador.getUsuario().getEmail());
     
-    Boton boton_cambiar_email = new Boton("Cambiar email");
-    Boton boton_cambiar_contrasenia = new Boton("Cambiar contraseña");
-    Boton boton_borrar_cuenta = new Boton("Borrar cuenta");
+    Boton boton_cambiar_email = new Boton("Cambiar email", "amarillo");
+    Boton boton_cambiar_contrasenia = new Boton("Cambiar contraseña", "amarillo");
+    Boton boton_borrar_cuenta = new Boton("Borrar cuenta", "rojo");
     /**
      * Creates new form Ajustes_cuenta_view
      */

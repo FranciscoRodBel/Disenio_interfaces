@@ -45,12 +45,12 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
     
     Input_text email_iniciar = new Input_text("Email", "");
     Input_password contrasenia_iniciar = new Input_password("Contraseña");
-    Boton boton_enviar_inicio = new Boton("Inicio de sesión");
+    Boton boton_enviar_inicio = new Boton("Inicio de sesión", "amarillo");
    
     Input_text email_registro = new Input_text("Email", "");
     Input_password contrasenia_registro = new Input_password("Contraseña");
     Input_password repetir_contrasenia_registro = new Input_password("Repetir contraseña");
-    Boton boton_enviar_registro = new Boton("Registrarse");
+    Boton boton_enviar_registro = new Boton("Registrarse", "amarillo");
     
     JLabel label_resultado_inicio = new JLabel();
     JLabel label_resultado_registro = new JLabel();
@@ -207,6 +207,16 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
                 String idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getIdioma();
                 
                 String mensaje_resultado = usuario_controlador.registrar_usuario(email_registro.getText(), contrasenia, repetir_contrasenia, idioma_seleccionado);
+                
+                if (mensaje_resultado.isEmpty()){
+                    
+                    email_registro.setText("");
+                    contrasenia_registro.setText("");
+                    repetir_contrasenia_registro.setText("");
+                    
+                    mensaje_resultado = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro().getCuenta_creada();
+                }
+                
                 label_resultado_registro.setText("<html><body><p style='text-align: center;'>"+mensaje_resultado+"</p></body></html>");
                 Timer tiempo_espera = new Timer(3000, evt -> label_resultado_registro.setText(""));
                 tiempo_espera.setRepeats(false);
@@ -223,14 +233,15 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
             
             if (mensaje_resultado.isEmpty()) {
                 
-                Usuario_controlador.setUsuario(Usuario.recoger_usuario(email));
+                Usuario usuario_iniciado = Usuario.recoger_usuario(email);
+                Usuario_controlador.setUsuario(usuario_iniciado);
                 
-                System.out.println(Usuario_controlador.getUsuario().getEmail());
-                
-                //generarInterfaz();
+                Main.generarInterfaz();
+                Idioma_controlador.cambiarIdioma(usuario_iniciado.getIdioma_seleccionado());
                 
             } else {
                 
+                contrasenia_iniciar.setText("");
                 label_resultado_inicio.setText("<html><body><p style='text-align: center;'>"+mensaje_resultado+"</p></body></html>");
                 Timer tiempo_espera = new Timer(3000, evt -> label_resultado_inicio.setText(""));
                 tiempo_espera.setRepeats(false);

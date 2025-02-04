@@ -5,7 +5,9 @@
 package com.mycompany.tareapp.vista.plantillas;
 
 import com.mycompany.tareapp.controlador.Idioma_controlador;
+import com.mycompany.tareapp.controlador.Lista_controlador;
 import com.mycompany.tareapp.controlador.Tarea_controlador;
+import com.mycompany.tareapp.modelo.idioma.Pagina_listas;
 import com.mycompany.tareapp.modelo.idioma.Pagina_tareas;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -253,11 +255,14 @@ public final class Tarea_plantilla extends JPanel {
         layout.putConstraint(SpringLayout.EAST, separador6, 0, SpringLayout.EAST, this);
         layout.putConstraint(SpringLayout.NORTH, separador6, 0, SpringLayout.NORTH, this);
         layout.putConstraint(SpringLayout.SOUTH, separador6, 0, SpringLayout.SOUTH, this);
-                
-        botonTareaCompletada.setToolTipText("Marcar tarea como completa o incompleta");
-        botonVerTarea.setToolTipText("Ver tarea");
-        botonEditarTarea.setToolTipText("Editar tarea");
-        botonBorrarTarea.setToolTipText("Borrar tarea");
+        
+
+        Pagina_tareas idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();        
+        
+        botonTareaCompletada.setToolTipText(idioma_seleccionado.getMarcar_completa_incompleta());
+        botonVerTarea.setToolTipText(idioma_seleccionado.getVer_tarea());
+        botonEditarTarea.setToolTipText(idioma_seleccionado.getEditar_tarea());
+        botonBorrarTarea.setToolTipText(idioma_seleccionado.getBorrar_tarea());
         
         
         botonTareaCompletada.addActionListener((ActionEvent e) -> {

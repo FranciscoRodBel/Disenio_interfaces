@@ -109,7 +109,7 @@ public class Popup_crear_editar_tarea extends JDialog {
         layout.putConstraint(SpringLayout.NORTH, input_descripcion, 50, SpringLayout.NORTH, input_fecha_terea);
         panelPrincipal.add(input_descripcion);
         
-        bonton_crear_editar = new Boton(texto_boton);
+        bonton_crear_editar = new Boton(texto_boton, "amarillo");
         layout.putConstraint(SpringLayout.WEST, bonton_crear_editar, 300, SpringLayout.WEST, panelPrincipal);
         layout.putConstraint(SpringLayout.NORTH, bonton_crear_editar, 230, SpringLayout.NORTH, input_descripcion);
         panelPrincipal.add(bonton_crear_editar);

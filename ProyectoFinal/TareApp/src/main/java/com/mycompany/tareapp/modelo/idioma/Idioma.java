@@ -64,6 +64,4 @@ public class Idioma {
     public void setPagina_ajustes_cuenta(Pagina_ajustes_cuenta Pagina_ajustes_cuenta) {
         this.Pagina_ajustes_cuenta = Pagina_ajustes_cuenta;
     }
-
-
 }

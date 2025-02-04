@@ -4,8 +4,20 @@
  */
 package com.mycompany.tareapp.vista.plantillas;
 
+import com.mycompany.tareapp.controlador.Idioma_controlador;
+import com.mycompany.tareapp.modelo.idioma.Idioma;
+import com.mycompany.tareapp.modelo.idioma.Pagina_listas;
+import com.mycompany.tareapp.vista.Iniciar_registrar_view;
+import com.mycompany.tareapp.vista.Listas_view;
+import com.mycompany.tareapp.vista.Main;
+import static com.mycompany.tareapp.vista.Main.main;
+import com.mycompany.tareapp.vista.Tareas_view;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -25,6 +37,7 @@ public final class Lista_plantilla extends JPanel {
     JButton botonVerLista = new JButton();
     JButton botonEditarLista = new JButton();
     JButton botonBorrarLista = new JButton();
+    
     
     public Lista_plantilla() {
         
@@ -65,7 +78,7 @@ public final class Lista_plantilla extends JPanel {
     }
    
     public void generarEstructura() {
-        
+       
         SpringLayout layout = new SpringLayout();
         this.setLayout(layout);
         this.setPreferredSize(new Dimension(600, 50));
@@ -119,9 +132,32 @@ public final class Lista_plantilla extends JPanel {
         layout.putConstraint(SpringLayout.NORTH, separador3, 0, SpringLayout.NORTH, this);
         layout.putConstraint(SpringLayout.SOUTH, separador3, 0, SpringLayout.SOUTH, this);
 
-        botonVerLista.setToolTipText("Ver tareas de la lista");
-        botonEditarLista.setToolTipText("Editar lista");
-        botonBorrarLista.setToolTipText("Borrar lista");
+        Pagina_listas idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getPagina_listas();
+
+        botonVerLista.setToolTipText(idioma_seleccionado.getVer_tareas_lista());
+        botonEditarLista.setToolTipText(idioma_seleccionado.getEditar_lista());
+        botonBorrarLista.setToolTipText(idioma_seleccionado.getBorrar_lista());
+        
+        botonVerLista.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Listas_view listas_view = Listas_view.recoger_instancia();
+                Tareas_view tareas_view = Tareas_view.recoger_instancia();
+                
+                listas_view.setVisible(false);
+                tareas_view.setVisible(true);
+                
+                for (int i = 0; i < tareas_view.getSeleccionarLista().getItemCount(); i++) {
+                    
+                    if (tareas_view.getSeleccionarLista().getItemAt(i).getIdLista() == idLista) {
+                        
+                        tareas_view.getSeleccionarLista().setSelectedIndex(i);
+                    }
+                    
+                }
+                
+            }
+        });
         
         botonEditarLista.addActionListener((ActionEvent e) -> {
 

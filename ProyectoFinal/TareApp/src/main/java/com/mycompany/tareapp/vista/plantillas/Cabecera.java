@@ -5,6 +5,7 @@
 package com.mycompany.tareapp.vista.plantillas;
 
 import com.mycompany.tareapp.controlador.Idioma_controlador;
+import com.mycompany.tareapp.vista.Iniciar_registrar_view;
 import com.mycompany.tareapp.vista.Main;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -35,6 +36,8 @@ import javax.swing.SwingConstants;
  */
 public class Cabecera extends JPanel {
 
+    static Cabecera cabecera;
+    
     Font fuente = Estilos.getFuente();
     
     JLabel imagenLogo = new JLabel(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/logo.png"));
@@ -200,28 +203,16 @@ public class Cabecera extends JPanel {
         itemFrances.setFont(fuente);
         itemAjustes.setFont(fuente);
         itemCerrarSesion.setFont(fuente);
-        
-        agregarEfectoHover(itemTareas);
-        agregarEfectoHover(itemListas);
-        agregarEfectoHover(menuIdioma);
-        agregarEfectoHover(menuCuenta);
 
     }
-    private static void agregarEfectoHover(JComponent componente) {
-
-        componente.addMouseListener(new MouseAdapter() {
-
-            public void mouseEntered(MouseEvent e) {
-                
-                componente.setBackground(Estilos.getAzul_oscuro());
-                componente.setForeground(Estilos.getBlanco_claro());
-            }
-
-            public void mouseExited(MouseEvent e) {
-                
-                componente.setBackground(Estilos.getBlanco_claro());
-                componente.setForeground(Estilos.getNegro());
-            }
-        });
+    
+    public static Cabecera recoger_instancia() {
+        
+        if (cabecera == null) {
+            
+            cabecera = new Cabecera();
+        }
+        
+        return cabecera;
     }
 }

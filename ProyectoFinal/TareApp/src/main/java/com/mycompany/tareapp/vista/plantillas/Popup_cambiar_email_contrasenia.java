@@ -82,7 +82,7 @@ public class Popup_cambiar_email_contrasenia extends JDialog {
         layout.putConstraint(SpringLayout.NORTH, input_repetir, 60, SpringLayout.NORTH, input_nuevo);
         panelPrincipal.add(input_repetir);
         
-        Boton bonton_cambiar = new Boton(texto_titulo_popup);
+        Boton bonton_cambiar = new Boton(texto_titulo_popup, "amarillo");
         layout.putConstraint(SpringLayout.WEST, bonton_cambiar, 300, SpringLayout.WEST, panelPrincipal);
         layout.putConstraint(SpringLayout.NORTH, bonton_cambiar, 60, SpringLayout.NORTH, input_repetir);
         panelPrincipal.add(bonton_cambiar);
@@ -112,7 +112,6 @@ public class Popup_cambiar_email_contrasenia extends JDialog {
                     ajustes_cuenta_view.getLabel_email_usuario().setText(texto_input_nuevo);          
                 }
                 
-
             } else {
 
                mensaje_resultado = usuario_controlador.actualizar_contrasenia(texto_input_nuevo, texto_input_repetir);

@@ -84,8 +84,7 @@ public class Popup_borrar_cuenta_lista extends JDialog {
         layout.putConstraint(SpringLayout.EAST, label_dato_borrado, 0, SpringLayout.EAST, panelPrincipal);
         panelPrincipal.add(label_dato_borrado);
             
-        Boton bonton_borrar = new Boton(texto_boton_borrar);
-        bonton_borrar.setBackground(Estilos.getRojo());
+        Boton bonton_borrar = new Boton(texto_boton_borrar, "rojo");
         layout.putConstraint(SpringLayout.WEST, bonton_borrar, 300, SpringLayout.WEST, panelPrincipal);
         layout.putConstraint(SpringLayout.NORTH, bonton_borrar, 60, SpringLayout.NORTH, label_dato_borrado);
         panelPrincipal.add(bonton_borrar);
