@@ -1,0 +1,5 @@
+# Created at 2025-02-05T15:51:18.343
+Boot Manifest-JAR contains absolute paths in classpath 'D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
