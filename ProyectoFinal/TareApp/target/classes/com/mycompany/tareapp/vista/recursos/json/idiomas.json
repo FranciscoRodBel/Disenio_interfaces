@@ -34,7 +34,18 @@
                 "tarea_editada": "Tarea editada",
                 "tarea_no_editada": "No se ha podido editar la tarea",
                 "tarea_borrada": "Tarea borrada",
-                "tarea_no_borrada": "No se ha podido borrar la tarea"
+                "tarea_no_borrada": "No se ha podido borrar la tarea",
+                "mostrar_tareas_completadas": "Mostrar tareas completadas",
+                "mostrar_tareas_incompletas": "Mostrar tareas incompletas",
+                "mostrar_prioridad_baja": "Mostrar tareas prioridad baja",
+                "mostrar_prioridad_media": "Mostrar tareas prioridad media",
+                "mostrar_prioridad_alta": "Mostrar tareas prioridad alta",
+                "mostrar_tareas_az": "Mostrar tareas ordenadas por el título de la A a la Z",
+                "mostrar_tareas_za": "Mostrar tareas ordenadas por el título de la Z a la A",
+                "mostrar_tareas_19": "Mostrar tareas ordenadas por la fecha de menor a mayor",
+                "mostrar_tareas_91": "Mostrar tareas ordenadas por la fecha de mayor a menor",
+                "marcar_completa_incompleta": "Marcar tarea como completa o incompleta",
+                "ver_tarea": "Ver tarea"
             },
             "Pagina_listas": {
                 "titulo": "Listas",
@@ -48,7 +59,9 @@
                 "lista_editada": "Lista editada",
                 "lista_no_editada": "No se ha podido editar la lista",
                 "lista_borrada" : "Lista borrada",
-                "lista_no_borrada": "La lista no se ha podido borrar"
+                "lista_no_borrada": "La lista no se ha podido borrar",
+                "crear_lista": "Crear lista",
+                "ver_tareas_lista": "Ver tareas de la lista"
             },
             "Pagina_inicio_registro": {
                 "titulo_inicio": "Inicio de sesión",
@@ -120,7 +133,18 @@
                 "tarea_editada": "Task edited",
                 "tarea_no_editada": "The task could not be edited",
                 "tarea_borrada": "Task deleted",
-                "tarea_no_borrada": "The task could not be deleted"
+                "tarea_no_borrada": "The task could not be deleted",
+                "mostrar_tareas_completadas": "Show completed tasks",
+                "mostrar_tareas_incompletas": "Show incomplete tasks",
+                "mostrar_prioridad_baja": "Show low-priority tasks",
+                "mostrar_prioridad_media": "Show medium-priority tasks",
+                "mostrar_prioridad_alta": "Show high-priority tasks",
+                "mostrar_tareas_az": "Show tasks ordered by title from A to Z",
+                "mostrar_tareas_za": "Show tasks ordered by title from Z to A",
+                "mostrar_tareas_19": "Show tasks ordered by date from earliest to latest",
+                "mostrar_tareas_91": "Show tasks ordered by date from latest to earliest",
+                "marcar_completa_incompleta": "Mark task as complete or incomplete",
+                "ver_tarea": "View task"
             },
             "Pagina_listas": {
                 "titulo": "Lists",
@@ -134,7 +158,9 @@
                 "lista_editada": "List edited",
                 "lista_no_editada": "The list could not be edited",
                 "lista_borrada": "List deleted",
-                "lista_no_borrada": "The list could not be deleted"
+                "lista_no_borrada": "The list could not be deleted",
+                "crear_lista": "Create list",
+                "ver_tareas_lista": "View list tasks"
             },
             "Pagina_inicio_registro": {
                 "titulo_inicio": "Log in",
@@ -206,7 +232,18 @@
                 "tarea_editada": "Tâche modifiée",
                 "tarea_no_editada": "La tâche n'a pas pu être modifiée",
                 "tarea_borrada": "Tâche supprimée",
-                "tarea_no_borrada": "La tâche n'a pas pu être supprimée"
+                "tarea_no_borrada": "La tâche n'a pas pu être supprimée",
+                "mostrar_tareas_completadas": "Afficher les tâches terminées",
+                "mostrar_tareas_incompletas": "Afficher les tâches incomplètes",
+                "mostrar_prioridad_baja": "Afficher les tâches à faible priorité",
+                "mostrar_prioridad_media": "Afficher les tâches à priorité moyenne",
+                "mostrar_prioridad_alta": "Afficher les tâches à haute priorité",
+                "mostrar_tareas_az": "Afficher les tâches triées par titre de A à Z",
+                "mostrar_tareas_za": "Afficher les tâches triées par titre de Z à A",
+                "mostrar_tareas_19": "Afficher les tâches triées par date de la plus ancienne à la plus récente",
+                "mostrar_tareas_91": "Afficher les tâches triées par date de la plus récente à la plus ancienne",
+                "marcar_completa_incompleta": "Marquer la tâche comme terminée ou incomplète",
+                "ver_tarea": "Voir la tâche"
             },
             "Pagina_listas": {
                 "titulo": "Listes",
@@ -220,7 +257,9 @@
                 "lista_editada": "Liste modifiée",
                 "lista_no_editada": "La liste n'a pas pu être modifiée",
                 "lista_borrada": "Liste supprimée",
-                "lista_no_borrada": "La liste n'a pas pu être supprimée"
+                "lista_no_borrada": "La liste n'a pas pu être supprimée",
+                "crear_lista": "Créer une liste",
+                "ver_tareas_lista": "Voir les tâches de la liste"
             },
             "Pagina_inicio_registro": {
                 "titulo_inicio": "Connexion",
