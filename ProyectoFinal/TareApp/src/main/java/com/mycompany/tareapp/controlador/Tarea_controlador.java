@@ -21,9 +21,9 @@ public class Tarea_controlador {
     private static String consulta; // Guardo la consulta para que al actualizar el panel se mantengan los filtros
     
     /**
-    * Clase que permite crear tareas
+    * Función que permite crear tareas
     * 
-    * @return Devuelve el resultado de crear la tarea, si se consigue crear devueve vacío y si no un mensaje de error
+    * @return Devuelve el resultado de crear la tarea, si se consigue crear devuelve vacío y si no un mensaje de error
     */
     public String crear_tarea(String titulo, String prioridad, String fecha, String descripcion, int idLista) {
     
@@ -68,7 +68,7 @@ public class Tarea_controlador {
     }
     
     /**
-    * Clase que permite recoger todas las tareas de un usuario
+    * Función que permite recoger todas las tareas de un usuario
     * 
     * @return Devuelve un array de arrays asociativos con el nombre de la propiedad y su valor.
     */
@@ -96,9 +96,9 @@ public class Tarea_controlador {
     }
     
     /**
-    * Clase que permite editar una tarea de un usuario
+    * Función que permite editar una tarea de un usuario
     * 
-    * @return Devuelve el resultado de editar la tarea, si se consigue editar devueve vacío y si no un mensaje de error
+    * @return Devuelve el resultado de editar la tarea, si se consigue editar devuelve vacío y si no un mensaje de error
     */
     public String editar_tarea(int idTarea, String titulo, String prioridad, String fecha, String descripcion, int idLista) {
     
@@ -142,6 +142,11 @@ public class Tarea_controlador {
         }
     }
     
+    /**
+    * Función que permite borrar una tarea
+    * 
+    * @return Devuelve el resultado de borrar la tarea, si se consigue borrar devuelve vacío y si no un mensaje de error
+    */
     public String borrar_tarea(int idTarea) {
         
         String consulta = "DELETE FROM tarea WHERE idTarea = '" + idTarea + "'";
@@ -156,6 +161,11 @@ public class Tarea_controlador {
         }
     }
     
+    /**
+    * Función que permite marcar una tarea como completada o incompleta
+    * 
+    * @return Devuelve true si se consigue guardar la tarea y false si no se guarda
+    */
     public Boolean completarTarea(int idTarea, int completada) {
         
         String consulta = "UPDATE tarea SET completada = '" + completada + "' WHERE idTarea = " + idTarea;
@@ -163,17 +173,22 @@ public class Tarea_controlador {
         return bbdd_tareapp.insertar(consulta);
     }
     
+    /**
+    * Función que permite crear la consulta basandose en los filtros
+    * Se pasan como parámetros el estado de los filtros, si están marcados sí o no
+    * 
+    * @return Devuelve la consulta generada
+    */
     public static String generarConsulta(int idLista, boolean completadas, boolean incompletas, boolean prioridadBaja, boolean prioridadMedia, boolean prioridadAlta, String ordenacion) {
     
         String consulta = "SELECT * FROM tarea WHERE idLista = '"+ idLista +"'";
         
-        //SELECT * FROM tareapp.tarea WHERE idLista = 8 AND (completada = 1 OR completada = 0) AND (prioridad = 1 OR prioridad = 2 OR prioridad = 3) ORDER BY titulo ASC;
-        
+        // Filtro de si está marcada
         if (completadas && !incompletas) consulta += "AND (completada = 1) ";
         if (!completadas && incompletas) consulta += "AND (completada = 0) ";
         if (completadas && incompletas) consulta += "AND (completada = 1 OR completada = 0) ";
        
-        
+        // Filtro de la prioridad
         if (prioridadBaja && !prioridadMedia && !prioridadAlta) consulta += "AND (prioridad = 1) ";
         if (!prioridadBaja && prioridadMedia && !prioridadAlta) consulta += "AND (prioridad = 2) ";
         if (!prioridadBaja && !prioridadMedia && prioridadAlta) consulta += "AND (prioridad = 3) ";
@@ -182,6 +197,7 @@ public class Tarea_controlador {
         if (prioridadBaja && !prioridadMedia && prioridadAlta) consulta += "AND (prioridad = 3 OR prioridad = 1) ";
         if (prioridadBaja && prioridadMedia && prioridadAlta) consulta += "AND (prioridad = 1 OR prioridad = 2 OR prioridad = 3) ";
         
+        // Filtro del orden de las tareas
         switch(ordenacion) {
             case "AZ" -> consulta += "ORDER BY titulo ASC";
             case "ZA" -> consulta += "ORDER BY titulo DESC";

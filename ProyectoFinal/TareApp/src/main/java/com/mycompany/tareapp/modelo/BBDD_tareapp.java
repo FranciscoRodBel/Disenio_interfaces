@@ -16,23 +16,29 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Clase para el modelo del CRUD de la base de datos
  *
- * @author Propietario
+ * @author Francisco
  */
 public class BBDD_tareapp {
     
-    public ArrayList<HashMap<String, Object>> consultar(String consulta_consultar) { // Devuelvo un array list que tiene dentro HashMaps con nombre_propiedad : valor
+    /**
+    * Función que permite recoger datos de la BBDD
+    * 
+    * @return Devuelvo un ArrayList que tiene dentro HashMap con nombre_propiedad : valor - Array de array asociativo
+    */
+    public ArrayList<HashMap<String, Object>> consultar(String consulta_consultar) {
         
         ArrayList<HashMap<String, Object>> resultados = new ArrayList<>(); // Array final que se devuelve con todos los datos
-        Connection conexion = BBDD_controlador.abrirConexion();
+        Connection conexion = BBDD_controlador.abrirConexion(); // Abro la conexión
         
         try {
             
             Statement consulta = conexion.createStatement();
 
-            ResultSet resultado = consulta.executeQuery(consulta_consultar);
+            ResultSet resultado = consulta.executeQuery(consulta_consultar); // Ejecuto la consulta
 
-            while (resultado.next()) {
+            while (resultado.next()) { // Recorro los datos creando el arrayList con el hashMap
                 
                 HashMap<String, Object> fila = new HashMap<>();
                 ResultSetMetaData metaData = resultado.getMetaData();
@@ -42,7 +48,7 @@ public class BBDD_tareapp {
                     fila.put(metaData.getColumnName(i), resultado.getObject(i)); // Se guarda en el hashMap la columna con el dato
                 }
 
-                resultados.add(fila);
+                resultados.add(fila); // Añade el hashMap añ ArrayList
             }
             
         } catch (SQLException ex) {
@@ -52,13 +58,18 @@ public class BBDD_tareapp {
 
         } finally {
             
-            BBDD_controlador.cerrarConexion();
+            BBDD_controlador.cerrarConexion(); // Cierra la conexión
         }
         
-        return resultados;
+        return resultados; // Devuelvo el array list
     }
     
-    public boolean insertar(String consulta_insertar) {
+    /**
+    * Función que permite insertar y actualizar datos en la BBDD
+    * 
+    * @return Devuelvo true si se inserta o actualiza correctamente o false si da error
+    */
+    public boolean insertar(String consulta_insertar) { 
         
         Connection conexion = BBDD_controlador.abrirConexion();
         
@@ -66,7 +77,7 @@ public class BBDD_tareapp {
 
             Statement consulta = conexion.createStatement();
            
-            return consulta.executeUpdate(consulta_insertar) > 0;
+            return consulta.executeUpdate(consulta_insertar) > 0; // Si se han actualizado más de una columna es que se insertó correctamente
             
         } catch (SQLException ex) {
             
@@ -75,10 +86,15 @@ public class BBDD_tareapp {
             
         } finally {
             
-            BBDD_controlador.cerrarConexion();
+            BBDD_controlador.cerrarConexion(); // Cierra la conexión
         }
     }
     
+    /**
+    * Función que permite borrar datos en la BBDD
+    * 
+    * @return Devuelvo true si se borrar correctamente o false si da error
+    */
     public boolean borrar(String consulta_borrar) {
         
         Connection conexion = BBDD_controlador.abrirConexion();
@@ -87,7 +103,7 @@ public class BBDD_tareapp {
             
             Statement consulta = conexion.createStatement();
 
-            return consulta.executeUpdate(consulta_borrar) > 0;
+            return consulta.executeUpdate(consulta_borrar) > 0; // Si se han actualizado más de una columna es que se borró correctamente
 
         } catch (SQLException ex) {
             
@@ -96,7 +112,7 @@ public class BBDD_tareapp {
 
         } finally {
             
-            BBDD_controlador.cerrarConexion();
+            BBDD_controlador.cerrarConexion(); // Cierra la conexión
         }
     }
 }

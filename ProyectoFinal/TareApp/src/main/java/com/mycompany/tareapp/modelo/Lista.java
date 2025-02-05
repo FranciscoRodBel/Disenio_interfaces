@@ -7,8 +7,10 @@ package com.mycompany.tareapp.modelo;
 import java.util.regex.Pattern;
 
 /**
+ * Clase para el modelo de la lista
+ * Tiene las propiedades de las listas y sus funciones necesarias
  *
- * @author Propietario
+ * @author Francisco
  */
 public class Lista {
 
@@ -16,12 +18,20 @@ public class Lista {
     private String titulo;
     private String email;
     
+    /**
+    * Constructor de la lista con el id para cuando quiero mostrar, o guardar las listas en el select de la página de tareas
+    * 
+    */
     public Lista(int idLista, String titulo, String email) {
         this.idLista = idLista;
         this.titulo = titulo;
         this.email = email;
     }
 
+    /**
+    * Constructor de la lista sin el id para cuando quiero crear la lista
+    * 
+    */
     public Lista(String titulo, String email) {
         this.titulo = titulo;
         this.email = email;
@@ -34,30 +44,37 @@ public class Lista {
         return idLista;
     }
 
-    public void setIdLista(int idLista) {
-        this.idLista = idLista;
-    }
-
     public String getTitulo() {
         return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
     }
 
     public String getEmail() {
         return email;
     }
 
+    public void setIdLista(int idLista) {
+        this.idLista = idLista;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    public String toString() {
+
+    public String toString() { // Para mostrar el nombre en el select de las listas de la página de tareas
         return titulo;
     }
     
+    
+    
+    /**
+    * Función que permite comprobar si el títlo de la lista es válido
+    * 
+    * @return Devuelvo true si es válido
+    */
     public static boolean es_titulo_valido(String titulo) {
         
         String expresion = "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\\s\\-\\_\\.\\,\\(\\)]+$";

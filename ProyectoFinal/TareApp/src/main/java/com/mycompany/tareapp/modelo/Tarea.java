@@ -13,8 +13,10 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 /**
+ * Clase para el modelo de las tareas
+ * Tiene las propiedades de las tareas y sus funciones necesarias
  *
- * @author Propietario
+ * @author Francisco
  */
 public class Tarea {
     
@@ -25,7 +27,11 @@ public class Tarea {
     private String fecha;
     private String descripcion;
     private int idLista;
-
+    
+    /**
+    * Constructor de la tarea con el id para cuando quiero mostrar las tareas
+    * 
+    */
     public Tarea(int idTarea, int completada, String titulo, int prioridad, String fecha, String descripcion, int idLista) {
         this.idTarea = idTarea;
         this.completada = completada;
@@ -36,6 +42,10 @@ public class Tarea {
         this.idLista = idLista;
     }
 
+    /**
+    * Constructor de la tarea sin el id para cuando quiero crear la tarea
+    * 
+    */
     public Tarea(String titulo, int prioridad, String fecha, String descripcion, int idLista) {
         this.titulo = titulo;
         this.prioridad = prioridad;
@@ -100,6 +110,11 @@ public class Tarea {
         this.idLista = idLista;
     }
     
+    /**
+    * Función que permite comprobar si el texto pasado tiene algún caracter extraño
+    * 
+    * @return Devuelvo true si es válido
+    */
     public boolean es_texto_valido(String texto) {
         
         String expresion = "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\\s\\-\\_\\.\\,\\(\\)]+$";
@@ -108,6 +123,11 @@ public class Tarea {
         return pattern.matcher(texto).matches();
     }
     
+    /**
+    * Función que permite comprobar si la fecha introducida está en su formato correspondiente y es real
+    * 
+    * @return Devuelvo true si es válido
+    */
     public boolean es_fecha_valida() {
         
         DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy"); // Creo un tipo de formato que será día/mes/año
@@ -135,15 +155,22 @@ public class Tarea {
         }
     }
 
+    /**
+    * Función que permite cambiar el formato de la fecha para ponerla al estilo de la BBDD
+    * 
+    * @return Devuelvo la fecha en el formato de la BBDD
+    */
     public String cambiar_string_a_date() {
         
         try {
             
-            SimpleDateFormat formatoEntrada = new SimpleDateFormat("dd/MM/yyyy");
-            Date fecha_transformada;
-            fecha_transformada = formatoEntrada.parse(fecha);
-            SimpleDateFormat formatoSalida = new SimpleDateFormat("yyyy-MM-dd");
-            return formatoSalida.format(fecha_transformada);
+            SimpleDateFormat formatoEntrada = new SimpleDateFormat("dd/MM/yyyy"); // Formato en el que llega
+            
+            Date fecha_transformada = formatoEntrada.parse(fecha); // Transformo la fecha en tipo Date
+            
+            SimpleDateFormat formatoSalida = new SimpleDateFormat("yyyy-MM-dd"); // Formato en el que tiene que acabar
+            
+            return formatoSalida.format(fecha_transformada); // Convierto la fecha al formato de la BBDD
             
         } catch (ParseException ex) {
             
