@@ -4,7 +4,6 @@
  */
 package com.mycompany.tareapp.vista.plantillas;
 
-import com.mycompany.tareapp.vista.plantillas.Estilos;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;

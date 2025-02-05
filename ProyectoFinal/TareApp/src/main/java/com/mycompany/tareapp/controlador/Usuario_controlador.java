@@ -130,6 +130,12 @@ public class Usuario_controlador {
         }
     }
     
+    public void actualizar_idioma(String idioma) {
+        
+        String consulta = "UPDATE usuario SET idioma_seleccionado = '" + idioma + "' WHERE email = '" + usuario.getEmail() + "'";
+        bbdd_tareapp.insertar(consulta);
+    }
+    
     public String borrar_usuario() {
         
         System.out.println(usuario.getEmail());

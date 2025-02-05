@@ -5,19 +5,12 @@
 package com.mycompany.tareapp.vista.plantillas;
 
 import com.mycompany.tareapp.controlador.Idioma_controlador;
-import com.mycompany.tareapp.modelo.idioma.Idioma;
 import com.mycompany.tareapp.modelo.idioma.Pagina_listas;
-import com.mycompany.tareapp.vista.Iniciar_registrar_view;
 import com.mycompany.tareapp.vista.Listas_view;
-import com.mycompany.tareapp.vista.Main;
-import static com.mycompany.tareapp.vista.Main.main;
 import com.mycompany.tareapp.vista.Tareas_view;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;

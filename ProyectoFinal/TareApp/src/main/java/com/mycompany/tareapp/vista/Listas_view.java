@@ -6,8 +6,6 @@ package com.mycompany.tareapp.vista;
 
 import com.mycompany.tareapp.controlador.Idioma_controlador;
 import com.mycompany.tareapp.controlador.Lista_controlador;
-import com.mycompany.tareapp.controlador.Usuario_controlador;
-import com.mycompany.tareapp.modelo.Usuario;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;

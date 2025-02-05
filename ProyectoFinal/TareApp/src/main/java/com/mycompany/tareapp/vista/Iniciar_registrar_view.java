@@ -14,7 +14,6 @@ import com.mycompany.tareapp.vista.plantillas.Input_password;
 import com.mycompany.tareapp.vista.plantillas.Input_text;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;

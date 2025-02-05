@@ -5,12 +5,9 @@
 package com.mycompany.tareapp.vista.plantillas;
 
 import java.awt.Dimension;
-import java.awt.Insets;
 import java.text.ParseException;
 import javax.swing.ImageIcon;
-import javax.swing.InputVerifier;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 import javax.swing.SpringLayout;
 import javax.swing.text.MaskFormatter;

@@ -62,6 +62,18 @@ public class Idioma_controlador {
             if (idioma_json.getIdioma().equals(idioma)) {
                 
                 idioma_seleccionado = idioma_json;
+                
+                switch(idioma) {
+                    case "Français":
+                        cabecera.getItemFrances().setSelected(true);
+                        
+                      break;
+                    case "English":
+                        cabecera.getItemIngles().setSelected(true);
+                      break;
+                    default:
+                        cabecera.getItemEspaniol().setSelected(true);
+                }
             }
         }
         

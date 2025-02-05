@@ -6,7 +6,6 @@ package com.mycompany.tareapp.vista.plantillas;
 
 import java.awt.Dimension;
 import javax.swing.JTextField;
-import javax.swing.SpringLayout;
 
 /**
  *

@@ -25,7 +25,6 @@ import javax.swing.SwingConstants;
 public class Ajustes_cuenta_view extends javax.swing.JPanel {
 
     static Ajustes_cuenta_view ajustes_cuenta_view;
-    Usuario_controlador usuario_controlador = new Usuario_controlador();
     
     JLabel titulo_pagina = new JLabel("Ajustes de la cuenta");
     

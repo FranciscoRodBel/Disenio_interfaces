@@ -8,7 +8,6 @@ import com.mycompany.tareapp.controlador.Idioma_controlador;
 import com.mycompany.tareapp.controlador.Usuario_controlador;
 import com.mycompany.tareapp.modelo.idioma.Pagina_ajustes_cuenta;
 import com.mycompany.tareapp.vista.Ajustes_cuenta_view;
-import com.mycompany.tareapp.vista.Tareas_view;
 import java.awt.Dimension;
 import java.awt.Window;
 import java.awt.event.ActionEvent;

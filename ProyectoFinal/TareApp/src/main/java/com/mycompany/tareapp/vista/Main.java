@@ -6,7 +6,6 @@ package com.mycompany.tareapp.vista;
 
 import com.mycompany.tareapp.controlador.Idioma_controlador;
 import com.mycompany.tareapp.controlador.Usuario_controlador;
-import com.mycompany.tareapp.modelo.Usuario;
 import com.mycompany.tareapp.vista.plantillas.Cabecera;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
 import java.awt.event.ActionEvent;
@@ -37,7 +36,8 @@ public class Main extends javax.swing.JFrame {
     static ActionListener listenerListas;
     static ActionListener listenerAjustes;
     static ActionListener listenerCerrarSesion;
-   
+    Usuario_controlador usuario_controlador = new Usuario_controlador();
+    
     public Main() throws FileNotFoundException {
         initComponents();
 
@@ -72,6 +72,8 @@ public class Main extends javax.swing.JFrame {
                 
                 listas_view.actualizar_panel_lista();
                 tareas_view.actualizar_panel_tareas();
+                
+                usuario_controlador.actualizar_idioma("Español");
             }
         });
         
@@ -83,6 +85,8 @@ public class Main extends javax.swing.JFrame {
                 
                 listas_view.actualizar_panel_lista();
                 tareas_view.actualizar_panel_tareas();
+                
+                usuario_controlador.actualizar_idioma("English");
             }
         });
                 
@@ -94,6 +98,8 @@ public class Main extends javax.swing.JFrame {
                 
                 listas_view.actualizar_panel_lista();
                 tareas_view.actualizar_panel_tareas();
+                
+                usuario_controlador.actualizar_idioma("Français");
             }
         });
     }
@@ -141,30 +147,35 @@ public class Main extends javax.swing.JFrame {
         
         listenerCerrarSesion = (ActionEvent e) -> {
 
-            panelPrincipal.remove(ajustes_cuenta_view);
-            panelPrincipal.remove(listas_view);
-            panelPrincipal.remove(tareas_view);
-            Usuario_controlador.setUsuario(null);
-
-            Listas_view.reiniciar_instancia();
-            Tareas_view.reiniciar_instancia();
-            Ajustes_cuenta_view.reiniciar_instancia();
-
-            listas_view.removeAll();
-            tareas_view.removeAll();
-            ocultarPaneles();
-            iniciar_registrar_view.setVisible(true);
-            
-            cabecera.getItemTareas().removeActionListener(listenerTareas);
-            cabecera.getItemListas().removeActionListener(listenerListas);
-            cabecera.getItemAjustes().removeActionListener(listenerAjustes);
-            cabecera.getItemCerrarSesion().removeActionListener(listenerCerrarSesion);
+            cerrarSesion();
         };  
         
         cabecera.getItemTareas().addActionListener(listenerTareas);
         cabecera.getItemListas().addActionListener(listenerListas);
         cabecera.getItemAjustes().addActionListener(listenerAjustes);
         cabecera.getItemCerrarSesion().addActionListener(listenerCerrarSesion);
+    }
+    
+    public static void cerrarSesion() {
+    
+        panelPrincipal.remove(ajustes_cuenta_view);
+        panelPrincipal.remove(listas_view);
+        panelPrincipal.remove(tareas_view);
+        Usuario_controlador.setUsuario(null);
+
+        Listas_view.reiniciar_instancia();
+        Tareas_view.reiniciar_instancia();
+        Ajustes_cuenta_view.reiniciar_instancia();
+
+        listas_view.removeAll();
+        tareas_view.removeAll();
+        ocultarPaneles();
+        iniciar_registrar_view.setVisible(true);
+
+        cabecera.getItemTareas().removeActionListener(listenerTareas);
+        cabecera.getItemListas().removeActionListener(listenerListas);
+        cabecera.getItemAjustes().removeActionListener(listenerAjustes);
+        cabecera.getItemCerrarSesion().removeActionListener(listenerCerrarSesion);
     }
 
     public static void ocultarPaneles() {

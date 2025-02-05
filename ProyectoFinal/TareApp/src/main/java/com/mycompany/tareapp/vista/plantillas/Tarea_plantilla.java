@@ -5,9 +5,7 @@
 package com.mycompany.tareapp.vista.plantillas;
 
 import com.mycompany.tareapp.controlador.Idioma_controlador;
-import com.mycompany.tareapp.controlador.Lista_controlador;
 import com.mycompany.tareapp.controlador.Tarea_controlador;
-import com.mycompany.tareapp.modelo.idioma.Pagina_listas;
 import com.mycompany.tareapp.modelo.idioma.Pagina_tareas;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;

@@ -9,6 +9,7 @@ import com.mycompany.tareapp.controlador.Lista_controlador;
 import com.mycompany.tareapp.controlador.Usuario_controlador;
 import com.mycompany.tareapp.modelo.idioma.Idioma;
 import com.mycompany.tareapp.vista.Listas_view;
+import com.mycompany.tareapp.vista.Main;
 import com.mycompany.tareapp.vista.Tareas_view;
 import java.awt.Dimension;
 import java.awt.Window;
@@ -108,6 +109,13 @@ public class Popup_borrar_cuenta_lista extends JDialog {
 
                     mensaje_resultado = idioma_seleccionado.getPagina_ajustes_cuenta().getCuenta_borrada();
                 } 
+                
+                label_resultado.setText(mensaje_resultado);
+                Timer tiempo_espera = new Timer(3000, evt -> label_resultado.setText(""));
+                tiempo_espera.setRepeats(false);
+                tiempo_espera.start();
+            
+                Main.cerrarSesion();
 
             } else {
 
@@ -120,12 +128,14 @@ public class Popup_borrar_cuenta_lista extends JDialog {
                     tareas_view.actualizar_select_listas();
                     tareas_view.actualizar_panel_tareas();
                 } 
+                
+                label_resultado.setText(mensaje_resultado);
+                Timer tiempo_espera = new Timer(3000, evt -> label_resultado.setText(""));
+                tiempo_espera.setRepeats(false);
+                tiempo_espera.start();
             }
             
-            label_resultado.setText(mensaje_resultado);
-            Timer tiempo_espera = new Timer(3000, evt -> label_resultado.setText(""));
-            tiempo_espera.setRepeats(false);
-            tiempo_espera.start();
+
         });
     }
 }

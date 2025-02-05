@@ -4,29 +4,16 @@
  */
 package com.mycompany.tareapp.vista.plantillas;
 
-import com.mycompany.tareapp.controlador.Idioma_controlador;
-import com.mycompany.tareapp.vista.Iniciar_registrar_view;
-import com.mycompany.tareapp.vista.Main;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.FileNotFoundException;
-import javax.swing.Box;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JSeparator;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
@@ -205,6 +192,8 @@ public class Cabecera extends JPanel {
         itemCerrarSesion.setFont(fuente);
 
     }
+    
+    
     
     public static Cabecera recoger_instancia() {
         
