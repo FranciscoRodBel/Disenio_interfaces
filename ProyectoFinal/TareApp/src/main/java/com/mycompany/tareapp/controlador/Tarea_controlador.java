@@ -11,68 +11,81 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- *
+ *  Clase controladora de las tareas, con funciones para hacer el CRUD de las tareas
+ * 
  * @author Francisco
  */
 public class Tarea_controlador {
     
-    private final BBDD_tareapp bbdd_tareapp = new BBDD_tareapp();
-    private static String consulta;
+    private final BBDD_tareapp bbdd_tareapp = new BBDD_tareapp(); // Recojo la bbdd
+    private static String consulta; // Guardo la consulta para que al actualizar el panel se mantengan los filtros
     
+    /**
+    * Clase que permite crear tareas
+    * 
+    * @return Devuelve el resultado de crear la tarea, si se consigue crear devueve vacío y si no un mensaje de error
+    */
     public String crear_tarea(String titulo, String prioridad, String fecha, String descripcion, int idLista) {
     
-        Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
-        int prioridad_seleccionada = 1;
+        Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas(); // Recojo el idioma de tareas
         
-        if (prioridad.equals(idioma_tareas.getAlta())) {
+        int prioridad_seleccionada = 1; // De manera predeterminada la prioridad se guardará como baja
+        
+        if (prioridad.equals(idioma_tareas.getAlta())) { // Si llega "Alta" en el idioma seleccionado, se asigna el 3
             
             prioridad_seleccionada = 3;
             
-        } else if (prioridad.equals(idioma_tareas.getMedia())) {
+        } else if (prioridad.equals(idioma_tareas.getMedia())) { // Si llega "Media" en el idioma seleccionado, se asigna el 2
             
             prioridad_seleccionada = 2;
         }
         
-        Tarea tarea = new Tarea(titulo, prioridad_seleccionada, fecha, descripcion, idLista);
+        Tarea tarea = new Tarea(titulo, prioridad_seleccionada, fecha, descripcion, idLista); // Se crea la tarea con sus datos
         
-        if (titulo.length() > 50) return idioma_tareas.getTitulo_supera_caracteres();
+        // Comprobaciones de los datos
+        if (titulo.length() > 50) return idioma_tareas.getTitulo_supera_caracteres(); // Si el título supera los 50 caracteres devuelve el error
         
-        if (!tarea.es_texto_valido(titulo)) return idioma_tareas.getTitulo_no_valido();
+        if (!tarea.es_texto_valido(titulo)) return idioma_tareas.getTitulo_no_valido(); // Evita que tenga simbolos raros
         
-        if (!tarea.es_fecha_valida()) return idioma_tareas.getFecha_no_valida();
+        if (!tarea.es_fecha_valida()) return idioma_tareas.getFecha_no_valida(); // Comprueba que la fecha sea real y esté en el formato correcto
         
-        if (titulo.length() > 500) return idioma_tareas.getDescripcion_supera_caracteres();
+        if (titulo.length() > 500) return idioma_tareas.getDescripcion_supera_caracteres();  // Si la descripción supera los 500 caracteres devuelve el error
         
-        if (!tarea.es_texto_valido(descripcion)) return idioma_tareas.getDescripcion_no_valida();
+        if (!tarea.es_texto_valido(descripcion)) return idioma_tareas.getDescripcion_no_valida(); // Evita que tenga simbolos raros
         
-        fecha = tarea.cambiar_string_a_date();
+        fecha = tarea.cambiar_string_a_date(); // cambia la fecha de String a tipo Date para la BBDD
         
         String consulta = "INSERT INTO tarea (titulo, prioridad, fecha, descripcion, idLista) VALUES ('"+titulo+"', '"+prioridad_seleccionada+"', '"+fecha+"', '"+descripcion+"', '"+idLista+"')";
         
-        if(bbdd_tareapp.insertar(consulta)) {
+        if(bbdd_tareapp.insertar(consulta)) { // Devolverá true si se alamacena correctamente
             
-            return "";
+            return ""; // Si se inserta devuelve vacío
             
-        } else {
+        } else { 
             
-            return idioma_tareas.getTarea_no_borrada();
+            return idioma_tareas.getTarea_no_borrada(); // Si no se inserta devuelve el mensaje correspondiente
         }
     }
     
+    /**
+    * Clase que permite recoger todas las tareas de un usuario
+    * 
+    * @return Devuelve un array de arrays asociativos con el nombre de la propiedad y su valor.
+    */
     public static ArrayList<HashMap<String, Object>> recoger_tareas(String consulta) {
     
-        if (consulta.isEmpty()) {
+        if (consulta.isEmpty()) { // Si viene vacío es porque simplemente se ha actualizado el panel por actualización de las listas o tareas creadas, actualizadas, borradas...
             
-            consulta = Tarea_controlador.consulta;
+            consulta = Tarea_controlador.consulta; // Recoge la consulta de filtro que se guardó
                     
-        } else {
+        } else { // Si envía una consulta es poque ha cambiado el filtro
             
-            Tarea_controlador.consulta = consulta;
+            Tarea_controlador.consulta = consulta; // Guarda la nueva consulta
         }
         
-        ArrayList<HashMap<String, Object>> resultados = new BBDD_tareapp().consultar(consulta);
+        ArrayList<HashMap<String, Object>> resultados = new BBDD_tareapp().consultar(consulta); // Recoge los datos
         
-        if (resultados.isEmpty()) {
+        if (resultados.isEmpty()) { // Si no hay tareas creadas devuleve null y si no los datos
             
             return null;
             
@@ -82,44 +95,50 @@ public class Tarea_controlador {
         }
     }
     
+    /**
+    * Clase que permite editar una tarea de un usuario
+    * 
+    * @return Devuelve el resultado de editar la tarea, si se consigue editar devueve vacío y si no un mensaje de error
+    */
     public String editar_tarea(int idTarea, String titulo, String prioridad, String fecha, String descripcion, int idLista) {
     
-        Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
-        int prioridad_seleccionada = 1;
+        Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas(); // Recojo el idioma de tareas
         
-        if (prioridad.equals(idioma_tareas.getAlta())) {
+        int prioridad_seleccionada = 1; // De manera predeterminada la prioridad se guardará como baja
+        
+        if (prioridad.equals(idioma_tareas.getAlta())) { // Si llega "Alta" en el idioma seleccionado, se asigna el 3
             
             prioridad_seleccionada = 3;
             
-        } else if (prioridad.equals(idioma_tareas.getMedia())) {
+        } else if (prioridad.equals(idioma_tareas.getMedia())) { // Si llega "Media" en el idioma seleccionado, se asigna el 2
             
             prioridad_seleccionada = 2;
         }
         
-        Tarea tarea = new Tarea(titulo, prioridad_seleccionada, fecha, descripcion, idLista);
+        Tarea tarea = new Tarea(titulo, prioridad_seleccionada, fecha, descripcion, idLista); // Se crea la tarea con sus datos
         
-        if (titulo.length() > 50) return idioma_tareas.getTitulo_supera_caracteres();
+        // Comprobaciones de los datos
+        if (titulo.length() > 50) return idioma_tareas.getTitulo_supera_caracteres(); // Si el título supera los 50 caracteres devuelve el error
         
-        if (!tarea.es_texto_valido(titulo)) return idioma_tareas.getTitulo_no_valido();
+        if (!tarea.es_texto_valido(titulo)) return idioma_tareas.getTitulo_no_valido(); // Evita que tenga simbolos raros
         
-        if (!tarea.es_fecha_valida()) return idioma_tareas.getFecha_no_valida();
+        if (!tarea.es_fecha_valida()) return idioma_tareas.getFecha_no_valida(); // Comprueba que la fecha sea real y esté en el formato correcto
         
-        if (titulo.length() > 500) return idioma_tareas.getDescripcion_supera_caracteres();
+        if (titulo.length() > 500) return idioma_tareas.getDescripcion_supera_caracteres();  // Si la descripción supera los 500 caracteres devuelve el error
         
-        if (!tarea.es_texto_valido(descripcion)) return idioma_tareas.getDescripcion_no_valida();
+        if (!tarea.es_texto_valido(descripcion)) return idioma_tareas.getDescripcion_no_valida(); // Evita que tenga simbolos raros
         
-        fecha = tarea.cambiar_string_a_date();
+        fecha = tarea.cambiar_string_a_date(); // cambia la fecha de String a tipo Date para la BBDD
         
         String consulta = "UPDATE tarea SET titulo = '" + titulo + "', prioridad = '" + prioridad_seleccionada + "', fecha = '" + fecha + "', descripcion = '" + descripcion + "', idLista = '" + idLista + "' WHERE idTarea = " + idTarea;
 
-        
-        if(bbdd_tareapp.insertar(consulta)) {
+        if(bbdd_tareapp.insertar(consulta)) { // Devolverá true si se edita correctamente
             
-            return "";
+            return ""; // Si se edita devuelve vacío
             
         } else {
             
-            return idioma_tareas.getTarea_no_editada();
+            return idioma_tareas.getTarea_no_editada(); // Si no se edita devuelve el mensaje correspondiente
         }
     }
     
@@ -129,7 +148,7 @@ public class Tarea_controlador {
         
         if(bbdd_tareapp.borrar(consulta)) {
             
-            return "";
+            return ""; 
             
         } else {
             

@@ -58,20 +58,20 @@ public class Idioma_controlador {
     /**
     * Coge todos los textos y los cambia por el mismo texto pero con el idioma seleccionado
     * 
-    * @param idioma El idioma que se desea seleccionar, expresado en su nombre.
+    * @param idioma El idioma que se desea seleccionar.
     */
     public static void cambiarIdioma(String idioma) {
         
         Cabecera cabecera = Cabecera.recoger_instancia();
         Iniciar_registrar_view iniciar_registrar_view = Iniciar_registrar_view.recoger_instancia();
         
-        for (Idioma idioma_json : idiomas.getIdioma()) {
+        for (Idioma idioma_json : idiomas.getIdioma()) { // Recorro los idiomas
             
-            if (idioma_json.getIdioma().equals(idioma)) {
+            if (idioma_json.getIdioma().equals(idioma)) { // Si el idioma recorrido es igual al que se está cambiando
                 
-                idioma_seleccionado = idioma_json;
+                idioma_seleccionado = idioma_json; // Guardo el idioma como el seleccionado
                 
-                switch(idioma) {
+                switch(idioma) { // Selecciono en la cabecera el idioma seleccionado - Esto es para cuando inicia sesión, ya que el idioma se pone en base a lo que tiene en la bbdd sin pulsar en la cabacera
                     case "Français":
                         cabecera.getItemFrances().setSelected(true);
                         
@@ -85,6 +85,9 @@ public class Idioma_controlador {
             }
         }
         
+        // Cambio de idioma en los textos
+        
+        // Textos de la cabecera
         cabecera.getItemTareas().setText(idioma_seleccionado.getCabecera().getTareas());
         cabecera.getItemListas().setText(idioma_seleccionado.getCabecera().getListas());
         cabecera.getMenuIdioma().setText(idioma_seleccionado.getCabecera().getIdioma());
@@ -92,6 +95,8 @@ public class Idioma_controlador {
         cabecera.getItemAjustes().setText(idioma_seleccionado.getCabecera().getAjustes());
         cabecera.getItemCerrarSesion().setText(idioma_seleccionado.getCabecera().getCerrar_sesion());
         
+        
+        // Textos de la página de inicio y registro
         iniciar_registrar_view.getTitulo_pagina_inicio().setText(idioma_seleccionado.getPagina_inicio_registro().getTitulo_inicio());
         iniciar_registrar_view.getTitulo_pagina_registro().setText(idioma_seleccionado.getPagina_inicio_registro().getTitulo_registro());
         iniciar_registrar_view.getBoton_iniciar().setText(idioma_seleccionado.getPagina_inicio_registro().getIniciar_sesion());
@@ -102,12 +107,15 @@ public class Idioma_controlador {
         iniciar_registrar_view.getBoton_enviar_inicio().setText(idioma_seleccionado.getPagina_inicio_registro().getIniciar_sesion());
         iniciar_registrar_view.getBoton_enviar_registro().setText(idioma_seleccionado.getPagina_inicio_registro().getRegistrarse());
         
-        if (Usuario_controlador.getUsuario() != null) {
+        if (Usuario_controlador.getUsuario() != null) { // Si el usuario está inciado cambio el idioma de los demás paneles
         
+            // Recojo los paneles de las vistas
             Tareas_view tareas_view = Tareas_view.recoger_instancia();
             Listas_view listas_view = Listas_view.recoger_instancia();
             Ajustes_cuenta_view ajustes_cuenta_view = Ajustes_cuenta_view.recoger_instancia();
             
+            
+            // Textos de la página de tareas
             tareas_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_tareas().getTitulo());
             tareas_view.getSeleccionarLista().insertItemAt(new Lista(0, idioma_seleccionado.getPagina_tareas().getSeleccionar_lista(), ""), 0);
             tareas_view.getSeleccionarLista().removeItemAt(1);
@@ -124,9 +132,11 @@ public class Idioma_controlador {
             tareas_view.getBotonOrdenadoAZ().setToolTipText(idioma_seleccionado.getPagina_tareas().getMostrar_tareas_az());
             tareas_view.getBotonOrdenadoZA().setToolTipText(idioma_seleccionado.getPagina_tareas().getMostrar_tareas_za());
 
+            // Textos de la página de listas
             listas_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_listas().getTitulo());
             listas_view.getInput_titulo_lista().getPlaceholder().setText(idioma_seleccionado.getPagina_listas().getTitulo_lista());
 
+            // Textos de la página de ajustes
             ajustes_cuenta_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_ajustes_cuenta().getTitulo_pagina());
             ajustes_cuenta_view.getBoton_cambiar_email().setText(idioma_seleccionado.getPagina_ajustes_cuenta().getCambiar_email());
             ajustes_cuenta_view.getBoton_cambiar_contrasenia().setText(idioma_seleccionado.getPagina_ajustes_cuenta().getCambiar_contrasenia());
@@ -135,6 +145,10 @@ public class Idioma_controlador {
 
     }
     
+    /**
+    * Recoge el fichero json y lo pasa a la clase de Idiomas
+    * 
+    */
     public static void convertirJsonEnClase() throws FileNotFoundException {
 
         Scanner scanner = new Scanner(new File("src/main/java/com/mycompany/tareapp/vista/recursos/json/idiomas.json")); // Se recoge el json
