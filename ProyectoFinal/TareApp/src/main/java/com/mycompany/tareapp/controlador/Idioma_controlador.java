@@ -18,15 +18,18 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- *
- * @author Propietario
+ * Controlador para realizar los cambios de idioma.
+ * 
+ * Esta clase carga el json con los idiomas y cunado se solicita, cambia todos los textos de la app al idioma seleccionado.
+ * 
+ * @author Francisco
  */
 public class Idioma_controlador {
 
-    private static Idiomas idiomas;
+    private static Idiomas idiomas; // Array con todos los idiomas
     private static Idioma idioma_seleccionado;
     
-    static {
+    static { // Clase estática para que cualquiera pueda acceder a ella sin instanciarla
         try {
             
             convertirJsonEnClase();
@@ -35,23 +38,28 @@ public class Idioma_controlador {
             e.printStackTrace();
         }
     }
-
+    
+    /**
+    * 
+    * @return Devuelve el array de idiomas
+    */
     public static Idiomas getIdiomas() {
         return idiomas;
     }
-
-    public static void setIdiomas(Idiomas idiomas) {
-        Idioma_controlador.idiomas = idiomas;
-    }
-
+    
+    /**
+    * 
+    * @return Objeto del idioma seleccionado
+    */
     public static Idioma getIdioma_seleccionado() {
         return idioma_seleccionado;
     }
-
-    public static void setIdioma_seleccionado(Idioma idioma_seleccionado) {
-        Idioma_controlador.idioma_seleccionado = idioma_seleccionado;
-    }
     
+    /**
+    * Coge todos los textos y los cambia por el mismo texto pero con el idioma seleccionado
+    * 
+    * @param idioma El idioma que se desea seleccionar, expresado en su nombre.
+    */
     public static void cambiarIdioma(String idioma) {
         
         Cabecera cabecera = Cabecera.recoger_instancia();

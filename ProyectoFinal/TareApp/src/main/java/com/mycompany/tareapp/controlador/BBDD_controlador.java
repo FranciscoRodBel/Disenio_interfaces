@@ -12,7 +12,10 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Propietario
+ * Controlador de la base de datos, en esta clase se realizan las conexiones a la base de datos.
+ * Permite abrir y cerrar sesión con la base de datos.
+ * 
+ * @author FranciscoRB
  */
 public class BBDD_controlador {
 
@@ -21,11 +24,16 @@ public class BBDD_controlador {
     private static final String contrasenia = "root";
     private static Connection conexion;
 
+    /**
+    * Función para abrir la base de datos
+    * 
+    * @return La conexión con la base de datos.
+    */
     public static Connection abrirConexion() {
         
         try {
             
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+nombre_bbdd+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", usuario, contrasenia);
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+nombre_bbdd+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", usuario, contrasenia); // Establece la conexión con la base de datos
             
         } catch (SQLException ex) {
             
@@ -35,13 +43,18 @@ public class BBDD_controlador {
         return conexion;
     }
     
+    /**
+    * Función para cerrar la base de datos.
+    * 
+    * Si la conexión está abierta, se cierra y se pone como null.
+    */
     public static void cerrarConexion() {
         
         if (conexion != null) {
             
             try {
                 
-                conexion.close();
+                conexion.close(); // Cierra la conexión con la base de datos
                 conexion = null;
                 
             } catch (SQLException ex) {
