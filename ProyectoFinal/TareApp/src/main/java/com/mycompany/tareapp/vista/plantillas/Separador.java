@@ -9,8 +9,10 @@ import javax.swing.JPanel;
 
 
 /**
- *
- * @author Propietario
+ * Clase para el componente del separador
+ * Componente creado para reducir código y tener menos líneas en otros archivos
+ * 
+ * @author Francisco
  */
 public class Separador extends JPanel {
         

@@ -17,8 +17,10 @@ import javax.swing.SpringLayout;
 import static javax.swing.SwingConstants.CENTER;
 
 /**
- *
- * @author Propietario
+ * Clase para las tareas que del panel de las tareas de la página de tareas
+ * Componente creado para poder crear muchas tareas con el mismo formato
+ * 
+ * @author Francisco
  */
 public final class Tarea_plantilla extends JPanel {
 
@@ -40,11 +42,20 @@ public final class Tarea_plantilla extends JPanel {
     JButton botonEditarTarea = new JButton();
     JButton botonBorrarTarea = new JButton();
     
+    /**
+    * Constructor de la tarea, con los estilos necesarios
+    * 
+    */
     public Tarea_plantilla() {
         
         generarEstructura();
     }
     
+    /**
+    * Constructor de la tarea con todos los datos de la tarea, con los estilos necesarios
+    * Para poder crearla con sus opciones marcadas
+    * 
+    */
     public Tarea_plantilla(int idTarea, boolean completada, String titulo, int prioridad, String fecha, String descripcion, int idLista) { // Si se envía true está completa, si se envía en la prioridad 1 - baja, 2 - media, 3 - alta
         
         this.idTarea = idTarea;
@@ -160,6 +171,10 @@ public final class Tarea_plantilla extends JPanel {
         this.idTarea = idTarea;
     }
     
+    /**
+    * Función para poder generar la estructura de las tareas con sus estilos
+    * 
+    */
     public void generarEstructura() {
         
         SpringLayout layout = new SpringLayout();
@@ -304,6 +319,11 @@ public final class Tarea_plantilla extends JPanel {
         
     }
     
+    /**
+    * Función que permite ver la prioridad de la tarea
+    * 
+    * @return Devuelve el texto de la prioridad seleccionada e el idioma seleccionado
+    */
     public String recoger_prioridad_tarea() {
         
         Pagina_tareas idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();

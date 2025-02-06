@@ -10,11 +10,17 @@ import java.awt.Dimension;
 import javax.swing.JComboBox;
 
 /**
- *
+ * Clase para el componente del select de prioridad
+ * Componente creado para tener el código más estructurado, para tener los estilos de este componente aquí
+ * 
  * @author Francisco
  */
 public class Select_prioridad extends JComboBox<String> {
     
+    /**
+    * Constructor del select de prioridad, con los estilos necesarios
+    * 
+    */
     public Select_prioridad(int prioridad) {
         
         //this.setBorder(new RoundedBorder(5, 2));

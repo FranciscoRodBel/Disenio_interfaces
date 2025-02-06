@@ -18,8 +18,10 @@ import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
 /**
- *
- * @author Propietario
+ * Clase para las listas que del panel de las listas de la página de listas
+ * Componente creado para poder crear muchas listas con el mismo formato
+ * 
+ * @author Francisco
  */
 public final class Lista_plantilla extends JPanel {
 
@@ -31,12 +33,19 @@ public final class Lista_plantilla extends JPanel {
     JButton botonEditarLista = new JButton();
     JButton botonBorrarLista = new JButton();
     
-    
+    /**
+    * Constructor de la lista, con los estilos necesarios
+    * 
+    */
     public Lista_plantilla() {
         
         generarEstructura();
     }
     
+    /**
+    * Constructor de la lista con el título, con los estilos necesarios
+    * 
+    */
     public Lista_plantilla(String titulo_lista) {
         
         generarEstructura();
@@ -44,6 +53,10 @@ public final class Lista_plantilla extends JPanel {
         this.setTitulo_lista(titulo_lista);
     }
     
+    /**
+    * Constructor de la lista con el título y el id, con los estilos necesarios
+    * 
+    */
     public Lista_plantilla(int idLista, String titulo_lista) {
         
         generarEstructura();
@@ -70,6 +83,10 @@ public final class Lista_plantilla extends JPanel {
         this.idLista = idLista;
     }
    
+    /**
+    * Función para poder generar la estructura de las listas
+    * 
+    */
     public void generarEstructura() {
        
         SpringLayout layout = new SpringLayout();

@@ -20,8 +20,10 @@ import static javax.swing.SwingConstants.CENTER;
 import javax.swing.Timer;
 
 /**
- *
- * @author Propietario
+ * Clase para el componente del popUp de ver o borrar la tarea
+ * Componente creado para crearlo cuando se pulse en el botón o icono concreto
+ * 
+ * @author Francisco
  */
 public class Popup_ver_borrar_tarea extends JDialog {
     
@@ -37,6 +39,10 @@ public class Popup_ver_borrar_tarea extends JDialog {
     
     JLabel label_resultado = new JLabel();
 
+    /**
+    * Constructor del PopUp con los estilos necesarios
+    * 
+    */
     public Popup_ver_borrar_tarea(Tarea_plantilla tarea, String tipo_popup) {
         
         super((Window) null, "PopUp", ModalityType.APPLICATION_MODAL);

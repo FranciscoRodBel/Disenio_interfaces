@@ -19,9 +19,12 @@ import javax.swing.SwingConstants;
 import static javax.swing.SwingConstants.CENTER;
 import javax.swing.Timer;
 
+
 /**
- *
- * @author Propietario
+ * Clase para el componente del popUp de crear y editar tarea
+ * Componente creado para crearlo cuando se pulse en el botón o icono concreto
+ * 
+ * @author Francisco
  */
 public class Popup_crear_editar_tarea extends JDialog {
     
@@ -45,7 +48,11 @@ public class Popup_crear_editar_tarea extends JDialog {
     Input_date input_fecha_terea;
     Input_text input_titulo_terea;
     JLabel label_resultado_tarea;
-            
+    
+    /**
+    * Constructor del PopUp con los estilos necesarios
+    * 
+    */     
     public Popup_crear_editar_tarea(Tarea_plantilla tarea) {
         
         super((Window) null, "PopUp", ModalityType.APPLICATION_MODAL);

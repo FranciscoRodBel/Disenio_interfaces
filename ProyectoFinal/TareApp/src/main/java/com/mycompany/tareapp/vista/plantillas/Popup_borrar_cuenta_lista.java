@@ -23,8 +23,10 @@ import static javax.swing.SwingConstants.CENTER;
 import javax.swing.Timer;
 
 /**
- *
- * @author Propietario
+ * Clase para el componente del popUp de borrar la cuenta o la lista
+ * Componente creado para crearlo cuando se pulse en el botón o icono concreto
+ * 
+ * @author Francisco
  */
 public class Popup_borrar_cuenta_lista extends JDialog {
     
@@ -42,6 +44,10 @@ public class Popup_borrar_cuenta_lista extends JDialog {
     
     JLabel label_resultado = new JLabel();
 
+    /**
+    * Constructor para generar el popUp y sus estilos
+    * 
+    */
     public Popup_borrar_cuenta_lista(int idLista, String dato_mostrar, String tipo_popup) {
         
         super((Window) null, "PopUp", ModalityType.APPLICATION_MODAL);
@@ -101,11 +107,11 @@ public class Popup_borrar_cuenta_lista extends JDialog {
 
             String mensaje_resultado = "";
             
-            if (tipo_popup.equals("cuenta")) {
+            if (tipo_popup.equals("cuenta")) { // Si quiere borrar la cuenta...
 
                 mensaje_resultado = usuario_controlador.borrar_usuario();
 
-                if (mensaje_resultado.isEmpty()) {
+                if (mensaje_resultado.isEmpty()) { // Si lo borra muestra el mensaje
 
                     mensaje_resultado = idioma_seleccionado.getPagina_ajustes_cuenta().getCuenta_borrada();
                 } 
@@ -115,27 +121,27 @@ public class Popup_borrar_cuenta_lista extends JDialog {
                 tiempo_espera.setRepeats(false);
                 tiempo_espera.start();
             
-                Main.cerrarSesion();
+                Main.cerrarSesion(); // Cierra la sesión
 
-            } else {
+            } else { // Si quiere borrar la lista...
 
                 mensaje_resultado = lista_controlador.borrar_lista(idLista);
 
-                if (mensaje_resultado.isEmpty()) {
+                if (mensaje_resultado.isEmpty()) { // Si lo borra muestra el mensaje
 
                     mensaje_resultado = idioma_seleccionado.getPagina_listas().getLista_borrada();
+                    
+                    // Actualizo todos los paneles y selects
                     listas_view.actualizar_panel_lista();
                     tareas_view.actualizar_select_listas();
                     tareas_view.actualizar_panel_tareas();
-                } 
+                }
                 
                 label_resultado.setText(mensaje_resultado);
                 Timer tiempo_espera = new Timer(3000, evt -> label_resultado.setText(""));
                 tiempo_espera.setRepeats(false);
                 tiempo_espera.start();
             }
-            
-
         });
     }
 }

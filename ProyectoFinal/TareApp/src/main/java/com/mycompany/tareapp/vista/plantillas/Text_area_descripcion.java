@@ -12,7 +12,9 @@ import javax.swing.JTextArea;
 import static javax.swing.SwingConstants.CENTER;
 
 /**
- *
+ * Clase para el componente del text area de la contraseña
+ * Componente creado para reducir código en otras páginas y no duplicarlo
+ * 
  * @author Francisco
  */
 public class Text_area_descripcion extends JScrollPane {
@@ -20,6 +22,10 @@ public class Text_area_descripcion extends JScrollPane {
     JTextArea textArea;
     TextPrompt placeholder;
     
+    /**
+    * Constructor del text area, con los estilos necesarios
+    * 
+    */
     public Text_area_descripcion(String texto_descripcion) {
         
         textArea = new JTextArea();
@@ -56,6 +62,10 @@ public class Text_area_descripcion extends JScrollPane {
         this.textArea = textArea;
     }
     
+    /**
+    * Método para poder ver el text area sin poder escribir en él, para la opción de ver tarea
+    * 
+    */
     public void cambiarFormatoVer() {
         
         this.setBorder(null);

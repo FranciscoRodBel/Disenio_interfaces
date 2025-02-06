@@ -20,9 +20,12 @@ import javax.swing.SwingConstants;
 import static javax.swing.SwingConstants.CENTER;
 import javax.swing.Timer;
 
+
 /**
- *
- * @author Propietario
+ * Clase para el componente del popUp de editar lista
+ * Componente creado para crearlo cuando se pulse en el botón o icono concreto
+ * 
+ * @author Francisco
  */
 public class Popup_editar_lista extends JDialog {
     
@@ -34,6 +37,10 @@ public class Popup_editar_lista extends JDialog {
     Input_text input_titulo_terea;
     JLabel label_resultado_lista = new JLabel("");
         
+    /**
+    * Constructor del PopUp con los estilos necesarios
+    * 
+    */
     public Popup_editar_lista(Lista_plantilla lista) {
         
         super((Window) null, "PopUp", ModalityType.APPLICATION_MODAL);

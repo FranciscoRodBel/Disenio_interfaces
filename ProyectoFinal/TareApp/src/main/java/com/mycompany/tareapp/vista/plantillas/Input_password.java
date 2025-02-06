@@ -8,13 +8,19 @@ import java.awt.Dimension;
 import javax.swing.JPasswordField;
 
 /**
- *
- * @author Propietario
+ * Clase para el componente del input de la contraseña
+ * Componente creado para reducir código, ya que se usa varias veces en la página de inicio y registro
+ * 
+ * @author Francisco
  */
 public class Input_password extends JPasswordField {
 
     TextPrompt placeholder;
     
+    /**
+    * Constructor del input de la contraseña, con los estilos necesarios
+    * 
+    */
     public Input_password(String texto_placeholder) {
         
         this.setBorder(new RoundedBorder(5, 2));

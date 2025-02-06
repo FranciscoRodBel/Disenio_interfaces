@@ -20,8 +20,10 @@ import static javax.swing.SwingConstants.CENTER;
 import javax.swing.Timer;
 
 /**
- *
- * @author Propietario
+ * Clase para el componente del popUp de actualizar email y contraseña
+ * Componente creado para crearlo cuando se pulse en el botón o icono concreto
+ * 
+ * @author Francisco
  */
 public class Popup_cambiar_email_contrasenia extends JDialog {
     
@@ -35,6 +37,10 @@ public class Popup_cambiar_email_contrasenia extends JDialog {
     String texto_input_repetir;
     JLabel label_resultado;
 
+    /**
+    * Constructor del PopUp con los estilos necesarios
+    * 
+    */
     public Popup_cambiar_email_contrasenia(String tipo_popup) {
         
         super((Window) null, "PopUp", ModalityType.APPLICATION_MODAL);

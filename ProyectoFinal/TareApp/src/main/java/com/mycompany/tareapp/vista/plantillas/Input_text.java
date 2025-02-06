@@ -8,13 +8,19 @@ import java.awt.Dimension;
 import javax.swing.JTextField;
 
 /**
- *
- * @author Propietario
+ * Clase para el componente del input del texto 
+ * Componente creado para reducir código, ya que se usa varias veces en distintas páginas
+ * 
+ * @author Francisco
  */
 public class Input_text extends JTextField {
 
     TextPrompt placeholder;
     
+    /**
+    * Constructor del input de texto, con los estilos necesarios
+    * 
+    */
     public Input_text(String texto_placeholder, String texto_input) {
         
         this.setBorder(new RoundedBorder(5, 2));
