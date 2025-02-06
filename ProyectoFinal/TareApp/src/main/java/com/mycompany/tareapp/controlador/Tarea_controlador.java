@@ -27,6 +27,11 @@ public class Tarea_controlador {
     */
     public String crear_tarea(String titulo, String prioridad, String fecha, String descripcion, int idLista) {
     
+        titulo = titulo.trim();
+        prioridad = prioridad.trim();
+        fecha = fecha.trim();
+        descripcion = descripcion.trim();
+        
         Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas(); // Recojo el idioma de tareas
         
         int prioridad_seleccionada = 1; // De manera predeterminada la prioridad se guardará como baja
@@ -49,7 +54,7 @@ public class Tarea_controlador {
         
         if (!tarea.es_fecha_valida()) return idioma_tareas.getFecha_no_valida(); // Comprueba que la fecha sea real y esté en el formato correcto
         
-        if (titulo.length() > 500) return idioma_tareas.getDescripcion_supera_caracteres();  // Si la descripción supera los 500 caracteres devuelve el error
+        if (descripcion.length() > 500) return idioma_tareas.getDescripcion_supera_caracteres();  // Si la descripción supera los 500 caracteres devuelve el error
         
         if (!tarea.es_texto_valido(descripcion)) return idioma_tareas.getDescripcion_no_valida(); // Evita que tenga simbolos raros
         
@@ -63,7 +68,7 @@ public class Tarea_controlador {
             
         } else { 
             
-            return idioma_tareas.getTarea_no_borrada(); // Si no se inserta devuelve el mensaje correspondiente
+            return idioma_tareas.getTarea_no_creada(); // Si no se inserta devuelve el mensaje correspondiente
         }
     }
     
@@ -102,6 +107,11 @@ public class Tarea_controlador {
     */
     public String editar_tarea(int idTarea, String titulo, String prioridad, String fecha, String descripcion, int idLista) {
     
+        titulo = titulo.trim();
+        prioridad = prioridad.trim();
+        fecha = fecha.trim();
+        descripcion = descripcion.trim();
+        
         Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas(); // Recojo el idioma de tareas
         
         int prioridad_seleccionada = 1; // De manera predeterminada la prioridad se guardará como baja
@@ -124,7 +134,7 @@ public class Tarea_controlador {
         
         if (!tarea.es_fecha_valida()) return idioma_tareas.getFecha_no_valida(); // Comprueba que la fecha sea real y esté en el formato correcto
         
-        if (titulo.length() > 500) return idioma_tareas.getDescripcion_supera_caracteres();  // Si la descripción supera los 500 caracteres devuelve el error
+        if (descripcion.length() > 500) return idioma_tareas.getDescripcion_supera_caracteres();  // Si la descripción supera los 500 caracteres devuelve el error
         
         if (!tarea.es_texto_valido(descripcion)) return idioma_tareas.getDescripcion_no_valida(); // Evita que tenga simbolos raros
         

@@ -25,6 +25,8 @@ public class Lista_controlador {
     */
     public String crear_lista(String titulo) {
     
+        titulo = titulo.trim();
+        
         if (titulo.length() > 50) return Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getTitulo_supera_caracteres(); // Si el título supera los 50 caracteres devuelve el error
         
         if (!Lista.es_titulo_valido(titulo)) return Idioma_controlador.getIdioma_seleccionado().getPagina_listas().getTitulo_no_valido(); // Comprueba que el texto sea válido
@@ -47,6 +49,8 @@ public class Lista_controlador {
     * @return Devuelve el resultado de actualizar la lista, si se consigue actuializar la lista devuelve vacío y si no un mensaje de error
     */
     public String actualizar_lista(int idLista, String titulo) {
+        
+        titulo = titulo.trim();
         
         if (titulo.length() > 50) return Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getTitulo_supera_caracteres(); // Si el título supera los 50 caracteres devuelve el error
         
