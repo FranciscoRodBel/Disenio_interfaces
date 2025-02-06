@@ -19,8 +19,10 @@ import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
 /**
- *
- * @author Propietario
+ * Clase para la vista de la página de ajustes
+ * En esta clase el usuario puede editar o borrar su usuario
+ * 
+ * @author Francisco
  */
 public class Ajustes_cuenta_view extends javax.swing.JPanel {
 
@@ -36,9 +38,12 @@ public class Ajustes_cuenta_view extends javax.swing.JPanel {
     Boton boton_cambiar_email = new Boton("Cambiar email", "amarillo");
     Boton boton_cambiar_contrasenia = new Boton("Cambiar contraseña", "amarillo");
     Boton boton_borrar_cuenta = new Boton("Borrar cuenta", "rojo");
+    
+ 
     /**
-     * Creates new form Ajustes_cuenta_view
-     */
+    * Constructor de los ajustes de la cuenta, crea toda la interfaz de la página
+    * 
+    */
     public Ajustes_cuenta_view() {
         initComponents();
         
@@ -158,6 +163,11 @@ public class Ajustes_cuenta_view extends javax.swing.JPanel {
         this.label_email_usuario = label_email_usuario;
     }
     
+    /**
+    * Función que permite recoger la clase como si fuese estática
+    * 
+    * @return Devuelve un objeto de la propia clase
+    */
     public static Ajustes_cuenta_view recoger_instancia() {
         
         if (ajustes_cuenta_view == null) {
@@ -168,6 +178,10 @@ public class Ajustes_cuenta_view extends javax.swing.JPanel {
         return ajustes_cuenta_view;
     }
     
+    /**
+    * Método que permite poner la clase a null, para cuando se cierra sesión o se borra el usuario
+    *
+    */
     public static void reiniciar_instancia() {
         Ajustes_cuenta_view.ajustes_cuenta_view = null;
     }

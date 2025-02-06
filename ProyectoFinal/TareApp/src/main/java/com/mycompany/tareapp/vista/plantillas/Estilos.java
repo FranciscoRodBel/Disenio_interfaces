@@ -9,9 +9,12 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
 import java.io.InputStream;
+
 /**
- *
- * @author Propietario
+ * Clase para almacenar los estilos de la página
+ * Se almacenan los colores y la fuente
+ * 
+ * @author Francisco
  */
 public class Estilos {
 
@@ -27,19 +30,28 @@ public class Estilos {
     private static final Color verde = new Color(35, 206, 107);
     private static Font fuente;
     
+    /**
+    * Constructor de los estilos, pone como predeterminada la letra
+    * 
+    */
     static {
         fuente = cargarFuente(14); // Carga inicial de la fuente con tamaño 14
     }
     
+    /**
+    * Función que permite recoger la fuente del archivo
+    * 
+    * @return Devuelve la fuente en un formato predeterminado
+    */
     private static Font cargarFuente(float tamanio) {
         
         try {
             
-            InputStream is = Estilos.class.getResourceAsStream("/com/mycompany/tareapp/vista/recursos/fuentes/Poppins-Regular.ttf");
+            InputStream is = Estilos.class.getResourceAsStream("/com/mycompany/tareapp/vista/recursos/fuentes/Poppins-Regular.ttf"); // recoge la fuente
 
             if (is != null) {
                    
-                return Font.createFont(Font.PLAIN, is).deriveFont(tamanio);
+                return Font.createFont(Font.PLAIN, is).deriveFont(tamanio); // Devuelve la fuente con el tamaño pasado
             }
             
         } catch (FontFormatException | IOException e) { 
@@ -47,7 +59,7 @@ public class Estilos {
             e.printStackTrace();
         }
         
-        return new Font("Arial", Font.PLAIN, 14);
+        return new Font("Arial", Font.PLAIN, 14); // Si da error devuelve otra fuente
     }
     
     public static Color getBlanco() {
@@ -94,11 +106,21 @@ public class Estilos {
         Estilos.fuente = fuente;
     }
     
+    /**
+    * Función que permite recoger la fuente en un tamaño concreto
+    * 
+    * @return Devuelve la fuente
+    */
     public static Font getFuenteConTamaio(float tamanio) {
         
         return cargarFuente(tamanio);
     }
     
+    /**
+    * Función que permite recoger la fuente en el formato del título
+    * 
+    * @return Devuelve la fuente, en negrita y con tamaño 20
+    */
     public static Font getFuenteTitulo() {
         
         return cargarFuente(20).deriveFont(Font.BOLD);

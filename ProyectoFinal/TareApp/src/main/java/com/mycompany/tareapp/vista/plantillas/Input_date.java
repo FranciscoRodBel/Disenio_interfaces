@@ -13,13 +13,19 @@ import javax.swing.SpringLayout;
 import javax.swing.text.MaskFormatter;
 
 /**
- *
- * @author Propietario
+ * Clase para el componente de la fecha de la tarea
+ * Componente creado para reducir código en la página de tareas y así tener el código más estructurado
+ * 
+ * @author Francisco
  */
 public class Input_date extends JFormattedTextField {
     
     JButton botonCalendario = new JButton();
     
+    /**
+    * Constructor del input date, con los estilos necesarios
+    * 
+    */
     public Input_date(String texto_fecha) {
         
         super(crearFormato());
@@ -44,8 +50,13 @@ public class Input_date extends JFormattedTextField {
         
         
     }
-    // Para el icono - https://www.youtube.com/watch?v=yc3sWITm4v8
+    // Para el icono - https://www.youtube.com/watch?v=yc3sWITm4v8 // No se añade en esta versión finalmente 
     
+    /**
+    * Función que permite bloquear la posibilidad de añadir la fecha en un formato distinto al que se pide
+    * 
+    * @return Devuelve el formato en el que tiene que ir la fecha
+    */
     public static MaskFormatter crearFormato() {
         
         try {
@@ -59,31 +70,4 @@ public class Input_date extends JFormattedTextField {
             return null;
         }
     }
-    
-    /*
-    public String solicitarFecha() {
-
-        String fecha = "";
-
-        do {
-
-            Scanner fechaNota = new Scanner(System.in); // Pide por consola la fecha para la nota
-            System.out.println(azul+"-                  Introduzca la fecha de la nota                  -");
-            System.out.println("-          Formato Día/Mes/Año - XX/XX/XXXX - 09/10/2024           -"+blanco);
-            System.out.print(verde+"> "+blanco);
-            fecha = fechaNota.nextLine();
-
-        } while (comprobarFecha(fecha)); // Comrpbará que sea válida, si lo es sale del bucle
-
-        String[] fechaDividida = fecha.split("/"); // Divido la fecha en Día, mes y año en un array
-
-        fechaDividida[0] = fechaDividida[0].length() == 1 ? "0" + fechaDividida[0] : fechaDividida[0]; // Si el día tenía un solo dígito le pongo un 0 delante
-        fechaDividida[1] = fechaDividida[1].length() == 1 ? "0" + fechaDividida[1] : fechaDividida[1]; // Si el mes tenía un solo dígito le pongo un 0 delante
-
-        fecha = fechaDividida[0] + "/" + fechaDividida[1] + "/" + fechaDividida[2]; // Vuelvo a juntar la fecha
-
-        return fecha;
-    }
-    */
-    
 }

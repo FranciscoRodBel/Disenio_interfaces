@@ -24,8 +24,10 @@ import javax.swing.JScrollPane;
 import javax.swing.Timer;
 
 /**
- *
- * @author Propietario
+ * Clase para la vista de la página de inicio de sesión y registro
+ * En esta clase el usuario puede crear su usuario e iniciar sesión
+ * 
+ * @author Francisco
  */
 public class Listas_view extends javax.swing.JPanel {
     
@@ -43,10 +45,10 @@ public class Listas_view extends javax.swing.JPanel {
     JButton boton_insertar_lista = new JButton();
     JLabel label_resultado_lista = new JLabel();
     
-    
-    /**
-     * Creates new form Listas_view
-     */
+   /**
+    * Constructor de la página de listas, crea toda la interfaz de la página
+    * 
+    */
     public Listas_view() {
         initComponents();
         
@@ -129,16 +131,20 @@ public class Listas_view extends javax.swing.JPanel {
         this.input_titulo_lista = input_titulo_lista;
     }
 
+    /**
+    * Función que permite actualizar el panel donde se muestran todas las listas del usuario en la página de listas
+    * 
+    */
     public void actualizar_panel_lista() {
         
-        panel_lista.setVisible(false);
-        panel_lista.removeAll();
+        panel_lista.setVisible(false); // Lo pongo en false para que luego al ponerlo true se actualice visualmente
+        panel_lista.removeAll(); // Borro todas las listas
     
-        ArrayList<HashMap<String, Object>> listas = Lista_controlador.recoger_listas();
+        ArrayList<HashMap<String, Object>> listas = Lista_controlador.recoger_listas(); // Recojo las listas
         
-        if (listas != null) {
+        if (listas != null) { // Si hay listas...
             
-            for(HashMap<String, Object> fila : listas) {
+            for(HashMap<String, Object> fila : listas) { // Las recorro y las añado al panel
         
                 int idLista = (int) fila.get("idLista");
                 String titulo = (String) fila.get("titulo");
@@ -156,6 +162,11 @@ public class Listas_view extends javax.swing.JPanel {
         panel_lista.repaint();
     }
        
+    /**
+    * Función que permite recoger la clase como si fuese estática
+    * 
+    * @return Devuelve un objeto de la propia clase
+    */
     public static Listas_view recoger_instancia() {
         
         if (Listas_view.listas_view == null) {
@@ -166,6 +177,10 @@ public class Listas_view extends javax.swing.JPanel {
         return Listas_view.listas_view;
     }
     
+    /**
+    * Método que permite poner la clase a null, para cuando se cierra sesión o se borra el usuario
+    *
+    */
     public static void reiniciar_instancia() {
         Listas_view.listas_view = null;
     }

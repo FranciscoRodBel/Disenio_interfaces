@@ -17,8 +17,10 @@ import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
 /**
- *
- * @author FranciscoRB
+ * Clase para la vista principal, ejecuta el programa
+ * En esta clase se añaden las demás vistas y componentes
+ * 
+ * @author Francisco
  */
 public class Main extends javax.swing.JFrame {
 
@@ -38,6 +40,10 @@ public class Main extends javax.swing.JFrame {
     static ActionListener listenerCerrarSesion;
     Usuario_controlador usuario_controlador = new Usuario_controlador();
     
+    /**
+    * Constructor de la página de main, crea parte de la interfaz de la página
+    * 
+    */
     public Main() throws FileNotFoundException {
         initComponents();
 
@@ -64,6 +70,7 @@ public class Main extends javax.swing.JFrame {
         layout.putConstraint(SpringLayout.EAST, iniciar_registrar_view, 0, SpringLayout.EAST, cabecera);
         iniciar_registrar_view.setVisible(true);
 
+        // Cambios de idiomas de la cabecera
         cabecera.getItemEspaniol().addActionListener((ActionEvent e) -> {
             
             Idioma_controlador.cambiarIdioma("Español");
@@ -103,7 +110,12 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
-    
+        
+   /**
+    * Método que permite generar las interfaces de las páginas donde el usuario puede interactuar
+    * Este método se crea ya que estos paneles solo se pueden crear cuand oel usuario inicie sesión
+    * 
+    */
     public static void generarInterfaz() {
         
         iniciar_registrar_view.setVisible(false);
@@ -130,6 +142,7 @@ public class Main extends javax.swing.JFrame {
         layout.putConstraint(SpringLayout.EAST, ajustes_cuenta_view, 0, SpringLayout.EAST, cabecera);
         ajustes_cuenta_view.setVisible(false);
         
+        // Se crean los listeners por separado ya que cuando cierra sesión o borra la cuenta necesito borrar los listeners
         listenerTareas = (ActionEvent e) -> {
             ocultarPaneles();
             tareas_view.setVisible(true);
@@ -156,28 +169,38 @@ public class Main extends javax.swing.JFrame {
         cabecera.getItemCerrarSesion().addActionListener(listenerCerrarSesion);
     }
     
+    /**
+    * Método que permite reiniciar los paneles al estado que estaban antes de iniciar sesión
+    * 
+    */
     public static void cerrarSesion() {
     
+        // Borro los paneles
         panelPrincipal.remove(ajustes_cuenta_view);
         panelPrincipal.remove(listas_view);
         panelPrincipal.remove(tareas_view);
-        Usuario_controlador.setUsuario(null);
+        Usuario_controlador.setUsuario(null); // pongo el usuario que tiene la sesión iniciada como null
 
+        // Pongo los paneles como null, para que cuando inicie sesión se creen de nuevo
         Listas_view.reiniciar_instancia();
         Tareas_view.reiniciar_instancia();
         Ajustes_cuenta_view.reiniciar_instancia();
 
-        listas_view.removeAll();
-        tareas_view.removeAll();
+        // Oculto los paneles y muestro el inicio y registro
         ocultarPaneles();
         iniciar_registrar_view.setVisible(true);
 
+        // Elimino los listeners
         cabecera.getItemTareas().removeActionListener(listenerTareas);
         cabecera.getItemListas().removeActionListener(listenerListas);
         cabecera.getItemAjustes().removeActionListener(listenerAjustes);
         cabecera.getItemCerrarSesion().removeActionListener(listenerCerrarSesion);
     }
-
+    
+    /**
+    * Método que pone todos los paneles en oculto, para luego mostrar el que se quiere tener en pantalla
+    * 
+    */
     public static void ocultarPaneles() {
     
         tareas_view.setVisible(false);

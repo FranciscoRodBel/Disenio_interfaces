@@ -5,8 +5,9 @@
 package com.mycompany.tareapp.modelo.idioma;
 
 /**
+ * Clase para el modelo del idioma de la página de tareas
  *
- * @author Propietario
+ * @author Francisco
  */
 public class Pagina_tareas {
 

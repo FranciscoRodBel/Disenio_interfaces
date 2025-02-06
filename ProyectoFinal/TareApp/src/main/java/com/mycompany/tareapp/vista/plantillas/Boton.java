@@ -11,12 +11,19 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicButtonUI;
 
+    
 /**
- *
- * @author Propietario
+ * Clase para el componente del botón
+ * Componente creado para reducir código de estilos
+ * 
+ * @author Francisco
  */
 public class Boton extends JButton {
     
+    /**
+    * Constructor del botón, con los estilos necesarios
+    * 
+    */
     public Boton(String texto_boton, String tipo_boton) {
         
         this.setText(texto_boton);
@@ -39,6 +46,7 @@ public class Boton extends JButton {
         Color colorFondo = getBackground();
         Color colorLetra = getForeground();
         
+        // Este listener escuchará cuando se pase por encima de los botones
         this.addMouseListener(new MouseAdapter() {
 
             

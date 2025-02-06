@@ -5,8 +5,9 @@
 package com.mycompany.tareapp.modelo.idioma;
 
 /**
+ * Clase para el modelo del idioma
  *
- * @author Propietario
+ * @author Francisco
  */
 public class Idioma {
 

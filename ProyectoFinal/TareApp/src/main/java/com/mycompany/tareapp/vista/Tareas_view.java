@@ -31,9 +31,12 @@ import javax.swing.JToolBar;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
+    
 /**
- *
- * @author Propietario
+ * Clase para la vista de la tareas
+ * En esta clase el usuario puede crear, ver editar y borrar tareas
+ * 
+ * @author Francisco
  */
 public final class Tareas_view extends javax.swing.JPanel {
     
@@ -58,10 +61,11 @@ public final class Tareas_view extends javax.swing.JPanel {
     
     JPanel panelTareas = new JPanel();
     JScrollPane scroll_panelTareas = new JScrollPane(panelTareas);
-    
+
     /**
-     * Creates new form Tareas_view2
-     */
+    * Constructor de la página de tareas, crea toda la interfaz de la página
+    * 
+    */
     public Tareas_view() {
         initComponents();
         
@@ -333,7 +337,10 @@ public final class Tareas_view extends javax.swing.JPanel {
         this.botonOrdenado91 = botonOrdenado91;
     }
 
-    
+    /**
+    * Método que pone todos los botones del orden como activos para ser pulsados
+    * 
+    */
     public void mostrarBotonesOrden() {
         
         this.botonOrdenadoAZ.setEnabled(true);
@@ -342,12 +349,16 @@ public final class Tareas_view extends javax.swing.JPanel {
         this.botonOrdenado91.setEnabled(true);
     }
     
+    /**
+    * Función que permite actualizar el panel donde se muestran todas las tareas del usuario en la página de tareas
+    * 
+    */
     public void actualizar_panel_tareas() {
         
         panelTareas.setVisible(false);
         panelTareas.removeAll();
     
-        Lista listaSeleccionada = (Lista) seleccionarLista.getSelectedItem();
+        Lista listaSeleccionada = (Lista) seleccionarLista.getSelectedItem(); // Recojo la lista seleccionada
         
         botonPrioridadBaja.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-down-solid.png"));
         botonPrioridadMedia.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-right-solid.png"));
@@ -359,13 +370,13 @@ public final class Tareas_view extends javax.swing.JPanel {
         
         if (listaSeleccionada != null) {
             
-            String consulta = Tarea_controlador.generarConsulta(listaSeleccionada.getIdLista(), botonTareasCompletadas.isOpaque(), botonTareasIncompletas.isOpaque(), botonPrioridadBaja.isOpaque(), botonPrioridadMedia.isOpaque(),botonPrioridadAlta.isOpaque(), grupoBotonesOdenacion.getSelection().getActionCommand());
+            String consulta = Tarea_controlador.generarConsulta(listaSeleccionada.getIdLista(), botonTareasCompletadas.isOpaque(), botonTareasIncompletas.isOpaque(), botonPrioridadBaja.isOpaque(), botonPrioridadMedia.isOpaque(),botonPrioridadAlta.isOpaque(), grupoBotonesOdenacion.getSelection().getActionCommand()); // Genero la consulta
 
-            ArrayList<HashMap<String, Object>> tareas = Tarea_controlador.recoger_tareas(consulta);
+            ArrayList<HashMap<String, Object>> tareas = Tarea_controlador.recoger_tareas(consulta); // Recojo las tareas
 
             if (tareas != null) {
 
-                for(HashMap<String, Object> fila : tareas) {
+                for(HashMap<String, Object> fila : tareas) { // Recorro las tareas y las voy añadiendo al panel
 
                     int idTarea = (int) fila.get("idTarea");
                     boolean completada = (boolean) fila.get("completada");
@@ -389,16 +400,20 @@ public final class Tareas_view extends javax.swing.JPanel {
         }
     }
     
+    /**
+    * Función que permite actualizar las listas del select de la página de tareas
+    * 
+    */
     public void actualizar_select_listas() {
     
-        seleccionarLista.removeAllItems();
+        seleccionarLista.removeAllItems(); // Borra todas las listas
        
-        seleccionarLista.addItem(new Lista(0, "Seleccionar lista", ""));
-        ArrayList<HashMap<String, Object>> listas = Lista_controlador.recoger_listas();
+        seleccionarLista.addItem(new Lista(0, "Seleccionar lista", "")); // Añade el mensaje predeterminado
+        ArrayList<HashMap<String, Object>> listas = Lista_controlador.recoger_listas(); // Recoge todas las listas
         
         if (listas != null) {
             
-            for(HashMap<String, Object> fila : listas) {
+            for(HashMap<String, Object> fila : listas) { // Recorre y añade todas las listas
         
                 int idLista = (int) fila.get("idLista");
                 String titulo = (String) fila.get("titulo");
@@ -410,10 +425,15 @@ public final class Tareas_view extends javax.swing.JPanel {
             }
         }
 
-        seleccionarLista.setSelectedIndex(seleccionarLista.getItemCount() - 1);
-        actualizar_panel_tareas();
+        seleccionarLista.setSelectedIndex(seleccionarLista.getItemCount() - 1); // Selecciona la última lista
+        actualizar_panel_tareas(); // Al actualizar la lista necesito actualizar también el panel de tareas, por si la lista fue borrada
     }
     
+    /**
+    * Función que permite buscar el id de la lista que está seleccionada en el select
+    * 
+    * @return Devuelve el id de la lista
+    */
     public int recoger_id_lista_seleccionada() {
         
         Lista listaSeleccionada = (Lista) seleccionarLista.getSelectedItem();
@@ -427,12 +447,22 @@ public final class Tareas_view extends javax.swing.JPanel {
         return 0;
     }
     
+    /**
+    * Función que permite convertir el formato Date de la BBDD al formato de la aplicación dd/mm/yyyy
+    * 
+    * @return Devuelve la fecha en el formato dd/mm/yyyy
+    */
     public String convertir_fecha_a_string(Date fechaSQL) {
         
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         return formato.format(fechaSQL);
     }
     
+    /**
+    * Función que permite recoger la clase como si fuese estática
+    * 
+    * @return Devuelve un objeto de la propia clase
+    */
     public static Tareas_view recoger_instancia() {
         
         if (tareas_view == null) {
@@ -443,6 +473,10 @@ public final class Tareas_view extends javax.swing.JPanel {
         return tareas_view;
     }
     
+    /**
+    * Método que permite poner la clase a null, para cuando se cierra sesión o se borra el usuario
+    *
+    */
     public static void reiniciar_instancia() {
         Tareas_view.tareas_view = null;
     }

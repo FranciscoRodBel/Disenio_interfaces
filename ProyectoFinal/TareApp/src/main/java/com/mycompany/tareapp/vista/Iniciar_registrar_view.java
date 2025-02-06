@@ -23,9 +23,12 @@ import javax.swing.Timer;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicButtonUI;
 
+
 /**
- *
- * @author Propietario
+ * Clase para la vista de la página de inicio de sesión y registro
+ * En esta clase el usuario puede crear su usuario e iniciar sesión
+ * 
+ * @author Francisco
  */
 public class Iniciar_registrar_view extends javax.swing.JPanel {
     
@@ -54,9 +57,10 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
     JLabel label_resultado_inicio = new JLabel();
     JLabel label_resultado_registro = new JLabel();
 
-    /**
-     * Creates new form Iniciar_registrar_view2
-     */
+   /**
+    * Constructor de la página de inicio de sesión y registro, crea toda la interfaz de la página
+    * 
+    */
     public Iniciar_registrar_view() {
         initComponents();
         
@@ -340,6 +344,11 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         this.email_registro = email_registro;
     }
     
+    /**
+    * Función que permite recoger la clase como si fuese estática
+    * 
+    * @return Devuelve un objeto de la propia clase
+    */
     public static Iniciar_registrar_view recoger_instancia() {
         
         if (iniciar_registrar_view == null) {

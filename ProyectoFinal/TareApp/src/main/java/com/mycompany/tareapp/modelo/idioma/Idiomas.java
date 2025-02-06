@@ -7,8 +7,9 @@ package com.mycompany.tareapp.modelo.idioma;
 import java.util.ArrayList;
 
 /**
+ * Clase para el modelo de los idiomas, es una rray con todos los idiomas
  *
- * @author Propietario
+ * @author Francisco
  */
 public class Idiomas {
 

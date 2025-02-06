@@ -17,9 +17,12 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
+    
 /**
- *
- * @author Propietario
+ * Clase para el componente de la cabecera
+ * Componente creado para reducir código de estilos, ya que esta cabecera se encuentra en todos los paneles
+ * 
+ * @author Francisco
  */
 public class Cabecera extends JPanel {
 
@@ -115,6 +118,10 @@ public class Cabecera extends JPanel {
         this.menuCuenta = menuCuenta;
     }
     
+    /**
+    * Constructor de la cabecera, con los estilos necesarios
+    * 
+    */
     public Cabecera() {
         
         SpringLayout layout = new SpringLayout();
@@ -193,8 +200,11 @@ public class Cabecera extends JPanel {
 
     }
     
-    
-    
+    /**
+    * Función que permite recoger la clase como si fuese estática
+    * 
+    * @return Devuelve un objeto de la propia clase
+    */
     public static Cabecera recoger_instancia() {
         
         if (cabecera == null) {

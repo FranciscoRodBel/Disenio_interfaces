@@ -5,8 +5,9 @@
 package com.mycompany.tareapp.modelo.idioma;
 
 /**
+ * Clase para el modelo del idioma de la página de listas
  *
- * @author Propietario
+ * @author Francisco
  */
 public class Pagina_listas {
 

@@ -5,8 +5,9 @@
 package com.mycompany.tareapp.modelo.idioma;
 
 /**
+ * Clase para el modelo del idioma de la cabecera
  *
- * @author Propietario
+ * @author Francisco
  */
 public class Cabecera {
 
