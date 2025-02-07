@@ -19,6 +19,7 @@ import java.util.logging.Logger;
  */
 public class BBDD_controlador {
 
+    private static final String ruta_servidor = "localhost:3306";
     private static final String nombre_bbdd = "tareapp";
     private static final String usuario = "root";
     private static final String contrasenia = "root";
@@ -33,7 +34,7 @@ public class BBDD_controlador {
         
         try {
             
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+nombre_bbdd+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", usuario, contrasenia); // Establece la conexión con la base de datos
+            conexion = DriverManager.getConnection("jdbc:mysql://"+ruta_servidor+"/"+nombre_bbdd+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", usuario, contrasenia); // Establece la conexión con la base de datos
             
         } catch (SQLException ex) {
             
