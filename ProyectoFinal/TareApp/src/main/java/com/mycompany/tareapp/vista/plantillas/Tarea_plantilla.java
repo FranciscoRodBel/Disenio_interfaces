@@ -29,7 +29,7 @@ public final class Tarea_plantilla extends JPanel {
     
     JLabel tituloTarea = new JLabel("Título tarea");
     
-    JLabel labelPrioridad = new JLabel(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-down-solid.png"));
+    JLabel labelPrioridad = new JLabel(new ImageIcon(getClass().getResource("/imagenes/circle-arrow-down-solid.png")));
     
     JLabel fechaTarea = new JLabel("05/01/2025");
     
@@ -124,27 +124,27 @@ public final class Tarea_plantilla extends JPanel {
     
     public void setTareaCompletada() {
         
-        botonTareaCompletada.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-check-solid-black.png"));
+        botonTareaCompletada.setIcon(new ImageIcon(getClass().getResource("/imagenes/square-check-solid-black.png")));
     }
     
     public void setTareaIncompleta() {
         
-        botonTareaCompletada.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-regular-black.png"));
+        botonTareaCompletada.setIcon(new ImageIcon(getClass().getResource("/imagenes/square-regular-black.png")));
     }
     
     public void setPrioridadBaja() {
         
-        this.getLabelPrioridad().setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-down-solid.png"));
+        this.getLabelPrioridad().setIcon(new ImageIcon(getClass().getResource("/imagenes/circle-arrow-down-solid.png")));
     }
     
     public void setPrioridadMedia() {
         
-        this.getLabelPrioridad().setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-right-solid.png"));
+        this.getLabelPrioridad().setIcon(new ImageIcon(getClass().getResource("/imagenes/circle-arrow-right-solid.png")));
     }
     
     public void setPrioridadAlta() {
         
-        this.getLabelPrioridad().setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-up-solid.png"));
+        this.getLabelPrioridad().setIcon(new ImageIcon(getClass().getResource("/imagenes/circle-arrow-up-solid.png")));
     }
 
     public int getPrioridadTarea() {
@@ -192,7 +192,7 @@ public final class Tarea_plantilla extends JPanel {
         
         this.add(botonTareaCompletada);
         botonTareaCompletada.setPreferredSize(new Dimension(30, 30));
-        botonTareaCompletada.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-check-solid-black.png"));
+        botonTareaCompletada.setIcon(new ImageIcon(getClass().getResource("/imagenes/square-check-solid-black.png")));
         botonTareaCompletada.setContentAreaFilled(false); // Elimino el fondo
         layout.putConstraint(SpringLayout.WEST, botonTareaCompletada, 15, SpringLayout.WEST, separador1);
         layout.putConstraint(SpringLayout.NORTH, botonTareaCompletada, 10, SpringLayout.NORTH, separador1);
@@ -244,21 +244,21 @@ public final class Tarea_plantilla extends JPanel {
         
         this.add(botonVerTarea);
         botonVerTarea.setPreferredSize(new Dimension(30, 30));
-        botonVerTarea.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/eye-solid.png"));
+        botonVerTarea.setIcon(new ImageIcon(getClass().getResource("/imagenes/eye-solid.png")));
         botonVerTarea.setContentAreaFilled(false); // Elimino el fondo
         layout.putConstraint(SpringLayout.WEST, botonVerTarea, 10, SpringLayout.WEST, separador5);
         layout.putConstraint(SpringLayout.NORTH, botonVerTarea, 5, SpringLayout.NORTH, separador5);
         
         this.add(botonEditarTarea);
         botonEditarTarea.setPreferredSize(new Dimension(30, 30));
-        botonEditarTarea.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/pen-to-square-solid.png"));
+        botonEditarTarea.setIcon(new ImageIcon(getClass().getResource("/imagenes/pen-to-square-solid.png")));
         botonEditarTarea.setContentAreaFilled(false); // Elimino el fondo
         layout.putConstraint(SpringLayout.WEST, botonEditarTarea, 50, SpringLayout.WEST, botonVerTarea);
         layout.putConstraint(SpringLayout.NORTH, botonEditarTarea, 0, SpringLayout.NORTH, botonVerTarea);
         
         this.add(botonBorrarTarea);
         botonBorrarTarea.setPreferredSize(new Dimension(30, 30));
-        botonBorrarTarea.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/trash-can-solid.png"));
+        botonBorrarTarea.setIcon(new ImageIcon(getClass().getResource("/imagenes/trash-can-solid.png")));
         botonBorrarTarea.setContentAreaFilled(false); // Elimino el fondo
         layout.putConstraint(SpringLayout.WEST, botonBorrarTarea, 50, SpringLayout.WEST, botonEditarTarea);
         layout.putConstraint(SpringLayout.NORTH, botonBorrarTarea, 0, SpringLayout.NORTH, botonEditarTarea);

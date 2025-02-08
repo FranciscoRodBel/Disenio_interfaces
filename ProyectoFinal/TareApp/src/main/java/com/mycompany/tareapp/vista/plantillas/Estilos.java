@@ -47,7 +47,7 @@ public class Estilos {
         
         try {
             
-            InputStream is = Estilos.class.getResourceAsStream("/com/mycompany/tareapp/vista/recursos/fuentes/Poppins-Regular.ttf"); // recoge la fuente
+            InputStream is = Estilos.class.getResourceAsStream("/fuentes/Poppins-Regular.ttf"); // recoge la fuente
 
             if (is != null) {
                    

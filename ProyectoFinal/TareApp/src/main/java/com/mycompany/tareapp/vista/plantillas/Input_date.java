@@ -37,7 +37,8 @@ public class Input_date extends JFormattedTextField {
         this.setFont(Estilos.getFuente());
         this.setPreferredSize(new Dimension(260, 35));
         
-        botonCalendario.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/calendar-days-solid.png"));
+        
+        botonCalendario.setIcon(new ImageIcon(getClass().getResource("/imagenes/calendar-days-solid.png")));
         botonCalendario.setPreferredSize(new Dimension(30,30));
         botonCalendario.setContentAreaFilled(false); // Elimino el fondo
         this.add(botonCalendario);

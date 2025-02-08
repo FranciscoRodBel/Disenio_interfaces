@@ -117,21 +117,21 @@ public final class Lista_plantilla extends JPanel {
         
         this.add(botonVerLista);
         botonVerLista.setPreferredSize(new Dimension(30, 30));
-        botonVerLista.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/eye-solid.png"));
+        botonVerLista.setIcon(new ImageIcon(getClass().getResource("/imagenes/eye-solid.png")));
         botonVerLista.setContentAreaFilled(false); // Elimino el fondo
         layout.putConstraint(SpringLayout.WEST, botonVerLista, 20, SpringLayout.WEST, separador2);
         layout.putConstraint(SpringLayout.NORTH, botonVerLista, 5, SpringLayout.NORTH, separador2);
         
         this.add(botonEditarLista);
         botonEditarLista.setPreferredSize(new Dimension(30, 30));
-        botonEditarLista.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/pen-to-square-solid.png"));
+        botonEditarLista.setIcon(new ImageIcon(getClass().getResource("/imagenes/pen-to-square-solid.png")));
         botonEditarLista.setContentAreaFilled(false); // Elimino el fondo
         layout.putConstraint(SpringLayout.WEST, botonEditarLista, 50, SpringLayout.WEST, botonVerLista);
         layout.putConstraint(SpringLayout.NORTH, botonEditarLista, 0, SpringLayout.NORTH, botonVerLista);
         
         this.add(botonBorrarLista);
         botonBorrarLista.setPreferredSize(new Dimension(30, 30));
-        botonBorrarLista.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/trash-can-solid.png"));
+        botonBorrarLista.setIcon(new ImageIcon(getClass().getResource("/imagenes/trash-can-solid.png")));
         botonBorrarLista.setContentAreaFilled(false); // Elimino el fondo
         layout.putConstraint(SpringLayout.WEST, botonBorrarLista, 50, SpringLayout.WEST, botonEditarLista);
         layout.putConstraint(SpringLayout.NORTH, botonBorrarLista, 0, SpringLayout.NORTH, botonEditarLista);

@@ -30,7 +30,7 @@ public class Cabecera extends JPanel {
     
     Font fuente = Estilos.getFuente();
     
-    JLabel imagenLogo = new JLabel(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/logo.png"));
+    JLabel imagenLogo = new JLabel(new ImageIcon(getClass().getResource("/imagenes/logo.png")));
     JLabel nombreApp = new JLabel("TareApp");
     
     JMenuBar menuBarras = new JMenuBar();

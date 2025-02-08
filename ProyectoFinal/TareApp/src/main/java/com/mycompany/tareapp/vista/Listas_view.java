@@ -69,7 +69,7 @@ public class Listas_view extends javax.swing.JPanel {
         layout.putConstraint(SpringLayout.WEST, input_titulo_lista, 350, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, input_titulo_lista, 50, SpringLayout.NORTH, titulo_pagina);
         
-        boton_insertar_lista.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-plus-solid.png"));
+        boton_insertar_lista.setIcon(new ImageIcon(getClass().getResource("/imagenes/circle-plus-solid.png")));
         this.add(boton_insertar_lista);
         boton_insertar_lista.setPreferredSize(new Dimension(40, 40));
         boton_insertar_lista.setContentAreaFilled(false); // Elimino el fondo

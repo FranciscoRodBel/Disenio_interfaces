@@ -82,16 +82,16 @@ public final class Tareas_view extends javax.swing.JPanel {
         layout.putConstraint(SpringLayout.NORTH, barraHerramientas, 0, SpringLayout.NORTH, this);
         layout.putConstraint(SpringLayout.EAST, barraHerramientas, 0, SpringLayout.EAST, this);
         
-        botonCrearTarea.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/plus-solid.png"));
-        botonTareasCompletadas.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-check-solid.png"));
-        botonTareasIncompletas.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/square-regular.png"));
-        botonPrioridadBaja.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-down-solid.png"));
-        botonPrioridadMedia.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-right-solid.png"));
-        botonPrioridadAlta.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-up-solid.png"));
-        botonOrdenadoAZ.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-a-z-solid.png"));
-        botonOrdenadoZA.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-z-a-solid.png"));
-        botonOrdenado19.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-1-9-solid.png"));
-        botonOrdenado91.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-9-1-solid.png"));
+        botonCrearTarea.setIcon(new ImageIcon(getClass().getResource("/imagenes/plus-solid.png")));
+        botonTareasCompletadas.setIcon(new ImageIcon(getClass().getResource("/imagenes/square-check-solid.png")));
+        botonTareasIncompletas.setIcon(new ImageIcon(getClass().getResource("/imagenes/square-regular.png")));
+        botonPrioridadBaja.setIcon(new ImageIcon(getClass().getResource("/imagenes/circle-arrow-down-solid.png")));
+        botonPrioridadMedia.setIcon(new ImageIcon(getClass().getResource("/imagenes/circle-arrow-right-solid.png")));
+        botonPrioridadAlta.setIcon(new ImageIcon(getClass().getResource("/imagenes/circle-arrow-up-solid.png")));
+        botonOrdenadoAZ.setIcon(new ImageIcon(getClass().getResource("/imagenes/arrow-down-a-z-solid.png")));
+        botonOrdenadoZA.setIcon(new ImageIcon(getClass().getResource("/imagenes/arrow-down-z-a-solid.png")));
+        botonOrdenado19.setIcon(new ImageIcon(getClass().getResource("/imagenes/arrow-down-1-9-solid.png")));
+        botonOrdenado91.setIcon(new ImageIcon(getClass().getResource("/imagenes/arrow-down-9-1-solid.png")));
         botonTareasCompletadas.setMargin(new Insets(5,5,5,5));
         botonTareasIncompletas.setMargin(new Insets(5,5,5,5));
         botonPrioridadBaja.setMargin(new Insets(5,5,5,5));
@@ -360,13 +360,13 @@ public final class Tareas_view extends javax.swing.JPanel {
     
         Lista listaSeleccionada = (Lista) seleccionarLista.getSelectedItem(); // Recojo la lista seleccionada
         
-        botonPrioridadBaja.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-down-solid.png"));
-        botonPrioridadMedia.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-right-solid.png"));
-        botonPrioridadAlta.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/circle-arrow-up-solid.png"));
-        botonOrdenadoAZ.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-a-z-solid.png"));
-        botonOrdenadoZA.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-z-a-solid.png"));
-        botonOrdenado19.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-1-9-solid.png"));
-        botonOrdenado91.setIcon(new ImageIcon("src/main/java/com/mycompany/tareapp/vista/recursos/imagenes/arrow-down-9-1-solid.png"));
+        botonPrioridadBaja.setIcon(new ImageIcon(getClass().getResource("/imagenes/circle-arrow-down-solid.png")));
+        botonPrioridadMedia.setIcon(new ImageIcon(getClass().getResource("/imagenes/circle-arrow-right-solid.png")));
+        botonPrioridadAlta.setIcon(new ImageIcon(getClass().getResource("/imagenes/circle-arrow-up-solid.png")));
+        botonOrdenadoAZ.setIcon(new ImageIcon(getClass().getResource("/imagenes/arrow-down-a-z-solid.png")));
+        botonOrdenadoZA.setIcon(new ImageIcon(getClass().getResource("/imagenes/arrow-down-z-a-solid.png")));
+        botonOrdenado19.setIcon(new ImageIcon(getClass().getResource("/imagenes/arrow-down-1-9-solid.png")));
+        botonOrdenado91.setIcon(new ImageIcon(getClass().getResource("/imagenes/arrow-down-9-1-solid.png")));
         
         if (listaSeleccionada != null) {
             
