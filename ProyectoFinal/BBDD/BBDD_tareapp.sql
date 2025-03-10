@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema tareapp
+-- Schema tareapp_bbdd
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema tareapp
+-- Schema tareapp_bbdd
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `tareapp` DEFAULT CHARACTER SET utf8 ;
-USE `tareapp` ;
+CREATE SCHEMA IF NOT EXISTS `tareapp_bbdd` DEFAULT CHARACTER SET utf8 ;
+USE `tareapp_bbdd` ;
 
 -- -----------------------------------------------------
--- Table `tareapp`.`usuario`
+-- Table `tareapp_bbdd`.`usuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tareapp`.`usuario` (
+CREATE TABLE IF NOT EXISTS `tareapp_bbdd`.`usuario` (
   `email` VARCHAR(255) NOT NULL,
   `contrasenia` VARCHAR(70) NOT NULL,
   `idioma_seleccionado` VARCHAR(45) NOT NULL DEFAULT 'Español',
@@ -29,9 +29,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `tareapp`.`lista`
+-- Table `tareapp_bbdd`.`lista`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tareapp`.`lista` (
+CREATE TABLE IF NOT EXISTS `tareapp_bbdd`.`lista` (
   `idLista` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(50) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
@@ -39,16 +39,16 @@ CREATE TABLE IF NOT EXISTS `tareapp`.`lista` (
   INDEX `fk_lista_usuario_idx` (`email` ASC) VISIBLE,
   CONSTRAINT `fk_lista_usuario`
     FOREIGN KEY (`email`)
-    REFERENCES `tareapp`.`usuario` (`email`)
+    REFERENCES `tareapp_bbdd`.`usuario` (`email`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `tareapp`.`tarea`
+-- Table `tareapp_bbdd`.`tarea`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tareapp`.`tarea` (
+CREATE TABLE IF NOT EXISTS `tareapp_bbdd`.`tarea` (
   `idTarea` INT NOT NULL AUTO_INCREMENT,
   `completada` TINYINT(1) NOT NULL DEFAULT 0,
   `titulo` VARCHAR(50) NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `tareapp`.`tarea` (
   INDEX `fk_tarea_lista1_idx` (`idLista` ASC) VISIBLE,
   CONSTRAINT `fk_tarea_lista1`
     FOREIGN KEY (`idLista`)
-    REFERENCES `tareapp`.`lista` (`idLista`)
+    REFERENCES `tareapp_bbdd`.`lista` (`idLista`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;

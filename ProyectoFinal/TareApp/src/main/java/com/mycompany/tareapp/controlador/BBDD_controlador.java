@@ -19,10 +19,10 @@ import java.util.logging.Logger;
  */
 public class BBDD_controlador {
 
-    private static final String ruta_servidor = "localhost:3306";
-    private static final String nombre_bbdd = "tareapp";
-    private static final String usuario = "root";
-    private static final String contrasenia = "root";
+    private static final String ruta_servidor = "tareapp-1.crwyy0o20y2n.eu-north-1.rds.amazonaws.com";
+    private static final String nombre_bbdd = "tareapp_bbdd";
+    private static final String usuario = "admin_tareapp";
+    private static final String contrasenia = "RSgJW84VtG3BHMq";
     private static Connection conexion;
 
     /**
