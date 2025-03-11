@@ -30,7 +30,7 @@ public class BBDD_tareapp {
     public ArrayList<HashMap<String, Object>> consultar(String consulta_consultar) {
         
         ArrayList<HashMap<String, Object>> resultados = new ArrayList<>(); // Array final que se devuelve con todos los datos
-        Connection conexion = BBDD_controlador.abrirConexion(); // Abro la conexión
+        Connection conexion = BBDD_controlador.getConexion();
         
         try {
             
@@ -55,10 +55,6 @@ public class BBDD_tareapp {
             
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             return null;
-
-        } finally {
-            
-            BBDD_controlador.cerrarConexion(); // Cierra la conexión
         }
         
         return resultados; // Devuelvo el array list
@@ -71,7 +67,7 @@ public class BBDD_tareapp {
     */
     public boolean insertar(String consulta_insertar) { 
         
-        Connection conexion = BBDD_controlador.abrirConexion();
+        Connection conexion = BBDD_controlador.getConexion();
         
         try {
 
@@ -84,9 +80,6 @@ public class BBDD_tareapp {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             return false;
             
-        } finally {
-            
-            BBDD_controlador.cerrarConexion(); // Cierra la conexión
         }
     }
     
@@ -97,7 +90,7 @@ public class BBDD_tareapp {
     */
     public boolean borrar(String consulta_borrar) {
         
-        Connection conexion = BBDD_controlador.abrirConexion();
+        Connection conexion = BBDD_controlador.getConexion();
 
         try {
             
@@ -110,9 +103,6 @@ public class BBDD_tareapp {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             return false;
 
-        } finally {
-            
-            BBDD_controlador.cerrarConexion(); // Cierra la conexión
         }
     }
 }

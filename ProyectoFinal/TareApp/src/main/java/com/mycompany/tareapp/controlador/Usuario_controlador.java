@@ -5,6 +5,7 @@
 package com.mycompany.tareapp.controlador;
 
 import com.mycompany.tareapp.modelo.BBDD_tareapp;
+import com.mycompany.tareapp.modelo.SMTP;
 import com.mycompany.tareapp.modelo.Usuario;
 import com.mycompany.tareapp.modelo.idioma.Pagina_inicio_registro;
 
@@ -64,7 +65,8 @@ public class Usuario_controlador {
     * 
     * @return Devuelve el resultado de registrarse, si se consigue registrar devuelve vacío y si no un mensaje de error
     */
-    public String registrar_usuario(String email,String contrasenia,String repetir_contrasenia, String idioma_seleccionado) {
+    
+    public String comprobar_datos_registro(String email,String contrasenia,String repetir_contrasenia) {
         
         email = email.trim().toLowerCase(); // Pasa el email a minúsculas
         
@@ -79,6 +81,29 @@ public class Usuario_controlador {
         if (!contrasenia.equals(repetir_contrasenia)) return idioma.getContrasenia_no_coincide(); // Compruebo si las dos contraseñas son iguales
         
         if (!Usuario.es_contrasenia_valida(contrasenia)) return idioma.getContrasenia_invalida(); // Compruebo que la contraseña cumple con los requisitos mínimos de seguridad
+        
+        return "";
+    }
+    
+    public String confirmar_email(String email, int codigo) {
+        
+        SMTP smtp = new SMTP();
+        
+        if (smtp.enviarEmail(email, codigo)) {
+        
+            return "";
+        
+        } else {
+        
+            return "No se ha podido enviar el email";
+        }
+    }
+    
+    public String registrar_usuario(String email,String contrasenia,String repetir_contrasenia, String idioma_seleccionado) {
+        
+        email = email.trim().toLowerCase(); // Pasa el email a minúsculas
+        
+        Pagina_inicio_registro idioma = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro(); // Recojo el idioma del registro/inicio
         
         contrasenia = Usuario.cifrar_contrasenia(contrasenia); // Cifro la contraseña para la BBDD, esta conmtraseña no puede ser descifrada
         

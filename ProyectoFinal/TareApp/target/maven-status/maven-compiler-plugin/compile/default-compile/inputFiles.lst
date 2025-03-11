@@ -12,6 +12,7 @@ D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycomp
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\Lista.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Popup_crear_editar_tarea.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\Tareas_view.java
+D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\SMTP.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\TextPrompt.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Cabecera.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Popup_cambiar_email_contrasenia.java
@@ -26,6 +27,7 @@ D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycomp
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\Usuario.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\controlador\Lista_controlador.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\BBDD_tareapp.java
+D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Popup_confirmar_email.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Pagina_inicio_registro.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Pagina_ajustes_cuenta.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Lista_plantilla.java

@@ -64,4 +64,9 @@ public class BBDD_controlador {
             }
         }
     }
+
+    public static Connection getConexion() {
+        return conexion;
+    }
+    
 }

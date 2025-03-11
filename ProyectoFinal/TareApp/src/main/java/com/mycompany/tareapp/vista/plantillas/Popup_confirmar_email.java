@@ -11,6 +11,7 @@ import com.mycompany.tareapp.vista.Ajustes_cuenta_view;
 import java.awt.Dimension;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
+import java.util.Random;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,23 +26,21 @@ import javax.swing.Timer;
  * 
  * @author Francisco
  */
-public class Popup_cambiar_email_contrasenia extends JDialog {
+public class Popup_confirmar_email extends JDialog {
     
-    Pagina_ajustes_cuenta idioma_ajustes = Idioma_controlador.getIdioma_seleccionado().getPagina_ajustes_cuenta();
-    Ajustes_cuenta_view ajustes_cuenta_view = Ajustes_cuenta_view.recoger_instancia();
     Usuario_controlador usuario_controlador = new Usuario_controlador();
+    
     JPanel panelPrincipal = new JPanel();
     
-    String texto_titulo_popup;
-    String texto_input_nuevo;
-    String texto_input_repetir;
-    JLabel label_resultado;
+    JLabel label_resultado = new JLabel("");
+    
+    int codigo;
 
     /**
     * Constructor del PopUp con los estilos necesarios
     * 
     */
-    public Popup_cambiar_email_contrasenia(String tipo_popup) {
+    public Popup_confirmar_email(String email_registro,String contrasenia,String repetir_contrasenia,String idioma_seleccionado) {
         
         super((Window) null, "PopUp", ModalityType.APPLICATION_MODAL);
         
@@ -57,74 +56,72 @@ public class Popup_cambiar_email_contrasenia extends JDialog {
         panelPrincipal.setBackground(Estilos.getGris_claro());
         
         
-        if (tipo_popup.equals("email")) {
-            
-            texto_titulo_popup = idioma_ajustes.getCambiar_email();
-            texto_input_nuevo = idioma_ajustes.getNuevo_email();
-            texto_input_repetir = idioma_ajustes.getRepetir_email();
-            
-        } else {
-        
-            texto_titulo_popup = idioma_ajustes.getCambiar_contrasenia();
-            texto_input_nuevo = idioma_ajustes.getNuevo_contrasenia();
-            texto_input_repetir = idioma_ajustes.getRepetir_contrasenia();
-        }
-        
-        JLabel labelTitulo = new JLabel(texto_titulo_popup, SwingConstants.CENTER);
+        JLabel labelTitulo = new JLabel("Confirmar email", SwingConstants.CENTER);
         labelTitulo.setFont(Estilos.getFuenteTitulo());
         layout.putConstraint(SpringLayout.WEST, labelTitulo, 0, SpringLayout.WEST, panelPrincipal);
         layout.putConstraint(SpringLayout.NORTH, labelTitulo, 20, SpringLayout.NORTH, panelPrincipal);
         layout.putConstraint(SpringLayout.EAST, labelTitulo, 0, SpringLayout.EAST, panelPrincipal);
         panelPrincipal.add(labelTitulo);
         
-        Input_text input_nuevo = new Input_text(texto_input_nuevo, "");
-        layout.putConstraint(SpringLayout.WEST, input_nuevo, 270, SpringLayout.WEST, panelPrincipal);
-        layout.putConstraint(SpringLayout.NORTH, input_nuevo, 40, SpringLayout.NORTH, labelTitulo);
-        panelPrincipal.add(input_nuevo);
+        JLabel labelMensajeCodigo = new JLabel("Introduzca el código que se ha enviado a su correo", SwingConstants.CENTER);
+        labelMensajeCodigo.setFont(Estilos.getFuenteConTamaio(16));
+        layout.putConstraint(SpringLayout.WEST, labelMensajeCodigo, 0, SpringLayout.WEST, panelPrincipal);
+        layout.putConstraint(SpringLayout.NORTH, labelMensajeCodigo, 40, SpringLayout.NORTH, labelTitulo);
+        layout.putConstraint(SpringLayout.EAST, labelMensajeCodigo, 0, SpringLayout.EAST, panelPrincipal);
+        panelPrincipal.add(labelMensajeCodigo);
         
-        Input_text input_repetir = new Input_text(texto_input_repetir, "");
-        layout.putConstraint(SpringLayout.WEST, input_repetir, 270, SpringLayout.WEST, panelPrincipal);
-        layout.putConstraint(SpringLayout.NORTH, input_repetir, 60, SpringLayout.NORTH, input_nuevo);
-        panelPrincipal.add(input_repetir);
+        Input_text input_codigo = new Input_text("Código", "");
+        input_codigo.setPreferredSize(new Dimension(200, 35));
+        layout.putConstraint(SpringLayout.WEST, input_codigo, 190, SpringLayout.WEST, panelPrincipal);
+        layout.putConstraint(SpringLayout.NORTH, input_codigo, 40, SpringLayout.NORTH, labelMensajeCodigo);
+        panelPrincipal.add(input_codigo);
         
-        Boton bonton_cambiar = new Boton(texto_titulo_popup, "amarillo");
-        layout.putConstraint(SpringLayout.WEST, bonton_cambiar, 300, SpringLayout.WEST, panelPrincipal);
-        layout.putConstraint(SpringLayout.NORTH, bonton_cambiar, 60, SpringLayout.NORTH, input_repetir);
-        panelPrincipal.add(bonton_cambiar);
+        Boton bonton_enviar = new Boton("Enviar código", "amarillo");
+        layout.putConstraint(SpringLayout.WEST, bonton_enviar, 230, SpringLayout.WEST, input_codigo);
+        layout.putConstraint(SpringLayout.NORTH, bonton_enviar, 0, SpringLayout.NORTH, input_codigo);
+        panelPrincipal.add(bonton_enviar);
         
-        label_resultado = new JLabel("");
+        Boton bonton_confirmar = new Boton("Confirmar email", "amarillo");
+        layout.putConstraint(SpringLayout.WEST, bonton_confirmar, 300, SpringLayout.WEST, panelPrincipal);
+        layout.putConstraint(SpringLayout.NORTH, bonton_confirmar, 60, SpringLayout.NORTH, input_codigo);
+        panelPrincipal.add(bonton_confirmar);
+        
         label_resultado.setHorizontalAlignment(CENTER);
         label_resultado.setFont(Estilos.getFuenteConTamaio(14));
         layout.putConstraint(SpringLayout.WEST, label_resultado, 0, SpringLayout.WEST, panelPrincipal);
-        layout.putConstraint(SpringLayout.NORTH, label_resultado, 45, SpringLayout.NORTH, bonton_cambiar);
+        layout.putConstraint(SpringLayout.NORTH, label_resultado, 45, SpringLayout.NORTH, bonton_confirmar);
         layout.putConstraint(SpringLayout.EAST, label_resultado, 0, SpringLayout.EAST, panelPrincipal);
         panelPrincipal.add(label_resultado);
         
-        bonton_cambiar.addActionListener((ActionEvent e1) -> {
+        
+        bonton_enviar.addActionListener((ActionEvent e1) -> {
+            
+            codigo = 10000 + new Random().nextInt(90000);
+            
+            String mensaje_resultado = usuario_controlador.confirmar_email(email_registro, codigo); 
+            
+            label_resultado.setText(mensaje_resultado);
+            Timer tiempo_espera = new Timer(3000, evt -> label_resultado.setText(""));
+            tiempo_espera.setRepeats(false);
+            tiempo_espera.start();
+
+        });
+        
+        bonton_confirmar.addActionListener((ActionEvent e1) -> {
             
             String mensaje_resultado = "";
-            String texto_input_nuevo = input_nuevo.getText();
-            String texto_input_repetir = input_repetir.getText();
             
-            if (tipo_popup.equals("email")) {
+            if (codigo == Integer.parseInt(input_codigo.getText())) {
 
+                mensaje_resultado = usuario_controlador.registrar_usuario(email_registro, contrasenia, repetir_contrasenia, idioma_seleccionado);
 
-                mensaje_resultado = usuario_controlador.actualizar_email(texto_input_nuevo, texto_input_repetir);
+                if (mensaje_resultado.isEmpty()){
 
-                if (mensaje_resultado.isEmpty()) {
-
-                    mensaje_resultado = idioma_ajustes.getEmail_actualizado();    
-                    ajustes_cuenta_view.getLabel_email_usuario().setText(texto_input_nuevo);          
+                    mensaje_resultado = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro().getCuenta_creada();
                 }
-                
             } else {
-
-               mensaje_resultado = usuario_controlador.actualizar_contrasenia(texto_input_nuevo, texto_input_repetir);
-
-                if (mensaje_resultado.isEmpty()) {
-
-                    mensaje_resultado = idioma_ajustes.getContrasenia_actualizada();              
-                }
+            
+                mensaje_resultado = "El código introducido es incorrecto";
             }
             
             label_resultado.setText(mensaje_resultado);

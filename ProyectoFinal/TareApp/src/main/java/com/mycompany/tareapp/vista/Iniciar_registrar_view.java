@@ -12,6 +12,8 @@ import com.mycompany.tareapp.vista.plantillas.Boton;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
 import com.mycompany.tareapp.vista.plantillas.Input_password;
 import com.mycompany.tareapp.vista.plantillas.Input_text;
+import com.mycompany.tareapp.vista.plantillas.Popup_borrar_cuenta_lista;
+import com.mycompany.tareapp.vista.plantillas.Popup_confirmar_email;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
@@ -199,23 +201,36 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
             String contrasenia = new String(contrasenia_registro.getPassword());
             String repetir_contrasenia = new String(repetir_contrasenia_registro.getPassword());
             
-            String idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getIdioma();
+            String mensaje_resultado = usuario_controlador.comprobar_datos_registro(email_registro.getText(), contrasenia, repetir_contrasenia);
             
-            String mensaje_resultado = usuario_controlador.registrar_usuario(email_registro.getText(), contrasenia, repetir_contrasenia, idioma_seleccionado);
+            if (mensaje_resultado.isEmpty()) {
             
-            if (mensaje_resultado.isEmpty()){
+                String idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getIdioma();
                 
-                email_registro.setText("");
-                contrasenia_registro.setText("");
-                repetir_contrasenia_registro.setText("");
+                Popup_confirmar_email popup_confirmar_email = new Popup_confirmar_email(email_registro.getText(), contrasenia, repetir_contrasenia, idioma_seleccionado);
+                popup_confirmar_email.setVisible(true);
+                /*
+            
+                mensaje_resultado = usuario_controlador.registrar_usuario(email_registro.getText(), contrasenia, repetir_contrasenia, idioma_seleccionado);
+
+                if (mensaje_resultado.isEmpty()){
+
+                    email_registro.setText("");
+                    contrasenia_registro.setText("");
+                    repetir_contrasenia_registro.setText("");
+
+                    mensaje_resultado = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro().getCuenta_creada();
+                }
+                */
                 
-                mensaje_resultado = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro().getCuenta_creada();
+            } else {
+            
+                label_resultado_registro.setText("<html><body><p style='text-align: center;'>"+mensaje_resultado+"</p></body></html>");
+                Timer tiempo_espera = new Timer(3000, evt -> label_resultado_registro.setText(""));
+                tiempo_espera.setRepeats(false);
+                tiempo_espera.start();
             }
-            
-            label_resultado_registro.setText("<html><body><p style='text-align: center;'>"+mensaje_resultado+"</p></body></html>");
-            Timer tiempo_espera = new Timer(3000, evt -> label_resultado_registro.setText(""));
-            tiempo_espera.setRepeats(false);
-            tiempo_espera.start();
+
         });
         
         boton_enviar_inicio.addActionListener((ActionEvent e) -> {
