@@ -59,6 +59,7 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
     JLabel label_resultado_inicio = new JLabel();
     JLabel label_resultado_registro = new JLabel();
 
+    
    /**
     * Constructor de la página de inicio de sesión y registro, crea toda la interfaz de la página
     * 
@@ -172,6 +173,17 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         layout3.putConstraint(SpringLayout.NORTH, label_resultado_registro, 45, SpringLayout.NORTH, boton_enviar_registro);
         layout3.putConstraint(SpringLayout.EAST, label_resultado_registro, 0, SpringLayout.EAST, panel_registro);
         
+        
+        /*
+        formulario.getInput_numero1().setText("4");
+        formulario.getInput_numero2().setText("8");
+
+        formulario.getBoton_enviar().doClick();
+
+        assertEquals("Resultado: 12", formulario.getLabelResultado().getText());
+        assertNotEquals("Resultado: 8", formulario.getLabelResultado().getText());
+        */
+
         boton_iniciar.addActionListener((ActionEvent e) -> {
             
             panel_inicio.setVisible(true);
