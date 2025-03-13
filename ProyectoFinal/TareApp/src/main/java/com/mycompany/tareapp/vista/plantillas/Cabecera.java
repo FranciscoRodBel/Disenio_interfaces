@@ -44,6 +44,8 @@ public class Cabecera extends JPanel {
     JRadioButtonMenuItem itemFrances = new JRadioButtonMenuItem("Français");
     ButtonGroup grupoIdiomas = new ButtonGroup();
     
+    JMenuItem itemNotas = new JMenuItem("Notas");
+    
     JMenu menuCuenta = new JMenu("Cuenta");
     JMenuItem itemAjustes = new JMenuItem("Ajustes");
     JMenuItem itemCerrarSesion = new JMenuItem("Cerrar sesión");
@@ -150,10 +152,12 @@ public class Cabecera extends JPanel {
         Separador separador1 = new Separador();
         Separador separador2 = new Separador();
         Separador separador3 = new Separador();
+        Separador separador4 = new Separador();
         
         itemTareas.setHorizontalAlignment(SwingConstants.CENTER);
         itemListas.setHorizontalAlignment(SwingConstants.CENTER);
         menuIdioma.setHorizontalAlignment(SwingConstants.CENTER);
+        itemNotas.setHorizontalAlignment(SwingConstants.CENTER);
         menuCuenta.setHorizontalAlignment(SwingConstants.CENTER);
 
         menuBarras.add(itemTareas);
@@ -162,6 +166,8 @@ public class Cabecera extends JPanel {
         menuBarras.add(separador2);
         menuBarras.add(menuIdioma);
         menuBarras.add(separador3);
+        menuBarras.add(itemNotas);
+        menuBarras.add(separador4);
         menuBarras.add(menuCuenta);
         
         itemTareas.setBackground(Estilos.getBlanco_claro());
@@ -172,6 +178,9 @@ public class Cabecera extends JPanel {
 
         menuIdioma.setBackground(Estilos.getBlanco_claro());
         menuIdioma.setOpaque(true);
+        
+        itemNotas.setBackground(Estilos.getBlanco_claro());
+        itemNotas.setOpaque(true);
 
         menuCuenta.setBackground(Estilos.getBlanco_claro());
         menuCuenta.setOpaque(true);
@@ -191,6 +200,7 @@ public class Cabecera extends JPanel {
         itemTareas.setFont(fuente);
         itemListas.setFont(fuente);
         menuIdioma.setFont(fuente);
+        itemNotas.setFont(fuente);
         menuCuenta.setFont(fuente);
         itemEspaniol.setFont(fuente);
         itemIngles.setFont(fuente);

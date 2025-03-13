@@ -34,7 +34,7 @@ public class Popup_confirmar_email extends JDialog {
     
     JLabel label_resultado = new JLabel("");
     
-    int codigo;
+    int codigo = 999999;
 
     /**
     * Constructor del PopUp con los estilos necesarios
@@ -70,14 +70,13 @@ public class Popup_confirmar_email extends JDialog {
         layout.putConstraint(SpringLayout.EAST, labelMensajeCodigo, 0, SpringLayout.EAST, panelPrincipal);
         panelPrincipal.add(labelMensajeCodigo);
         
-        Input_text input_codigo = new Input_text("Código", "");
-        input_codigo.setPreferredSize(new Dimension(200, 35));
-        layout.putConstraint(SpringLayout.WEST, input_codigo, 190, SpringLayout.WEST, panelPrincipal);
+        Input_Number input_codigo = new Input_Number();
+        layout.putConstraint(SpringLayout.WEST, input_codigo, 250, SpringLayout.WEST, panelPrincipal);
         layout.putConstraint(SpringLayout.NORTH, input_codigo, 40, SpringLayout.NORTH, labelMensajeCodigo);
         panelPrincipal.add(input_codigo);
         
         Boton bonton_enviar = new Boton("Enviar código", "amarillo");
-        layout.putConstraint(SpringLayout.WEST, bonton_enviar, 230, SpringLayout.WEST, input_codigo);
+        layout.putConstraint(SpringLayout.WEST, bonton_enviar, 100, SpringLayout.WEST, input_codigo);
         layout.putConstraint(SpringLayout.NORTH, bonton_enviar, 0, SpringLayout.NORTH, input_codigo);
         panelPrincipal.add(bonton_enviar);
         
@@ -111,6 +110,9 @@ public class Popup_confirmar_email extends JDialog {
             
             String mensaje_resultado = "";
             
+            System.out.println(codigo);
+            System.out.println(Integer.parseInt(input_codigo.getText()));
+            
             if (codigo == Integer.parseInt(input_codigo.getText())) {
 
                 mensaje_resultado = usuario_controlador.registrar_usuario(email_registro, contrasenia, repetir_contrasenia, idioma_seleccionado);
@@ -119,6 +121,7 @@ public class Popup_confirmar_email extends JDialog {
 
                     mensaje_resultado = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro().getCuenta_creada();
                 }
+                
             } else {
             
                 mensaje_resultado = "El código introducido es incorrecto";

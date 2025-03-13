@@ -19,6 +19,7 @@ D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycomp
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Input_text.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Popup_ver_borrar_tarea.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Pagina_tareas.java
+D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\Notas_view.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Idioma.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\Main.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Tarea_plantilla.java
@@ -36,6 +37,7 @@ D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycomp
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Estilos.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Input_date.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\Tarea.java
+D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\plantillas\Input_Number.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\controlador\Tarea_controlador.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\modelo\idioma\Pagina_listas.java
 D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\TareApp\src\main\java\com\mycompany\tareapp\vista\Listas_view.java
