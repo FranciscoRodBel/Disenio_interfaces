@@ -4,10 +4,9 @@
  */
 package com.mycompany.tareapp.vista.plantillas;
 
-import com.mycompany.tareapp.controlador.Idioma_controlador;
+import com.mycompany.tareapp.controlador.Nota_controlador;
 import com.mycompany.tareapp.controlador.Tarea_controlador;
-import com.mycompany.tareapp.modelo.idioma.Pagina_tareas;
-import com.mycompany.tareapp.vista.Tareas_view;
+import com.mycompany.tareapp.vista.Notas_view;
 import java.awt.Dimension;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -26,12 +25,12 @@ import javax.swing.Timer;
  * 
  * @author Francisco
  */
-public class Popup_crear_editar_tarea extends JDialog {
+public class Popup_crear_editar_nota extends JDialog {
     
-    Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
-    Tareas_view tareas_view = Tareas_view.recoger_instancia();
-    Tarea_controlador tarea_controlador = new Tarea_controlador();
-    Tarea_plantilla tarea;
+    //Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
+    Notas_view notas_view = Notas_view.recoger_instancia();
+    Nota_controlador nota_controlador = new Nota_controlador();
+    Nota_plantilla nota;
     
     JPanel panelPrincipal = new JPanel();
     
@@ -53,11 +52,11 @@ public class Popup_crear_editar_tarea extends JDialog {
     * Constructor del PopUp con los estilos necesarios
     * 
     */     
-    public Popup_crear_editar_tarea(Tarea_plantilla tarea) {
+    public Popup_crear_editar_nota(Nota_plantilla nota) {
         
         super((Window) null, "PopUp", ModalityType.APPLICATION_MODAL);
         
-        this.tarea = tarea;
+        this.nota = nota;
         this.setLayout(null);
         this.setResizable(false);  
         this.setSize(new Dimension(800, 520));
@@ -70,23 +69,17 @@ public class Popup_crear_editar_tarea extends JDialog {
         panelPrincipal.setBackground(Estilos.getGris_claro());
         
         
-        if (tarea == null) {
+        if (nota == null) {
             
-            texto_titulo_popup = idioma_tareas.getTitulo_tarea();
-            texto_input_titulo = "";
-            texto_input_fecha = "";
-            texto_input_prioridad = 0;
+            texto_titulo_popup = "Crear nota";
             texto_input_descripcion = "";
-            texto_boton = idioma_tareas.getCrear_tarea();
+            texto_boton = "Crear nota";
             
         } else {
             
-            texto_titulo_popup = idioma_tareas.getEditar_tarea();
-            texto_input_titulo = tarea.getTituloTarea().getText();
-            texto_input_fecha = tarea.getFechaTarea().getText(); 
-            texto_input_prioridad = tarea.getPrioridadTarea();
-            texto_input_descripcion = tarea.getDescripcionTarea();
-            texto_boton = idioma_tareas.getEditar_tarea();
+            texto_titulo_popup = "Editar nota";
+            texto_input_descripcion = "Texto descripción";
+            texto_boton = "Editar nota";
         }
         
         JLabel labelTitulo = new JLabel(texto_titulo_popup, SwingConstants.CENTER);
@@ -96,24 +89,9 @@ public class Popup_crear_editar_tarea extends JDialog {
         layout.putConstraint(SpringLayout.EAST, labelTitulo, 0, SpringLayout.EAST, panelPrincipal);
         panelPrincipal.add(labelTitulo);
         
-        input_titulo_terea = new Input_text(idioma_tareas.getTitulo_tarea(), texto_input_titulo);
-        layout.putConstraint(SpringLayout.WEST, input_titulo_terea, 270, SpringLayout.WEST, labelTitulo);
-        layout.putConstraint(SpringLayout.NORTH, input_titulo_terea, 50, SpringLayout.NORTH, labelTitulo);
-        panelPrincipal.add(input_titulo_terea);
-                   
-        input_fecha_terea = new Input_date(texto_input_fecha);
-        layout.putConstraint(SpringLayout.WEST, input_fecha_terea, 120, SpringLayout.WEST, panelPrincipal);
-        layout.putConstraint(SpringLayout.NORTH, input_fecha_terea, 50, SpringLayout.NORTH, input_titulo_terea);
-        panelPrincipal.add(input_fecha_terea);
-        
-        input_prioridad_tarea = new Select_prioridad(texto_input_prioridad);
-        layout.putConstraint(SpringLayout.WEST, input_prioridad_tarea, 300, SpringLayout.WEST, input_fecha_terea);
-        layout.putConstraint(SpringLayout.NORTH, input_prioridad_tarea, 0, SpringLayout.NORTH, input_fecha_terea);
-        panelPrincipal.add(input_prioridad_tarea);
-                
         input_descripcion = new Text_area_descripcion(texto_input_descripcion);
         layout.putConstraint(SpringLayout.WEST, input_descripcion, 150, SpringLayout.WEST, panelPrincipal);
-        layout.putConstraint(SpringLayout.NORTH, input_descripcion, 50, SpringLayout.NORTH, input_fecha_terea);
+        layout.putConstraint(SpringLayout.NORTH, input_descripcion, 50, SpringLayout.NORTH, labelTitulo);
         panelPrincipal.add(input_descripcion);
         
         bonton_crear_editar = new Boton(texto_boton, "amarillo");
@@ -132,32 +110,27 @@ public class Popup_crear_editar_tarea extends JDialog {
         bonton_crear_editar.addActionListener((ActionEvent e1) -> {
             
             String mensaje_resultado = "";
-            String titulo = this.getInput_titulo_terea().getText();
-            String prioridad = (String) this.getInput_prioridad_tarea().getSelectedItem();
-            String fecha = this.getInput_fecha_terea().getText();
             String descripcion = this.getInput_descripcion().getTextArea().getText();
-            int idLista = tareas_view.recoger_id_lista_seleccionada();
+            String color = "amarillo";
                 
-            if (this.getTarea() == null) {
+            if (this.getNota()== null) {
 
-
-                mensaje_resultado = tarea_controlador.crear_tarea(titulo, prioridad, fecha, descripcion, idLista);
+                mensaje_resultado = nota_controlador.crear_nota(descripcion, "amarillo");
 
                 if (mensaje_resultado.isEmpty()) {
 
-                    mensaje_resultado = idioma_tareas.getTarea_creada();
-                    tareas_view.actualizar_panel_tareas();                   
+                    mensaje_resultado = "Nota creada correctamente";
+                    notas_view.actualizar_panel_notas();                   
                 }
 
             } else {
 
-                
-                mensaje_resultado = tarea_controlador.editar_tarea(this.getTarea().getIdTarea(), titulo, prioridad, fecha, descripcion, idLista);
+                mensaje_resultado = nota_controlador.editar_nota(this.getNota().getIdNota(), descripcion, color);
 
                 if (mensaje_resultado.isEmpty()) {
 
-                    mensaje_resultado = idioma_tareas.getTarea_editada();
-                    tareas_view.actualizar_panel_tareas();                   
+                    mensaje_resultado = "Nota editada correctamente";
+                    notas_view.actualizar_panel_notas();                   
                 }
             }
             
@@ -208,12 +181,12 @@ public class Popup_crear_editar_tarea extends JDialog {
         this.input_titulo_terea = input_titulo_terea;
     }
 
-    public Tarea_plantilla getTarea() {
-        return tarea;
+    public Nota_plantilla getNota() {
+        return nota;
     }
 
-    public void setTarea(Tarea_plantilla tarea) {
-        this.tarea = tarea;
+    public void setNota(Nota_plantilla nota) {
+        this.nota = nota;
     }
 
     public JLabel getLabel_resultado_tarea() {

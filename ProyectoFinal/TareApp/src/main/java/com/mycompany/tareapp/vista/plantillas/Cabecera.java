@@ -119,6 +119,14 @@ public class Cabecera extends JPanel {
     public void setMenuCuenta(JMenu menuCuenta) {
         this.menuCuenta = menuCuenta;
     }
+
+    public JMenuItem getItemNotas() {
+        return itemNotas;
+    }
+
+    public void setItemNotas(JMenuItem itemNotas) {
+        this.itemNotas = itemNotas;
+    }
     
     /**
     * Constructor de la cabecera, con los estilos necesarios

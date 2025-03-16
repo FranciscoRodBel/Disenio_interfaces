@@ -34,9 +34,11 @@ public class Main extends javax.swing.JFrame {
     static Ajustes_cuenta_view ajustes_cuenta_view;
     static Listas_view listas_view;
     static Tareas_view tareas_view;
+    static Notas_view notas_view;
 
     static ActionListener listenerTareas;
     static ActionListener listenerListas;
+    static ActionListener listenerNotas;
     static ActionListener listenerAjustes;
     static ActionListener listenerCerrarSesion;
     Usuario_controlador usuario_controlador = new Usuario_controlador();
@@ -124,6 +126,7 @@ public class Main extends javax.swing.JFrame {
         ajustes_cuenta_view = Ajustes_cuenta_view.recoger_instancia();
         listas_view = Listas_view.recoger_instancia();
         tareas_view = Tareas_view.recoger_instancia();
+        notas_view = Notas_view.recoger_instancia();
         
         panelPrincipal.add(tareas_view);
         layout.putConstraint(SpringLayout.WEST, tareas_view, 0, SpringLayout.WEST, cabecera);
@@ -136,6 +139,12 @@ public class Main extends javax.swing.JFrame {
         layout.putConstraint(SpringLayout.NORTH, listas_view, 45, SpringLayout.NORTH, cabecera);
         layout.putConstraint(SpringLayout.EAST, listas_view, 0, SpringLayout.EAST, cabecera);
         listas_view.setVisible(false);
+        
+        panelPrincipal.add(notas_view);
+        layout.putConstraint(SpringLayout.WEST, notas_view, 0, SpringLayout.WEST, cabecera);
+        layout.putConstraint(SpringLayout.NORTH, notas_view, 45, SpringLayout.NORTH, cabecera);
+        layout.putConstraint(SpringLayout.EAST, notas_view, 0, SpringLayout.EAST, cabecera);
+        notas_view.setVisible(false);
 
         panelPrincipal.add(ajustes_cuenta_view);
         layout.putConstraint(SpringLayout.WEST, ajustes_cuenta_view, 0, SpringLayout.WEST, cabecera);
@@ -153,6 +162,11 @@ public class Main extends javax.swing.JFrame {
             ocultarPaneles();
             listas_view.setVisible(true);
         };
+        
+        listenerNotas = (ActionEvent e) -> {
+            ocultarPaneles();
+            notas_view.setVisible(true);
+        };
 
         listenerAjustes = (ActionEvent e) -> {
             ocultarPaneles();
@@ -166,6 +180,7 @@ public class Main extends javax.swing.JFrame {
         
         cabecera.getItemTareas().addActionListener(listenerTareas);
         cabecera.getItemListas().addActionListener(listenerListas);
+        cabecera.getItemNotas().addActionListener(listenerNotas);
         cabecera.getItemAjustes().addActionListener(listenerAjustes);
         cabecera.getItemCerrarSesion().addActionListener(listenerCerrarSesion);
     }
@@ -179,12 +194,14 @@ public class Main extends javax.swing.JFrame {
         // Borro los paneles
         panelPrincipal.remove(ajustes_cuenta_view);
         panelPrincipal.remove(listas_view);
+        panelPrincipal.remove(notas_view);
         panelPrincipal.remove(tareas_view);
         Usuario_controlador.setUsuario(null); // pongo el usuario que tiene la sesión iniciada como null
 
         // Pongo los paneles como null, para que cuando inicie sesión se creen de nuevo
         Listas_view.reiniciar_instancia();
         Tareas_view.reiniciar_instancia();
+        Notas_view.reiniciar_instancia();
         Ajustes_cuenta_view.reiniciar_instancia();
 
         // Oculto los paneles y muestro el inicio y registro
@@ -194,6 +211,7 @@ public class Main extends javax.swing.JFrame {
         // Elimino los listeners
         cabecera.getItemTareas().removeActionListener(listenerTareas);
         cabecera.getItemListas().removeActionListener(listenerListas);
+        cabecera.getItemNotas().removeActionListener(listenerNotas);
         cabecera.getItemAjustes().removeActionListener(listenerAjustes);
         cabecera.getItemCerrarSesion().removeActionListener(listenerCerrarSesion);
     }
@@ -206,6 +224,7 @@ public class Main extends javax.swing.JFrame {
     
         tareas_view.setVisible(false);
         listas_view.setVisible(false);
+        notas_view.setVisible(false);
         iniciar_registrar_view.setVisible(false);
         ajustes_cuenta_view.setVisible(false);
         

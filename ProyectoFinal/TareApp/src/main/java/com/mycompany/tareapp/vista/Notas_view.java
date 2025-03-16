@@ -4,38 +4,25 @@
  */
 package com.mycompany.tareapp.vista;
 
-import com.mycompany.tareapp.controlador.Lista_controlador;
-import com.mycompany.tareapp.controlador.Tarea_controlador;
-import com.mycompany.tareapp.modelo.Lista;
+import com.mycompany.tareapp.controlador.Nota_controlador;
 import com.mycompany.tareapp.vista.plantillas.Boton;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
-import com.mycompany.tareapp.vista.plantillas.Popup_crear_editar_tarea;
-import com.mycompany.tareapp.vista.plantillas.Tarea_plantilla;
+import com.mycompany.tareapp.vista.plantillas.Nota_plantilla;
+import com.mycompany.tareapp.vista.plantillas.Popup_crear_editar_nota;
 import java.awt.Dimension;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
-    
 /**
- * Clase para la vista de la tareas
- * En esta clase el usuario puede crear, ver editar y borrar tareas
+ * Clase para la vista de la notas
+ * En esta clase el usuario puede crear, ver editar y borrar notas
  * 
  * @author Francisco
  */
@@ -51,7 +38,7 @@ public final class Notas_view extends javax.swing.JPanel {
     JScrollPane scroll_panel_notas = new JScrollPane(panelNotas);
 
     /**
-    * Constructor de la página de tareas, crea toda la interfaz de la página
+    * Constructor de la página de notas, crea toda la interfaz de la página
     * 
     */
     public Notas_view() {
@@ -67,32 +54,32 @@ public final class Notas_view extends javax.swing.JPanel {
         titulo_pagina.setHorizontalAlignment(SwingConstants.CENTER);
         titulo_pagina.setFont(Estilos.getFuenteTitulo());
         layout.putConstraint(SpringLayout.WEST, titulo_pagina, 0, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.NORTH, titulo_pagina, 70, SpringLayout.NORTH, this);
+        layout.putConstraint(SpringLayout.NORTH, titulo_pagina, 30, SpringLayout.NORTH, this);
         layout.putConstraint(SpringLayout.EAST, titulo_pagina, 0, SpringLayout.EAST, this);
         
         this.add(botonCrearNota);
-        layout.putConstraint(SpringLayout.WEST, botonCrearNota, 0, SpringLayout.WEST, this);
-        layout.putConstraint(SpringLayout.NORTH, botonCrearNota, 70, SpringLayout.NORTH, titulo_pagina);
-        layout.putConstraint(SpringLayout.EAST, botonCrearNota, 0, SpringLayout.EAST, this);
+        layout.putConstraint(SpringLayout.WEST, botonCrearNota, 400, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.NORTH, botonCrearNota, 50, SpringLayout.NORTH, titulo_pagina);
         
-        panelNotas.setLayout(new BoxLayout(panelNotas, BoxLayout.Y_AXIS)); // Para colocar una tarea debajo de otra
+        panelNotas.setLayout(new java.awt.GridLayout(0, 3, 10, 10)); 
         panelNotas.setBackground(Estilos.getGris_claro());
         panelNotas.setVisible(true);
         
-        scroll_panel_notas.setPreferredSize(new Dimension(815, 350));
+        scroll_panel_notas.setPreferredSize(new Dimension(915, 380));
         scroll_panel_notas.getVerticalScrollBar().setUnitIncrement(15); // Para aumentar la velocidad de la barra de scroll
         scroll_panel_notas.setBorder(null);
         scroll_panel_notas.setBackground(Estilos.getGris_claro());
         this.add(scroll_panel_notas);
-        layout.putConstraint(SpringLayout.WEST, scroll_panel_notas, 100, SpringLayout.WEST, this);
+        layout.putConstraint(SpringLayout.WEST, scroll_panel_notas, 50, SpringLayout.WEST, this);
         layout.putConstraint(SpringLayout.NORTH, scroll_panel_notas, 60, SpringLayout.NORTH, botonCrearNota);
         
-        
+        actualizar_panel_notas();
+
         botonCrearNota.addActionListener((ActionEvent e) -> {
-            
-            
+                        
+            Popup_crear_editar_nota popup_crear_editar_nota = new Popup_crear_editar_nota(null);
+            popup_crear_editar_nota.setVisible(true);
         });
-        
     }
     
     public JLabel getTitulo_pagina() {
@@ -105,6 +92,36 @@ public final class Notas_view extends javax.swing.JPanel {
 
     public JButton getBotonCrearTarea() {
         return botonCrearNota;
+    }
+    
+    /**
+    * Función que permite actualizar el panel donde se muestran todas las notas del usuario en la página de notas
+    * 
+    */
+    public void actualizar_panel_notas() {
+        
+        panelNotas.setVisible(false); // Lo pongo en false para que luego al ponerlo true se actualice visualmente
+        panelNotas.removeAll(); // Borro todas las notas
+    
+        ArrayList<HashMap<String, Object>> notas = Nota_controlador.recoger_Notas(); // Recojo las listas
+        
+        if (notas != null) { // Si hay notas...
+            
+            for(HashMap<String, Object> fila : notas) { // Las recorro y las añado al panel
+        
+                int idNota = (int) fila.get("idNota");
+                String descripcion = (String) fila.get("descripcion");
+                String color = (String) fila.get("color");
+
+                Nota_plantilla nota_plantilla = new Nota_plantilla(idNota, descripcion, color);
+
+                panelNotas.add(nota_plantilla);
+            }
+        }
+        
+        panelNotas.setVisible(true);
+        panelNotas.revalidate();
+        panelNotas.repaint();
     }
 
     /**

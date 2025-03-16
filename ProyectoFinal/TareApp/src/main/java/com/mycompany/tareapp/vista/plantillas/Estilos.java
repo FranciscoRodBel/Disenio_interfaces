@@ -26,8 +26,12 @@ public class Estilos {
     private static final Color azul_oscuro = new Color(20, 54, 66);
     private static final Color amarillo = new Color(255, 212, 59);
     private static final Color rojo = new Color(255, 49, 46);
-    private static final Color naranja = new Color(251, 139, 36);
-    private static final Color verde = new Color(35, 206, 107);
+    private static final Color naranja_nota = new Color(248, 169, 86);
+    private static final Color verde_nota = new Color(207, 223, 56);
+    private static final Color azul_nota = new Color(110, 201, 234);
+    private static final Color morado_nota = new Color(174, 142, 191);
+    private static final Color amarillo_nota = new Color(255, 238, 84);
+    private static final Color rosa_nota = new Color(239, 131, 180);
     private static Font fuente;
     
     /**
@@ -90,12 +94,32 @@ public class Estilos {
         return rojo;
     }
 
-    public static Color getNaranja() {
-        return naranja;
+    public static Color getGris() {
+        return gris;
     }
 
-    public static Color getVerde() {
-        return verde;
+    public static Color getNaranja_nota() {
+        return naranja_nota;
+    }
+
+    public static Color getVerde_nota() {
+        return verde_nota;
+    }
+
+    public static Color getAzul_nota() {
+        return azul_nota;
+    }
+
+    public static Color getMorado_nota() {
+        return morado_nota;
+    }
+
+    public static Color getAmarillo_nota() {
+        return amarillo_nota;
+    }
+
+    public static Color getRosa_nota() {
+        return rosa_nota;
     }
     
     public static Font getFuente() {
