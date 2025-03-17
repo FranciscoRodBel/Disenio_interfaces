@@ -89,7 +89,7 @@ public class Nota_controlador {
         
         if (!nota.es_texto_valido(descripcion)) return idioma_tareas.getDescripcion_no_valida(); // Evita que tenga simbolos raros
         
-        String consulta = "UPDATE nota SET descripcion = '" + descripcion + "', color = '" + color + " WHERE idNota = " + idNota;
+        String consulta = "UPDATE nota SET descripcion = '" + descripcion + "', color = '" + color + "' WHERE idNota = " + idNota;
 
         if(bbdd_tareapp.insertar(consulta)) { // Devolverá true si se edita correctamente
             

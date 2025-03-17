@@ -10,9 +10,12 @@ import com.mycompany.tareapp.vista.Notas_view;
 import java.awt.Dimension;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 import static javax.swing.SwingConstants.CENTER;
@@ -35,18 +38,20 @@ public class Popup_crear_editar_nota extends JDialog {
     JPanel panelPrincipal = new JPanel();
     
     String texto_titulo_popup;
-    String texto_input_titulo;
-    String texto_input_fecha;
-    int texto_input_prioridad;
     String texto_input_descripcion;
     String texto_boton;
 
     Boton bonton_crear_editar;
     Text_area_descripcion input_descripcion;
-    Select_prioridad input_prioridad_tarea;
-    Input_date input_fecha_terea;
-    Input_text input_titulo_terea;
     JLabel label_resultado_tarea;
+    
+    JRadioButton radioButtonNaranja = new JRadioButton();
+    JRadioButton radioButtonVerde = new JRadioButton();
+    JRadioButton radioButtonAzul = new JRadioButton();
+    JRadioButton radioButtonMorado = new JRadioButton();
+    JRadioButton radioButtonAmarillo = new JRadioButton();
+    JRadioButton radioButtonRosa = new JRadioButton();
+    ButtonGroup grupoBotonesColores = new ButtonGroup();
     
     /**
     * Constructor del PopUp con los estilos necesarios
@@ -59,13 +64,13 @@ public class Popup_crear_editar_nota extends JDialog {
         this.nota = nota;
         this.setLayout(null);
         this.setResizable(false);  
-        this.setSize(new Dimension(800, 520));
+        this.setSize(new Dimension(800, 500));
         this.setLocationRelativeTo(null);
 
         this.add(panelPrincipal);
         SpringLayout layout = new SpringLayout();
         panelPrincipal.setLayout(layout);
-        panelPrincipal.setBounds(0, 0, 800, 520);
+        panelPrincipal.setBounds(0, 0, 800, 500);
         panelPrincipal.setBackground(Estilos.getGris_claro());
         
         
@@ -78,7 +83,7 @@ public class Popup_crear_editar_nota extends JDialog {
         } else {
             
             texto_titulo_popup = "Editar nota";
-            texto_input_descripcion = "Texto descripción";
+            texto_input_descripcion = nota.getTextArea().getText();
             texto_boton = "Editar nota";
         }
         
@@ -94,9 +99,81 @@ public class Popup_crear_editar_nota extends JDialog {
         layout.putConstraint(SpringLayout.NORTH, input_descripcion, 50, SpringLayout.NORTH, labelTitulo);
         panelPrincipal.add(input_descripcion);
         
+        // Creación de los radioButtons
+        grupoBotonesColores.add (radioButtonNaranja);
+        grupoBotonesColores.add (radioButtonVerde);
+        grupoBotonesColores.add (radioButtonAzul);
+        grupoBotonesColores.add (radioButtonMorado);
+        grupoBotonesColores.add (radioButtonAmarillo);
+        grupoBotonesColores.add (radioButtonRosa);
+        
+        radioButtonNaranja.setActionCommand("naranja");
+        radioButtonVerde.setActionCommand("verde");
+        radioButtonAzul.setActionCommand("azul");
+        radioButtonMorado.setActionCommand("morado");
+        radioButtonAmarillo.setActionCommand("amarillo");
+        radioButtonRosa.setActionCommand("rosa");
+        
+        if (nota != null) {
+            
+            quitarBotonSeleccionado();
+            
+            switch(nota.getColor()) {
+                case "naranja" -> radioButtonNaranja.setSelected(true);
+                case "verde" -> radioButtonVerde.setSelected(true);
+                case "morado" -> radioButtonMorado.setSelected(true);
+                case "amarillo" -> radioButtonAmarillo.setSelected(true);
+                case "rosa" -> radioButtonRosa.setSelected(true);
+                default -> {
+                    radioButtonAzul.setSelected(true);
+                }
+            }
+            
+            switch(nota.getColor()) {
+                case "naranja" -> radioButtonNaranja.setIcon(new ImageIcon(getClass().getResource("/imagenes/radioNaranjaSeleccionado.png")));
+                case "verde" -> radioButtonVerde.setIcon(new ImageIcon(getClass().getResource("/imagenes/radioVerdeSeleccionado.png")));
+                case "morado" -> radioButtonMorado.setIcon(new ImageIcon(getClass().getResource("/imagenes/radioMoradoSeleccionado.png")));
+                case "amarillo" -> radioButtonAmarillo.setIcon(new ImageIcon(getClass().getResource("/imagenes/radioAmarilloSeleccionado.png")));
+                case "rosa" -> radioButtonRosa.setIcon(new ImageIcon(getClass().getResource("/imagenes/radioRosaSeleccionado.png")));
+                default -> {
+                    radioButtonAzul.setIcon(new ImageIcon(getClass().getResource("/imagenes/radioAzulSeleccionado.png")));
+                }
+            }
+            
+        } else {
+        
+            quitarBotonSeleccionado();
+            radioButtonNaranja.setIcon(new ImageIcon(getClass().getResource("/imagenes/radioNaranjaSeleccionado.png")));
+            radioButtonNaranja.setSelected(true);
+        }
+
+        layout.putConstraint(SpringLayout.WEST, radioButtonNaranja, 190, SpringLayout.WEST, panelPrincipal);
+        layout.putConstraint(SpringLayout.NORTH, radioButtonNaranja, 220, SpringLayout.NORTH, input_descripcion);
+        panelPrincipal.add (radioButtonNaranja);
+        
+        layout.putConstraint(SpringLayout.WEST, radioButtonVerde, 70, SpringLayout.WEST, radioButtonNaranja);
+        layout.putConstraint(SpringLayout.NORTH, radioButtonVerde, 0, SpringLayout.NORTH, radioButtonNaranja);
+        panelPrincipal.add (radioButtonVerde);
+        
+        layout.putConstraint(SpringLayout.WEST, radioButtonAzul, 70, SpringLayout.WEST, radioButtonVerde);
+        layout.putConstraint(SpringLayout.NORTH, radioButtonAzul, 0, SpringLayout.NORTH, radioButtonVerde);
+        panelPrincipal.add (radioButtonAzul);
+        
+        layout.putConstraint(SpringLayout.WEST, radioButtonMorado, 70, SpringLayout.WEST, radioButtonAzul);
+        layout.putConstraint(SpringLayout.NORTH, radioButtonMorado, 0, SpringLayout.NORTH, radioButtonAzul);
+        panelPrincipal.add (radioButtonMorado);
+        
+        layout.putConstraint(SpringLayout.WEST, radioButtonAmarillo, 70, SpringLayout.WEST, radioButtonMorado);
+        layout.putConstraint(SpringLayout.NORTH, radioButtonAmarillo, 0, SpringLayout.NORTH, radioButtonMorado);
+        panelPrincipal.add (radioButtonAmarillo);
+        
+        layout.putConstraint(SpringLayout.WEST, radioButtonRosa, 70, SpringLayout.WEST, radioButtonAmarillo);
+        layout.putConstraint(SpringLayout.NORTH, radioButtonRosa, 0, SpringLayout.NORTH, radioButtonAmarillo);
+        panelPrincipal.add (radioButtonRosa);
+        
         bonton_crear_editar = new Boton(texto_boton, "amarillo");
         layout.putConstraint(SpringLayout.WEST, bonton_crear_editar, 300, SpringLayout.WEST, panelPrincipal);
-        layout.putConstraint(SpringLayout.NORTH, bonton_crear_editar, 230, SpringLayout.NORTH, input_descripcion);
+        layout.putConstraint(SpringLayout.NORTH, bonton_crear_editar, 90, SpringLayout.NORTH, radioButtonNaranja);
         panelPrincipal.add(bonton_crear_editar);
         
         label_resultado_tarea = new JLabel("");
@@ -107,15 +184,53 @@ public class Popup_crear_editar_nota extends JDialog {
         layout.putConstraint(SpringLayout.EAST, label_resultado_tarea, 0, SpringLayout.EAST, panelPrincipal);
         panelPrincipal.add(label_resultado_tarea);
         
+        
+        radioButtonNaranja.addActionListener((ActionEvent e) -> {
+            
+            quitarBotonSeleccionado();
+            radioButtonNaranja.setIcon(new ImageIcon(getClass().getResource("/imagenes/radioNaranjaSeleccionado.png")));
+        });
+        
+        radioButtonVerde.addActionListener((ActionEvent e) -> {
+            
+            quitarBotonSeleccionado();
+            radioButtonVerde.setIcon(new ImageIcon(getClass().getResource("/imagenes/radioVerdeSeleccionado.png")));
+        });
+        
+        radioButtonAzul.addActionListener((ActionEvent e) -> {
+            
+            quitarBotonSeleccionado();
+            radioButtonAzul.setIcon(new ImageIcon(getClass().getResource("/imagenes/radioAzulSeleccionado.png")));
+        });
+                
+                
+        radioButtonMorado.addActionListener((ActionEvent e) -> {
+            
+            quitarBotonSeleccionado();
+            radioButtonMorado.setIcon(new ImageIcon(getClass().getResource("/imagenes/radioMoradoSeleccionado.png")));
+        });
+        
+        radioButtonAmarillo.addActionListener((ActionEvent e) -> {
+            
+            quitarBotonSeleccionado();
+            radioButtonAmarillo.setIcon(new ImageIcon(getClass().getResource("/imagenes/radioAmarilloSeleccionado.png")));
+        });
+        
+        radioButtonRosa.addActionListener((ActionEvent e) -> {
+            
+            quitarBotonSeleccionado();
+            radioButtonRosa.setIcon(new ImageIcon(getClass().getResource("/imagenes/radioRosaSeleccionado.png")));
+        });
+        
         bonton_crear_editar.addActionListener((ActionEvent e1) -> {
             
             String mensaje_resultado = "";
             String descripcion = this.getInput_descripcion().getTextArea().getText();
-            String color = "amarillo";
+            String color = grupoBotonesColores.getSelection().getActionCommand();
                 
             if (this.getNota()== null) {
 
-                mensaje_resultado = nota_controlador.crear_nota(descripcion, "amarillo");
+                mensaje_resultado = nota_controlador.crear_nota(descripcion, color);
 
                 if (mensaje_resultado.isEmpty()) {
 
@@ -157,30 +272,6 @@ public class Popup_crear_editar_nota extends JDialog {
         this.input_descripcion = input_descripcion;
     }
 
-    public Select_prioridad getInput_prioridad_tarea() {
-        return input_prioridad_tarea;
-    }
-
-    public void setInput_prioridad_tarea(Select_prioridad input_prioridad_tarea) {
-        this.input_prioridad_tarea = input_prioridad_tarea;
-    }
-
-    public Input_date getInput_fecha_terea() {
-        return input_fecha_terea;
-    }
-
-    public void setInput_fecha_terea(Input_date input_fecha_terea) {
-        this.input_fecha_terea = input_fecha_terea;
-    }
-
-    public Input_text getInput_titulo_terea() {
-        return input_titulo_terea;
-    }
-
-    public void setInput_titulo_terea(Input_text input_titulo_terea) {
-        this.input_titulo_terea = input_titulo_terea;
-    }
-
     public Nota_plantilla getNota() {
         return nota;
     }
@@ -196,5 +287,14 @@ public class Popup_crear_editar_nota extends JDialog {
     public void setLabel_resultado_tarea(JLabel label_resultado_tarea) {
         this.label_resultado_tarea = label_resultado_tarea;
     }
- 
+    
+    public void quitarBotonSeleccionado() {
+       
+        radioButtonNaranja.setIcon(new ImageIcon(getClass().getResource("/imagenes/radioNaranja.png")));
+        radioButtonVerde.setIcon(new ImageIcon(getClass().getResource("/imagenes/radioVerde.png")));
+        radioButtonAzul.setIcon(new ImageIcon(getClass().getResource("/imagenes/radioAzul.png")));
+        radioButtonMorado.setIcon(new ImageIcon(getClass().getResource("/imagenes/radioMorado.png")));
+        radioButtonAmarillo.setIcon(new ImageIcon(getClass().getResource("/imagenes/radioAmarillo.png")));
+        radioButtonRosa.setIcon(new ImageIcon(getClass().getResource("/imagenes/radioRosa.png")));
+    }
 }

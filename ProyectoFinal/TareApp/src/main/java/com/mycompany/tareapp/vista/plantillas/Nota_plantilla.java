@@ -1,7 +1,6 @@
 package com.mycompany.tareapp.vista.plantillas;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
@@ -14,6 +13,7 @@ import javax.swing.JTextArea;
 public final class Nota_plantilla extends JScrollPane {
 
     int idNota;
+    String color;
     private JTextArea textArea = new JTextArea();
     private static final Dimension DIMENSION_NOTA = new Dimension(200, 200);
             
@@ -21,6 +21,7 @@ public final class Nota_plantilla extends JScrollPane {
         
         
         this.setIdNota(idNota);
+        this.setColor(color);
         textArea.setFont(Estilos.getFuente());         
         textArea.setEditable(false);
         textArea.setText(texto);
@@ -44,7 +45,8 @@ public final class Nota_plantilla extends JScrollPane {
         textArea.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
-                System.out.println("Hola");
+                Popup_crear_editar_nota popup_crear_editar_nota = new Popup_crear_editar_nota(Nota_plantilla.this);
+                popup_crear_editar_nota.setVisible(true);
             }
         });
 
@@ -64,6 +66,14 @@ public final class Nota_plantilla extends JScrollPane {
 
     public void setTextArea(JTextArea textArea) {
         this.textArea = textArea;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
     
 }
