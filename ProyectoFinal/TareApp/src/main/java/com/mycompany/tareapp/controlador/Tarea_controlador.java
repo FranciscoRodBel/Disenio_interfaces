@@ -27,48 +27,55 @@ public class Tarea_controlador {
     */
     public String crear_tarea(String titulo, String prioridad, String fecha, String descripcion, int idLista) {
     
-        titulo = titulo.trim();
-        prioridad = prioridad.trim();
-        fecha = fecha.trim();
-        descripcion = descripcion.trim();
+        if (idLista != 0) {
         
-        Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas(); // Recojo el idioma de tareas
-        
-        int prioridad_seleccionada = 1; // De manera predeterminada la prioridad se guardará como baja
-        
-        if (prioridad.equals(idioma_tareas.getAlta())) { // Si llega "Alta" en el idioma seleccionado, se asigna el 3
+            titulo = titulo.trim();
+            prioridad = prioridad.trim();
+            fecha = fecha.trim();
+            descripcion = descripcion.trim();
+
+            Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas(); // Recojo el idioma de tareas
+
+            int prioridad_seleccionada = 1; // De manera predeterminada la prioridad se guardará como baja
+
+            if (prioridad.equals(idioma_tareas.getAlta())) { // Si llega "Alta" en el idioma seleccionado, se asigna el 3
+
+                prioridad_seleccionada = 3;
+
+            } else if (prioridad.equals(idioma_tareas.getMedia())) { // Si llega "Media" en el idioma seleccionado, se asigna el 2
+
+                prioridad_seleccionada = 2;
+            }
+
+            Tarea tarea = new Tarea(titulo, prioridad_seleccionada, fecha, descripcion, idLista); // Se crea la tarea con sus datos
+
+            // Comprobaciones de los datos
+            if (titulo.length() > 50) return idioma_tareas.getTitulo_supera_caracteres(); // Si el título supera los 50 caracteres devuelve el error
+
+            if (!tarea.es_texto_valido(titulo)) return idioma_tareas.getTitulo_no_valido(); // Evita que tenga simbolos raros
+
+            if (!tarea.es_fecha_valida()) return idioma_tareas.getFecha_no_valida(); // Comprueba que la fecha sea real y esté en el formato correcto
+
+            if (descripcion.length() > 500) return idioma_tareas.getDescripcion_supera_caracteres();  // Si la descripción supera los 500 caracteres devuelve el error
+
+            if (!tarea.es_texto_valido(descripcion)) return idioma_tareas.getDescripcion_no_valida(); // Evita que tenga simbolos raros
+
+            fecha = tarea.cambiar_string_a_date(); // cambia la fecha de String a tipo Date para la BBDD
+
+            String consulta = "INSERT INTO tarea (titulo, prioridad, fecha, descripcion, idLista) VALUES ('"+titulo+"', '"+prioridad_seleccionada+"', '"+fecha+"', '"+descripcion+"', '"+idLista+"')";
+
+            if(bbdd_tareapp.insertar(consulta)) { // Devolverá true si se alamacena correctamente
+
+                return ""; // Si se inserta devuelve vacío
+
+            } else { 
+
+                return idioma_tareas.getTarea_no_creada(); // Si no se inserta devuelve el mensaje correspondiente
+            }
             
-            prioridad_seleccionada = 3;
+        } else {
             
-        } else if (prioridad.equals(idioma_tareas.getMedia())) { // Si llega "Media" en el idioma seleccionado, se asigna el 2
-            
-            prioridad_seleccionada = 2;
-        }
-        
-        Tarea tarea = new Tarea(titulo, prioridad_seleccionada, fecha, descripcion, idLista); // Se crea la tarea con sus datos
-        
-        // Comprobaciones de los datos
-        if (titulo.length() > 50) return idioma_tareas.getTitulo_supera_caracteres(); // Si el título supera los 50 caracteres devuelve el error
-        
-        if (!tarea.es_texto_valido(titulo)) return idioma_tareas.getTitulo_no_valido(); // Evita que tenga simbolos raros
-        
-        if (!tarea.es_fecha_valida()) return idioma_tareas.getFecha_no_valida(); // Comprueba que la fecha sea real y esté en el formato correcto
-        
-        if (descripcion.length() > 500) return idioma_tareas.getDescripcion_supera_caracteres();  // Si la descripción supera los 500 caracteres devuelve el error
-        
-        if (!tarea.es_texto_valido(descripcion)) return idioma_tareas.getDescripcion_no_valida(); // Evita que tenga simbolos raros
-        
-        fecha = tarea.cambiar_string_a_date(); // cambia la fecha de String a tipo Date para la BBDD
-        
-        String consulta = "INSERT INTO tarea (titulo, prioridad, fecha, descripcion, idLista) VALUES ('"+titulo+"', '"+prioridad_seleccionada+"', '"+fecha+"', '"+descripcion+"', '"+idLista+"')";
-        
-        if(bbdd_tareapp.insertar(consulta)) { // Devolverá true si se alamacena correctamente
-            
-            return ""; // Si se inserta devuelve vacío
-            
-        } else { 
-            
-            return idioma_tareas.getTarea_no_creada(); // Si no se inserta devuelve el mensaje correspondiente
+            return "Debe seleccionar una lista";
         }
     }
     
