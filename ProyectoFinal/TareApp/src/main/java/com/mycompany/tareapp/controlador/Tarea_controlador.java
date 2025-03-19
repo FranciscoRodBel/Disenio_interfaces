@@ -27,6 +27,8 @@ public class Tarea_controlador {
     */
     public String crear_tarea(String titulo, String prioridad, String fecha, String descripcion, int idLista) {
     
+        Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas(); // Recojo el idioma de tareas
+            
         if (idLista != 0) {
         
             titulo = titulo.trim();
@@ -34,7 +36,6 @@ public class Tarea_controlador {
             fecha = fecha.trim();
             descripcion = descripcion.trim();
 
-            Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas(); // Recojo el idioma de tareas
 
             int prioridad_seleccionada = 1; // De manera predeterminada la prioridad se guardará como baja
 
@@ -75,7 +76,7 @@ public class Tarea_controlador {
             
         } else {
             
-            return "Debe seleccionar una lista";
+            return idioma_tareas.getLista_no_seleccionada();
         }
     }
     

@@ -11,6 +11,7 @@ import com.mycompany.tareapp.modelo.idioma.Idiomas;
 import com.mycompany.tareapp.vista.Ajustes_cuenta_view;
 import com.mycompany.tareapp.vista.Iniciar_registrar_view;
 import com.mycompany.tareapp.vista.Listas_view;
+import com.mycompany.tareapp.vista.Notas_view;
 import com.mycompany.tareapp.vista.Tareas_view;
 import com.mycompany.tareapp.vista.plantillas.Cabecera;
 import java.io.File;
@@ -92,6 +93,7 @@ public class Idioma_controlador {
         cabecera.getItemTareas().setText(idioma_seleccionado.getCabecera().getTareas());
         cabecera.getItemListas().setText(idioma_seleccionado.getCabecera().getListas());
         cabecera.getMenuIdioma().setText(idioma_seleccionado.getCabecera().getIdioma());
+        cabecera.getItemNotas().setText(idioma_seleccionado.getCabecera().getNotas());
         cabecera.getMenuCuenta().setText(idioma_seleccionado.getCabecera().getCuenta());
         cabecera.getItemAjustes().setText(idioma_seleccionado.getCabecera().getAjustes());
         cabecera.getItemCerrarSesion().setText(idioma_seleccionado.getCabecera().getCerrar_sesion());
@@ -114,6 +116,7 @@ public class Idioma_controlador {
             Tareas_view tareas_view = Tareas_view.recoger_instancia();
             Listas_view listas_view = Listas_view.recoger_instancia();
             Ajustes_cuenta_view ajustes_cuenta_view = Ajustes_cuenta_view.recoger_instancia();
+            Notas_view notas_view = Notas_view.recoger_instancia();
             
             
             // Textos de la página de tareas
@@ -142,6 +145,11 @@ public class Idioma_controlador {
             ajustes_cuenta_view.getBoton_cambiar_email().setText(idioma_seleccionado.getPagina_ajustes_cuenta().getCambiar_email());
             ajustes_cuenta_view.getBoton_cambiar_contrasenia().setText(idioma_seleccionado.getPagina_ajustes_cuenta().getCambiar_contrasenia());
             ajustes_cuenta_view.getBoton_borrar_cuenta().setText(idioma_seleccionado.getPagina_ajustes_cuenta().getBorrar_cuenta());
+            
+            
+            // Textos de la página de notas
+            notas_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_notas().getTitulo());
+            notas_view.getBotonCrearTarea().setText(idioma_seleccionado.getPagina_notas().getCrear_nota());
         }
 
     }

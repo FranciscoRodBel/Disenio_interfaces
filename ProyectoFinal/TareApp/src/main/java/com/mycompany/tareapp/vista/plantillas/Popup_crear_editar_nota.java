@@ -4,14 +4,17 @@
  */
 package com.mycompany.tareapp.vista.plantillas;
 
+import com.mycompany.tareapp.controlador.Idioma_controlador;
 import com.mycompany.tareapp.controlador.Nota_controlador;
 import com.mycompany.tareapp.controlador.Tarea_controlador;
+import com.mycompany.tareapp.modelo.idioma.Pagina_notas;
 import com.mycompany.tareapp.vista.Notas_view;
 import java.awt.Dimension;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -30,7 +33,7 @@ import javax.swing.Timer;
  */
 public class Popup_crear_editar_nota extends JDialog {
     
-    //Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
+    Pagina_notas idioma_notas = Idioma_controlador.getIdioma_seleccionado().getPagina_notas();
     Notas_view notas_view = Notas_view.recoger_instancia();
     Nota_controlador nota_controlador = new Nota_controlador();
     Nota_plantilla nota;
@@ -52,6 +55,8 @@ public class Popup_crear_editar_nota extends JDialog {
     JRadioButton radioButtonAmarillo = new JRadioButton();
     JRadioButton radioButtonRosa = new JRadioButton();
     ButtonGroup grupoBotonesColores = new ButtonGroup();
+    
+    JButton boton_borrar_nota = new JButton();
     
     /**
     * Constructor del PopUp con los estilos necesarios
@@ -76,15 +81,15 @@ public class Popup_crear_editar_nota extends JDialog {
         
         if (nota == null) {
             
-            texto_titulo_popup = "Crear nota";
+            texto_titulo_popup = idioma_notas.getCrear_nota();
             texto_input_descripcion = "";
-            texto_boton = "Crear nota";
+            texto_boton = idioma_notas.getCrear_nota();
             
         } else {
             
-            texto_titulo_popup = "Editar nota";
+            texto_titulo_popup = idioma_notas.getEditar_nota();
             texto_input_descripcion = nota.getTextArea().getText();
-            texto_boton = "Editar nota";
+            texto_boton = idioma_notas.getEditar_nota();
         }
         
         JLabel labelTitulo = new JLabel(texto_titulo_popup, SwingConstants.CENTER);
@@ -140,11 +145,20 @@ public class Popup_crear_editar_nota extends JDialog {
                 }
             }
             
+            boton_borrar_nota.setIcon(new ImageIcon(getClass().getResource("/imagenes/trash-can-solid.png")));
+            panelPrincipal.add(boton_borrar_nota);
+            boton_borrar_nota.setPreferredSize(new Dimension(40, 40));
+            boton_borrar_nota.setContentAreaFilled(false); // Elimino el fondo
+            layout.putConstraint(SpringLayout.WEST, boton_borrar_nota, 5, SpringLayout.WEST, panelPrincipal);
+            layout.putConstraint(SpringLayout.NORTH, boton_borrar_nota, 5, SpringLayout.NORTH, panelPrincipal);
+            boton_borrar_nota.setToolTipText(idioma_notas.getBorrar_nota());
+            
         } else {
         
             quitarBotonSeleccionado();
             radioButtonNaranja.setIcon(new ImageIcon(getClass().getResource("/imagenes/radioNaranjaSeleccionado.png")));
             radioButtonNaranja.setSelected(true);
+            
         }
 
         layout.putConstraint(SpringLayout.WEST, radioButtonNaranja, 190, SpringLayout.WEST, panelPrincipal);
@@ -234,7 +248,7 @@ public class Popup_crear_editar_nota extends JDialog {
 
                 if (mensaje_resultado.isEmpty()) {
 
-                    mensaje_resultado = "Nota creada correctamente";
+                    mensaje_resultado = idioma_notas.getNota_creada();
                     notas_view.actualizar_panel_notas();                   
                 }
 
@@ -244,7 +258,7 @@ public class Popup_crear_editar_nota extends JDialog {
 
                 if (mensaje_resultado.isEmpty()) {
 
-                    mensaje_resultado = "Nota editada correctamente";
+                    mensaje_resultado = idioma_notas.getNota_editada();
                     notas_view.actualizar_panel_notas();                   
                 }
             }
@@ -253,6 +267,12 @@ public class Popup_crear_editar_nota extends JDialog {
             Timer tiempo_espera = new Timer(3000, evt -> this.getLabel_resultado_tarea().setText(""));
             tiempo_espera.setRepeats(false);
             tiempo_espera.start();
+        });
+        
+        boton_borrar_nota.addActionListener((ActionEvent e1) -> {
+            
+            Popup_borrar_nota popup_borrar_nota = new Popup_borrar_nota(this.getNota().getIdNota());
+            popup_borrar_nota.setVisible(true);
         });
     }
 

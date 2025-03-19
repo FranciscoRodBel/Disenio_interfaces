@@ -7,6 +7,7 @@ package com.mycompany.tareapp.vista.plantillas;
 import com.mycompany.tareapp.controlador.Idioma_controlador;
 import com.mycompany.tareapp.controlador.Usuario_controlador;
 import com.mycompany.tareapp.modelo.idioma.Pagina_ajustes_cuenta;
+import com.mycompany.tareapp.modelo.idioma.Pagina_inicio_registro;
 import com.mycompany.tareapp.vista.Ajustes_cuenta_view;
 import java.awt.Dimension;
 import java.awt.Window;
@@ -28,6 +29,7 @@ import javax.swing.Timer;
  */
 public class Popup_confirmar_email extends JDialog {
     
+    Pagina_inicio_registro pagina_inicio_registro =  Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
     Usuario_controlador usuario_controlador = new Usuario_controlador();
     
     JPanel panelPrincipal = new JPanel();
@@ -56,14 +58,14 @@ public class Popup_confirmar_email extends JDialog {
         panelPrincipal.setBackground(Estilos.getGris_claro());
         
         
-        JLabel labelTitulo = new JLabel("Confirmar email", SwingConstants.CENTER);
+        JLabel labelTitulo = new JLabel(pagina_inicio_registro.getConfirmar_email(), SwingConstants.CENTER);
         labelTitulo.setFont(Estilos.getFuenteTitulo());
         layout.putConstraint(SpringLayout.WEST, labelTitulo, 0, SpringLayout.WEST, panelPrincipal);
         layout.putConstraint(SpringLayout.NORTH, labelTitulo, 20, SpringLayout.NORTH, panelPrincipal);
         layout.putConstraint(SpringLayout.EAST, labelTitulo, 0, SpringLayout.EAST, panelPrincipal);
         panelPrincipal.add(labelTitulo);
         
-        JLabel labelMensajeCodigo = new JLabel("Introduzca el código que se ha enviado a su correo", SwingConstants.CENTER);
+        JLabel labelMensajeCodigo = new JLabel(pagina_inicio_registro.getIntroduzca_codigo(), SwingConstants.CENTER);
         labelMensajeCodigo.setFont(Estilos.getFuenteConTamaio(16));
         layout.putConstraint(SpringLayout.WEST, labelMensajeCodigo, 0, SpringLayout.WEST, panelPrincipal);
         layout.putConstraint(SpringLayout.NORTH, labelMensajeCodigo, 40, SpringLayout.NORTH, labelTitulo);
@@ -75,12 +77,12 @@ public class Popup_confirmar_email extends JDialog {
         layout.putConstraint(SpringLayout.NORTH, input_codigo, 40, SpringLayout.NORTH, labelMensajeCodigo);
         panelPrincipal.add(input_codigo);
         
-        Boton bonton_enviar = new Boton("Enviar código", "amarillo");
+        Boton bonton_enviar = new Boton(pagina_inicio_registro.getEnviar_codigo(), "amarillo");
         layout.putConstraint(SpringLayout.WEST, bonton_enviar, 100, SpringLayout.WEST, input_codigo);
         layout.putConstraint(SpringLayout.NORTH, bonton_enviar, 0, SpringLayout.NORTH, input_codigo);
         panelPrincipal.add(bonton_enviar);
         
-        Boton bonton_confirmar = new Boton("Confirmar email", "amarillo");
+        Boton bonton_confirmar = new Boton(pagina_inicio_registro.getConfirmar_email(), "amarillo");
         layout.putConstraint(SpringLayout.WEST, bonton_confirmar, 300, SpringLayout.WEST, panelPrincipal);
         layout.putConstraint(SpringLayout.NORTH, bonton_confirmar, 60, SpringLayout.NORTH, input_codigo);
         panelPrincipal.add(bonton_confirmar);
@@ -110,21 +112,18 @@ public class Popup_confirmar_email extends JDialog {
             
             String mensaje_resultado = "";
             
-            System.out.println(codigo);
-            System.out.println(Integer.parseInt(input_codigo.getText()));
-            
             if (codigo == Integer.parseInt(input_codigo.getText())) {
 
                 mensaje_resultado = usuario_controlador.registrar_usuario(email_registro, contrasenia, repetir_contrasenia, idioma_seleccionado);
 
                 if (mensaje_resultado.isEmpty()){
 
-                    mensaje_resultado = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro().getCuenta_creada();
+                    mensaje_resultado = pagina_inicio_registro.getCuenta_creada();
                 }
                 
             } else {
             
-                mensaje_resultado = "El código introducido es incorrecto";
+                mensaje_resultado = pagina_inicio_registro.getCodigo_incorrecto();
             }
             
             label_resultado.setText(mensaje_resultado);

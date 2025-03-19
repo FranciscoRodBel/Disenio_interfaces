@@ -9,22 +9,21 @@ package com.mycompany.tareapp.modelo.idioma;
  *
  * @author Francisco
  */
-public class Pagina_listas {
+public class Pagina_notas {
 
     private String titulo;
-    private String titulo_lista;
-    private String editar_lista;
-    private String borrar_lista;
-    private String pregunta_borrar_lista;
-    private String lista_creada;
-    private String titulo_no_valido;
-    private String lista_no_creada;
-    private String lista_editada;
-    private String lista_no_editada;
-    private String lista_borrada;
-    private String lista_no_borrada;
-    private String crear_lista;
-    private String ver_tareas_lista;
+    private String crear_nota;
+    private String editar_nota;
+    private String borrar_nota;
+    private String pregunta_borrar_nota;
+    private String resultado_borrar_nota;
+    private String nota_creada;
+    private String nota_editada;
+    private String nota_borrada;
+    private String nota_no_creada;
+    private String nota_no_editada;
+    private String nota_no_borrada;
+    private String descripcion_supera_caracteres;
 
     public String getTitulo() {
         return titulo;
@@ -34,108 +33,101 @@ public class Pagina_listas {
         this.titulo = titulo;
     }
 
-    public String getTitulo_lista() {
-        return titulo_lista;
+    public String getCrear_nota() {
+        return crear_nota;
     }
 
-    public void setTitulo_lista(String titulo_lista) {
-        this.titulo_lista = titulo_lista;
+    public void setCrear_nota(String crear_nota) {
+        this.crear_nota = crear_nota;
     }
 
-    public String getEditar_lista() {
-        return editar_lista;
+    public String getEditar_nota() {
+        return editar_nota;
     }
 
-    public void setEditar_lista(String editar_lista) {
-        this.editar_lista = editar_lista;
+    public void setEditar_nota(String editar_nota) {
+        this.editar_nota = editar_nota;
     }
 
-    public String getBorrar_lista() {
-        return borrar_lista;
+    public String getBorrar_nota() {
+        return borrar_nota;
     }
 
-    public void setBorrar_lista(String borrar_lista) {
-        this.borrar_lista = borrar_lista;
+    public void setBorrar_nota(String borrar_nota) {
+        this.borrar_nota = borrar_nota;
     }
 
-    public String getPregunta_borrar_lista() {
-        return pregunta_borrar_lista;
+    public String getPregunta_borrar_nota() {
+        return pregunta_borrar_nota;
     }
 
-    public void setPregunta_borrar_lista(String pregunta_borrar_lista) {
-        this.pregunta_borrar_lista = pregunta_borrar_lista;
+    public void setPregunta_borrar_nota(String pregunta_borrar_nota) {
+        this.pregunta_borrar_nota = pregunta_borrar_nota;
     }
 
-    public String getLista_creada() {
-        return lista_creada;
+    public String getResultado_borrar_nota() {
+        return resultado_borrar_nota;
     }
 
-    public void setLista_creada(String lista_creada) {
-        this.lista_creada = lista_creada;
+    public void setResultado_borrar_nota(String resultado_borrar_nota) {
+        this.resultado_borrar_nota = resultado_borrar_nota;
     }
 
-    public String getTitulo_no_valido() {
-        return titulo_no_valido;
+    public String getNota_creada() {
+        return nota_creada;
     }
 
-    public void setTitulo_no_valido(String titulo_no_valido) {
-        this.titulo_no_valido = titulo_no_valido;
+    public void setNota_creada(String nota_creada) {
+        this.nota_creada = nota_creada;
     }
 
-    public String getLista_no_creada() {
-        return lista_no_creada;
+    public String getNota_editada() {
+        return nota_editada;
     }
 
-    public void setLista_no_creada(String lista_no_creada) {
-        this.lista_no_creada = lista_no_creada;
+    public void setNota_editada(String nota_editada) {
+        this.nota_editada = nota_editada;
     }
 
-    public String getLista_editada() {
-        return lista_editada;
+    public String getNota_borrada() {
+        return nota_borrada;
     }
 
-    public void setLista_editada(String lista_editada) {
-        this.lista_editada = lista_editada;
+    public void setNota_borrada(String nota_borrada) {
+        this.nota_borrada = nota_borrada;
     }
 
-    public String getLista_no_editada() {
-        return lista_no_editada;
+    public String getNota_no_creada() {
+        return nota_no_creada;
     }
 
-    public void setLista_no_editada(String lista_no_editada) {
-        this.lista_no_editada = lista_no_editada;
+    public void setNota_no_creada(String nota_no_creada) {
+        this.nota_no_creada = nota_no_creada;
     }
 
-    public String getLista_borrada() {
-        return lista_borrada;
+    public String getNota_no_editada() {
+        return nota_no_editada;
     }
 
-    public void setLista_borrada(String lista_borrada) {
-        this.lista_borrada = lista_borrada;
+    public void setNota_no_editada(String nota_no_editada) {
+        this.nota_no_editada = nota_no_editada;
     }
 
-    public String getLista_no_borrada() {
-        return lista_no_borrada;
+    public String getNota_no_borrada() {
+        return nota_no_borrada;
     }
 
-    public void setLista_no_borrada(String lista_no_borrada) {
-        this.lista_no_borrada = lista_no_borrada;
+    public void setNota_no_borrada(String nota_no_borrada) {
+        this.nota_no_borrada = nota_no_borrada;
     }
 
-    public String getCrear_lista() {
-        return crear_lista;
+    public String getDescripcion_supera_caracteres() {
+        return descripcion_supera_caracteres;
     }
 
-    public void setCrear_lista(String crear_lista) {
-        this.crear_lista = crear_lista;
+    public void setDescripcion_supera_caracteres(String descripcion_supera_caracteres) {
+        this.descripcion_supera_caracteres = descripcion_supera_caracteres;
     }
-
-    public String getVer_tareas_lista() {
-        return ver_tareas_lista;
-    }
-
-    public void setVer_tareas_lista(String ver_tareas_lista) {
-        this.ver_tareas_lista = ver_tareas_lista;
-    }
+    
     
 }

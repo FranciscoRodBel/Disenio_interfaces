@@ -6,7 +6,7 @@ package com.mycompany.tareapp.controlador;
 
 import com.mycompany.tareapp.modelo.BBDD_tareapp;
 import com.mycompany.tareapp.modelo.Nota;
-import com.mycompany.tareapp.modelo.Tarea;
+import com.mycompany.tareapp.modelo.idioma.Pagina_notas;
 import com.mycompany.tareapp.modelo.idioma.Pagina_tareas;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,14 +29,14 @@ public class Nota_controlador {
     
         descripcion = descripcion.trim();
         
-        Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas(); // Recojo el idioma de notas
+        Pagina_notas idioma_notas = Idioma_controlador.getIdioma_seleccionado().getPagina_notas(); // Recojo el idioma de notas
         
         Nota nota = new Nota(descripcion, color); // Se crea la nota con sus datos
         
         // Comprobaciones de los datos
-        if (descripcion.length() > 250) return idioma_tareas.getDescripcion_supera_caracteres();  // Si la descripción supera los 250 caracteres devuelve el error
+        if (descripcion.length() > 250) return idioma_notas.getDescripcion_supera_caracteres();  // Si la descripción supera los 250 caracteres devuelve el error
         
-        if (!nota.es_texto_valido(descripcion)) return idioma_tareas.getDescripcion_no_valida(); // Evita que tenga simbolos raros
+        if (!nota.es_texto_valido(descripcion)) return Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getDescripcion_no_valida(); // Evita que tenga simbolos raros
         
         String consulta = "INSERT INTO nota (descripcion, color, email) VALUES ('"+descripcion+"', '"+color+"', '"+Usuario_controlador.getUsuario().getEmail()+"')";
         
@@ -46,7 +46,7 @@ public class Nota_controlador {
             
         } else { 
             
-            return "La nota no ha sido creada"; // Si no se inserta devuelve el mensaje correspondiente
+            return idioma_notas.getNota_no_creada(); // Si no se inserta devuelve el mensaje correspondiente
         }
     }
     
@@ -80,14 +80,14 @@ public class Nota_controlador {
        
         descripcion = descripcion.trim();
         
-        Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas(); // Recojo el idioma de notas
+        Pagina_notas idioma_notas = Idioma_controlador.getIdioma_seleccionado().getPagina_notas(); // Recojo el idioma de notas
         
         Nota nota = new Nota(descripcion, color); // Se crea la nota con sus datos
         
         // Comprobaciones de los datos
-        if (descripcion.length() > 250) return idioma_tareas.getDescripcion_supera_caracteres();  // Si la descripción supera los 250 caracteres devuelve el error
+        if (descripcion.length() > 250) return idioma_notas.getDescripcion_supera_caracteres();  // Si la descripción supera los 250 caracteres devuelve el error
         
-        if (!nota.es_texto_valido(descripcion)) return idioma_tareas.getDescripcion_no_valida(); // Evita que tenga simbolos raros
+        if (!nota.es_texto_valido(descripcion)) return Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getDescripcion_no_valida(); // Evita que tenga simbolos raros
         
         String consulta = "UPDATE nota SET descripcion = '" + descripcion + "', color = '" + color + "' WHERE idNota = " + idNota;
 
@@ -97,7 +97,7 @@ public class Nota_controlador {
             
         } else {
             
-            return idioma_tareas.getTarea_no_editada(); // Si no se edita devuelve el mensaje correspondiente
+            return idioma_notas.getNota_no_editada(); // Si no se edita devuelve el mensaje correspondiente
         }
     }
     
@@ -108,6 +108,8 @@ public class Nota_controlador {
     */
     public String borrar_nota(int idNota) {
         
+        Pagina_notas idioma_notas = Idioma_controlador.getIdioma_seleccionado().getPagina_notas(); // Recojo el idioma de notas
+        
         String consulta = "DELETE FROM nota WHERE idNota = '" + idNota + "'";
         
         if(bbdd_tareapp.borrar(consulta)) {
@@ -116,7 +118,7 @@ public class Nota_controlador {
             
         } else {
             
-            return "Nota borrada correctamente";
+            return idioma_notas.getNota_no_borrada();
         }
     }
     

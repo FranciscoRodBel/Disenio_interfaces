@@ -15,6 +15,7 @@ public class Idioma {
     private Cabecera Cabecera;
     private Pagina_tareas Pagina_tareas;
     private Pagina_listas Pagina_listas;
+    private Pagina_notas Pagina_notas;
     private Pagina_inicio_registro Pagina_inicio_registro;
     private Pagina_ajustes_cuenta Pagina_ajustes_cuenta;
     
@@ -65,4 +66,13 @@ public class Idioma {
     public void setPagina_ajustes_cuenta(Pagina_ajustes_cuenta Pagina_ajustes_cuenta) {
         this.Pagina_ajustes_cuenta = Pagina_ajustes_cuenta;
     }
+
+    public Pagina_notas getPagina_notas() {
+        return Pagina_notas;
+    }
+
+    public void setPagina_notas(Pagina_notas Pagina_notas) {
+        this.Pagina_notas = Pagina_notas;
+    }
+    
 }

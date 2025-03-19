@@ -12,7 +12,6 @@ import com.mycompany.tareapp.vista.plantillas.Boton;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
 import com.mycompany.tareapp.vista.plantillas.Input_password;
 import com.mycompany.tareapp.vista.plantillas.Input_text;
-import com.mycompany.tareapp.vista.plantillas.Popup_borrar_cuenta_lista;
 import com.mycompany.tareapp.vista.plantillas.Popup_confirmar_email;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;

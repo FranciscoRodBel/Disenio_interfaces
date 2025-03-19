@@ -14,6 +14,7 @@ public class Cabecera {
     private String tareas;
     private String listas;
     private String idioma;
+    private String notas;
     private String cuenta;
     private String ajustes;
     private String cerrar_sesion;
@@ -42,6 +43,14 @@ public class Cabecera {
         this.idioma = idioma;
     }
 
+    public String getNotas() {
+        return notas;
+    }
+
+    public void setNotas(String notas) {
+        this.notas = notas;
+    }
+    
     public String getCuenta() {
         return cuenta;
     }

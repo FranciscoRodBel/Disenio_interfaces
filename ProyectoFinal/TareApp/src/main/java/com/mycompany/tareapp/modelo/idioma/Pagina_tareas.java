@@ -46,6 +46,7 @@ public class Pagina_tareas {
     private String mostrar_tareas_91;
     private String marcar_completa_incompleta;
     private String ver_tarea;
+    private String lista_no_seleccionada;
     
     public String getTitulo() {
         return titulo;
@@ -327,5 +328,12 @@ public class Pagina_tareas {
         this.ver_tarea = ver_tarea;
     }
 
+    public String getLista_no_seleccionada() {
+        return lista_no_seleccionada;
+    }
+
+    public void setLista_no_seleccionada(String lista_no_seleccionada) {
+        this.lista_no_seleccionada = lista_no_seleccionada;
+    }
     
 }

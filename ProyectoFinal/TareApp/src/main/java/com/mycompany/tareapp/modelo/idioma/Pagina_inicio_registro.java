@@ -26,6 +26,10 @@ public class Pagina_inicio_registro {
     private String no_puede_crear_usuario;
     private String email_no_registrado;
     private String email_contrasenia_no_coinciden;
+    private String confirmar_email;
+    private String introduzca_codigo;
+    private String enviar_codigo;
+    private String codigo_incorrecto;
     
     public String getTitulo_inicio() {
         return titulo_inicio;
@@ -145,6 +149,38 @@ public class Pagina_inicio_registro {
 
     public void setEmail_contrasenia_no_coinciden(String email_contrasenia_no_coinciden) {
         this.email_contrasenia_no_coinciden = email_contrasenia_no_coinciden;
+    }
+
+    public String getConfirmar_email() {
+        return confirmar_email;
+    }
+
+    public void setConfirmar_email(String confirmar_email) {
+        this.confirmar_email = confirmar_email;
+    }
+
+    public String getIntroduzca_codigo() {
+        return introduzca_codigo;
+    }
+
+    public void setIntroduzca_codigo(String introduzca_codigo) {
+        this.introduzca_codigo = introduzca_codigo;
+    }
+
+    public String getEnviar_codigo() {
+        return enviar_codigo;
+    }
+
+    public void setEnviar_codigo(String enviar_codigo) {
+        this.enviar_codigo = enviar_codigo;
+    }
+
+    public String getCodigo_incorrecto() {
+        return codigo_incorrecto;
+    }
+
+    public void setCodigo_incorrecto(String codigo_incorrecto) {
+        this.codigo_incorrecto = codigo_incorrecto;
     }
     
 }

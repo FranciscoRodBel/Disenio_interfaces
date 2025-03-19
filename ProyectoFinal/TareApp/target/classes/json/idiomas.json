@@ -6,6 +6,7 @@
                 "tareas": "Tareas",
                 "listas": "Listas",
                 "idioma": "Idioma",
+                "notas": "Notas",
                 "cuenta": "Cuenta",
                 "ajustes": "Ajustes",
                 "cerrar_sesion": "Cerrar sesión"
@@ -45,7 +46,8 @@
                 "mostrar_tareas_19": "Mostrar tareas ordenadas por la fecha de menor a mayor",
                 "mostrar_tareas_91": "Mostrar tareas ordenadas por la fecha de mayor a menor",
                 "marcar_completa_incompleta": "Marcar tarea como completa o incompleta",
-                "ver_tarea": "Ver tarea"
+                "ver_tarea": "Ver tarea",
+                "lista_no_seleccionada": "Debe seleccionar una lista"
             },
             "Pagina_listas": {
                 "titulo": "Listas",
@@ -76,9 +78,13 @@
                 "contrasenia_no_coincide": "Las contraseñas no coinciden",
                 "contrasenia_invalida" : "Contraseña inválida: requiere mayúsculas, minúsculas, números y entre 4-50 caracteres",
                 "cuenta_creada": "Cuenta creada",
-                "no_puede_crear_usuario": "No se ha podido crear el usuario",
+                "no_puede_crear_usuario": "No se ha podido crear la cuenta",
                 "email_no_registrado": "El email no está registrado",
-                "email_contrasenia_no_coinciden": "El email y la contraseña no coincide"
+                "email_contrasenia_no_coinciden": "El email y la contraseña no coincide",
+                "confirmar_email": "Confirmar email",
+                "introduzca_codigo": "Introduzca el código que se ha enviado a su correo",
+                "enviar_codigo": "Eviar código",
+                "codigo_incorrecto": "El código introducido es incorrecto"
             },
             "Pagina_ajustes_cuenta": {
                 "titulo_pagina": "Ajustes de la cuenta",
@@ -97,6 +103,21 @@
                 "contrasenia_no_actualizada": "No se ha podido actualizar la contrasenia",
                 "cuenta_borrada": "Cuenta borrada",
                 "cuenta_no_borrada": "La cuenta no se ha podido borrar"
+            },
+            "Pagina_notas": {
+                "titulo": "Notas",
+                "crear_nota": "Crear nota",
+                "editar_nota": "Editar nota",
+                "borrar_nota": "Borrar nota",
+                "pregunta_borrar_nota": "¿Seguro que quiere borrar la nota?",
+                "resultado_borrar_nota": "Nota borrada correctamente",
+                "nota_creada": "Nota creada",
+                "nota_editada": "Nota editada",
+                "nota_borrada": "Nota borrada",
+                "nota_no_creada": "No se ha podido crear la nota",
+                "nota_no_editada": "No se ha podido editar la nota",
+                "nota_no_borrada": "No se ha podido borrar la nota",
+                "descripcion_supera_caracteres": "La descripción no puede superar los 250 caracteres"
             }
         },
         {
@@ -105,6 +126,7 @@
                 "tareas": "Tasks",
                 "listas": "Lists",
                 "idioma": "Language",
+                "notas": "Notes",
                 "cuenta": "Account",
                 "ajustes": "Settings",
                 "cerrar_sesion": "Log out"
@@ -144,7 +166,8 @@
                 "mostrar_tareas_19": "Show tasks ordered by date from earliest to latest",
                 "mostrar_tareas_91": "Show tasks ordered by date from latest to earliest",
                 "marcar_completa_incompleta": "Mark task as complete or incomplete",
-                "ver_tarea": "View task"
+                "ver_tarea": "View task",
+                "lista_no_seleccionada": "You must select a list"
             },
             "Pagina_listas": {
                 "titulo": "Lists",
@@ -177,7 +200,11 @@
                 "cuenta_creada": "Account created",
                 "no_puede_crear_usuario": "The user could not be created",
                 "email_no_registrado": "The email is not registered",
-                "email_contrasenia_no_coinciden": "The email and password do not match"
+                "email_contrasenia_no_coinciden": "The email and password do not match",
+                "confirmar_email": "Confirm email",
+                "introduzca_codigo": "Enter the code sent to your email",
+                "enviar_codigo": "Send code",
+                "codigo_incorrecto": "The code entered is incorrect"
             },
             "Pagina_ajustes_cuenta": {
                 "titulo_pagina": "Account settings",
@@ -196,6 +223,21 @@
                 "contrasenia_no_actualizada": "The password could not be updated",
                 "cuenta_borrada": "Account deleted",
                 "cuenta_no_borrada": "The account could not be deleted"
+            },
+            "Pagina_notas": {
+                "titulo": "Notes",
+                "crear_nota": "Create note",
+                "editar_nota": "Edit note",
+                "borrar_nota": "Delete note",
+                "pregunta_borrar_nota": "Are you sure you want to delete the note?",
+                "resultado_borrar_nota": "Note successfully deleted",
+                "nota_creada": "Note created",
+                "nota_editada": "Note edited",
+                "nota_borrada": "Note deleted",
+                "nota_no_creada": "The note could not be created",
+                "nota_no_editada": "The note could not be edited",
+                "nota_no_borrada": "The note could not be deleted",
+                "descripcion_supera_caracteres": "The description cannot exceed 250 characters"
             }
         },
         {
@@ -204,6 +246,7 @@
                 "tareas": "Tâches",
                 "listas": "Listes",
                 "idioma": "Langue",
+                "notas": "Notes",
                 "cuenta": "Compte",
                 "ajustes": "Paramètres",
                 "cerrar_sesion": "Se déconnecter"
@@ -243,7 +286,8 @@
                 "mostrar_tareas_19": "Afficher les tâches triées par date de la plus ancienne à la plus récente",
                 "mostrar_tareas_91": "Afficher les tâches triées par date de la plus récente à la plus ancienne",
                 "marcar_completa_incompleta": "Marquer la tâche comme terminée ou incomplète",
-                "ver_tarea": "Voir la tâche"
+                "ver_tarea": "Voir la tâche",
+                "lista_no_seleccionada": "Vous devez sélectionner une liste"
             },
             "Pagina_listas": {
                 "titulo": "Listes",
@@ -276,7 +320,11 @@
                 "cuenta_creada": "Compte créé",
                 "no_puede_crear_usuario": "L'utilisateur n'a pas pu être créé",
                 "email_no_registrado": "L'email n'est pas enregistré",
-                "email_contrasenia_no_coinciden": "L'email et le mot de passe ne correspondent pas"
+                "email_contrasenia_no_coinciden": "L'email et le mot de passe ne correspondent pas",
+                "confirmar_email": "Confirmer l'email",
+                "introduzca_codigo": "Entrez le code envoyé à votre email",
+                "enviar_codigo": "Envoyer le code",
+                "codigo_incorrecto": "Le code saisi est incorrect"
             },
             "Pagina_ajustes_cuenta": {
                 "titulo_pagina": "Paramètres du compte",
@@ -295,6 +343,21 @@
                 "contrasenia_no_actualizada": "Le mot de passe n'a pas pu être mis à jour",
                 "cuenta_borrada": "Compte supprimé",
                 "cuenta_no_borrada": "Le compte n'a pas pu être supprimé"
+            },
+            "Pagina_notas": {
+                "titulo": "Notes",
+                "crear_nota": "Créer une note",
+                "editar_nota": "Modifier la note",
+                "borrar_nota": "Supprimer la note",
+                "pregunta_borrar_nota": "Êtes-vous sûr de vouloir supprimer la note ?",
+                "resultado_borrar_nota": "Note supprimée avec succès",
+                "nota_creada": "Note créée",
+                "nota_editada": "Note modifiée",
+                "nota_borrada": "Note supprimée",
+                "nota_no_creada": "La note n'a pas pu être créée",
+                "nota_no_editada": "La note n'a pas pu être modifiée",
+                "nota_no_borrada": "La note n'a pas pu être supprimée",
+                "descripcion_supera_caracteres": "La description ne peut pas dépasser 250 caractères"
             }
         }
     ]
