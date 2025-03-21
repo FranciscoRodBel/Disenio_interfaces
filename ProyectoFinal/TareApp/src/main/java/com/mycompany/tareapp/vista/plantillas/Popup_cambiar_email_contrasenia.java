@@ -28,7 +28,6 @@ import javax.swing.Timer;
 public class Popup_cambiar_email_contrasenia extends JDialog {
     
     Pagina_ajustes_cuenta idioma_ajustes = Idioma_controlador.getIdioma_seleccionado().getPagina_ajustes_cuenta();
-    Ajustes_cuenta_view ajustes_cuenta_view = Ajustes_cuenta_view.recoger_instancia();
     Usuario_controlador usuario_controlador = new Usuario_controlador();
     JPanel panelPrincipal = new JPanel();
     
@@ -108,7 +107,16 @@ public class Popup_cambiar_email_contrasenia extends JDialog {
             
             if (tipo_popup.equals("email")) {
 
+                mensaje_resultado = usuario_controlador.comprobar_datos_actualizar_email(texto_input_nuevo, texto_input_repetir);
+                
+                if (mensaje_resultado.isEmpty()) {
+                    
+                    Popup_confirmar_email popup_confirmar_email = new Popup_confirmar_email(texto_input_nuevo, null, null);
+                    popup_confirmar_email.setVisible(true);        
+                }
 
+                
+                /*
                 mensaje_resultado = usuario_controlador.actualizar_email(texto_input_nuevo, texto_input_repetir);
 
                 if (mensaje_resultado.isEmpty()) {
@@ -116,6 +124,7 @@ public class Popup_cambiar_email_contrasenia extends JDialog {
                     mensaje_resultado = idioma_ajustes.getEmail_actualizado();    
                     ajustes_cuenta_view.getLabel_email_usuario().setText(texto_input_nuevo);          
                 }
+                */
                 
             } else {
 

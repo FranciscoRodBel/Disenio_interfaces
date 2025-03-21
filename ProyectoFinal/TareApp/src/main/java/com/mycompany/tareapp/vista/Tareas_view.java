@@ -9,6 +9,7 @@ import com.mycompany.tareapp.controlador.Tarea_controlador;
 import com.mycompany.tareapp.modelo.Lista;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
 import com.mycompany.tareapp.vista.plantillas.Popup_crear_editar_tarea;
+import com.mycompany.tareapp.vista.plantillas.Scroll;
 import com.mycompany.tareapp.vista.plantillas.Tarea_plantilla;
 import java.awt.Dimension;
 import java.awt.Insets;
@@ -26,7 +27,6 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
@@ -60,7 +60,7 @@ public final class Tareas_view extends javax.swing.JPanel {
     JComboBox<Lista> seleccionarLista = new JComboBox();
     
     JPanel panelTareas = new JPanel();
-    JScrollPane scroll_panelTareas = new JScrollPane(panelTareas);
+    Scroll scroll_panelTareas = new Scroll(panelTareas);
 
     /**
     * Constructor de la página de tareas, crea toda la interfaz de la página

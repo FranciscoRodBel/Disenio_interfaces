@@ -1,7 +1,6 @@
 package com.mycompany.tareapp.vista.plantillas;
 
 import java.awt.Dimension;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
@@ -10,7 +9,7 @@ import javax.swing.JTextArea;
  * 
  * @author Francisco
  */
-public final class Nota_plantilla extends JScrollPane {
+public final class Nota_plantilla extends Scroll {
 
     int idNota;
     String color;
@@ -19,6 +18,7 @@ public final class Nota_plantilla extends JScrollPane {
             
     public Nota_plantilla(int idNota, String texto, String color) {
         
+        super(new JTextArea()); 
         
         this.setIdNota(idNota);
         this.setColor(color);

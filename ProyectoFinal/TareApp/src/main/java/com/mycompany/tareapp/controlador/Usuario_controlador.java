@@ -85,6 +85,23 @@ public class Usuario_controlador {
         return "";
     }
     
+    public String comprobar_datos_actualizar_email(String email,String email_repetido) {
+        
+        email = email.trim().toLowerCase(); // Pasa el email a minúsculas
+        
+        Pagina_inicio_registro idioma = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro(); // Recojo el idioma del registro/inicio
+        
+        if(!email.equals(email_repetido)) return Idioma_controlador.getIdioma_seleccionado().getPagina_ajustes_cuenta().getEmails_no_coinciden(); // Comrpueba si los dos emails son iguales
+        
+        if (email.length() > 255) return idioma.getEmail_supera_caracteres(); // Compruebo que el email no supere los caracteres permitidos
+        
+        if (!Usuario.es_email_valido(email)) return idioma.getEmail_no_valido(); // Compruebo si el email tiene el formato de email texto@dominio.dominio
+        
+        if (Usuario.recoger_usuario(email) != null ) return idioma.getEmail_ya_registrado(); // Comprueba si el email ya está en la BBDD
+        
+        return "";
+    }
+    
     public String confirmar_email(String email, int codigo) {
         
         SMTP smtp = new SMTP();
@@ -124,20 +141,10 @@ public class Usuario_controlador {
     * 
     * @return Devuelve el resultado de actualizar el email, si se consigue actualizar el email devuelve vacío y si no un mensaje de error
     */
-    public String actualizar_email(String email, String email_repetido) {
+    public String actualizar_email(String email) {
         
         email = email.trim().toLowerCase(); // Pasa el email a minúsculas
-        
-        Pagina_inicio_registro idioma = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro(); // Recojo el idioma del registro/inicio
-        
-        if(!email.equals(email_repetido)) return Idioma_controlador.getIdioma_seleccionado().getPagina_ajustes_cuenta().getEmails_no_coinciden(); // Comrpueba si los dos emails son iguales
-        
-        if (email.length() > 255) return idioma.getEmail_supera_caracteres(); // Compruebo que el email no supere los caracteres permitidos
-        
-        if (!Usuario.es_email_valido(email)) return idioma.getEmail_no_valido(); // Compruebo si el email tiene el formato de email texto@dominio.dominio
-        
-        if (Usuario.recoger_usuario(email) != null ) return idioma.getEmail_ya_registrado(); // Comprueba si el email ya está en la BBDD
-        
+
         String consulta = "UPDATE usuario SET email = '" + email + "' WHERE email = '" + usuario.getEmail() + "'";
 
         if(bbdd_tareapp.insertar(consulta)) {

@@ -30,6 +30,8 @@ public class Pagina_inicio_registro {
     private String introduzca_codigo;
     private String enviar_codigo;
     private String codigo_incorrecto;
+    private String confirmacion_asunto;
+    private String confirmacion_mensaje;
     
     public String getTitulo_inicio() {
         return titulo_inicio;
@@ -181,6 +183,22 @@ public class Pagina_inicio_registro {
 
     public void setCodigo_incorrecto(String codigo_incorrecto) {
         this.codigo_incorrecto = codigo_incorrecto;
+    }
+
+    public String getConfirmacion_asunto() {
+        return confirmacion_asunto;
+    }
+
+    public void setConfirmacion_asunto(String confirmacion_asunto) {
+        this.confirmacion_asunto = confirmacion_asunto;
+    }
+
+    public String getConfirmacion_mensaje() {
+        return confirmacion_mensaje;
+    }
+
+    public void setConfirmacion_mensaje(String confirmacion_mensaje) {
+        this.confirmacion_mensaje = confirmacion_mensaje;
     }
     
 }

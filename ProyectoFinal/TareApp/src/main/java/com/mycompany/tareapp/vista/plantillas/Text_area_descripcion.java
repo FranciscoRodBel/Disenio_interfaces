@@ -7,7 +7,6 @@ package com.mycompany.tareapp.vista.plantillas;
 import com.mycompany.tareapp.controlador.Idioma_controlador;
 import com.mycompany.tareapp.modelo.idioma.Pagina_tareas;
 import java.awt.Dimension;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import static javax.swing.SwingConstants.CENTER;
 
@@ -17,7 +16,7 @@ import static javax.swing.SwingConstants.CENTER;
  * 
  * @author Francisco
  */
-public class Text_area_descripcion extends JScrollPane {
+public class Text_area_descripcion extends Scroll {
 
     JTextArea textArea;
     TextPrompt placeholder;
@@ -28,8 +27,10 @@ public class Text_area_descripcion extends JScrollPane {
     */
     public Text_area_descripcion(String texto_descripcion) {
         
+        super(new JTextArea());
         textArea = new JTextArea();
         textArea.setFont(Estilos.getFuente());
+        
         
         this.setViewportView(textArea);
         this.setPreferredSize(new Dimension(500, 200));

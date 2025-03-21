@@ -215,23 +215,8 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
             
             if (mensaje_resultado.isEmpty()) {
             
-                String idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getIdioma();
-                
-                Popup_confirmar_email popup_confirmar_email = new Popup_confirmar_email(email_registro.getText(), contrasenia, repetir_contrasenia, idioma_seleccionado);
+                Popup_confirmar_email popup_confirmar_email = new Popup_confirmar_email(email_registro.getText(), contrasenia, repetir_contrasenia);
                 popup_confirmar_email.setVisible(true);
-                /*
-            
-                mensaje_resultado = usuario_controlador.registrar_usuario(email_registro.getText(), contrasenia, repetir_contrasenia, idioma_seleccionado);
-
-                if (mensaje_resultado.isEmpty()){
-
-                    email_registro.setText("");
-                    contrasenia_registro.setText("");
-                    repetir_contrasenia_registro.setText("");
-
-                    mensaje_resultado = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro().getCuenta_creada();
-                }
-                */
                 
             } else {
             

@@ -29,7 +29,9 @@ import javax.swing.Timer;
  */
 public class Popup_confirmar_email extends JDialog {
     
+    String idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getIdioma();
     Pagina_inicio_registro pagina_inicio_registro =  Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
+    Pagina_ajustes_cuenta idioma_ajustes = Idioma_controlador.getIdioma_seleccionado().getPagina_ajustes_cuenta();
     Usuario_controlador usuario_controlador = new Usuario_controlador();
     
     JPanel panelPrincipal = new JPanel();
@@ -42,7 +44,8 @@ public class Popup_confirmar_email extends JDialog {
     * Constructor del PopUp con los estilos necesarios
     * 
     */
-    public Popup_confirmar_email(String email_registro,String contrasenia,String repetir_contrasenia,String idioma_seleccionado) {
+    public Popup_confirmar_email(String email,String contrasenia,String repetir_contrasenia) {
+        
         
         super((Window) null, "PopUp", ModalityType.APPLICATION_MODAL);
         
@@ -99,7 +102,7 @@ public class Popup_confirmar_email extends JDialog {
             
             codigo = 10000 + new Random().nextInt(90000);
             
-            String mensaje_resultado = usuario_controlador.confirmar_email(email_registro, codigo); 
+            String mensaje_resultado = usuario_controlador.confirmar_email(email, codigo); 
             
             label_resultado.setText(mensaje_resultado);
             Timer tiempo_espera = new Timer(3000, evt -> label_resultado.setText(""));
@@ -112,13 +115,26 @@ public class Popup_confirmar_email extends JDialog {
             
             String mensaje_resultado = "";
             
-            if (codigo == Integer.parseInt(input_codigo.getText())) {
+            if (codigo != Integer.parseInt(input_codigo.getText())) {
 
-                mensaje_resultado = usuario_controlador.registrar_usuario(email_registro, contrasenia, repetir_contrasenia, idioma_seleccionado);
+                if (contrasenia != null) {
+                
+                    mensaje_resultado = usuario_controlador.registrar_usuario(email, contrasenia, repetir_contrasenia, idioma_seleccionado);
 
-                if (mensaje_resultado.isEmpty()){
+                    if (mensaje_resultado.isEmpty()){
 
-                    mensaje_resultado = pagina_inicio_registro.getCuenta_creada();
+                        mensaje_resultado = pagina_inicio_registro.getCuenta_creada();
+                    }
+                    
+                } else {
+                
+                    mensaje_resultado = usuario_controlador.actualizar_email(email);
+
+                    if (mensaje_resultado.isEmpty()) {
+                        
+                        mensaje_resultado = idioma_ajustes.getEmail_actualizado();    
+                        Ajustes_cuenta_view.recoger_instancia().getLabel_email_usuario().setText(email);          
+                    }
                 }
                 
             } else {

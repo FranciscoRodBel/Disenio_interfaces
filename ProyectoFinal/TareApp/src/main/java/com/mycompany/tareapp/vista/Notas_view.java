@@ -9,6 +9,7 @@ import com.mycompany.tareapp.vista.plantillas.Boton;
 import com.mycompany.tareapp.vista.plantillas.Estilos;
 import com.mycompany.tareapp.vista.plantillas.Nota_plantilla;
 import com.mycompany.tareapp.vista.plantillas.Popup_crear_editar_nota;
+import com.mycompany.tareapp.vista.plantillas.Scroll;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -16,7 +17,6 @@ import java.util.HashMap;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
@@ -35,7 +35,7 @@ public final class Notas_view extends javax.swing.JPanel {
     JLabel titulo_pagina = new JLabel("Notas");
     
     JPanel panelNotas = new JPanel();
-    JScrollPane scroll_panel_notas = new JScrollPane(panelNotas);
+    Scroll scroll_panel_notas = new Scroll(panelNotas);
 
     /**
     * Constructor de la página de notas, crea toda la interfaz de la página

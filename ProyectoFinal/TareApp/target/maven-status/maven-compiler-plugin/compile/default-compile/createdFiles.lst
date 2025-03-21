@@ -1,5 +1,8 @@
-com\mycompany\tareapp\vista\Tareas_view.class
 com\mycompany\tareapp\vista\plantillas\Nota_plantilla$1.class
-com\mycompany\tareapp\vista\plantillas\Popup_borrar_nota.class
 com\mycompany\tareapp\vista\plantillas\Nota_plantilla.class
+com\mycompany\tareapp\vista\plantillas\Scroll$1.class
+com\mycompany\tareapp\vista\plantillas\Scroll$2.class
+com\mycompany\tareapp\vista\Tareas_view.class
+com\mycompany\tareapp\vista\plantillas\Popup_borrar_nota.class
 com\mycompany\tareapp\vista\plantillas\Input_Number.class
+com\mycompany\tareapp\vista\plantillas\Scroll.class

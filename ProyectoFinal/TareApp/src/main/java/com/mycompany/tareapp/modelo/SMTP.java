@@ -1,5 +1,7 @@
 package com.mycompany.tareapp.modelo;
 
+import com.mycompany.tareapp.controlador.Idioma_controlador;
+import com.mycompany.tareapp.modelo.idioma.Pagina_inicio_registro;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -36,19 +38,20 @@ public class SMTP {
 
     public Boolean enviarEmail(String email_usuario_envio, int codigo) {
 
+        Pagina_inicio_registro idioma_inicio_registro = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
+    
         try {
 
             // Crear mensaje
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(email_usuario));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(email_usuario_envio));
-            message.setSubject("Código de verificación para iniciar sesión en TareApp");
-            message.setText("Hola,\n \n" +
-                            "Para completar tu inicio de sesión en TareApp, introduce el siguiente código de verificación en la aplicación:\n \n" +
-                            codigo+"\n \n" +
-                            "Si no solicitaste este código, puedes ignorar este mensaje.\n \n" +
-                            "Saludos,\n" +
-                            "El equipo de TareApp.");
+            message.setSubject(idioma_inicio_registro.getConfirmacion_asunto());
+            
+            String mensajeEmail = idioma_inicio_registro.getConfirmacion_mensaje();
+            mensajeEmail = mensajeEmail.replace("{codigo}", String.valueOf(codigo));
+                    
+            message.setText(mensajeEmail);
             Transport.send(message);
 
             return true;

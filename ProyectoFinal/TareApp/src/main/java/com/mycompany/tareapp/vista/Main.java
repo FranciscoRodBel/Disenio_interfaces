@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
+import javax.swing.UIManager;
 
 /**
  * Clase para la vista principal, ejecuta el programa
@@ -54,7 +55,7 @@ public class Main extends javax.swing.JFrame {
         this.setResizable(false);        
         this.add(panelPrincipal);
         this.setLocationRelativeTo(null);
-        
+
         panelPrincipal.setBackground(Estilos.getGris_claro());
         panelPrincipal.setLayout(layout);
         panelPrincipal.setBounds(0, 0, 1000, 600);

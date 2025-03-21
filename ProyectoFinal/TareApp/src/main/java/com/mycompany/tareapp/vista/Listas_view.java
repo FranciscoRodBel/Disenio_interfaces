@@ -15,12 +15,12 @@ import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 import com.mycompany.tareapp.vista.plantillas.Input_text;
 import com.mycompany.tareapp.vista.plantillas.Lista_plantilla;
+import com.mycompany.tareapp.vista.plantillas.Scroll;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.Timer;
 
 /**
@@ -38,7 +38,7 @@ public class Listas_view extends javax.swing.JPanel {
     Tareas_view tareas_view = Tareas_view.recoger_instancia();
     
     JPanel panel_lista = new JPanel();
-    JScrollPane scroll_panel_lista = new JScrollPane(panel_lista);
+    Scroll scroll_panel_lista = new Scroll(panel_lista);
     
     JLabel titulo_pagina = new JLabel("Listas");
     Input_text input_titulo_lista = new Input_text("Título lista", "");

@@ -84,7 +84,9 @@
                 "confirmar_email": "Confirmar email",
                 "introduzca_codigo": "Introduzca el código que se ha enviado a su correo",
                 "enviar_codigo": "Eviar código",
-                "codigo_incorrecto": "El código introducido es incorrecto"
+                "codigo_incorrecto": "El código introducido es incorrecto",
+                "confirmacion_asunto": "Código de verificación para iniciar sesión en TareApp",
+                "confirmacion_mensaje": "Hola,\n\nPara completar tu inicio de sesión en TareApp, introduce el siguiente código de verificación en la aplicación:\n\n{codigo}\n\nSi no solicitaste este código, puedes ignorar este mensaje.\n\nSaludos,\nEl equipo de TareApp."
             },
             "Pagina_ajustes_cuenta": {
                 "titulo_pagina": "Ajustes de la cuenta",
@@ -204,7 +206,9 @@
                 "confirmar_email": "Confirm email",
                 "introduzca_codigo": "Enter the code sent to your email",
                 "enviar_codigo": "Send code",
-                "codigo_incorrecto": "The code entered is incorrect"
+                "codigo_incorrecto": "The code entered is incorrect",
+                "confirmacion_asunto": "Verification code to log in to TareApp",
+                "confirmacion_mensaje": "Hello,\n\nTo complete your login to TareApp, enter the following verification code in the application:\n\n{codigo}\n\nIf you did not request this code, you can ignore this message.\n\nBest regards,\nThe TareApp team."
             },
             "Pagina_ajustes_cuenta": {
                 "titulo_pagina": "Account settings",
@@ -324,7 +328,9 @@
                 "confirmar_email": "Confirmer l'email",
                 "introduzca_codigo": "Entrez le code envoyé à votre email",
                 "enviar_codigo": "Envoyer le code",
-                "codigo_incorrecto": "Le code saisi est incorrect"
+                "codigo_incorrecto": "Le code saisi est incorrect",
+                "confirmacion_asunto": "Code de vérification pour se connecter à TareApp",
+                "confirmacion_mensaje": "Bonjour,\n\nPour compléter votre connexion à TareApp, saisissez le code de vérification suivant dans l'application :\n\n{codigo}\n\nSi vous n'avez pas demandé ce code, vous pouvez ignorer ce message.\n\nCordialement,\nL'équipe de TareApp."
             },
             "Pagina_ajustes_cuenta": {
                 "titulo_pagina": "Paramètres du compte",
