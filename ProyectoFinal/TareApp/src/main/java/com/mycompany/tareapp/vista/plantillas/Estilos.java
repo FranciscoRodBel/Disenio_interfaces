@@ -21,8 +21,7 @@ public class Estilos {
     private static final Color blanco = new Color(255, 255, 255);
     private static final Color negro = new Color(0, 0, 0);
     private static final Color blanco_claro = new Color(245, 245, 245);
-    private static final Color gris = new Color(218, 210, 216);
-    private static final Color gris_claro  = new Color(218, 210, 216);
+    private static final Color gris_claro  = new Color(230, 230, 230);
     private static final Color azul_oscuro = new Color(20, 54, 66);
     private static final Color amarillo = new Color(255, 212, 59);
     private static final Color rojo = new Color(255, 49, 46);
@@ -92,10 +91,6 @@ public class Estilos {
 
     public static Color getRojo() {
         return rojo;
-    }
-
-    public static Color getGris() {
-        return gris;
     }
 
     public static Color getNaranja_nota() {
