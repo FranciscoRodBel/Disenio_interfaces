@@ -33,6 +33,7 @@ import javax.swing.Timer;
  */
 public class Popup_borrar_nota extends JDialog {
     
+    Popup_crear_editar_nota popup_crear_editar_nota;
     Usuario_controlador usuario_controlador = new Usuario_controlador();
     Nota_controlador nota_controlador = new Nota_controlador();
     Notas_view notas_view = Notas_view.recoger_instancia();
@@ -45,10 +46,11 @@ public class Popup_borrar_nota extends JDialog {
     * Constructor para generar el popUp y sus estilos
     * 
     */
-    public Popup_borrar_nota(int idNota) {
+    public Popup_borrar_nota(Popup_crear_editar_nota panel_editar_nota, int idNota) {
         
         super((Window) null, "PopUp", ModalityType.APPLICATION_MODAL);
         
+        this.popup_crear_editar_nota = panel_editar_nota;
         this.setLayout(null);
         this.setResizable(false);  
         this.setSize(new Dimension(800, 250));
@@ -100,7 +102,16 @@ public class Popup_borrar_nota extends JDialog {
             }
 
             label_resultado.setText(mensaje_resultado);
-            Timer tiempo_espera = new Timer(3000, evt -> label_resultado.setText(""));
+            
+            Timer tiempo_espera = new Timer(1000, evt -> {
+                
+                dispose();
+                if (popup_crear_editar_nota != null) {
+                    
+                    popup_crear_editar_nota.dispose();
+                }
+            });
+            
             tiempo_espera.setRepeats(false);
             tiempo_espera.start();
         });

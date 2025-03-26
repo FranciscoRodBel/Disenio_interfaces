@@ -117,7 +117,11 @@ public class Popup_borrar_cuenta_lista extends JDialog {
                 } 
                 
                 label_resultado.setText(mensaje_resultado);
-                Timer tiempo_espera = new Timer(3000, evt -> label_resultado.setText(""));
+                
+                Timer tiempo_espera = new Timer(1000, evt -> {
+                    dispose();
+                });
+                
                 tiempo_espera.setRepeats(false);
                 tiempo_espera.start();
             
@@ -138,7 +142,11 @@ public class Popup_borrar_cuenta_lista extends JDialog {
                 }
                 
                 label_resultado.setText(mensaje_resultado);
-                Timer tiempo_espera = new Timer(3000, evt -> label_resultado.setText(""));
+                
+                Timer tiempo_espera = new Timer(1000, evt -> {
+                    dispose();
+                });
+                
                 tiempo_espera.setRepeats(false);
                 tiempo_espera.start();
             }

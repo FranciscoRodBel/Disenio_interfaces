@@ -242,14 +242,17 @@ public class Popup_crear_editar_nota extends JDialog {
             String descripcion = this.getInput_descripcion().getTextArea().getText();
             String color = grupoBotonesColores.getSelection().getActionCommand();
                 
-            if (this.getNota()== null) {
+            if (this.getNota() == null) {
 
                 mensaje_resultado = nota_controlador.crear_nota(descripcion, color);
 
                 if (mensaje_resultado.isEmpty()) {
 
                     mensaje_resultado = idioma_notas.getNota_creada();
-                    notas_view.actualizar_panel_notas();                   
+                    notas_view.actualizar_panel_notas();       
+                    
+                    input_descripcion.getTextArea().setText("");
+                    radioButtonNaranja.setSelected(true);
                 }
 
             } else {
@@ -270,10 +273,10 @@ public class Popup_crear_editar_nota extends JDialog {
         });
         
         boton_borrar_nota.addActionListener((ActionEvent e1) -> {
-            
-            Popup_borrar_nota popup_borrar_nota = new Popup_borrar_nota(this.getNota().getIdNota());
+            Popup_borrar_nota popup_borrar_nota = new Popup_borrar_nota(this, this.getNota().getIdNota());
             popup_borrar_nota.setVisible(true);
         });
+
     }
 
     public Boton getBonton_crear_editar() {

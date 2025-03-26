@@ -19,7 +19,6 @@ public class Usuario_controlador {
     private static Usuario usuario; // Guardo el usuario que tiene la sesión iniciada
     private final BBDD_tareapp bbdd_tareapp = new BBDD_tareapp();
 
-    
     public static Usuario getUsuario() {
         return usuario;
     }
@@ -192,8 +191,6 @@ public class Usuario_controlador {
     * @return Devuelve el resultado de borrar el usuario, si se consigue borrar el usuario devuelve vacío y si no un mensaje de error
     */
     public String borrar_usuario() {
-        
-        System.out.println(usuario.getEmail());
         
         String consulta = "DELETE FROM usuario WHERE email = '" + usuario.getEmail() + "'";
         

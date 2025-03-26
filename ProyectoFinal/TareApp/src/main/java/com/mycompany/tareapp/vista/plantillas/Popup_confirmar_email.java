@@ -97,25 +97,50 @@ public class Popup_confirmar_email extends JDialog {
         layout.putConstraint(SpringLayout.EAST, label_resultado, 0, SpringLayout.EAST, panelPrincipal);
         panelPrincipal.add(label_resultado);
         
-        
         bonton_enviar.addActionListener((ActionEvent e1) -> {
             
-            codigo = 10000 + new Random().nextInt(90000);
-            
-            String mensaje_resultado = usuario_controlador.confirmar_email(email, codigo); 
-            
-            label_resultado.setText(mensaje_resultado);
-            Timer tiempo_espera = new Timer(3000, evt -> label_resultado.setText(""));
-            tiempo_espera.setRepeats(false);
-            tiempo_espera.start();
+            bonton_enviar.setEnabled(false); // Deshabilita el botón
+            label_resultado.setText("Enviando código...");
 
+            new Thread(() -> {
+                try {
+                    
+                    codigo = 10000 + new Random().nextInt(90000);
+                    String mensaje_resultado = usuario_controlador.confirmar_email(email, codigo);
+
+                    Thread.sleep(3000); 
+
+                    javax.swing.SwingUtilities.invokeLater(() -> {
+                        
+                        label_resultado.setText(mensaje_resultado);
+                        Timer tiempo_espera = new Timer(3000, evt -> label_resultado.setText(""));
+                        tiempo_espera.setRepeats(false);
+                        tiempo_espera.start();
+                    });
+
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+            }).start();
+
+            // Reactiva el botón después de 1 minuto
+            Timer timer_reactivacion = new Timer(30000, evt -> bonton_enviar.setEnabled(true));
+            timer_reactivacion.setRepeats(false);
+            timer_reactivacion.start();
         });
         
         bonton_confirmar.addActionListener((ActionEvent e1) -> {
             
             String mensaje_resultado = "";
+            int numero_enviado = 0;
             
-            if (codigo != Integer.parseInt(input_codigo.getText())) {
+            try {
+                
+                numero_enviado = Integer.parseInt(input_codigo.getText());
+                
+            } catch (Exception e) {}
+            
+            if (codigo == numero_enviado) {
 
                 if (contrasenia != null) {
                 
@@ -137,16 +162,22 @@ public class Popup_confirmar_email extends JDialog {
                     }
                 }
                 
+                label_resultado.setText(mensaje_resultado);
+                Timer tiempo_espera = new Timer(1000, evt -> {
+                    dispose();
+                });
+                tiempo_espera.setRepeats(false);
+                tiempo_espera.start();
+                
             } else {
             
                 mensaje_resultado = pagina_inicio_registro.getCodigo_incorrecto();
+                
+                label_resultado.setText(mensaje_resultado);
+                Timer tiempo_espera = new Timer(1000, evt -> label_resultado.setText(""));
+                tiempo_espera.setRepeats(false);
+                tiempo_espera.start();
             }
-            
-            label_resultado.setText(mensaje_resultado);
-            Timer tiempo_espera = new Timer(3000, evt -> label_resultado.setText(""));
-            tiempo_espera.setRepeats(false);
-            tiempo_espera.start();
-
         });
     }
 }

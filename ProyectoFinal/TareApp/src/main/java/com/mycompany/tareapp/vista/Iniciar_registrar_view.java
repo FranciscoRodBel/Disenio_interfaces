@@ -172,16 +172,6 @@ public class Iniciar_registrar_view extends javax.swing.JPanel {
         layout3.putConstraint(SpringLayout.NORTH, label_resultado_registro, 45, SpringLayout.NORTH, boton_enviar_registro);
         layout3.putConstraint(SpringLayout.EAST, label_resultado_registro, 0, SpringLayout.EAST, panel_registro);
         
-        
-        // Pruebas registro
-        email_registro.setText("9442@cifpceuta.es");
-        contrasenia_registro.setText("12345678Aa");
-        repetir_contrasenia_registro.setText("12345678Aa");
-        
-        email_iniciar.setText("9442@cifpceuta.es");
-        contrasenia_iniciar.setText("12345678Aa");
-        
-
         boton_iniciar.addActionListener((ActionEvent e) -> {
             
             panel_inicio.setVisible(true);

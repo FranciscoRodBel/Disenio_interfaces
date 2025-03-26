@@ -102,8 +102,8 @@ public class Popup_cambiar_email_contrasenia extends JDialog {
         bonton_cambiar.addActionListener((ActionEvent e1) -> {
             
             String mensaje_resultado = "";
-            String texto_input_nuevo = input_nuevo.getText();
-            String texto_input_repetir = input_repetir.getText();
+            String texto_input_nuevo = input_nuevo.getText().trim();
+            String texto_input_repetir = input_repetir.getText().trim();
             
             if (tipo_popup.equals("email")) {
 
@@ -114,17 +114,6 @@ public class Popup_cambiar_email_contrasenia extends JDialog {
                     Popup_confirmar_email popup_confirmar_email = new Popup_confirmar_email(texto_input_nuevo, null, null);
                     popup_confirmar_email.setVisible(true);        
                 }
-
-                
-                /*
-                mensaje_resultado = usuario_controlador.actualizar_email(texto_input_nuevo, texto_input_repetir);
-
-                if (mensaje_resultado.isEmpty()) {
-
-                    mensaje_resultado = idioma_ajustes.getEmail_actualizado();    
-                    ajustes_cuenta_view.getLabel_email_usuario().setText(texto_input_nuevo);          
-                }
-                */
                 
             } else {
 

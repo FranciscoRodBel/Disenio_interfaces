@@ -140,20 +140,25 @@ public class Popup_ver_borrar_tarea extends JDialog {
             panelPrincipal.add(label_resultado);
             
             bonton_borrar.addActionListener((ActionEvent e) -> {
-
+                
                 String mensaje_resultado = tarea_controlador.borrar_tarea(tarea.getIdTarea());
 
                 if (mensaje_resultado.isEmpty()) {
-
+                    
                     mensaje_resultado = idioma_tareas.getTarea_borrada();
                     tareas_view.actualizar_panel_tareas();
-                } 
+                }
 
                 label_resultado.setText(mensaje_resultado);
-                Timer tiempo_espera = new Timer(3000, evt -> label_resultado.setText(""));
+                
+                Timer tiempo_espera = new Timer(1000, evt -> {
+                    dispose();
+                });
+
                 tiempo_espera.setRepeats(false);
                 tiempo_espera.start();
             });
+
         }
     }
 }

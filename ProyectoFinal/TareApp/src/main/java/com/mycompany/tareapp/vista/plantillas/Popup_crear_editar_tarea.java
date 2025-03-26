@@ -144,6 +144,11 @@ public class Popup_crear_editar_tarea extends JDialog {
                 mensaje_resultado = tarea_controlador.crear_tarea(titulo, prioridad, fecha, descripcion, idLista);
 
                 if (mensaje_resultado.isEmpty()) {
+                    
+                    input_titulo_terea.setText("");
+                    input_fecha_terea.setText("");
+                    input_prioridad_tarea.setSelectedIndex(0);
+                    input_descripcion.getTextArea().setText("");
 
                     mensaje_resultado = idioma_tareas.getTarea_creada();
                     tareas_view.actualizar_panel_tareas();                   
