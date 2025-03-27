@@ -1,3 +1,0 @@
-Para poder usar la aplicación a través del instalador, necesita 
-antes insertar la BBDD del proyecto y configurar workbench para 
-que el usuario y la contraseña sea root
