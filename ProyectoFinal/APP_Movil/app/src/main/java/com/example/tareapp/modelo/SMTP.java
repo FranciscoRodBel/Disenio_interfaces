@@ -1,7 +1,7 @@
-package com.mycompany.tareapp.modelo;
+package com.example.tareapp.modelo;
 
-import com.mycompany.tareapp.controlador.Idioma_controlador;
-import com.mycompany.tareapp.modelo.idioma.Pagina_inicio_registro;
+import com.example.tareapp.controlador.Idioma_controlador;
+import com.example.tareapp.modelo.idioma.Pagina_inicio_registro;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;

@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.tareapp.controlador;
+package com.example.tareapp.controlador;
 
-import com.mycompany.tareapp.modelo.BBDD_tareapp;
-import com.mycompany.tareapp.modelo.Tarea;
-import com.mycompany.tareapp.modelo.idioma.Pagina_tareas;
+import com.example.tareapp.modelo.BBDD_tareapp;
+import com.example.tareapp.modelo.Tarea;
+import com.example.tareapp.modelo.idioma.Pagina_tareas;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -216,12 +216,15 @@ public class Tarea_controlador {
         if (prioridadBaja && prioridadMedia && prioridadAlta) consulta += "AND (prioridad = 1 OR prioridad = 2 OR prioridad = 3) ";
         
         // Filtro del orden de las tareas
+        /*
         switch(ordenacion) {
             case "AZ" -> consulta += "ORDER BY titulo ASC";
             case "ZA" -> consulta += "ORDER BY titulo DESC";
             case "91" -> consulta += "ORDER BY fecha DESC";
             default -> consulta += "ORDER BY fecha ASC";
          }
+         */
+
         
         return consulta;
     }

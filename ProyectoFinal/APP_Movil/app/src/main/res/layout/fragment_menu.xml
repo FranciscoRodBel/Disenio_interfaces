@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/blanco_claro"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Menú"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/azul_oscuro"
+        android:paddingBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnTareas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tareas"/>
+
+    <Button
+        android:id="@+id/btnListas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Listas"/>
+
+    <Button
+        android:id="@+id/btnNotas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Notas"/>
+
+    <Button
+        android:id="@+id/btnAjustes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ajustes"/>
+
+    <Button
+        android:id="@+id/btnCerrarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cerrar sesión"
+        android:textColor="@color/rojo"/>
+</LinearLayout>

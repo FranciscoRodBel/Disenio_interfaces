@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.tareapp.controlador;
+package com.example.tareapp.controlador;
 
-import com.mycompany.tareapp.modelo.BBDD_tareapp;
-import com.mycompany.tareapp.modelo.Nota;
-import com.mycompany.tareapp.modelo.idioma.Pagina_notas;
-import com.mycompany.tareapp.modelo.idioma.Pagina_tareas;
+import com.example.tareapp.modelo.BBDD_tareapp;
+import com.example.tareapp.modelo.Nota;
+import com.example.tareapp.modelo.idioma.Pagina_notas;
+import com.example.tareapp.modelo.idioma.Pagina_tareas;
 import java.util.ArrayList;
 import java.util.HashMap;
 

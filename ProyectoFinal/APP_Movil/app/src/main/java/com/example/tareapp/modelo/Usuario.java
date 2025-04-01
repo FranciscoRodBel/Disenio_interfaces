@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.tareapp.modelo;
+package com.example.tareapp.modelo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Pattern;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 
 /**
  * Clase para el modelo del usuario
@@ -98,9 +98,8 @@ public class Usuario {
     * @return Devuelve el hash generado
     */
     public static String cifrar_contrasenia(String contrasenia) {
-        
-        BCryptPasswordEncoder ecriptador = new BCryptPasswordEncoder(); // He decidido usar esta función ya que permite cifrar pero no descifrar
-        return ecriptador.encode(contrasenia); // El hash siempre tiene 60 caracteres
+
+        return BCrypt.withDefaults().hashToString(12, contrasenia.toCharArray());
     }
 
     /**
@@ -109,9 +108,8 @@ public class Usuario {
     * @return Devuelve true, si la contraseña es correcta a la almacenada en la BBDD
     */
     public boolean verificar_contrasenia(String contraseña) {
-        
-        BCryptPasswordEncoder ecriptador = new BCryptPasswordEncoder();
-        return ecriptador.matches(contraseña, this.getContrasenia()); // No descifra, cifra y comprueba si son iguales
+
+        return BCrypt.verifyer().verify(contraseña.toCharArray(), this.contrasenia).verified;
     }
 
     /**

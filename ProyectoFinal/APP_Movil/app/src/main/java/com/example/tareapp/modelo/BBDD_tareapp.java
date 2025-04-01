@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.tareapp.modelo;
+package com.example.tareapp.modelo;
 
-import com.mycompany.tareapp.controlador.BBDD_controlador;
+import com.example.tareapp.controlador.BBDD_controlador;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;

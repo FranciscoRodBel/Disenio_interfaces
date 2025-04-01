@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.tareapp.controlador;
+package com.example.tareapp.controlador;
 
-import com.mycompany.tareapp.modelo.BBDD_tareapp;
-import com.mycompany.tareapp.modelo.SMTP;
-import com.mycompany.tareapp.modelo.Usuario;
-import com.mycompany.tareapp.modelo.idioma.Pagina_inicio_registro;
+import com.example.tareapp.modelo.BBDD_tareapp;
+import com.example.tareapp.modelo.SMTP;
+import com.example.tareapp.modelo.Usuario;
+import com.example.tareapp.modelo.idioma.Pagina_inicio_registro;
 
 /**
  * Clase que se encarga de controlar el usuario

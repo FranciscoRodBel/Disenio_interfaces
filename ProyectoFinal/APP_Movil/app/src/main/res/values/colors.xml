@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colores básicos -->
+    <color name="blanco">#FFFFFF</color>
+    <color name="negro">#000000</color>
+    <color name="blanco_claro">#F5F5F5</color>
+    <color name="gris_claro">#E6E6E6</color>
+    <color name="azul_oscuro">#143642</color>
+    <color name="amarillo">#FFD43B</color>
+    <color name="rojo">#FF312E</color>
+
+    <!-- Colores de notas -->
+    <color name="naranja_nota">#F8A956</color>
+    <color name="verde_nota">#CFDF38</color>
+    <color name="azul_nota">#6EC9EA</color>
+    <color name="morado_nota">#AE8EBF</color>
+    <color name="amarillo_nota">#FFEE54</color>
+    <color name="rosa_nota">#EF83B4</color>
+</resources>

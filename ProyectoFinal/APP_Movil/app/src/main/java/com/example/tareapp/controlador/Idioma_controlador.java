@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.tareapp.controlador;
+package com.example.tareapp.controlador;
 
 import com.google.gson.Gson;
-import com.mycompany.tareapp.modelo.Lista;
-import com.mycompany.tareapp.modelo.idioma.Idioma;
-import com.mycompany.tareapp.modelo.idioma.Idiomas;
-import com.mycompany.tareapp.vista.Ajustes_cuenta_view;
-import com.mycompany.tareapp.vista.Iniciar_registrar_view;
-import com.mycompany.tareapp.vista.Listas_view;
-import com.mycompany.tareapp.vista.Notas_view;
-import com.mycompany.tareapp.vista.Tareas_view;
-import com.mycompany.tareapp.vista.plantillas.Cabecera;
+import com.example.tareapp.modelo.Lista;
+import com.example.tareapp.modelo.idioma.Idioma;
+import com.example.tareapp.modelo.idioma.Idiomas;
+//import com.example.tareapp.vista.Ajustes_cuenta_view;
+//import com.example.tareapp.vista.Iniciar_registrar_view;
+//import com.example.tareapp.vista.Listas_view;
+//import com.example.tareapp.vista.Notas_view;
+//import com.example.tareapp.vista.Tareas_view;
+//import com.example.tareapp.vista.plantillas.Cabecera;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -64,8 +64,8 @@ public class Idioma_controlador {
     */
     public static void cambiarIdioma(String idioma) {
         
-        Cabecera cabecera = Cabecera.recoger_instancia();
-        Iniciar_registrar_view iniciar_registrar_view = Iniciar_registrar_view.recoger_instancia();
+        //Cabecera cabecera = Cabecera.recoger_instancia();
+        //Iniciar_registrar_view iniciar_registrar_view = Iniciar_registrar_view.recoger_instancia();
         
         for (Idioma idioma_json : idiomas.getIdioma()) { // Recorro los idiomas
             
@@ -75,14 +75,14 @@ public class Idioma_controlador {
                 
                 switch(idioma) { // Selecciono en la cabecera el idioma seleccionado - Esto es para cuando inicia sesión, ya que el idioma se pone en base a lo que tiene en la bbdd sin pulsar en la cabacera
                     case "Français":
-                        cabecera.getItemFrances().setSelected(true);
+                        //cabecera.getItemFrances().setSelected(true);
                         
                       break;
                     case "English":
-                        cabecera.getItemIngles().setSelected(true);
+                        //cabecera.getItemIngles().setSelected(true);
                       break;
                     default:
-                        cabecera.getItemEspaniol().setSelected(true);
+                        //cabecera.getItemEspaniol().setSelected(true);
                 }
             }
         }
@@ -90,6 +90,7 @@ public class Idioma_controlador {
         // Cambio de idioma en los textos
         
         // Textos de la cabecera
+        /*
         cabecera.getItemTareas().setText(idioma_seleccionado.getCabecera().getTareas());
         cabecera.getItemListas().setText(idioma_seleccionado.getCabecera().getListas());
         cabecera.getMenuIdioma().setText(idioma_seleccionado.getCabecera().getIdioma());
@@ -109,15 +110,16 @@ public class Idioma_controlador {
         iniciar_registrar_view.getRepetir_contrasenia_registro().getPlaceholder().setText(idioma_seleccionado.getPagina_inicio_registro().getRepetir_contrasenia());
         iniciar_registrar_view.getBoton_enviar_inicio().setText(idioma_seleccionado.getPagina_inicio_registro().getIniciar_sesion());
         iniciar_registrar_view.getBoton_enviar_registro().setText(idioma_seleccionado.getPagina_inicio_registro().getRegistrarse());
-        
+        */
         if (Usuario_controlador.getUsuario() != null) { // Si el usuario está inciado cambio el idioma de los demás paneles
         
             // Recojo los paneles de las vistas
+            /*
             Tareas_view tareas_view = Tareas_view.recoger_instancia();
             Listas_view listas_view = Listas_view.recoger_instancia();
             Ajustes_cuenta_view ajustes_cuenta_view = Ajustes_cuenta_view.recoger_instancia();
             Notas_view notas_view = Notas_view.recoger_instancia();
-            
+
             
             // Textos de la página de tareas
             tareas_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_tareas().getTitulo());
@@ -150,6 +152,7 @@ public class Idioma_controlador {
             // Textos de la página de notas
             notas_view.getTitulo_pagina().setText(idioma_seleccionado.getPagina_notas().getTitulo());
             notas_view.getBotonCrearTarea().setText(idioma_seleccionado.getPagina_notas().getCrear_nota());
+            */
         }
 
     }
