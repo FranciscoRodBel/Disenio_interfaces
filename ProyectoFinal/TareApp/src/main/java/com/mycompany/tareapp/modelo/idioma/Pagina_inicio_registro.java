@@ -32,6 +32,7 @@ public class Pagina_inicio_registro {
     private String codigo_incorrecto;
     private String confirmacion_asunto;
     private String confirmacion_mensaje;
+    private String enviando_codigo;
     
     public String getTitulo_inicio() {
         return titulo_inicio;
@@ -200,5 +201,12 @@ public class Pagina_inicio_registro {
     public void setConfirmacion_mensaje(String confirmacion_mensaje) {
         this.confirmacion_mensaje = confirmacion_mensaje;
     }
-    
+
+    public String getEnviando_codigo() {
+        return enviando_codigo;
+    }
+
+    public void setEnviando_codigo(String enviando_codigo) {
+        this.enviando_codigo = enviando_codigo;
+    }
 }

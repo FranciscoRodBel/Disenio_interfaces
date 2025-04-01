@@ -9,6 +9,7 @@ import com.mycompany.tareapp.controlador.Usuario_controlador;
 import com.mycompany.tareapp.modelo.idioma.Pagina_ajustes_cuenta;
 import com.mycompany.tareapp.modelo.idioma.Pagina_inicio_registro;
 import com.mycompany.tareapp.vista.Ajustes_cuenta_view;
+import com.mycompany.tareapp.vista.Iniciar_registrar_view;
 import java.awt.Dimension;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -100,7 +101,7 @@ public class Popup_confirmar_email extends JDialog {
         bonton_enviar.addActionListener((ActionEvent e1) -> {
             
             bonton_enviar.setEnabled(false); // Deshabilita el botón
-            label_resultado.setText("Enviando código...");
+            label_resultado.setText(pagina_inicio_registro.getEnviando_codigo());
 
             new Thread(() -> {
                 try {
@@ -149,6 +150,12 @@ public class Popup_confirmar_email extends JDialog {
                     if (mensaje_resultado.isEmpty()){
 
                         mensaje_resultado = pagina_inicio_registro.getCuenta_creada();
+                        
+                        Iniciar_registrar_view iniciar_registrar_view = Iniciar_registrar_view.recoger_instancia();
+                        
+                        iniciar_registrar_view.getEmail_registro().setText("");
+                        iniciar_registrar_view.getContrasenia_registro().setText("");
+                        iniciar_registrar_view.getRepetir_contrasenia_registro().setText("");
                     }
                     
                 } else {
