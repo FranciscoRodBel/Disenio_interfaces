@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TareApp</string>
+    <string name="logo">Logo</string>
+    <string name="tareapp">TareApp</string>
 </resources>
