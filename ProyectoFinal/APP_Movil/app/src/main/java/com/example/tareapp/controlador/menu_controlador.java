@@ -10,23 +10,50 @@ import com.example.tareapp.R;
 
 public class menu_controlador {
 
-    private Context context;
-
-    public menu_controlador(Context context) {
-        this.context = context;
-    }
-
-    public void inflateMenu(Menu menu, MenuInflater inflater) {
+    public static void inflateMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_main, menu);
     }
 
-    public boolean handleMenuClick(MenuItem item) {
-        int id = item.getItemId();
+    public static boolean handleMenuClick(Context context, MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.idTareasMenu:
+                Toast.makeText(context, "Tareas seleccionadas", Toast.LENGTH_SHORT).show();
+                return true;
 
-        if (id == R.id.item1) {
-            Toast.makeText(context, "Perfil", Toast.LENGTH_SHORT).show();
-            return true;
+            case R.id.idListasMenu:
+                Toast.makeText(context, "Listas seleccionadas", Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.idIdiomaEsp:
+                Toast.makeText(context, "Idioma cambiado a Español", Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.idIdiomaEng:
+                Toast.makeText(context, "Language changed to English", Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.idIdiomaFr:
+                Toast.makeText(context, "Langue changée en Français", Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.idNotasMenu:
+                Toast.makeText(context, "Notas abiertas", Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.idCuentaAjustes:
+                Toast.makeText(context, "Abriendo Ajustes", Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.idCuentaCerrarSesion:
+                Toast.makeText(context, "Cerrando sesión...", Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.idCuentaSalir:
+                Toast.makeText(context, "Saliendo de la app", Toast.LENGTH_SHORT).show();
+                return true;
+
+            default:
+                return false;
         }
-        return false;
     }
 }

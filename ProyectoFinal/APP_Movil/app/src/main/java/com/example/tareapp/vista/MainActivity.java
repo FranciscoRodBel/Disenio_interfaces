@@ -4,20 +4,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.tareapp.R;
-import com.example.tareapp.controlador.menu_controlador;
 
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar myToolbar;
-    private menu_controlador menuController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,28 +24,46 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
         myToolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        menuController = new menu_controlador(this);
+        // Cargar el primer fragmento por defecto
+        if (savedInstanceState == null) {
+            changeFragment(new Tareas_view());
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        menuController.inflateMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return menuController.handleMenuClick(item) || super.onOptionsItemSelected(item);
+        Fragment fragment = null;
+
+        switch (item.getItemId()) {
+            case R.id.idTareasMenu:
+                fragment = new Tareas_view();
+                break;
+        }
+
+        if (fragment != null) {
+            changeFragment(fragment);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void changeFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        transaction.addToBackStack(null); // Permite regresar al fragmento anterior
+        transaction.commit();
     }
 }
