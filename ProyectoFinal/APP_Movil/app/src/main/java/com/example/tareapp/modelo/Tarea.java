@@ -179,5 +179,8 @@ public class Tarea {
         
         return null;
     }
-    
+
+    public Boolean isCompletada() {
+        return completada == 1;
+    }
 }
