@@ -13,6 +13,6 @@ public class Tareas_view extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.view_tareas, container, false);
+        return inflater.inflate(R.layout.tareas_view, container, false);
     }
 }

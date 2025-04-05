@@ -3,4 +3,16 @@
     <string name="logo">Logo</string>
     <string name="tareapp">TareApp</string>
     <string name="filtros">Filtros</string>
+    <string name="iniciar_sesi_n">Iniciar sesión</string>
+    <string name="registrar">Registrar</string>
+    <string name="email">Email</string>
+    <string name="email_registro">Email</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="contrase_a_registro">Contraseña</string>
+    <string name="repetir_contrase_a">Repetir contraseña</string>
+    <string name="iniciar_sesi_n_inicio">Iniciar sesión</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="mensaje_resultado">Mensaje resultado</string>
+    <string name="inicio_de_sesi_n">Inicio de sesión</string>
+    <string name="mensaje_resultado_registro">Mensaje resultado</string>
 </resources>

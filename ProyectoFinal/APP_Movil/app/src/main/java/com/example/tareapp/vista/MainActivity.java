@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Cargar el primer fragmento por defecto
         if (savedInstanceState == null) {
-            changeFragment(new Tareas_view());
+            changeFragment(new IniciarRegistrarView());
         }
     }
 
@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.idTareasMenu:
                 fragment = new Tareas_view();
+                break;
+            case R.id.idCuentaCerrarSesion:
+                fragment = new IniciarRegistrarView();
                 break;
         }
 
