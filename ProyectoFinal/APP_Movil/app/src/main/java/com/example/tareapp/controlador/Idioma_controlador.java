@@ -4,6 +4,8 @@
  */
 package com.example.tareapp.controlador;
 
+import android.content.Context;
+
 import com.google.gson.Gson;
 import com.example.tareapp.modelo.Lista;
 import com.example.tareapp.modelo.idioma.Idioma;
@@ -16,6 +18,7 @@ import com.example.tareapp.modelo.idioma.Idiomas;
 //import com.example.tareapp.vista.plantillas.Cabecera;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
 
@@ -30,16 +33,19 @@ public class Idioma_controlador {
 
     private static Idiomas idiomas; // Array con todos los idiomas
     private static Idioma idioma_seleccionado;
-    
+
+    /*
     static { // Clase estática para que cualquiera pueda acceder a ella sin instanciarla
+
         try {
-            
-            convertirJsonEnClase();
-            
-        } catch (FileNotFoundException e) {
+
+            Idioma_controlador.convertirJsonEnClase();
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    */
     
     /**
     * 
@@ -161,18 +167,21 @@ public class Idioma_controlador {
     * Recoge el fichero json y lo pasa a la clase de Idiomas
     * 
     */
-    public static void convertirJsonEnClase() throws FileNotFoundException {
-        
-        InputStream jsonStream = Idioma_controlador.class.getResourceAsStream("/json/idiomas.json"); // Recoge la fuente
-        Scanner scanner = new Scanner(jsonStream, "UTF-8");
-        String json = "";
+    public static void convertirJsonEnClase(Context context) throws IOException {
 
-        while (scanner.hasNext()) {
-            json += scanner.nextLine(); // Se guarda el texto del archivo en una variable
+
+        InputStream jsonStream = context.getAssets().open("json/idiomas.json"); // Recoge el json
+        Scanner scanner = new Scanner(jsonStream, "UTF-8");
+        StringBuilder jsonBuilder = new StringBuilder();
+
+        while (scanner.hasNextLine()) {
+            jsonBuilder.append(scanner.nextLine()); // Se guarda el texto del archivo en una variable
         }
 
-        idiomas = new Gson().fromJson(json, Idiomas.class); // Se crea el objeto Gson y se convierte el texto del archivo JSON a la clase Idiomas
-        idioma_seleccionado = idiomas.getIdioma().getFirst();
+        scanner.close();
+        idiomas = new Gson().fromJson(jsonBuilder.toString(), Idiomas.class); // Se crea el objeto Gson y se convierte el texto del archivo JSON a la clase Idiomas
+        idioma_seleccionado = idiomas.getIdioma().get(0);
+
     }
 }
 

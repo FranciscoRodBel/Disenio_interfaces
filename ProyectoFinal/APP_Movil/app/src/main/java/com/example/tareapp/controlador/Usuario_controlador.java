@@ -4,6 +4,8 @@
  */
 package com.example.tareapp.controlador;
 
+import android.content.Context;
+
 import com.example.tareapp.modelo.BBDD_tareapp;
 import com.example.tareapp.modelo.SMTP;
 import com.example.tareapp.modelo.Usuario;
@@ -33,11 +35,11 @@ public class Usuario_controlador {
     * @return Devuelve el resultado de iniciar sesión, si se consigue iniciar sesión devuelve vacío y si no un mensaje de error
     */
     public String iniciar_usuario(String email,String contrasenia) {
-    
+
         email = email.trim().toLowerCase(); // Pasa el email a minúsculas
-        
+
         Pagina_inicio_registro idioma = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro(); // Recojo el idioma del registro/inicio
-        
+
         if (email.length() > 255) return idioma.getEmail_supera_caracteres(); // Compruebo que el email no supere los caracteres permitidos
         
         if (!Usuario.es_email_valido(email)) return idioma.getEmail_no_valido(); // Compruebo si el email tiene el formato de email texto@dominio.dominio
@@ -57,6 +59,7 @@ public class Usuario_controlador {
             
             return idioma.getEmail_contrasenia_no_coinciden();
         }
+
     }
     
     /**

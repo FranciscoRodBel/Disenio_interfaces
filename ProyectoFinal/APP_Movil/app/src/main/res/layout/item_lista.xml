@@ -7,10 +7,6 @@
     android:padding="8dp">
 
     <!-- Checkbox -->
-    <CheckBox
-        android:id="@+id/idTareaCompletada"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
     <!-- Título de la tarea -->
     <TextView
@@ -22,19 +18,25 @@
         android:textSize="16sp"
         tools:ignore="HardcodedText" />
 
-    <!-- Icono de prioridad -->
     <ImageView
         android:id="@+id/idPrioridadTarea"
         android:layout_width="24dp"
         android:layout_height="24dp"
         tools:ignore="ContentDescription" />
 
+    <ImageView
+        android:id="@+id/idPrioridadTarea2"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/idPrioridadTarea3"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        tools:ignore="ContentDescription" />
+
+    <!-- Icono de prioridad -->
+
     <!-- Fecha -->
-    <TextView
-        android:id="@+id/idFechaTarea"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="03/04/2025"
-        android:textSize="14sp"
-        tools:ignore="HardcodedText" />
 </LinearLayout>

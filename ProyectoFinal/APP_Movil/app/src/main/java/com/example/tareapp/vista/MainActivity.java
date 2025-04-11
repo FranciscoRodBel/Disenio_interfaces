@@ -1,6 +1,7 @@
 package com.example.tareapp.vista;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,6 +14,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.tareapp.R;
+import com.example.tareapp.controlador.Idioma_controlador;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +34,17 @@ public class MainActivity extends AppCompatActivity {
 
         // Cargar el primer fragmento por defecto
         if (savedInstanceState == null) {
+
             changeFragment(new IniciarRegistrarView());
+        }
+
+        try {
+
+            Idioma_controlador.convertirJsonEnClase(this);
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
         }
     }
 
@@ -47,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.idTareasMenu:
-                fragment = new Tareas_view();
+                fragment = new TareasView();
                 break;
             case R.id.idCuentaCerrarSesion:
                 fragment = new IniciarRegistrarView();
@@ -63,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void changeFragment(Fragment fragment) {
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fragment_container, fragment);

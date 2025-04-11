@@ -16,6 +16,7 @@
         android:layout_marginBottom="15dp"
         android:text="Tareas"
         android:textAlignment="center"
+        android:textColor="@color/negro"
         android:textSize="24sp"
         android:textStyle="bold"
         tools:ignore="HardcodedText" />
