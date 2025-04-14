@@ -1,7 +1,6 @@
 
 # Habilitar el motor de reescritura
 RewriteEngine On
-RewriteBase /ProyectoFinal/Web/
 
 # Evitar reescritura para archivos y directorios existentes
 RewriteCond %{REQUEST_FILENAME} !-f

@@ -31,13 +31,6 @@ class EmptyModel {
         $sql = "SELECT * FROM {$this->table} WHERE {$this->primaryKey} = ?";
         return $this->query($sql, [$id])->fetch(PDO::FETCH_ASSOC);
     }
-        
-    // Recoger el usuario de la bbdd
-    public function getByUser($usuario) {
-
-        $sql = "SELECT * FROM users WHERE usuario = ?";
-        return $this->query($sql, [$usuario])->fetch(PDO::FETCH_ASSOC);
-    }
 
     // Comprobar si el email está registrado
     public function isFieldRegister($field, $value, $id = null) {

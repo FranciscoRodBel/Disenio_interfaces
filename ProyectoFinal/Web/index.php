@@ -7,13 +7,14 @@
     // Rutas principales
     $router->add('/', 'Paginas@inicio');
     $router->add('/inicio', 'Paginas@inicio');
+    
+    $router->add('/leerUsuarios', 'UsuarioController@read');
+    $router->add('/leerUsuario', 'UsuarioController@readUsuario');
+    $router->add('/crearUsuario', 'UsuarioController@create');
+    $router->add('/actualizarUsuario', 'UsuarioController@update');
+    $router->add('/borrarUsuario', 'UsuarioController@delete');
+    
     /*
-    $router->add('/inicio/recogerNoticias', 'NoticiasController@readNoticias');
-    $router->add('/capturamovimiento', 'Paginas@capturamovimiento');
-    $router->add('/noticias', 'NoticiasController@index');
-    $router->add('/contacto', 'Paginas@contacto');
-    $router->add('/contacto/registrarCliente', 'ClienteController@create');
-
     $router->add('/admin', 'UsuarioController@acceso');
     $router->add('/admin/iniciosesion', 'UsuarioController@login');
     $router->add('/admin/cerrarsesion', 'UsuarioController@logout');

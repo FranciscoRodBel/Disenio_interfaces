@@ -1,75 +1,75 @@
 package com.example.tareapp.controlador;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 public class APIRest {
-    public static String realizarPeticionPOST(String urlStr, String jsonInput) {
-
+    public static String realizarPeticionPost(String urlString, String jsonInput) {
         HttpURLConnection conexion = null;
-        BufferedReader in = null;
-
         try {
-
-            URL url = new URL(urlStr);
+            URL url = new URL(urlString);
             conexion = (HttpURLConnection) url.openConnection();
             conexion.setRequestMethod("POST");
             conexion.setRequestProperty("Content-Type", "application/json; utf-8");
+            conexion.setRequestProperty("Accept", "application/json");
             conexion.setDoOutput(true);
 
-            // Escribir el contenido JSON en la petición
-            try (OutputStream os = conexion.getOutputStream()) {
-
-                byte[] input = jsonInput.getBytes("utf-8");
-                os.write(input, 0, input.length);
+            try (DataOutputStream salida = new DataOutputStream(conexion.getOutputStream())) {
+                byte[] datos = jsonInput.getBytes(StandardCharsets.UTF_8);
+                salida.write(datos, 0, datos.length);
             }
 
-            // Leer la respuesta
             int codigoRespuesta = conexion.getResponseCode();
 
-            if (codigoRespuesta == HttpURLConnection.HTTP_OK || codigoRespuesta == HttpURLConnection.HTTP_CREATED) {
-
-                in = new BufferedReader(new InputStreamReader(conexion.getInputStream(), "utf-8"));
-                StringBuilder respuesta = new StringBuilder();
-                String linea;
-
-                while ((linea = in.readLine()) != null) {
-
-                    respuesta.append(linea);
-                }
-
-                return respuesta.toString();
-
+            BufferedReader lector;
+            if (codigoRespuesta >= 200 && codigoRespuesta < 300) {
+                lector = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
             } else {
-                // Si la respuesta no es 200 (OK) o 201 (CREATED), devuelve null
-                return null;
+                lector = new BufferedReader(new InputStreamReader(conexion.getErrorStream()));
             }
-        } catch (Exception e) {
 
-            e.printStackTrace(); // Aquí podrías usar un Logger para capturar errores
-            return null;
+            StringBuilder respuesta = new StringBuilder();
+            String linea;
+            while ((linea = lector.readLine()) != null) {
+                respuesta.append(linea.trim());
+            }
+            lector.close();
 
+            return respuesta.toString();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Error al realizar la petición: " + e.getMessage();
         } finally {
+            if (conexion != null) {
+                conexion.disconnect();
+            }
+        }
+    }
+
+    public static JSONObject crearJSONObject(Map<String, String> parametros) {
+
+        JSONObject json = new JSONObject();
+
+        for (Map.Entry<String, String> entrada : parametros.entrySet()) {
 
             try {
 
-                if (in != null) {
+                json.put(entrada.getKey(), entrada.getValue());
 
-                    in.close();
-                }
+            } catch (JSONException e) {
 
-            } catch (Exception e) {
-
-                e.printStackTrace(); // Manejo de excepciones de cierre de BufferedReader
-            }
-
-            if (conexion != null) {
-
-                conexion.disconnect(); // Cerrar la conexión HTTP
+                throw new RuntimeException("Error al crear JSONObject", e);
             }
         }
+        return json;
     }
 }

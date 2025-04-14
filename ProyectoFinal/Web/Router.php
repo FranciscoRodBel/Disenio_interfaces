@@ -81,7 +81,7 @@
          */
         private function handleNotFound(): void {
         
-            header("Location: /ProyectoFinal/Web/inicio");
+            header("Location: /inicio");
             exit();
         }
     }

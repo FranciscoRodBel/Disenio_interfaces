@@ -79,32 +79,37 @@ public class IniciarRegistrarView extends Fragment {
         });
 
         // Envío de formularios de inicio de sesión
-
         idBotonEnviarInicio.setOnClickListener(v -> {
+            new Thread(() -> {
 
-            String email = idInputEmailInicio.getText().toString();
-            String contrasenia = idInputContraseniaInicio.getText().toString();
+                String email = idInputEmailInicio.getText().toString();
+                String contrasenia = idInputContraseniaInicio.getText().toString();
 
-            String mensaje_resultado = usuario_controlador.iniciar_usuario(email, contrasenia);
+                String mensaje_resultado = usuario_controlador.iniciar_usuario(email, contrasenia);
 
-            if (mensaje_resultado.isEmpty()) {
+                requireActivity().runOnUiThread(() -> {
 
-                idInputEmailInicio.setText("");
-                idInputContraseniaInicio.setText("");
+                    if (mensaje_resultado.isEmpty()) {
+                        idInputEmailInicio.setText("");
+                        idInputContraseniaInicio.setText("");
 
-                //Usuario usuario_iniciado = Usuario.recoger_usuario(email);
-                //Usuario_controlador.setUsuario(usuario_iniciado);
+                        //Usuario usuario_iniciado = Usuario.recoger_usuario(email);
+                        //Usuario_controlador.setUsuario(usuario_iniciado);
 
-                idMensajeResultadoInicio.setText("Inicio de sesión completado");
+                        idMensajeResultadoInicio.setText("Inicio de sesión completado");
 
-            } else {
+                    } else {
+                        idInputContraseniaInicio.setText("");
+                        idMensajeResultadoInicio.setText(mensaje_resultado);
 
-                idInputContraseniaInicio.setText("");
-                idMensajeResultadoInicio.setText(mensaje_resultado);
-                new android.os.Handler().postDelayed(() -> {
-                    idMensajeResultadoInicio.setText("");
-                }, 3000);
-            }
+                        new android.os.Handler().postDelayed(() -> {
+                            requireActivity().runOnUiThread(() ->
+                            idMensajeResultadoInicio.setText(""));
+                        }, 3000);
+                    }
+                });
+
+            }).start();
         });
 
         idBotonEnviarRegistro.setOnClickListener(v -> {

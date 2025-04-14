@@ -4,12 +4,23 @@
  */
 package com.example.tareapp.controlador;
 
+import static com.example.tareapp.controlador.APIRest.crearJSONObject;
+import static com.example.tareapp.controlador.APIRest.realizarPeticionPost;
+
 import android.content.Context;
+import android.util.Log;
 
 import com.example.tareapp.modelo.BBDD_tareapp;
 import com.example.tareapp.modelo.SMTP;
 import com.example.tareapp.modelo.Usuario;
 import com.example.tareapp.modelo.idioma.Pagina_inicio_registro;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Clase que se encarga de controlar el usuario
@@ -43,11 +54,16 @@ public class Usuario_controlador {
         if (email.length() > 255) return idioma.getEmail_supera_caracteres(); // Compruebo que el email no supere los caracteres permitidos
         
         if (!Usuario.es_email_valido(email)) return idioma.getEmail_no_valido(); // Compruebo si el email tiene el formato de email texto@dominio.dominio
-        
-        Usuario usuario = Usuario.recoger_usuario(email); // Compruebo si existe el usuario
+
+        Map<String, String> datos = new HashMap<>();
+        datos.put("email", email);
+
+        Usuario usuario = new Gson().fromJson(realizarPeticionPost("https://tareapp.info/leerUsuario", crearJSONObject(datos).toString()), Usuario.class);
+
+        //Usuario usuario = Usuario.recoger_usuario(email); // Compruebo si existe el usuario
         
         if (usuario == null ) return idioma.getEmail_no_registrado(); // Si no recoge nada, devuelve null por lo tanto no existe
-        
+
         if (!Usuario.es_contrasenia_valida(contrasenia)) return idioma.getContrasenia_invalida(); // Compruebo que la contraseña cumple con los requisitos mínimos de seguridad
         
         if(usuario.verificar_contrasenia(contrasenia)) { // Compruebo si el usuario y contraseña coinciden con el de la BBDD
@@ -59,7 +75,6 @@ public class Usuario_controlador {
             
             return idioma.getEmail_contrasenia_no_coinciden();
         }
-
     }
     
     /**

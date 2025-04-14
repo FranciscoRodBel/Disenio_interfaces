@@ -18,10 +18,23 @@
 
         public function read() {
 
-            $usuarios = $this->usuarioModel->getAll(); // Obtiene todos los administradores
+            $usuarios = $this->usuarioModel->getAll();
         
-            return $usuarios;
+            header('Content-Type: application/json');
+            echo json_encode($usuarios);
+            exit();
         } 
+
+        public function readUsuario() {
+
+            $input = json_decode(file_get_contents("php://input"), true);
+
+            $usuario = $this->usuarioModel->getById($input["email"]);
+        
+            header('Content-Type: application/json');
+            echo json_encode($usuario);
+            exit();
+        }
         
         public function create() {
 
