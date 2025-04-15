@@ -137,7 +137,7 @@
                     tools:ignore="Autofill" />
 
                 <EditText
-                    android:id="@+id/idInputRepetirContraseniaInicio"
+                    android:id="@+id/idInputRepetirContraseniaRegistro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"

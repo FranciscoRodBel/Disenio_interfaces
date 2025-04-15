@@ -6,9 +6,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.tareapp.R;
 
-public class FragmentHelper {
+public class CambiarVista {
 
-    public static void replaceFragment(FragmentManager fragmentManager, Fragment fragment) {
+    public static void cambiarFragmento(FragmentManager fragmentManager, Fragment fragment) {
+
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fragment_container, fragment);
         transaction.addToBackStack(null);

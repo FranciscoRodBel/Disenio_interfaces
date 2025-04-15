@@ -9,11 +9,9 @@ import android.view.MenuItem;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.tareapp.R;
+import com.example.tareapp.controlador.CambiarVista;
 import com.example.tareapp.controlador.Idioma_controlador;
 
 import java.io.IOException;
@@ -35,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         // Cargar el primer fragmento por defecto
         if (savedInstanceState == null) {
 
-            changeFragment(new IniciarRegistrarView());
+            CambiarVista.cambiarFragmento(getSupportFragmentManager(), new IniciarRegistrarView());
         }
 
         try {
@@ -57,31 +55,19 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Fragment fragment = null;
 
         switch (item.getItemId()) {
-            case R.id.idTareasMenu:
-                fragment = new TareasView();
-                break;
-            case R.id.idCuentaCerrarSesion:
-                fragment = new IniciarRegistrarView();
-                break;
-        }
 
-        if (fragment != null) {
-            changeFragment(fragment);
-            return true;
+            case R.id.idTareasMenu:
+                CambiarVista.cambiarFragmento(getSupportFragmentManager(), new TareasView());
+                break;
+
+            case R.id.idCuentaCerrarSesion:
+                CambiarVista.cambiarFragmento(getSupportFragmentManager(), new IniciarRegistrarView());
+                break;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void changeFragment(Fragment fragment) {
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fragment_container, fragment);
-        transaction.addToBackStack(null); // Permite regresar al fragmento anterior
-        transaction.commit();
-    }
 }

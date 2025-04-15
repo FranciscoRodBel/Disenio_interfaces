@@ -55,19 +55,14 @@ public class Usuario_controlador {
         
         if (!Usuario.es_email_valido(email)) return idioma.getEmail_no_valido(); // Compruebo si el email tiene el formato de email texto@dominio.dominio
 
-        Map<String, String> datos = new HashMap<>();
-        datos.put("email", email);
+        Usuario usuario = Usuario.recoger_usuario(email); // Compruebo si existe el usuario
 
-        Usuario usuario = new Gson().fromJson(realizarPeticionPost("https://tareapp.info/leerUsuario", crearJSONObject(datos).toString()), Usuario.class);
-
-        //Usuario usuario = Usuario.recoger_usuario(email); // Compruebo si existe el usuario
-        
         if (usuario == null ) return idioma.getEmail_no_registrado(); // Si no recoge nada, devuelve null por lo tanto no existe
 
         if (!Usuario.es_contrasenia_valida(contrasenia)) return idioma.getContrasenia_invalida(); // Compruebo que la contraseña cumple con los requisitos mínimos de seguridad
         
         if(usuario.verificar_contrasenia(contrasenia)) { // Compruebo si el usuario y contraseña coinciden con el de la BBDD
-            
+
             this.usuario = usuario; // Si inicia sesión, guardo el usuario en la variable global
             return "";
             
@@ -92,7 +87,7 @@ public class Usuario_controlador {
         if (email.length() > 255) return idioma.getEmail_supera_caracteres(); // Compruebo que el email no supere los caracteres permitidos
         
         if (!Usuario.es_email_valido(email)) return idioma.getEmail_no_valido(); // Compruebo si el email tiene el formato de email texto@dominio.dominio
-        
+
         if (Usuario.recoger_usuario(email) != null ) return idioma.getEmail_ya_registrado(); // Compruebo si existe el usuario
         
         if (!contrasenia.equals(repetir_contrasenia)) return idioma.getContrasenia_no_coincide(); // Compruebo si las dos contraseñas son iguales
@@ -100,6 +95,8 @@ public class Usuario_controlador {
         if (!Usuario.es_contrasenia_valida(contrasenia)) return idioma.getContrasenia_invalida(); // Compruebo que la contraseña cumple con los requisitos mínimos de seguridad
         
         return "";
+
+
     }
     
     public String comprobar_datos_actualizar_email(String email,String email_repetido) {
@@ -197,8 +194,7 @@ public class Usuario_controlador {
             return "";
             
         } else {
-            
-            
+
             return Idioma_controlador.getIdioma_seleccionado().getPagina_ajustes_cuenta().getContrasenia_no_actualizada();
         }
     }
