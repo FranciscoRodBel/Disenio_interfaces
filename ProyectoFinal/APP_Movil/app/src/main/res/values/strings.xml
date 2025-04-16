@@ -15,4 +15,7 @@
     <string name="mensaje_resultado">Mensaje resultado</string>
     <string name="inicio_de_sesi_n">Inicio de sesión</string>
     <string name="mensaje_resultado_registro">Mensaje resultado</string>
+    <string name="crear_tarea">Crear tarea</string>
+    <string name="descripci_n">Descripción</string>
+    <string name="t_tulo_tarea">Título tarea</string>
 </resources>

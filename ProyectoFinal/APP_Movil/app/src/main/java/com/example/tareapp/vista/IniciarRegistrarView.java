@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.tareapp.R;
+import com.example.tareapp.controlador.CambiarVista;
 import com.example.tareapp.controlador.Usuario_controlador;
 
 import java.util.Timer;
@@ -50,6 +51,9 @@ public class IniciarRegistrarView extends Fragment {
         idInputRepetirContraseniaRegistro = view.findViewById(R.id.idInputRepetirContraseniaRegistro);
 
         // Cambio de layout de registro a inicio de sesión
+
+        idInputEmailInicio.setText("9442@cifpceuta.es");
+        idInputContraseniaInicio.setText("12345678Aa");
 
         idBotonIniciarSesion.setOnClickListener(v -> {
 
@@ -90,7 +94,7 @@ public class IniciarRegistrarView extends Fragment {
                         idInputEmailInicio.setText("");
                         idInputContraseniaInicio.setText("");
 
-                        idMensajeResultadoInicio.setText("Inicio de sesión completado");
+                        CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), new TareasView());
 
                     } else {
                         idInputContraseniaInicio.setText("");
@@ -107,32 +111,37 @@ public class IniciarRegistrarView extends Fragment {
         });
 
         idBotonEnviarRegistro.setOnClickListener(v -> {
+            new Thread(() -> {
 
-            String email = idInputEmailRegistro.getText().toString();
-            String contrasenia = idInputContraseniaRegistro.getText().toString();
-            String repetir_contrasenia = idInputRepetirContraseniaRegistro.getText().toString();
+                String email = idInputEmailRegistro.getText().toString();
+                String contrasenia = idInputContraseniaRegistro.getText().toString();
+                String repetir_contrasenia = idInputRepetirContraseniaRegistro.getText().toString();
 
-            String mensaje_resultado = usuario_controlador.comprobar_datos_registro(email, contrasenia, repetir_contrasenia);
+                String mensaje_resultado = usuario_controlador.comprobar_datos_registro(email, contrasenia, repetir_contrasenia);
 
-            if (mensaje_resultado.isEmpty()) {
+                requireActivity().runOnUiThread(() -> {
+                    if (mensaje_resultado.isEmpty()) {
 
-                idInputEmailInicio.setText("");
-                idInputContraseniaInicio.setText("");
+                        idInputEmailInicio.setText("");
+                        idInputContraseniaInicio.setText("");
 
-                idMensajeResultadoInicio.setText("Registro completado completado");
-                //Popup_confirmar_email popup_confirmar_email = new Popup_confirmar_email(email_registro.getText(), contrasenia, repetir_contrasenia);
-                //popup_confirmar_email.setVisible(true);
+                        idMensajeResultadoInicio.setText("Registro completado");
 
-            } else {
+                        ConfirmarEmailDialog dialog = ConfirmarEmailDialog.newInstance(email);
+                        dialog.show(getParentFragmentManager(), "ConfirmarEmail");
 
-                idInputContraseniaInicio.setText("");
-                idMensajeResultadoInicio.setText(mensaje_resultado);
+                    } else {
 
-                new android.os.Handler().postDelayed(() -> {
-                    requireActivity().runOnUiThread(() ->
-                            idMensajeResultadoInicio.setText(""));
-                }, 3000);
-            }
+                        idInputContraseniaInicio.setText("");
+                        idMensajeResultadoInicio.setText(mensaje_resultado);
+
+                        new android.os.Handler().postDelayed(() -> {
+                            requireActivity().runOnUiThread(() ->
+                                    idMensajeResultadoInicio.setText(""));
+                        }, 3000);
+                    }
+                });
+            }).start();
         });
 
         return view;

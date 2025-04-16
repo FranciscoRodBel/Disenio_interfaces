@@ -14,6 +14,8 @@
     $router->add('/actualizarUsuario', 'UsuarioController@update');
     $router->add('/borrarUsuario', 'UsuarioController@delete');
     
+    $router->add('/ejecutarConsulta', 'ConsultaController@ejecutar');
+
     /*
     $router->add('/admin', 'UsuarioController@acceso');
     $router->add('/admin/iniciosesion', 'UsuarioController@login');

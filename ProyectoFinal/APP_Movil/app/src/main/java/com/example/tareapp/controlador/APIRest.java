@@ -13,43 +13,59 @@ import java.util.Map;
 
 public class APIRest {
     public static String realizarPeticionPost(String urlString, String jsonInput) {
+
         HttpURLConnection conexion = null;
+
         try {
+
             URL url = new URL(urlString);
             conexion = (HttpURLConnection) url.openConnection();
             conexion.setRequestMethod("POST");
             conexion.setRequestProperty("Content-Type", "application/json; utf-8");
             conexion.setRequestProperty("Accept", "application/json");
+            conexion.setRequestProperty("Authorization", "Bearer sk_live_p3J8K9zFqR2L7vD1mCqT0eB9xW6sYnZ4aF8uRtMqT7gXbN2hL");
             conexion.setDoOutput(true);
 
             try (DataOutputStream salida = new DataOutputStream(conexion.getOutputStream())) {
+
                 byte[] datos = jsonInput.getBytes(StandardCharsets.UTF_8);
                 salida.write(datos, 0, datos.length);
+
             }
 
             int codigoRespuesta = conexion.getResponseCode();
 
             BufferedReader lector;
+
             if (codigoRespuesta >= 200 && codigoRespuesta < 300) {
+
                 lector = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
             } else {
+
                 lector = new BufferedReader(new InputStreamReader(conexion.getErrorStream()));
             }
 
             StringBuilder respuesta = new StringBuilder();
             String linea;
+
             while ((linea = lector.readLine()) != null) {
+
                 respuesta.append(linea.trim());
             }
+
             lector.close();
 
             return respuesta.toString();
 
         } catch (IOException e) {
+
             e.printStackTrace();
             return "Error al realizar la petición: " + e.getMessage();
+
         } finally {
+
             if (conexion != null) {
+
                 conexion.disconnect();
             }
         }

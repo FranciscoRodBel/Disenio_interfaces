@@ -1,5 +1,6 @@
 <?php
     require_once('./model/Usuario.php');
+    require_once('./model/Funciones.php');
 
     class UsuarioController {
 
@@ -17,6 +18,8 @@
         }  
 
         public function read() {
+
+            Funciones::verificarAutenticacion();
 
             $usuarios = $this->usuarioModel->getAll();
         
