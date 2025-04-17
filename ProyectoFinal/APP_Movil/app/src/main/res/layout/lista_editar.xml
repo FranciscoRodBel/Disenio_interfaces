@@ -19,7 +19,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
-            android:text="Confirmar email"
+            android:text="Editar lista"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -37,55 +37,29 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/idMensajeConfirmarEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="Introduzca el código que se ha enviado a su correo"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        tools:ignore="HardcodedText" />
-
-    <LinearLayout
-        android:orientation="horizontal"
+    <EditText
+        android:id="@+id/idInputTituloLista"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <EditText
-            android:id="@+id/idInputCodigo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Código"
-            tools:ignore="Autofill,HardcodedText,TextContrastCheck,TextFields,VisualLintTextFieldSize" />
-
-        <Button
-            android:id="@+id/idBotonEnviarCodigo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/amarillo"
-            android:text="Enviar código"
-            android:textColor="@color/negro"
-            tools:ignore="HardcodedText" />
-    </LinearLayout>
+        android:layout_weight="1"
+        android:hint="Título lista"
+        tools:ignore="Autofill,HardcodedText,InefficientWeight,TextContrastCheck,TextFields,VisualLintTextFieldSize" />
 
     <Button
-        android:id="@+id/idBotonConfirmarEmail"
+        android:id="@+id/idBotonEditarLista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Crear tarea"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/amarillo"
+        android:text="Editar tarea"
         android:textColor="@color/negro"
         tools:ignore="HardcodedText" />
 
     <TextView
-        android:id="@+id/idResultadoConfirmarEmail"
+        android:id="@+id/idMensajeResultado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Mensaje resultado"
         android:textColor="@android:color/darker_gray"
         android:textSize="14sp"
         tools:ignore="HardcodedText,TextContrastCheck" />

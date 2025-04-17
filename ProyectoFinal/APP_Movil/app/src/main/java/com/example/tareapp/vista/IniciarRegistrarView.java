@@ -91,6 +91,7 @@ public class IniciarRegistrarView extends Fragment {
                 requireActivity().runOnUiThread(() -> {
 
                     if (mensaje_resultado.isEmpty()) {
+
                         idInputEmailInicio.setText("");
                         idInputContraseniaInicio.setText("");
 
@@ -101,12 +102,13 @@ public class IniciarRegistrarView extends Fragment {
                         idMensajeResultadoInicio.setText(mensaje_resultado);
 
                         new android.os.Handler().postDelayed(() -> {
-                            requireActivity().runOnUiThread(() ->
-                            idMensajeResultadoInicio.setText(""));
+                            if (isAdded()) {
+                                requireActivity().runOnUiThread(() ->
+                                        idMensajeResultadoInicio.setText(""));
+                            }
                         }, 3000);
                     }
                 });
-
             }).start();
         });
 
@@ -125,8 +127,6 @@ public class IniciarRegistrarView extends Fragment {
                         idInputEmailInicio.setText("");
                         idInputContraseniaInicio.setText("");
 
-                        idMensajeResultadoInicio.setText("Registro completado");
-
                         ConfirmarEmailDialog dialog = ConfirmarEmailDialog.newInstance(email);
                         dialog.show(getParentFragmentManager(), "ConfirmarEmail");
 
@@ -136,8 +136,10 @@ public class IniciarRegistrarView extends Fragment {
                         idMensajeResultadoInicio.setText(mensaje_resultado);
 
                         new android.os.Handler().postDelayed(() -> {
-                            requireActivity().runOnUiThread(() ->
-                                    idMensajeResultadoInicio.setText(""));
+                            if (isAdded()) {
+                                requireActivity().runOnUiThread(() ->
+                                        idMensajeResultadoInicio.setText(""));
+                            }
                         }, 3000);
                     }
                 });

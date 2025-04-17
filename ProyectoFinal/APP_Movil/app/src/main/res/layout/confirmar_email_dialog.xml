@@ -85,7 +85,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Mensaje resultado"
         android:textColor="@android:color/darker_gray"
         android:textSize="14sp"
         tools:ignore="HardcodedText,TextContrastCheck" />

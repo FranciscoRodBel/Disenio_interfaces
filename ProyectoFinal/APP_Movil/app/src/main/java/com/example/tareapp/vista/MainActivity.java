@@ -58,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
 
+            case R.id.idListasMenu:
+                CambiarVista.cambiarFragmento(getSupportFragmentManager(), new ListasView());
+                break;
+
             case R.id.idTareasMenu:
                 CambiarVista.cambiarFragmento(getSupportFragmentManager(), new TareasView());
                 break;

@@ -1,9 +1,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/gris_claro"
     android:orientation="horizontal"
+    android:gravity="center"
     android:padding="8dp">
 
     <!-- Checkbox -->
@@ -15,28 +17,34 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Título de la tarea"
-        android:textSize="16sp"
+        android:textSize="18sp"
         tools:ignore="HardcodedText" />
 
     <ImageView
-        android:id="@+id/idPrioridadTarea"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        tools:ignore="ContentDescription" />
+        android:id="@+id/idBotonVerLista"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:foreground="@drawable/eye_solid"
+        tools:ignore="ContentDescription,UnusedAttribute" />
 
     <ImageView
-        android:id="@+id/idPrioridadTarea2"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        tools:ignore="ContentDescription" />
+        android:id="@+id/idEditarLista"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:foreground="@drawable/pen_to_square_solid"
+        tools:ignore="ContentDescription,UnusedAttribute" />
 
     <ImageView
-        android:id="@+id/idPrioridadTarea3"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        tools:ignore="ContentDescription" />
+        android:id="@+id/idBorrarLista"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:foreground="@drawable/trash_can_solid"
+        tools:ignore="ContentDescription,UnusedAttribute" />
 
-    <!-- Icono de prioridad -->
-
-    <!-- Fecha -->
 </LinearLayout>

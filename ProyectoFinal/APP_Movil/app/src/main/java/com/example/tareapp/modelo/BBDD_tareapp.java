@@ -45,6 +45,8 @@ public class BBDD_tareapp {
         parametros.put("sql", consulta_consultar);
         parametros.put("modo", "consulta");
 
+        System.out.println(consulta_consultar);
+
         JSONObject json = APIRest.crearJSONObject(parametros);
         String respuesta = realizarPeticionPost(url, json.toString());
 
@@ -85,6 +87,8 @@ public class BBDD_tareapp {
     */
     public boolean insertar(String consulta_insertar) {
 
+        System.out.println("Consulta SQL: " + consulta_insertar);
+
         String url = "https://tareapp.info/ejecutarConsulta";
 
         Map<String, String> parametros = new HashMap<>();
@@ -93,6 +97,8 @@ public class BBDD_tareapp {
 
         JSONObject json = APIRest.crearJSONObject(parametros);
         String respuesta = realizarPeticionPost(url, json.toString());
+
+        System.out.println("Respuesta del servidor: " + respuesta);
 
         try {
 

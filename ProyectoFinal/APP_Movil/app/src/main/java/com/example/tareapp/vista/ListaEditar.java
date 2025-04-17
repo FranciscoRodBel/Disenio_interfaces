@@ -17,81 +17,92 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.tareapp.R;
 import com.example.tareapp.controlador.Idioma_controlador;
+import com.example.tareapp.controlador.Lista_controlador;
 import com.example.tareapp.controlador.Usuario_controlador;
 import com.example.tareapp.modelo.idioma.Pagina_inicio_registro;
+import com.example.tareapp.modelo.idioma.Pagina_listas;
 
 import java.util.Random;
+import java.util.Timer;
 
-public class ConfirmarEmailDialog extends DialogFragment {
-
+public class ListaEditar extends DialogFragment {
+    private OnListaEditadaListener listener;
+    private Lista_controlador lista_controlador = new Lista_controlador();
     private Usuario_controlador usuario_controlador = new Usuario_controlador();
     private ImageButton idCerrarPanel;
-    private EditText idInputCodigo;
-    private Button idBotonEnviarCodigo, idBotonConfirmarEmail;
-    private TextView idResultadoConfirmarEmail;
-    private int codigo = 999999;
-    private final Handler handler = new Handler(Looper.getMainLooper());
-    private String email = "";
+    private EditText idInputTituloLista;
+    private Button idBotonEditarLista;
+    private TextView idMensajeResultado;
+    private String idLista = "";
+    private String titulo = "";
 
     Pagina_inicio_registro pagina_inicio_registro = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
 
-    public static ConfirmarEmailDialog newInstance(String email) {
-        ConfirmarEmailDialog dialog = new ConfirmarEmailDialog();
+    public static ListaEditar newInstance(String idLista, String titulo) {
+        ListaEditar dialog = new ListaEditar();
         Bundle args = new Bundle();
-        args.putString("email", email);
+        args.putString("idLista", idLista);
+        args.putString("titulo", titulo);
         dialog.setArguments(args);
         return dialog;
+    }
+    public interface OnListaEditadaListener {
+        void onListaEditada();
+    }
+
+    public void setOnListaEditadaListener(OnListaEditadaListener listener) {
+        this.listener = listener;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            email = getArguments().getString("email");
+            idLista = getArguments().getString("idLista");
+            titulo = getArguments().getString("titulo");
         }
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.confirmar_email_dialog, container, false);
+        View view = inflater.inflate(R.layout.lista_editar, container, false);
 
-        idInputCodigo = view.findViewById(R.id.idInputCodigo);
-        idBotonEnviarCodigo = view.findViewById(R.id.idBotonEnviarCodigo);
-        idBotonConfirmarEmail = view.findViewById(R.id.idBotonConfirmarEmail);
-        idResultadoConfirmarEmail = view.findViewById(R.id.idResultadoConfirmarEmail);
+        Pagina_listas idioma_listas = Idioma_controlador.getIdioma_seleccionado().getPagina_listas();
+
+        idInputTituloLista = view.findViewById(R.id.idInputTituloLista);
+        idBotonEditarLista = view.findViewById(R.id.idBotonEditarLista);
+        idMensajeResultado = view.findViewById(R.id.idMensajeResultado);
         idCerrarPanel = view.findViewById(R.id.idCerrarPanel);
+
+        idInputTituloLista.setText(titulo);
 
         idCerrarPanel.setOnClickListener(v -> dismiss());
 
-        idBotonEnviarCodigo.setOnClickListener(v -> {
-
-            idBotonEnviarCodigo.setEnabled(false);
-            idResultadoConfirmarEmail.setText(pagina_inicio_registro.getEnviando_codigo());
-
+        idBotonEditarLista.setOnClickListener(v -> {
             new Thread(() -> {
-                try {
-                    codigo = 10000 + new Random().nextInt(90000); // Código de 5 dígitos
-                    String mensaje_resultado = usuario_controlador.confirmar_email(email, codigo);
 
-                    Thread.sleep(3000);
+                String[] mensaje_resultado = new String[1];
+                mensaje_resultado[0] = lista_controlador.actualizar_lista(Integer.parseInt(idLista), idInputTituloLista.getText().toString());
 
-                    handler.post(() -> {
-                        idResultadoConfirmarEmail.setText(mensaje_resultado);
-                        handler.postDelayed(() -> idResultadoConfirmarEmail.setText(""), 3000);
-                    });
+                requireActivity().runOnUiThread(() -> {
 
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+                    if (mensaje_resultado[0].isEmpty()) {
+
+                        mensaje_resultado[0] = idioma_listas.getLista_editada();
+                        listener.onListaEditada();
+                    }
+
+                    idMensajeResultado.setText(mensaje_resultado[0]);
+
+                    new android.os.Handler().postDelayed(() -> {
+                        if (isAdded()) {
+                            requireActivity().runOnUiThread(() ->
+                                    idMensajeResultado.setText(""));
+                        }
+                    }, 3000);
+                });
             }).start();
-
-            handler.postDelayed(() -> idBotonEnviarCodigo.setEnabled(true), 60000); // Espera de 1 min
-        });
-
-        idBotonConfirmarEmail.setOnClickListener(v -> {
-            String codigoIngresado = idInputCodigo.getText().toString();
-            idResultadoConfirmarEmail.setText("Código recibido: " + codigoIngresado);
         });
 
         return view;

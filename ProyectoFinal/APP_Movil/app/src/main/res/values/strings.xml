@@ -18,4 +18,5 @@
     <string name="crear_tarea">Crear tarea</string>
     <string name="descripci_n">Descripción</string>
     <string name="t_tulo_tarea">Título tarea</string>
+    <string name="t_tulo_lista">Título lista</string>
 </resources>

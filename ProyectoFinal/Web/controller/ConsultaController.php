@@ -5,7 +5,7 @@ require_once './model/Funciones.php';
 class ConsultaController {
     public function ejecutar() {
 
-        Funciones::verificarAutenticacion();
+        //Funciones::verificarAutenticacion();
 
         $input = json_decode(file_get_contents("php://input"), true);
 
