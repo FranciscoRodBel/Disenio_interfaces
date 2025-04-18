@@ -116,10 +116,12 @@ public class Tarea {
     * @return Devuelvo true si es válido
     */
     public boolean es_texto_valido(String texto) {
-        
-        String expresion = "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\\s\\-\\_\\.\\,\\(\\)]+$";
+
+        texto = texto.trim();
+
+        String expresion = "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\\s\\-\\_\\.\\,\\(\\)]*$";
         Pattern pattern = Pattern.compile(expresion);
-        
+
         return pattern.matcher(texto).matches();
     }
     

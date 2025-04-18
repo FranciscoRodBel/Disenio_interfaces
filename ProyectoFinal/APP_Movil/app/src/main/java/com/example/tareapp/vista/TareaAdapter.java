@@ -32,7 +32,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHol
             super(itemView);
             tareaCompletada = itemView.findViewById(R.id.idTareaCompletada);
             tituloTarea = itemView.findViewById(R.id.idTituloTarea);
-            prioridadTarea = itemView.findViewById(R.id.idBotonVerLista);
+            prioridadTarea = itemView.findViewById(R.id.idPrioridadTarea);
             fechaTarea = itemView.findViewById(R.id.idFechaTarea);
         }
     }

@@ -1,7 +1,5 @@
 package com.example.tareapp.vista;
 
-import static java.security.AccessController.getContext;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
@@ -115,7 +113,7 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ListaViewHol
         public ListaViewHolder(@NonNull View itemView) {
             super(itemView);
             titulo = itemView.findViewById(R.id.idTituloTarea);
-            idBotonVerLista = itemView.findViewById(R.id.idBotonVerLista);
+            idBotonVerLista = itemView.findViewById(R.id.idPrioridadTarea);
             idEditarLista = itemView.findViewById(R.id.idEditarLista);
             idBorrarLista = itemView.findViewById(R.id.idBorrarLista);
         }

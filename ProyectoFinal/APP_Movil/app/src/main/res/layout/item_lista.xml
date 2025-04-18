@@ -21,7 +21,7 @@
         tools:ignore="HardcodedText" />
 
     <ImageView
-        android:id="@+id/idBotonVerLista"
+        android:id="@+id/idPrioridadTarea"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginLeft="5dp"

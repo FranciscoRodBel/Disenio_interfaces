@@ -77,11 +77,11 @@
             android:layout_marginBottom="20dp"
             android:clickable="true"
             android:focusable="false"
-            android:hint="15/04/2025"
-            android:inputType="none"
+            android:hint="Seleccione una fecha"
             android:padding="10dp"
             android:textColorHint="#616161"
             tools:ignore="Autofill,HardcodedText,KeyboardInaccessibleWidget,VisualLintTextFieldSize" />
+
 
         <!-- Prioridad con Spinner -->
         <Spinner
@@ -120,5 +120,12 @@
             android:textColor="@color/negro"
             tools:ignore="DuplicateSpeakableTextCheck" />
 
+        <TextView
+            android:id="@+id/idMensajeResultado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:textAlignment="center"
+            android:textColor="@color/negro" />
     </LinearLayout>
 </ScrollView>

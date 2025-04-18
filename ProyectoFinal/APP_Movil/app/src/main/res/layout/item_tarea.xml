@@ -21,14 +21,16 @@
         android:layout_weight="1"
         android:text="Título de la tarea"
         android:textSize="16sp"
-        tools:ignore="HardcodedText" />
+        tools:ignore="DuplicateIds,HardcodedText" />
 
     <!-- Icono de prioridad -->
     <ImageView
-        android:id="@+id/idBotonVerLista"
+        android:id="@+id/idPrioridadTarea"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        tools:ignore="ContentDescription" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        tools:ignore="ContentDescription,UnusedAttribute,ImageContrastCheck" />
 
     <!-- Fecha -->
     <TextView

@@ -1,5 +1,6 @@
 package com.example.tareapp.vista;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -19,7 +21,11 @@ import androidx.fragment.app.Fragment;
 
 import com.example.tareapp.R;
 import com.example.tareapp.controlador.Idioma_controlador;
+import com.example.tareapp.controlador.Tarea_controlador;
 import com.example.tareapp.modelo.idioma.Pagina_tareas;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class TareaCrearEditarView extends Fragment {
 
@@ -28,6 +34,10 @@ public class TareaCrearEditarView extends Fragment {
     private EditText idInputTituloTarea, idInputFecha, idInputDescripcion;
     private Spinner idSpinnerPrioridad;
     private Button idBotonCrearTarea;
+    private TextView idMensajeResultado;
+    private int idLista;
+    private Tarea_controlador tarea_controlador = new Tarea_controlador();
+    private Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
 
     @Nullable
     @Override
@@ -43,6 +53,7 @@ public class TareaCrearEditarView extends Fragment {
         idSpinnerPrioridad = view.findViewById(R.id.idSpinnerPrioridad);
         idInputDescripcion = view.findViewById(R.id.idInputDescripcion);
         idBotonCrearTarea = view.findViewById(R.id.idBotonCrearTarea);
+        idMensajeResultado = view.findViewById(R.id.idMensajeResultado);
 
         idCerrarPanel.setOnClickListener(v -> {
 
@@ -58,18 +69,78 @@ public class TareaCrearEditarView extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPrioridad.setAdapter(adapter);
 
-        idBotonCrearTarea.setOnClickListener(v -> {
-
-            String mensaje_resultado = "";
-            String titulo = idInputTituloTarea.getText().toString();
-            String prioridad = idSpinnerPrioridad.getSelectedItem().toString();
-            String fecha = idInputFecha.getText().toString();
-            String descripcion = idInputDescripcion.getText().toString();
-            int idLista = 1; //tareas_view.recoger_id_lista_seleccionada();
-
-            // Código para crear la tarea
+        final Calendar calendar = Calendar.getInstance();
+        idInputFecha.setOnClickListener(v -> {
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    requireContext(),
+                    (view2, year, monthOfYear, dayOfMonth) -> {
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                        calendar.set(year, monthOfYear, dayOfMonth);
+                        idInputFecha.setText(sdf.format(calendar.getTime()));
+                    },
+                    calendar.get(Calendar.YEAR),
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DAY_OF_MONTH)
+            );
+            datePickerDialog.show();
         });
 
+        // Envío de formulario de crear tarea
+        Bundle bundle = getArguments();
+
+        if (bundle != null) {
+
+            String accion = bundle.getString("accion", "crear"); // Valor por defecto es "crear"
+            int idLista = bundle.getInt("id", -1);
+
+            if (accion.equals("crear")) {
+
+                idBotonCrearTarea.setOnClickListener(v -> {
+                    new Thread(() -> {
+
+                        String titulo = idInputTituloTarea.getText().toString();
+                        String prioridad = idSpinnerPrioridad.getSelectedItem().toString();
+                        String fecha = idInputFecha.getText().toString();
+                        String descripcion = idInputDescripcion.getText().toString();
+
+                        System.out.println(titulo);
+                        System.out.println(prioridad);
+                        System.out.println(fecha);
+                        System.out.println(descripcion);
+
+                        final String[] mensaje_resultado = new String[1];
+                        mensaje_resultado[0] = tarea_controlador.crear_tarea(titulo, prioridad, fecha, descripcion, idLista);
+
+                        requireActivity().runOnUiThread(() -> {
+
+                            if (mensaje_resultado[0].isEmpty()) {
+
+                                idInputTituloTarea.setText("");
+                                idInputFecha.setText("");
+                                idSpinnerPrioridad.setSelection(0);
+                                idInputDescripcion.setText("");
+
+                                mensaje_resultado[0] = idioma_tareas.getTarea_creada();
+                                //tareas_view.actualizarVistaTareas(requireContext()); // Actualizar la lista de tareas
+                            }
+
+                            idMensajeResultado.setText(mensaje_resultado[0]);
+
+                            new android.os.Handler().postDelayed(() -> {
+                                if (isAdded()) {
+                                    requireActivity().runOnUiThread(() ->
+                                            idMensajeResultado.setText(""));
+                                }
+                            }, 3000);
+                        });
+                    }).start();
+                });
+
+            } else if (accion.equals("editar")) {
+
+
+            }
+        }
         return view;
     }
 }
