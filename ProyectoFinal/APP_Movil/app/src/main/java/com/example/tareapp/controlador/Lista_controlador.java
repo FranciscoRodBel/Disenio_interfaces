@@ -75,8 +75,8 @@ public class Lista_controlador {
     * @return Devuelve las listas en un array de arrays asociativos, si no encuentra listas devuelve null
     */
     public static ArrayList<HashMap<String, Object>> recoger_listas() {
-    
-        String consultaRecoger = "SELECT * FROM lista WHERE email = '"+ Usuario_controlador.getUsuario().getEmail() +"'";
+
+        String consultaRecoger = "SELECT * FROM lista WHERE email = '" + Usuario_controlador.getUsuario().getEmail() + "' ORDER BY titulo ASC";
         ArrayList<HashMap<String, Object>> resultados = new BBDD_tareapp().consultar(consultaRecoger);
         
         if (resultados.isEmpty()) {

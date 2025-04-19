@@ -109,7 +109,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHol
      *
      * @return Devuelve la fecha en el formato dd/mm/yyyy
      */
-    public String convertirFechaAString(String fechaSQL) {
+    public static String convertirFechaAString(String fechaSQL) {
 
         try {
 

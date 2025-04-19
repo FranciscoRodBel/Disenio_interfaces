@@ -123,6 +123,10 @@ public class Tarea implements Serializable {
 
         texto = texto.trim();
 
+        if (texto.isEmpty()) {
+            return false;
+        }
+
         String expresion = "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\\s\\-\\_\\.\\,\\(\\)]*$";
         Pattern pattern = Pattern.compile(expresion);
 

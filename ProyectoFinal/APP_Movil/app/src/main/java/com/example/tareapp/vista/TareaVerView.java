@@ -70,21 +70,20 @@ public class TareaVerView extends Fragment {
             if (tarea != null) {
 
                 idTituloTarea.setText(tarea.getTitulo());
-                idFechaTarea.setText(convertirFechaAString(tarea.getFecha()));
+                idFechaTarea.setText(TareaAdapter.convertirFechaAString(tarea.getFecha()));
                 idPrioridadTarea.setText(tarea.recoger_prioridad_tarea());
                 idDescripcionTarea.setText(tarea.getDescripcion());
 
                 idBotonEditarTarea.setOnClickListener(v -> {
 
-                    TareaCrearEditarView crearEditarFragment = new TareaCrearEditarView();
-
+                    TareaCrearEditarView tareaCrearEditarView = new TareaCrearEditarView();
                     Bundle bundle = new Bundle();
-                    bundle.putInt("id", tarea.getIdTarea());
                     bundle.putString("accion", "editar");
+                    bundle.putSerializable("tarea", tarea);
 
-                    crearEditarFragment.setArguments(bundle);
+                    tareaCrearEditarView.setArguments(bundle);
 
-                    CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), crearEditarFragment);
+                    CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), tareaCrearEditarView);
                 });
 
                 idBorrarTarea.setOnClickListener(v -> {
@@ -128,21 +127,5 @@ public class TareaVerView extends Fragment {
         });
 
         return view;
-    }
-
-    public String convertirFechaAString(String fechaSQL) {
-
-        try {
-
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd");
-            Date fecha = formatoEntrada.parse(fechaSQL);
-
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatoSalida = new SimpleDateFormat("dd/MM/yyyy");
-            return formatoSalida.format(fecha);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return fechaSQL;
-        }
     }
 }
