@@ -17,8 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingBottom="20dp">
+            android:gravity="center_vertical">
 
             <ImageButton
                 android:id="@+id/idBorrarTarea"
@@ -28,19 +27,12 @@
                 android:backgroundTint="@color/gris_claro"
                 android:padding="0dp"
                 app:srcCompat="@drawable/trash_can_solid"
-                tools:ignore="ContentDescription,DuplicateIds,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
-            <TextView
-                android:id="@+id/idTituloCrearEditarTarea"
+            <View
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Crear tarea"
-                android:textAlignment="center"
-                android:textColor="@color/negro"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
+                android:layout_height="1dp"
+                android:layout_weight="1" />
 
             <ImageButton
                 android:id="@+id/idCerrarPanel"
@@ -50,82 +42,138 @@
                 android:backgroundTint="@color/gris_claro"
                 android:padding="0dp"
                 app:srcCompat="@drawable/circle_xmark_regular"
-                tools:ignore="ContentDescription,DuplicateIds,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/idTituloTarea"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Título Tarea"
+                android:textAlignment="center"
+                android:textColor="@color/negro"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
         </LinearLayout>
 
         <!-- Título de la tarea -->
 
-        <EditText
-            android:id="@+id/idInputTituloTarea"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:hint="@string/t_tulo_tarea"
-            android:inputType="text"
-            android:padding="10dp"
-            tools:ignore="Autofill,VisualLintTextFieldSize" />
-
         <!-- Fecha -->
-        <EditText
-            android:id="@+id/idInputFecha"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:clickable="true"
-            android:focusable="false"
-            android:hint="Seleccione una fecha"
-            android:padding="10dp"
-            android:textColorHint="#616161"
-            tools:ignore="Autofill,HardcodedText,KeyboardInaccessibleWidget,VisualLintTextFieldSize" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/idLabelFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha:"
+                android:textColor="@color/negro"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/idFechaTarea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="19/04/2025"
+                android:textColor="@color/azul_oscuro"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,InefficientWeight,RtlHardcoded" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/idLabelPrioridad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prioridad:"
+                android:textColor="@color/negro"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/idPrioridadTarea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="Alta"
+                android:textColor="@color/azul_oscuro"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,InefficientWeight,RtlHardcoded" />
+        </LinearLayout>
 
 
         <!-- Prioridad con Spinner -->
-        <Spinner
-            android:id="@+id/idSpinnerPrioridad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:padding="10dp"
-            android:spinnerMode="dropdown"
-            tools:ignore="TouchTargetSizeCheck" />
 
         <!-- Área de texto para descripción -->
-        <EditText
-            android:id="@+id/idInputDescripcion"
+        <TextView
+            android:id="@+id/idLabelDescripcion"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="30dp"
-            android:gravity="top"
-            android:hint="@string/descripci_n"
-            android:inputType="textMultiLine"
-            android:maxLines="5"
-            android:padding="10dp"
-            tools:ignore="Autofill,TextContrastCheck,VisualLintTextFieldSize" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Descripción"
+            android:textAlignment="center"
+            android:textColor="@color/negro"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"
+            android:scrollbars="horizontal"
+            tools:ignore="NestedScrolling">
+
+            <TextView
+                android:id="@+id/idDescripcionTarea"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:padding="10dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="Descripción"
+                android:textColor="@color/negro"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
+        </HorizontalScrollView>
 
         <!-- Botón de crear tarea -->
         <Button
-            android:id="@+id/idBotonCrearEditarTarea"
+            android:id="@+id/idBotonEditarTarea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/amarillo"
-            android:text="@string/crear_tarea"
+            android:text="Editar tarea"
             android:textColor="@color/negro"
-            tools:ignore="DuplicateSpeakableTextCheck" />
+            tools:ignore="DuplicateSpeakableTextCheck,HardcodedText" />
 
-        <TextView
-            android:id="@+id/idMensajeResultado"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:textAlignment="center"
-            android:textColor="@color/negro" />
     </LinearLayout>
 </ScrollView>

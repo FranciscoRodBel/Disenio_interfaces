@@ -20,8 +20,6 @@ import com.example.tareapp.R;
 import com.example.tareapp.controlador.CambiarVista;
 import com.example.tareapp.controlador.Usuario_controlador;
 
-import java.util.Timer;
-
 public class IniciarRegistrarView extends Fragment {
 
     Usuario_controlador usuario_controlador = new Usuario_controlador();
@@ -40,7 +38,7 @@ public class IniciarRegistrarView extends Fragment {
         idBotonRegistrar = view.findViewById(R.id.idBotonRegistrar);
         layoutLogin = view.findViewById(R.id.layoutLogin);
         layoutRegistro = view.findViewById(R.id.layoutRegistro);
-        titulo = view.findViewById(R.id.idTitulo);
+        titulo = view.findViewById(R.id.idTituloCrearEditarTarea);
         idMensajeResultadoInicio = view.findViewById(R.id.idMensajeResultadoInicio);
         idBotonEnviarInicio = view.findViewById(R.id.idBotonEnviarInicio);
         idBotonEnviarRegistro = view.findViewById(R.id.idBotonEnviarRegistro);

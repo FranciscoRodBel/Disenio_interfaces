@@ -1,159 +1,148 @@
 package com.example.tareapp.vista;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.tareapp.R;
+import com.example.tareapp.controlador.CambiarVista;
 import com.example.tareapp.controlador.Idioma_controlador;
 import com.example.tareapp.controlador.Tarea_controlador;
+import com.example.tareapp.modelo.Lista;
+import com.example.tareapp.modelo.Tarea;
 import com.example.tareapp.modelo.idioma.Pagina_tareas;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
-public class TareaCrearEditarView extends Fragment {
+public class TareaVerView extends Fragment {
 
-    private ImageButton idBorrarTarea;
-    private ImageButton idCerrarPanel;
-    private EditText idInputTituloTarea, idInputFecha, idInputDescripcion;
-    private Spinner idSpinnerPrioridad;
-    private Button idBotonCrearEditarTarea;
-    private TextView idTituloCrearEditarTarea, idMensajeResultado;
-    private int idLista;
+    private ImageButton idBorrarTarea, idCerrarPanel;
+    private TextView idTituloTarea, idLabelFecha, idFechaTarea, idLabelPrioridad, idPrioridadTarea, idLabelDescripcion, idDescripcionTarea;
+    private Button idBotonEditarTarea;
     private Tarea_controlador tarea_controlador = new Tarea_controlador();
     private Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "SetTextI18n"})
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tarea_crear_editar_view, container, false);
+        View view = inflater.inflate(R.layout.tarea_ver_view, container, false);
 
-        Pagina_tareas pagina_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
-
-        idTituloCrearEditarTarea = view.findViewById(R.id.idTituloCrearEditarTarea);
         idBorrarTarea = view.findViewById(R.id.idBorrarTarea);
         idCerrarPanel = view.findViewById(R.id.idCerrarPanel);
-        idInputTituloTarea = view.findViewById(R.id.idInputTituloTarea);
-        idInputFecha = view.findViewById(R.id.idInputFecha);
-        idSpinnerPrioridad = view.findViewById(R.id.idSpinnerPrioridad);
-        idInputDescripcion = view.findViewById(R.id.idInputDescripcion);
-        idBotonCrearEditarTarea = view.findViewById(R.id.idBotonEditarTarea);
-        idMensajeResultado = view.findViewById(R.id.idMensajeResultado);
+        idTituloTarea = view.findViewById(R.id.idTituloTarea);
+        idLabelFecha = view.findViewById(R.id.idLabelFecha);
+        idFechaTarea = view.findViewById(R.id.idFechaTarea);
+        idLabelPrioridad = view.findViewById(R.id.idLabelPrioridad);
+        idPrioridadTarea = view.findViewById(R.id.idPrioridadTarea);
+        idLabelDescripcion = view.findViewById(R.id.idLabelDescripcion);
+        idDescripcionTarea = view.findViewById(R.id.idDescripcionTarea);
+        idBotonEditarTarea = view.findViewById(R.id.idBotonEditarTarea);
+
+        idLabelFecha.setText(idioma_tareas.getFecha()+":");
+        idLabelPrioridad.setText(idioma_tareas.getPrioridad()+":");
+        idLabelDescripcion.setText(idioma_tareas.getDescripcion());
+
+        Bundle args = getArguments();
+
+        if (args != null) {
+
+            Tarea tarea = (Tarea) args.getSerializable("tarea");
+
+            if (tarea != null) {
+
+                idTituloTarea.setText(tarea.getTitulo());
+                idFechaTarea.setText(convertirFechaAString(tarea.getFecha()));
+                idPrioridadTarea.setText(tarea.recoger_prioridad_tarea());
+                idDescripcionTarea.setText(tarea.getDescripcion());
+
+                idBotonEditarTarea.setOnClickListener(v -> {
+
+                    TareaCrearEditarView crearEditarFragment = new TareaCrearEditarView();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("id", tarea.getIdTarea());
+                    bundle.putString("accion", "editar");
+
+                    crearEditarFragment.setArguments(bundle);
+
+                    CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), crearEditarFragment);
+                });
+
+                idBorrarTarea.setOnClickListener(v -> {
+
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                    alertDialogBuilder.setTitle(idioma_tareas.getPregunta_borrar_tarea());
+                    alertDialogBuilder
+                            .setMessage(tarea.getTitulo())
+                            .setCancelable(false)
+                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    new Thread(() -> {
+
+                                        String mensaje_resultado = tarea_controlador.borrar_tarea(tarea.getIdTarea());
+
+                                        if (mensaje_resultado.isEmpty()) {
+
+                                            requireActivity().runOnUiThread(() -> {
+                                                Toast.makeText(getContext(), idioma_tareas.getTarea_borrada(), Toast.LENGTH_SHORT).show();
+                                                requireActivity().getSupportFragmentManager().popBackStack(); // <-- Esto cierra el panel actual
+                                            });
+                                        }
+                                    }).start();
+                                }
+                            })
+                            .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel(); // Cerrar popUp
+                                }
+                            }).create().show();
+                });
+            }
+        }
 
         idCerrarPanel.setOnClickListener(v -> {
 
             requireActivity().getSupportFragmentManager().popBackStack();
         });
 
-        // SPINNER
-        Spinner spinnerPrioridad = view.findViewById(R.id.idSpinnerPrioridad);
-
-        String[] prioridades = {pagina_tareas.getPrioridad(), pagina_tareas.getBaja(), pagina_tareas.getMedia(), pagina_tareas.getAlta()};
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, prioridades);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerPrioridad.setAdapter(adapter);
-
-        final Calendar calendar = Calendar.getInstance();
-
-        idInputFecha.setOnClickListener(v -> {
-
-            DatePickerDialog datePickerDialog = new DatePickerDialog(
-
-                    requireContext(),
-                    (view2, year, monthOfYear, dayOfMonth) -> {
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                        calendar.set(year, monthOfYear, dayOfMonth);
-                        idInputFecha.setText(sdf.format(calendar.getTime()));
-                    },
-
-                    calendar.get(Calendar.YEAR),
-                    calendar.get(Calendar.MONTH),
-                    calendar.get(Calendar.DAY_OF_MONTH)
-            );
-            datePickerDialog.show();
-        });
-
-        // Envío de formulario de crear tarea
-        Bundle bundle = getArguments();
-
-        if (bundle != null) {
-
-            String accion = bundle.getString("accion", "crear");
-            int idLista = bundle.getInt("id", -1);
-
-            if (accion.equals("editar")) {
-
-                idTituloCrearEditarTarea.setText(Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getEditar_tarea());
-                idBotonCrearEditarTarea.setText(Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getEditar_tarea());
-
-            } else {
-
-                idTituloCrearEditarTarea.setText(Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getCrear_tarea());
-                idBotonCrearEditarTarea.setText(Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getCrear_tarea());
-            }
-
-            idBotonCrearEditarTarea.setOnClickListener(v -> {
-                new Thread(() -> {
-
-                    String titulo = idInputTituloTarea.getText().toString();
-                    String prioridad = idSpinnerPrioridad.getSelectedItem().toString();
-                    String fecha = idInputFecha.getText().toString();
-                    String descripcion = idInputDescripcion.getText().toString();
-
-                    final String[] mensaje_resultado = new String[1];
-
-                    if (accion.equals("crear")) {
-
-                        mensaje_resultado[0] = tarea_controlador.crear_tarea(titulo, prioridad, fecha, descripcion, idLista);
-
-                        requireActivity().runOnUiThread(() -> {
-
-                            if (mensaje_resultado[0].isEmpty()) {
-
-                                idInputTituloTarea.setText("");
-                                idInputFecha.setText("");
-                                idSpinnerPrioridad.setSelection(0);
-                                idInputDescripcion.setText("");
-
-                                mensaje_resultado[0] = idioma_tareas.getTarea_creada();
-                                //tareas_view.actualizarVistaTareas(requireContext()); // Actualizar la lista de tareas
-                            }
-
-                            idMensajeResultado.setText(mensaje_resultado[0]);
-
-                            new android.os.Handler().postDelayed(() -> {
-                                if (isAdded()) {
-                                    requireActivity().runOnUiThread(() ->
-                                            idMensajeResultado.setText(""));
-                                }
-                            }, 3000);
-                        });
-
-                    } else if (accion.equals("editar")) {
-
-
-
-                    }
-                }).start();
-            });
-        }
         return view;
+    }
+
+    public String convertirFechaAString(String fechaSQL) {
+
+        try {
+
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd");
+            Date fecha = formatoEntrada.parse(fechaSQL);
+
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatoSalida = new SimpleDateFormat("dd/MM/yyyy");
+            return formatoSalida.format(fecha);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return fechaSQL;
+        }
     }
 }

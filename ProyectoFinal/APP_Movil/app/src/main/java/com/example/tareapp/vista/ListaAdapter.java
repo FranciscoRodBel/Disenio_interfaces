@@ -80,8 +80,6 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ListaViewHol
 
                                 if (mensaje_resultado.isEmpty()) {
 
-                                    mensaje_resultado = Idioma_controlador.getIdioma_seleccionado().getPagina_listas().getLista_borrada();
-
                                     ((ListasView) fragment).actualizar_panel_lista();
                                 }
 

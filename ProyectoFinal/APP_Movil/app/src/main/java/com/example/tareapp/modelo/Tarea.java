@@ -4,6 +4,10 @@
  */
 package com.example.tareapp.modelo;
 
+import com.example.tareapp.controlador.Idioma_controlador;
+import com.example.tareapp.modelo.idioma.Pagina_tareas;
+
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,7 +22,7 @@ import java.util.regex.Pattern;
  *
  * @author Francisco
  */
-public class Tarea {
+public class Tarea implements Serializable {
     
     private int idTarea;
     private int completada;
@@ -184,5 +188,19 @@ public class Tarea {
 
     public Boolean isCompletada() {
         return completada == 1;
+    }
+
+    public String recoger_prioridad_tarea() {
+
+        Pagina_tareas idioma_seleccionado = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
+
+        switch (prioridad) {
+            case 2:
+                return idioma_seleccionado.getMedia();
+            case 3:
+                return idioma_seleccionado.getAlta();
+            default:
+                return idioma_seleccionado.getBaja();
+        }
     }
 }

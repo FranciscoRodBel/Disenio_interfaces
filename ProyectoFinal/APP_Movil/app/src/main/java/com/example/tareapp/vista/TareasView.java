@@ -21,9 +21,7 @@ import com.example.tareapp.controlador.Tarea_controlador;
 import com.example.tareapp.modelo.Lista;
 import com.example.tareapp.modelo.Tarea;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
 
@@ -44,7 +42,7 @@ public class TareasView extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tareas_view, container, false);
 
-        idBotonCrearTarea = view.findViewById(R.id.idBotonCrearTarea);
+        idBotonCrearTarea = view.findViewById(R.id.idBotonEditarTarea);
         idSpinnerListas = view.findViewById(R.id.idSpinnerListas);
         recyclerTareas = view.findViewById(R.id.idRecyclerViewTareas);
         recyclerTareas.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -68,6 +66,18 @@ public class TareasView extends Fragment {
 
             CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), crearEditarFragment);
         });
+
+        tareaAdapter.setOnItemClickListener(tarea -> {
+
+            TareaVerView verFragment = new TareaVerView();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("tarea", tarea);
+
+            verFragment.setArguments(bundle);
+
+            CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), verFragment);
+        });
+
 
         return view;
     }
@@ -145,17 +155,6 @@ public class TareasView extends Fragment {
                 tareaAdapter.notifyDataSetChanged(); // Notificas que cambió la lista
             });
         }).start();
-    }
-
-    /**
-     * Función que permite convertir el formato Date de la BBDD al formato de la aplicación dd/mm/yyyy
-     *
-     * @return Devuelve la fecha en el formato dd/mm/yyyy
-     */
-    public String convertirFechaAString(Date fechaSQL) {
-
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        return formato.format(fechaSQL);
     }
 
 }
