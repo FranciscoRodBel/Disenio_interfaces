@@ -2,17 +2,13 @@ package com.example.tareapp.vista;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,13 +20,8 @@ import com.example.tareapp.R;
 import com.example.tareapp.controlador.CambiarVista;
 import com.example.tareapp.controlador.Idioma_controlador;
 import com.example.tareapp.controlador.Tarea_controlador;
-import com.example.tareapp.modelo.Lista;
 import com.example.tareapp.modelo.Tarea;
 import com.example.tareapp.modelo.idioma.Pagina_tareas;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 public class TareaVerView extends Fragment {
 
@@ -49,8 +40,8 @@ public class TareaVerView extends Fragment {
         idBorrarTarea = view.findViewById(R.id.idBorrarTarea);
         idCerrarPanel = view.findViewById(R.id.idCerrarPanel);
         idTituloTarea = view.findViewById(R.id.idTituloTarea);
-        idLabelFecha = view.findViewById(R.id.idLabelFecha);
-        idFechaTarea = view.findViewById(R.id.idFechaTarea);
+        idLabelFecha = view.findViewById(R.id.idLabelEmail);
+        idFechaTarea = view.findViewById(R.id.idEmailCuenta);
         idLabelPrioridad = view.findViewById(R.id.idLabelPrioridad);
         idPrioridadTarea = view.findViewById(R.id.idPrioridadTarea);
         idLabelDescripcion = view.findViewById(R.id.idLabelDescripcion);
@@ -105,7 +96,7 @@ public class TareaVerView extends Fragment {
 
                                             requireActivity().runOnUiThread(() -> {
                                                 Toast.makeText(getContext(), idioma_tareas.getTarea_borrada(), Toast.LENGTH_SHORT).show();
-                                                requireActivity().getSupportFragmentManager().popBackStack(); // <-- Esto cierra el panel actual
+                                                requireActivity().getSupportFragmentManager().popBackStack();
                                             });
                                         }
                                     }).start();

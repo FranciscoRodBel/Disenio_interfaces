@@ -19,4 +19,7 @@
     <string name="descripci_n">Descripción</string>
     <string name="t_tulo_tarea">Título tarea</string>
     <string name="t_tulo_lista">Título lista</string>
+    <string name="cambiar_email">Cambiar email</string>
+    <string name="cambiar_contrase_a">Cambiar contraseña</string>
+    <string name="borrar_cuenta">Borrar cuenta</string>
 </resources>

@@ -38,7 +38,7 @@ public class IniciarRegistrarView extends Fragment {
         idBotonRegistrar = view.findViewById(R.id.idBotonRegistrar);
         layoutLogin = view.findViewById(R.id.layoutLogin);
         layoutRegistro = view.findViewById(R.id.layoutRegistro);
-        titulo = view.findViewById(R.id.idTituloCrearEditarTarea);
+        titulo = view.findViewById(R.id.idTituloAjustes);
         idMensajeResultadoInicio = view.findViewById(R.id.idMensajeResultadoInicio);
         idBotonEnviarInicio = view.findViewById(R.id.idBotonEnviarInicio);
         idBotonEnviarRegistro = view.findViewById(R.id.idBotonEnviarRegistro);

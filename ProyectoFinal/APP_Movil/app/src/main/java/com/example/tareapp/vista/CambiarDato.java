@@ -1,8 +1,9 @@
 package com.example.tareapp.vista;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,38 +20,33 @@ import com.example.tareapp.R;
 import com.example.tareapp.controlador.Idioma_controlador;
 import com.example.tareapp.controlador.Lista_controlador;
 import com.example.tareapp.controlador.Usuario_controlador;
+import com.example.tareapp.modelo.idioma.Pagina_ajustes_cuenta;
 import com.example.tareapp.modelo.idioma.Pagina_inicio_registro;
 import com.example.tareapp.modelo.idioma.Pagina_listas;
 
-import java.util.Random;
-import java.util.Timer;
-
-public class ListaEditar extends DialogFragment {
-    private OnListaEditadaListener listener;
-    private Lista_controlador lista_controlador = new Lista_controlador();
+public class CambiarDato extends DialogFragment {
+    private OnCambiarDatoListener listener;
     private Usuario_controlador usuario_controlador = new Usuario_controlador();
     private ImageButton idCerrarPanel;
-    private EditText idInputTituloLista;
-    private Button idBotonEditarLista;
-    private TextView idMensajeResultado;
-    private String idLista = "";
-    private String titulo = "";
+    private EditText idInputDato, idInputRepetirDato;
+    private Button idBotonCambiar;
+    private TextView idMensajeResultado, idTitulo;
+    private String accion = "";
 
-    Pagina_inicio_registro pagina_inicio_registro = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
+    Pagina_ajustes_cuenta pagina_ajustes_cuenta = Idioma_controlador.getIdioma_seleccionado().getPagina_ajustes_cuenta();
 
-    public static ListaEditar newInstance(String idLista, String titulo) {
-        ListaEditar dialog = new ListaEditar();
+    public static CambiarDato newInstance(String accion) {
+        CambiarDato dialog = new CambiarDato();
         Bundle args = new Bundle();
-        args.putString("idLista", idLista);
-        args.putString("titulo", titulo);
+        args.putString("accion", accion);
         dialog.setArguments(args);
         return dialog;
     }
-    public interface OnListaEditadaListener {
-        void onListaEditada();
+    public interface OnCambiarDatoListener {
+        void onCambiarDato();
     }
 
-    public void setOnListaEditadaListener(OnListaEditadaListener listener) {
+    public void setOnCambiarDatoListener(OnCambiarDatoListener listener) {
         this.listener = listener;
     }
 
@@ -58,43 +54,75 @@ public class ListaEditar extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            idLista = getArguments().getString("idLista");
-            titulo = getArguments().getString("titulo");
+            accion = getArguments().getString("accion");
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.lista_editar, container, false);
+        View view = inflater.inflate(R.layout.cambiar_email_contrasenia, container, false);
 
-        Pagina_listas idioma_listas = Idioma_controlador.getIdioma_seleccionado().getPagina_listas();
-
-        idInputTituloLista = view.findViewById(R.id.idInputTituloLista);
-        idBotonEditarLista = view.findViewById(R.id.idBotonEditarLista);
-        idMensajeResultado = view.findViewById(R.id.idMensajeResultado);
         idCerrarPanel = view.findViewById(R.id.idCerrarPanel);
+        idTitulo = view.findViewById(R.id.idTitulo);
+        idInputDato = view.findViewById(R.id.idInputDato);
+        idInputRepetirDato = view.findViewById(R.id.idInputRepetirDato);
+        idBotonCambiar = view.findViewById(R.id.idBotonCambiar);
+        idMensajeResultado = view.findViewById(R.id.idMensajeResultado);
 
-        idInputTituloLista.setText(titulo);
+        if (accion.equals("contrasenia")) {
+
+            idTitulo.setText(pagina_ajustes_cuenta.getCambiar_contrasenia());
+            idInputDato.setHint(pagina_ajustes_cuenta.getNuevo_contrasenia());
+            idInputRepetirDato.setHint(pagina_ajustes_cuenta.getRepetir_contrasenia());
+            idBotonCambiar.setText(pagina_ajustes_cuenta.getCambiar_contrasenia());
+
+            idInputDato.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            idInputRepetirDato.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
+        } else {
+
+            idTitulo.setText(pagina_ajustes_cuenta.getCambiar_email());
+            idInputDato.setHint(pagina_ajustes_cuenta.getNuevo_email());
+            idInputRepetirDato.setHint(pagina_ajustes_cuenta.getRepetir_email());
+            idBotonCambiar.setText(pagina_ajustes_cuenta.getCambiar_email());
+        }
 
         idCerrarPanel.setOnClickListener(v -> dismiss());
 
-        idBotonEditarLista.setOnClickListener(v -> {
+        idBotonCambiar.setOnClickListener(v -> {
             new Thread(() -> {
 
-                String[] mensaje_resultado = new String[1];
-                mensaje_resultado[0] = lista_controlador.actualizar_lista(Integer.parseInt(idLista), idInputTituloLista.getText().toString());
+                final String[] mensaje_resultado = new String[1];
+                String datoCambiar = idInputDato.getText().toString();
+                String datoRepetir = idInputRepetirDato.getText().toString();
+
+                if (accion.equals("contrasenia")) {
+
+                    mensaje_resultado[0] = usuario_controlador.actualizar_contrasenia(datoCambiar, datoRepetir);
+
+                } else {
+
+                    mensaje_resultado[0] = usuario_controlador.comprobar_datos_actualizar_email(datoCambiar, datoRepetir);
+                }
 
                 requireActivity().runOnUiThread(() -> {
 
                     if (mensaje_resultado[0].isEmpty()) {
 
-                        mensaje_resultado[0] = idioma_listas.getLista_editada();
-                        listener.onListaEditada();
+                        if (accion.equals("contrasenia")) {
+
+                            mensaje_resultado[0] = pagina_ajustes_cuenta.getContrasenia_actualizada();
+
+                        } else {
+
+                            ConfirmarEmailDialog dialog = ConfirmarEmailDialog.newInstance(datoCambiar);
+                            dialog.show(getParentFragmentManager(), "ConfirmarEmail");
+                        }
                     }
 
                     idMensajeResultado.setText(mensaje_resultado[0]);
-
                     new android.os.Handler().postDelayed(() -> {
                         if (isAdded()) {
                             requireActivity().runOnUiThread(() ->

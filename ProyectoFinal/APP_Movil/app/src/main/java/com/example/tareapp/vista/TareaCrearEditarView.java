@@ -19,7 +19,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.tareapp.R;
-import com.example.tareapp.controlador.CambiarVista;
 import com.example.tareapp.controlador.Idioma_controlador;
 import com.example.tareapp.controlador.Tarea_controlador;
 import com.example.tareapp.modelo.Tarea;
@@ -39,6 +38,8 @@ public class TareaCrearEditarView extends Fragment {
     private Tarea_controlador tarea_controlador = new Tarea_controlador();
     private Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
 
+    private Boolean editado = false;
+
     @SuppressLint("MissingInflatedId")
     @Nullable
     @Override
@@ -47,7 +48,7 @@ public class TareaCrearEditarView extends Fragment {
 
         Pagina_tareas pagina_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
 
-        idTituloCrearEditarTarea = view.findViewById(R.id.idTituloCrearEditarTarea);
+        idTituloCrearEditarTarea = view.findViewById(R.id.idTituloAjustes);
         idCerrarPanel = view.findViewById(R.id.idCerrarPanel);
         idInputTituloTarea = view.findViewById(R.id.idInputTituloTarea);
         idInputFecha = view.findViewById(R.id.idInputFecha);
@@ -112,22 +113,15 @@ public class TareaCrearEditarView extends Fragment {
 
             idCerrarPanel.setOnClickListener(v -> {
 
+                if (editado) {
 
-                requireActivity().getSupportFragmentManager().popBackStack();
-                /*
-                if (bundle.containsKey("tarea")) {
-
-                    TareaVerView tareaVerView = new TareaVerView();
-                    Bundle nuevoBundle = new Bundle();
-                    nuevoBundle.putSerializable("tarea", tarea);
-                    tareaVerView.setArguments(nuevoBundle);
-
-                    CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), tareaVerView);
+                    requireActivity().getSupportFragmentManager().popBackStack();
+                    requireActivity().getSupportFragmentManager().popBackStack();
 
                 } else {
 
+                    requireActivity().getSupportFragmentManager().popBackStack();
                 }
-                */
 
             });
 
@@ -165,8 +159,8 @@ public class TareaCrearEditarView extends Fragment {
 
                             } else {
 
-                                //tarea = new Tarea(tarea.getIdTarea(), tarea.getCompletada(), titulo, prioridad, fecha, descripcion, tarea.getIdLista());
                                 mensaje_resultado[0] = idioma_tareas.getTarea_editada();
+                                editado = true;
                             }
                         }
 
@@ -184,4 +178,5 @@ public class TareaCrearEditarView extends Fragment {
         }
         return view;
     }
+
 }

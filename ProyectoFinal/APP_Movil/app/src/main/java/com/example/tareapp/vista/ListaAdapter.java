@@ -2,6 +2,7 @@ package com.example.tareapp.vista;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tareapp.R;
+import com.example.tareapp.controlador.CambiarVista;
 import com.example.tareapp.controlador.Idioma_controlador;
 import com.example.tareapp.controlador.Lista_controlador;
 
@@ -48,7 +50,14 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ListaViewHol
 
         holder.idBotonVerLista.setOnClickListener(v -> {
 
-            System.out.println("Ver lista: " + titulo);
+            TareasView tareasView = new TareasView();
+
+            Bundle bundle = new Bundle();
+            bundle.putInt("id", Integer.parseInt(idLista));
+
+            tareasView.setArguments(bundle);
+
+            CambiarVista.cambiarFragmento(fragment.requireActivity().getSupportFragmentManager(), tareasView);
         });
 
         holder.idEditarLista.setOnClickListener(v -> {

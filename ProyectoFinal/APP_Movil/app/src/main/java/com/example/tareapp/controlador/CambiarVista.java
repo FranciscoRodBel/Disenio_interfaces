@@ -11,7 +11,7 @@ public class CambiarVista {
     public static void cambiarFragmento(FragmentManager fragmentManager, Fragment fragment) {
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fragment_container, fragment);
+        transaction.replace(R.id.idContenedorFragmentos, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }

@@ -66,8 +66,17 @@ public class MainActivity extends AppCompatActivity {
                 CambiarVista.cambiarFragmento(getSupportFragmentManager(), new TareasView());
                 break;
 
+            case R.id.idCuentaAjustes:
+                CambiarVista.cambiarFragmento(getSupportFragmentManager(), new AjustesView());
+                break;
+
             case R.id.idCuentaCerrarSesion:
                 CambiarVista.cambiarFragmento(getSupportFragmentManager(), new IniciarRegistrarView());
+                break;
+
+            case R.id.idCuentaSalir:
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(1);
                 break;
         }
 

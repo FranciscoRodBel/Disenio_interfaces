@@ -36,6 +36,8 @@ public class TareasView extends Fragment {
     private TareaAdapter tareaAdapter;
     private ArrayList<Tarea> listaTareas;
 
+    private int idListaParaSeleccionar = -1;
+
 
     @Nullable
     @Override
@@ -49,6 +51,11 @@ public class TareasView extends Fragment {
         listaTareas = new ArrayList<>();
         tareaAdapter = new TareaAdapter(listaTareas);
         recyclerTareas.setAdapter(tareaAdapter);
+
+        Bundle bundleIdLista = getArguments();
+        if (bundleIdLista != null) {
+            idListaParaSeleccionar = bundleIdLista.getInt("id", -1);
+        }
 
         cargarListasEnSpinner();
 
@@ -86,15 +93,12 @@ public class TareasView extends Fragment {
         listaDeListas = new ArrayList<>();
 
         new Thread(() -> {
-
             ArrayList<HashMap<String, Object>> listasRaw = Lista_controlador.recoger_listas();
 
             requireActivity().runOnUiThread(() -> {
 
                 if (listasRaw != null) {
-
                     for (HashMap<String, Object> fila : listasRaw) {
-
                         int idLista = (int) fila.get("idLista");
                         String titulo = (String) fila.get("titulo");
                         String email = (String) fila.get("email");
@@ -107,13 +111,23 @@ public class TareasView extends Fragment {
                 listaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 idSpinnerListas.setAdapter(listaAdapter);
 
+                if (idListaParaSeleccionar != -1) {
+
+                    for (int i = 0; i < listaDeListas.size(); i++) {
+
+                        if (listaDeListas.get(i).getIdLista() == idListaParaSeleccionar) {
+
+                            idSpinnerListas.setSelection(i);
+                            break;
+                        }
+                    }
+                }
+
                 idSpinnerListas.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(android.widget.AdapterView<?> parent, View view, int position, long id) {
-
                         Lista listaSeleccionada = (Lista) parent.getItemAtPosition(position);
                         actualizarTareasDeLista(listaSeleccionada.getIdLista());
-
                     }
 
                     @Override

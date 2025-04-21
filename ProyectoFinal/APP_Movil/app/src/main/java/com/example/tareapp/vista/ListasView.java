@@ -62,7 +62,6 @@ public class ListasView extends Fragment implements ListaEditar.OnListaEditadaLi
                         mensaje_resultado[0] = Idioma_controlador.getIdioma_seleccionado().getPagina_listas().getLista_creada();
                         idInputTituloLista.setText("");
                         actualizar_panel_lista();
-                        //tareas_view.actualizar_select_listas();
                     }
 
                     idMensajeResultado.setText(mensaje_resultado[0]);

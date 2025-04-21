@@ -34,7 +34,7 @@
 
     <!-- Fecha -->
     <TextView
-        android:id="@+id/idFechaTarea"
+        android:id="@+id/idEmailCuenta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="03/04/2025"
