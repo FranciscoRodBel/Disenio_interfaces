@@ -29,7 +29,6 @@ public class AjustesView extends Fragment implements CambiarDato.OnCambiarDatoLi
     private String email;
     private Usuario_controlador usuario_controlador = new Usuario_controlador();
 
-
     @SuppressLint("WrongViewCast")
     @Nullable
     @Override
@@ -38,7 +37,7 @@ public class AjustesView extends Fragment implements CambiarDato.OnCambiarDatoLi
 
         email = Usuario_controlador.getUsuario().getEmail();
 
-        idTituloAjustes = view.findViewById(R.id.idTituloAjustes);
+        idTituloAjustes = view.findViewById(R.id.idTitulo);
         idEmailCuenta = view.findViewById(R.id.idEmailCuenta);
         idEmailCuenta = view.findViewById(R.id.idEmailCuenta);
         idBotonCambiarEamil = view.findViewById(R.id.idBotonCambiarEamil);

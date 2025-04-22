@@ -48,7 +48,7 @@ public class TareaCrearEditarView extends Fragment {
 
         Pagina_tareas pagina_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
 
-        idTituloCrearEditarTarea = view.findViewById(R.id.idTituloAjustes);
+        idTituloCrearEditarTarea = view.findViewById(R.id.idTitulo);
         idCerrarPanel = view.findViewById(R.id.idCerrarPanel);
         idInputTituloTarea = view.findViewById(R.id.idInputTituloTarea);
         idInputFecha = view.findViewById(R.id.idInputFecha);
@@ -93,6 +93,10 @@ public class TareaCrearEditarView extends Fragment {
             String accion = bundle.getString("accion", "crear");
             int idLista = bundle.getInt("id", -1);
             tarea = (Tarea) getArguments().getSerializable("tarea");
+
+            idInputTituloTarea.setHint(idioma_tareas.getTitulo_tarea());
+            idInputFecha.setHint(idioma_tareas.getSeleccione_fecha());
+            idInputDescripcion.setHint(idioma_tareas.getDescripcion());
 
             if (accion.equals("editar")) {
 

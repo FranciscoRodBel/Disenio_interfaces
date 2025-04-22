@@ -1,5 +1,6 @@
 package com.example.tareapp.vista;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,10 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tareapp.R;
 import com.example.tareapp.controlador.CambiarVista;
+import com.example.tareapp.controlador.Idioma_controlador;
 import com.example.tareapp.controlador.Lista_controlador;
 import com.example.tareapp.controlador.Tarea_controlador;
 import com.example.tareapp.modelo.Lista;
 import com.example.tareapp.modelo.Tarea;
+import com.example.tareapp.modelo.idioma.Pagina_tareas;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,23 +31,24 @@ import java.util.HashMap;
 
 public class TareasView extends Fragment {
 
+    private TextView idTitulo;
     private ImageButton idBotonCrearTarea;
     private Spinner idSpinnerListas;
     private ArrayAdapter<Lista> listaAdapter;
     private ArrayList<Lista> listaDeListas;
-
     private RecyclerView recyclerTareas;
     private TareaAdapter tareaAdapter;
     private ArrayList<Tarea> listaTareas;
-
     private int idListaParaSeleccionar = -1;
+    private Pagina_tareas pagina_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
 
-
+    @SuppressLint("MissingInflatedId")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tareas_view, container, false);
 
+        idTitulo = view.findViewById(R.id.idTitulo);
         idBotonCrearTarea = view.findViewById(R.id.idBotonEditarTarea);
         idSpinnerListas = view.findViewById(R.id.idSpinnerListas);
         recyclerTareas = view.findViewById(R.id.idRecyclerViewTareas);
@@ -51,6 +56,8 @@ public class TareasView extends Fragment {
         listaTareas = new ArrayList<>();
         tareaAdapter = new TareaAdapter(listaTareas);
         recyclerTareas.setAdapter(tareaAdapter);
+
+        idTitulo.setText(pagina_tareas.getTitulo());
 
         Bundle bundleIdLista = getArguments();
         if (bundleIdLista != null) {

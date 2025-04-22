@@ -47,6 +47,7 @@ public class Pagina_tareas {
     private String marcar_completa_incompleta;
     private String ver_tarea;
     private String lista_no_seleccionada;
+    private String seleccione_fecha;
     
     public String getTitulo() {
         return titulo;
@@ -335,5 +336,12 @@ public class Pagina_tareas {
     public void setLista_no_seleccionada(String lista_no_seleccionada) {
         this.lista_no_seleccionada = lista_no_seleccionada;
     }
-    
+
+    public String getSeleccione_fecha() {
+        return seleccione_fecha;
+    }
+
+    public void setSeleccione_fecha(String seleccione_fecha) {
+        this.seleccione_fecha = seleccione_fecha;
+    }
 }

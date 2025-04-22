@@ -1,5 +1,6 @@
 package com.example.tareapp.vista;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -32,7 +33,7 @@ public class ListaEditar extends DialogFragment {
     private ImageButton idCerrarPanel;
     private EditText idInputTituloLista;
     private Button idBotonEditarLista;
-    private TextView idMensajeResultado;
+    private TextView idTitulo, idMensajeResultado;
     private String idLista = "";
     private String titulo = "";
 
@@ -63,6 +64,7 @@ public class ListaEditar extends DialogFragment {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -70,10 +72,15 @@ public class ListaEditar extends DialogFragment {
 
         Pagina_listas idioma_listas = Idioma_controlador.getIdioma_seleccionado().getPagina_listas();
 
+        idTitulo = view.findViewById(R.id.idTitulo);
         idInputTituloLista = view.findViewById(R.id.idInputTituloLista);
         idBotonEditarLista = view.findViewById(R.id.idBotonEditarLista);
         idMensajeResultado = view.findViewById(R.id.idMensajeResultado);
         idCerrarPanel = view.findViewById(R.id.idCerrarPanel);
+
+        idTitulo.setText(idioma_listas.getEditar_lista());
+        idInputTituloLista.setHint(idioma_listas.getTitulo_lista());
+        idBotonEditarLista.setText(idioma_listas.getEditar_lista());
 
         idInputTituloLista.setText(titulo);
 

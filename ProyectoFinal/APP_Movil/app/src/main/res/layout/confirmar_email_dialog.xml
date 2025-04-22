@@ -36,7 +36,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/idTituloConfirmarEmail"
+            android:id="@+id/idTitulo"
             android:layout_width="401dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

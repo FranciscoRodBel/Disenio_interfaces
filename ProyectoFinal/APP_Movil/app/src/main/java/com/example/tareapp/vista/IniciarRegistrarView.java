@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -18,27 +19,33 @@ import androidx.fragment.app.Fragment;
 
 import com.example.tareapp.R;
 import com.example.tareapp.controlador.CambiarVista;
+import com.example.tareapp.controlador.Idioma_controlador;
 import com.example.tareapp.controlador.Usuario_controlador;
+import com.example.tareapp.modelo.idioma.Pagina_ajustes_cuenta;
+import com.example.tareapp.modelo.idioma.Pagina_inicio_registro;
+import com.google.android.material.navigation.NavigationView;
 
 public class IniciarRegistrarView extends Fragment {
 
     Usuario_controlador usuario_controlador = new Usuario_controlador();
-    private TextView idBotonIniciarSesion, idBotonRegistrar, titulo, idMensajeResultadoInicio;
+    private TextView idBotonIniciarSesion, idBotonRegistrar, idTitulo, idMensajeResultadoInicio;
     private LinearLayout layoutLogin, layoutRegistro;
     private Button idBotonEnviarInicio, idBotonEnviarRegistro;
     private EditText idInputEmailInicio, idInputContraseniaInicio, idInputEmailRegistro, idInputContraseniaRegistro, idInputRepetirContraseniaRegistro;
 
-    @SuppressLint("ResourceAsColor")
+    @SuppressLint("MissingInflatedId")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.iniciar_registrar_view, container, false);
 
+        Pagina_inicio_registro pagina_inicio_registro = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
+
         idBotonIniciarSesion = view.findViewById(R.id.idBotonIniciarSesion);
         idBotonRegistrar = view.findViewById(R.id.idBotonRegistrar);
         layoutLogin = view.findViewById(R.id.layoutLogin);
         layoutRegistro = view.findViewById(R.id.layoutRegistro);
-        titulo = view.findViewById(R.id.idTituloAjustes);
+        idTitulo = view.findViewById(R.id.idTitulo);
         idMensajeResultadoInicio = view.findViewById(R.id.idMensajeResultadoInicio);
         idBotonEnviarInicio = view.findViewById(R.id.idBotonEnviarInicio);
         idBotonEnviarRegistro = view.findViewById(R.id.idBotonEnviarRegistro);
@@ -47,6 +54,16 @@ public class IniciarRegistrarView extends Fragment {
         idInputEmailRegistro = view.findViewById(R.id.idInputEmailRegistro);
         idInputContraseniaRegistro = view.findViewById(R.id.idInputContraseniaRegistro);
         idInputRepetirContraseniaRegistro = view.findViewById(R.id.idInputRepetirContraseniaRegistro);
+
+        idTitulo.setText(pagina_inicio_registro.getIniciar_sesion());
+        idBotonIniciarSesion.setText(pagina_inicio_registro.getIniciar_sesion());
+        idBotonRegistrar.setText(pagina_inicio_registro.getRegistrarse());
+        idBotonEnviarInicio.setText(pagina_inicio_registro.getIniciar_sesion());
+        idBotonEnviarRegistro.setText(pagina_inicio_registro.getRegistrarse());
+        idInputContraseniaInicio.setHint(pagina_inicio_registro.getContrasenia());
+        idInputContraseniaRegistro.setHint(pagina_inicio_registro.getContrasenia());
+        idInputRepetirContraseniaRegistro.setHint(pagina_inicio_registro.getRepetir_contrasenia());
+
 
         // Cambio de layout de registro a inicio de sesión
 
@@ -57,7 +74,7 @@ public class IniciarRegistrarView extends Fragment {
 
             layoutLogin.setVisibility(View.VISIBLE);
             layoutRegistro.setVisibility(View.GONE);
-            titulo.setText("Inicio de sesión");
+            idTitulo.setText(pagina_inicio_registro.getIniciar_sesion());
 
             idBotonIniciarSesion.setBackgroundResource(R.drawable.boton_izquierdo_redondo);
             idBotonRegistrar.setBackgroundColor(Color.TRANSPARENT);
@@ -69,7 +86,7 @@ public class IniciarRegistrarView extends Fragment {
 
             layoutLogin.setVisibility(View.GONE);
             layoutRegistro.setVisibility(View.VISIBLE);
-            titulo.setText("Registrarse");
+            idTitulo.setText(pagina_inicio_registro.getRegistrarse());
 
             idBotonRegistrar.setBackgroundResource(R.drawable.boton_derecho_redondo);
             idBotonIniciarSesion.setBackgroundColor(Color.TRANSPARENT);

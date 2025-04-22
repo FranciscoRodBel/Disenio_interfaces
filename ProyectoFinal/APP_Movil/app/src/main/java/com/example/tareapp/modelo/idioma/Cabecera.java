@@ -18,7 +18,8 @@ public class Cabecera {
     private String cuenta;
     private String ajustes;
     private String cerrar_sesion;
-    
+    private String salir;
+
     public String getTareas() {
         return tareas;
     }
@@ -74,5 +75,12 @@ public class Cabecera {
     public void setCerrar_sesion(String cerrar_sesion) {
         this.cerrar_sesion = cerrar_sesion;
     }
-    
+
+    public String getSalir() {
+        return salir;
+    }
+
+    public void setSalir(String salir) {
+        this.salir = salir;
+    }
 }

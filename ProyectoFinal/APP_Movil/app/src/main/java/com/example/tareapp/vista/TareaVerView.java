@@ -51,6 +51,7 @@ public class TareaVerView extends Fragment {
         idLabelFecha.setText(idioma_tareas.getFecha()+":");
         idLabelPrioridad.setText(idioma_tareas.getPrioridad()+":");
         idLabelDescripcion.setText(idioma_tareas.getDescripcion());
+        idBotonEditarTarea.setText(idioma_tareas.getEditar_tarea());
 
         Bundle args = getArguments();
 

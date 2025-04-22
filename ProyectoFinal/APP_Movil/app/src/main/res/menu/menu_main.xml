@@ -22,7 +22,7 @@
                 android:title="English"/>
             <item
                 android:id="@+id/idIdiomaFr"
-                android:title="French"/>
+                android:title="Français" />
         </menu>
     </item>
 

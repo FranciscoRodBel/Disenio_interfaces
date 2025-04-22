@@ -9,7 +9,8 @@
                 "notas": "Notas",
                 "cuenta": "Cuenta",
                 "ajustes": "Ajustes",
-                "cerrar_sesion": "Cerrar sesión"
+                "cerrar_sesion": "Cerrar sesión",
+                "salir": "Salir"
             },
             "Pagina_tareas": {
                 "titulo": "Tareas",
@@ -47,7 +48,8 @@
                 "mostrar_tareas_91": "Mostrar tareas ordenadas por la fecha de mayor a menor",
                 "marcar_completa_incompleta": "Marcar tarea como completa o incompleta",
                 "ver_tarea": "Ver tarea",
-                "lista_no_seleccionada": "Debe seleccionar una lista"
+                "lista_no_seleccionada": "Debe seleccionar una lista",
+                "seleccione_fecha": "Seleccione una fecha"
             },
             "Pagina_listas": {
                 "titulo": "Listas",
@@ -132,7 +134,8 @@
                 "notas": "Notes",
                 "cuenta": "Account",
                 "ajustes": "Settings",
-                "cerrar_sesion": "Log out"
+                "cerrar_sesion": "Log out",
+                "salir": "Exit"
             },
             "Pagina_tareas": {
                 "titulo": "Tasks",
@@ -170,7 +173,8 @@
                 "mostrar_tareas_91": "Show tasks ordered by date from latest to earliest",
                 "marcar_completa_incompleta": "Mark task as complete or incomplete",
                 "ver_tarea": "View task",
-                "lista_no_seleccionada": "You must select a list"
+                "lista_no_seleccionada": "You must select a list",
+                "seleccione_fecha": "Select a date"
             },
             "Pagina_listas": {
                 "titulo": "Lists",
@@ -255,7 +259,8 @@
                 "notas": "Notes",
                 "cuenta": "Compte",
                 "ajustes": "Paramètres",
-                "cerrar_sesion": "Se déconnecter"
+                "cerrar_sesion": "Se déconnecter",
+                "salir": "Sortie"
             },
             "Pagina_tareas": {
                 "titulo": "Tâches",
@@ -293,7 +298,8 @@
                 "mostrar_tareas_91": "Afficher les tâches triées par date de la plus récente à la plus ancienne",
                 "marcar_completa_incompleta": "Marquer la tâche comme terminée ou incomplète",
                 "ver_tarea": "Voir la tâche",
-                "lista_no_seleccionada": "Vous devez sélectionner une liste"
+                "lista_no_seleccionada": "Vous devez sélectionner une liste",
+                "seleccione_fecha": "Sélectionnez une date"
             },
             "Pagina_listas": {
                 "titulo": "Listes",

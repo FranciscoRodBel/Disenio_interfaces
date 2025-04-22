@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tareapp.R;
 import com.example.tareapp.controlador.Idioma_controlador;
 import com.example.tareapp.controlador.Lista_controlador;
+import com.example.tareapp.modelo.idioma.Pagina_listas;
+import com.example.tareapp.modelo.idioma.Pagina_tareas;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,10 +29,11 @@ public class ListasView extends Fragment implements ListaEditar.OnListaEditadaLi
     private Lista_controlador lista_controlador = new Lista_controlador();
     private ImageButton idBotonCrearLista;
     private EditText idInputTituloLista;
-    private TextView idMensajeResultado;
+    private TextView idMensajeResultado, idTitulo;
     private RecyclerView recyclerView;
     private ListaAdapter listaAdapter;
     private List<HashMap<String, Object>> listaDatos = new ArrayList<>();
+    private Pagina_listas pagina_listas = Idioma_controlador.getIdioma_seleccionado().getPagina_listas();
 
 
     @Nullable
@@ -38,6 +41,7 @@ public class ListasView extends Fragment implements ListaEditar.OnListaEditadaLi
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.listas_view, container, false);
 
+        idTitulo = view.findViewById(R.id.idTitulo);
         idBotonCrearLista = view.findViewById(R.id.idBotonCrearLista);
         idInputTituloLista = view.findViewById(R.id.idInputTituloLista);
         idMensajeResultado = view.findViewById(R.id.idMensajeResultado);
@@ -46,6 +50,9 @@ public class ListasView extends Fragment implements ListaEditar.OnListaEditadaLi
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         listaAdapter = new ListaAdapter(listaDatos, this);
         recyclerView.setAdapter(listaAdapter);
+
+        idTitulo.setText(pagina_listas.getTitulo());
+        idInputTituloLista.setHint(pagina_listas.getTitulo_lista());
 
         actualizar_panel_lista();
 
