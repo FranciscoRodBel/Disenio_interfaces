@@ -83,7 +83,7 @@ public class AjustesView extends Fragment implements CambiarDato.OnCambiarDatoLi
             alertDialogBuilder
                     .setMessage(email)
                     .setCancelable(false)
-                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(pagina_ajustes_cuenta.getBorrar_cuenta(), new DialogInterface.OnClickListener() {
 
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -107,7 +107,7 @@ public class AjustesView extends Fragment implements CambiarDato.OnCambiarDatoLi
                             }).start();
                         }
                     })
-                    .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getCancelar(), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.cancel(); // Cerrar popUp
@@ -121,5 +121,13 @@ public class AjustesView extends Fragment implements CambiarDato.OnCambiarDatoLi
     @Override
     public void onCambiarDato() {
         // Actualizar email
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getActivity() instanceof MainActivity) {
+            ((MainActivity) getActivity()).bloquearIdiomaMenu(false);
+        }
     }
 }

@@ -39,7 +39,7 @@ public class TareaVerView extends Fragment {
 
         idBorrarTarea = view.findViewById(R.id.idBorrarTarea);
         idCerrarPanel = view.findViewById(R.id.idCerrarPanel);
-        idTituloTarea = view.findViewById(R.id.idTituloTarea);
+        idTituloTarea = view.findViewById(R.id.idTituloLista);
         idLabelFecha = view.findViewById(R.id.idLabelEmail);
         idFechaTarea = view.findViewById(R.id.idEmailCuenta);
         idLabelPrioridad = view.findViewById(R.id.idLabelPrioridad);
@@ -85,7 +85,7 @@ public class TareaVerView extends Fragment {
                     alertDialogBuilder
                             .setMessage(tarea.getTitulo())
                             .setCancelable(false)
-                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                            .setPositiveButton(idioma_tareas.getBorrar_tarea(), new DialogInterface.OnClickListener() {
 
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -103,7 +103,7 @@ public class TareaVerView extends Fragment {
                                     }).start();
                                 }
                             })
-                            .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            .setNegativeButton(idioma_tareas.getCancelar(), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel(); // Cerrar popUp

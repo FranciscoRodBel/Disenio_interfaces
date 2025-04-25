@@ -21,6 +21,8 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar idMenuCabecera;
+    private boolean opcionesBloqueadas = false;
+    private boolean bloquearIdioma = false;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
 
             CambiarVista.cambiarFragmento(getSupportFragmentManager(), new IniciarRegistrarView());
-            //ocultarOpcionesMenu(false);
+            bloquearOpcionesMenu(true);
         }
 
         try {
@@ -72,6 +74,15 @@ public class MainActivity extends AppCompatActivity {
             menu.findItem(R.id.idCuentaAjustes).setTitle(cabecera.getAjustes());
             menu.findItem(R.id.idCuentaCerrarSesion).setTitle(cabecera.getCerrar_sesion());
             menu.findItem(R.id.idCuentaSalir).setTitle(cabecera.getSalir());
+
+            menu.findItem(R.id.idTareasMenu).setEnabled(!opcionesBloqueadas);
+            menu.findItem(R.id.idListasMenu).setEnabled(!opcionesBloqueadas);
+            menu.findItem(R.id.idNotasMenu).setEnabled(!opcionesBloqueadas);
+            menu.findItem(R.id.idCuentaAjustes).setEnabled(!opcionesBloqueadas);
+            menu.findItem(R.id.idCuentaCerrarSesion).setEnabled(!opcionesBloqueadas);
+
+
+            menu.findItem(R.id.idIdioma).setEnabled(!bloquearIdioma);
         }
 
         return super.onPrepareOptionsMenu(menu);
@@ -108,13 +119,17 @@ public class MainActivity extends AppCompatActivity {
                 recargarFragmentoActual();
                 break;
 
+            case R.id.idNotasMenu:
+                CambiarVista.cambiarFragmento(getSupportFragmentManager(), new NotasView());
+                break;
+
             case R.id.idCuentaAjustes:
                 CambiarVista.cambiarFragmento(getSupportFragmentManager(), new AjustesView());
                 break;
 
             case R.id.idCuentaCerrarSesion:
                 CambiarVista.cambiarFragmento(getSupportFragmentManager(), new IniciarRegistrarView());
-                //ocultarOpcionesMenu(false);
+                bloquearOpcionesMenu(true);
                 break;
 
             case R.id.idCuentaSalir:
@@ -146,6 +161,10 @@ public class MainActivity extends AppCompatActivity {
 
                 nuevoFragment = new ListasView();
 
+            } else if (fragmentActual instanceof NotasView) {
+
+                nuevoFragment = new NotasView();
+
             } else if (fragmentActual instanceof AjustesView) {
 
                 nuevoFragment = new AjustesView();
@@ -159,12 +178,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void ocultarOpcionesMenu(boolean bloquear) {
+    public void bloquearOpcionesMenu(boolean bloquear) {
+        opcionesBloqueadas = bloquear;
+        invalidateOptionsMenu();
+    }
 
-        Menu menu = idMenuCabecera.getMenu();
-
-        menu.findItem(R.id.idTareasMenu).setVisible(!bloquear);
-        menu.findItem(R.id.idListasMenu).setVisible(!bloquear);
-        menu.findItem(R.id.idCuentaAjustes).setVisible(!bloquear);
+    public void bloquearIdiomaMenu(boolean bloquear) {
+        bloquearIdioma = bloquear;
+        invalidateOptionsMenu();
     }
 }

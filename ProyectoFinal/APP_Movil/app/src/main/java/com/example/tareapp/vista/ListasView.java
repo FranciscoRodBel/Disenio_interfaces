@@ -115,4 +115,12 @@ public class ListasView extends Fragment implements ListaEditar.OnListaEditadaLi
             });
         }).start();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getActivity() instanceof MainActivity) {
+            ((MainActivity) getActivity()).bloquearIdiomaMenu(false);
+        }
+    }
 }

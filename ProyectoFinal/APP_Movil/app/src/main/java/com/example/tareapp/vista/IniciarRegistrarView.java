@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -110,6 +111,7 @@ public class IniciarRegistrarView extends Fragment {
                         idInputEmailInicio.setText("");
                         idInputContraseniaInicio.setText("");
 
+                        ((MainActivity) getActivity()).bloquearOpcionesMenu(false);
                         CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), new TareasView());
 
                     } else {
@@ -161,6 +163,22 @@ public class IniciarRegistrarView extends Fragment {
             }).start();
         });
 
+        requireActivity().getOnBackPressedDispatcher().addCallback(
+                getViewLifecycleOwner(),
+                new OnBackPressedCallback(true) {
+                    @Override
+                    public void handleOnBackPressed() {}
+                }
+        );
+
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getActivity() instanceof MainActivity) {
+            ((MainActivity) getActivity()).bloquearIdiomaMenu(false);
+        }
     }
 }

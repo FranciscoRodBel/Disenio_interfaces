@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -92,6 +93,13 @@ public class TareasView extends Fragment {
             CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), verFragment);
         });
 
+        requireActivity().getOnBackPressedDispatcher().addCallback(
+                getViewLifecycleOwner(),
+                new OnBackPressedCallback(true) {
+                    @Override
+                    public void handleOnBackPressed() {}
+                }
+        );
 
         return view;
     }
@@ -178,4 +186,11 @@ public class TareasView extends Fragment {
         }).start();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getActivity() instanceof MainActivity) {
+            ((MainActivity) getActivity()).bloquearIdiomaMenu(false);
+        }
+    }
 }

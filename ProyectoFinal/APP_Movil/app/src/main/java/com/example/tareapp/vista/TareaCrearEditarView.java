@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -165,6 +166,14 @@ public class TareaCrearEditarView extends Fragment {
 
                                 mensaje_resultado[0] = idioma_tareas.getTarea_editada();
                                 editado = true;
+
+                                requireActivity().getOnBackPressedDispatcher().addCallback(
+                                        getViewLifecycleOwner(),
+                                        new OnBackPressedCallback(true) {
+                                            @Override
+                                            public void handleOnBackPressed() {}
+                                        }
+                                );
                             }
                         }
 

@@ -12,11 +12,11 @@
 
     <!-- Título de la tarea -->
     <TextView
-        android:id="@+id/idTituloTarea"
+        android:id="@+id/idTituloLista"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Título de la tarea"
+        android:text="Título de la lista"
         android:textSize="18sp"
         tools:ignore="HardcodedText" />
 

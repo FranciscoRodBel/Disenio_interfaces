@@ -79,7 +79,7 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ListaViewHol
             alertDialogBuilder
                     .setMessage(titulo)
                     .setCancelable(false)
-                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(Idioma_controlador.getIdioma_seleccionado().getPagina_listas().getBorrar_lista(), new DialogInterface.OnClickListener() {
 
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -98,7 +98,7 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ListaViewHol
                             }).start();
                         }
                     })
-                    .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getCancelar(), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.cancel(); // Cerrar popUp
@@ -119,7 +119,7 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ListaViewHol
 
         public ListaViewHolder(@NonNull View itemView) {
             super(itemView);
-            titulo = itemView.findViewById(R.id.idTituloTarea);
+            titulo = itemView.findViewById(R.id.idTituloLista);
             idBotonVerLista = itemView.findViewById(R.id.idPrioridadTarea);
             idEditarLista = itemView.findViewById(R.id.idEditarLista);
             idBorrarLista = itemView.findViewById(R.id.idBorrarLista);

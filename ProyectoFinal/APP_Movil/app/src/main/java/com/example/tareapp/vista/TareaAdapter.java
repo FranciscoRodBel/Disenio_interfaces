@@ -46,7 +46,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHol
         public TareaViewHolder(@NonNull View itemView) {
             super(itemView);
             tareaCompletada = itemView.findViewById(R.id.idTareaCompletada);
-            tituloTarea = itemView.findViewById(R.id.idTituloTarea);
+            tituloTarea = itemView.findViewById(R.id.idTituloLista);
             prioridadTarea = itemView.findViewById(R.id.idPrioridadTarea);
             fechaTarea = itemView.findViewById(R.id.idEmailCuenta);
         }

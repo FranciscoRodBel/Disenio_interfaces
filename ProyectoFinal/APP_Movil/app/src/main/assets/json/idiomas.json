@@ -49,7 +49,8 @@
                 "marcar_completa_incompleta": "Marcar tarea como completa o incompleta",
                 "ver_tarea": "Ver tarea",
                 "lista_no_seleccionada": "Debe seleccionar una lista",
-                "seleccione_fecha": "Seleccione una fecha"
+                "seleccione_fecha": "Seleccione una fecha",
+                "cancelar": "Cancelar"
             },
             "Pagina_listas": {
                 "titulo": "Listas",
@@ -174,7 +175,8 @@
                 "marcar_completa_incompleta": "Mark task as complete or incomplete",
                 "ver_tarea": "View task",
                 "lista_no_seleccionada": "You must select a list",
-                "seleccione_fecha": "Select a date"
+                "seleccione_fecha": "Select a date",
+                "cancelar": "Cancel"
             },
             "Pagina_listas": {
                 "titulo": "Lists",
@@ -299,7 +301,8 @@
                 "marcar_completa_incompleta": "Marquer la tâche comme terminée ou incomplète",
                 "ver_tarea": "Voir la tâche",
                 "lista_no_seleccionada": "Vous devez sélectionner une liste",
-                "seleccione_fecha": "Sélectionnez une date"
+                "seleccione_fecha": "Sélectionnez une date",
+                "cancelar": "annuler"
             },
             "Pagina_listas": {
                 "titulo": "Listes",

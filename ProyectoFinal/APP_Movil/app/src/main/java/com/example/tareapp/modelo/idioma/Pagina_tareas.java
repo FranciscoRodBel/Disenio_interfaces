@@ -48,6 +48,7 @@ public class Pagina_tareas {
     private String ver_tarea;
     private String lista_no_seleccionada;
     private String seleccione_fecha;
+    private String cancelar;
     
     public String getTitulo() {
         return titulo;
@@ -343,5 +344,13 @@ public class Pagina_tareas {
 
     public void setSeleccione_fecha(String seleccione_fecha) {
         this.seleccione_fecha = seleccione_fecha;
+    }
+
+    public String getCancelar() {
+        return cancelar;
+    }
+
+    public void setCancelar(String cancelar) {
+        this.cancelar = cancelar;
     }
 }
