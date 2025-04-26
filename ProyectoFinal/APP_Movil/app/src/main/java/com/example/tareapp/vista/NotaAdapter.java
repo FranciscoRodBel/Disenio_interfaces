@@ -6,12 +6,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tareapp.R;
 
 import java.util.HashMap;
 import java.util.List;
+
+import android.widget.HorizontalScrollView;
 
 public class NotaAdapter extends RecyclerView.Adapter<NotaAdapter.NotaViewHolder> {
 
@@ -36,6 +39,32 @@ public class NotaAdapter extends RecyclerView.Adapter<NotaAdapter.NotaViewHolder
         HashMap<String, Object> nota = listaNotas.get(position);
 
         holder.textoNota.setText((String) nota.get("descripcion"));
+
+        String color = (String) nota.get("color");
+
+        // Cambiar el color del fondo del HorizontalScrollView
+        HorizontalScrollView horizontalScrollView = (HorizontalScrollView) holder.itemView.findViewById(R.id.idHorizontalScrollView);
+
+        switch(color) {
+            case "naranja":
+                horizontalScrollView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.naranja_nota));
+                break;
+            case "verde":
+                horizontalScrollView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.verde_nota));
+                break;
+            case "morado":
+                horizontalScrollView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.morado_nota));
+                break;
+            case "amarillo":
+                horizontalScrollView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.amarillo_nota));
+                break;
+            case "rosa":
+                horizontalScrollView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.rosa_nota));
+                break;
+            default:
+                horizontalScrollView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.azul_nota));
+                break;
+        }
     }
 
     @Override
@@ -52,3 +81,4 @@ public class NotaAdapter extends RecyclerView.Adapter<NotaAdapter.NotaViewHolder
         }
     }
 }
+
