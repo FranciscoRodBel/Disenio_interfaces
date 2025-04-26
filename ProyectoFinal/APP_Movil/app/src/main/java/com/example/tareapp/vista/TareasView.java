@@ -50,7 +50,7 @@ public class TareasView extends Fragment {
         View view = inflater.inflate(R.layout.tareas_view, container, false);
 
         idTitulo = view.findViewById(R.id.idTitulo);
-        idBotonCrearTarea = view.findViewById(R.id.idBotonEditarTarea);
+        idBotonCrearTarea = view.findViewById(R.id.idBotonCrearEditarNota);
         idSpinnerListas = view.findViewById(R.id.idSpinnerListas);
         recyclerTareas = view.findViewById(R.id.idRecyclerViewTareas);
         recyclerTareas.setLayoutManager(new LinearLayoutManager(requireContext()));

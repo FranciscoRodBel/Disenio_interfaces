@@ -15,8 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tareapp.R;
+import com.example.tareapp.controlador.CambiarVista;
 import com.example.tareapp.controlador.Idioma_controlador;
 import com.example.tareapp.controlador.Nota_controlador;
+import com.example.tareapp.modelo.Lista;
 import com.example.tareapp.modelo.idioma.Pagina_notas;
 
 import java.util.ArrayList;
@@ -55,6 +57,14 @@ public class NotasView extends Fragment {
 
         idBotonCrearNota.setOnClickListener(v -> {
 
+            NotaCrearEditarView crearEditarFragment = new NotaCrearEditarView();
+
+            Bundle bundle = new Bundle();
+            bundle.putString("accion", "crear");
+
+            crearEditarFragment.setArguments(bundle);
+
+            CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), crearEditarFragment);
         });
 
         return view;

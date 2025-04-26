@@ -46,7 +46,7 @@ public class TareaVerView extends Fragment {
         idPrioridadTarea = view.findViewById(R.id.idPrioridadTarea);
         idLabelDescripcion = view.findViewById(R.id.idLabelDescripcion);
         idDescripcionTarea = view.findViewById(R.id.idDescripcionTarea);
-        idBotonEditarTarea = view.findViewById(R.id.idBotonEditarTarea);
+        idBotonEditarTarea = view.findViewById(R.id.idBotonCrearEditarNota);
 
         idLabelFecha.setText(idioma_tareas.getFecha()+":");
         idLabelPrioridad.setText(idioma_tareas.getPrioridad()+":");

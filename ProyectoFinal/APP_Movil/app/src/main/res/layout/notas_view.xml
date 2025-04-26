@@ -1,42 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/gris_claro"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/gris_claro">
 
-    <TextView
-        android:id="@+id/idTitulo"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="Notas"
-        android:textAlignment="center"
-        android:textColor="@color/negro"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:ignore="HardcodedText" />
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="15dp">
 
-    <Button
-        android:id="@+id/idBotonCrearNota"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/amarillo"
-        android:text="Crear nota"
-        android:textColor="@color/negro"
-        tools:ignore="HardcodedText,DuplicateSpeakableTextCheck" />
+        <TextView
+            android:id="@+id/idTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="Notas"
+            android:textAlignment="center"
+            android:textColor="@color/negro"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/idRecyclerViewNotas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:paddingTop="16dp"
-        tools:listitem="@layout/item_nota" />
+        <Button
+            android:id="@+id/idBotonCrearNota"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/amarillo"
+            android:text="Crear nota"
+            android:textColor="@color/negro"
+            tools:ignore="HardcodedText,DuplicateSpeakableTextCheck" />
 
-</LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/idRecyclerViewNotas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingTop="16dp"
+            tools:listitem="@layout/item_nota" />
+
+    </LinearLayout>
+</ScrollView>

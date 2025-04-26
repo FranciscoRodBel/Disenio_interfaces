@@ -4,20 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/gris_claro"
-    android:padding="16dp">
+    android:background="@color/gris_claro">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:padding="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/idBorrarNota"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:backgroundTint="@color/gris_claro"
+                android:padding="0dp"
+                app:srcCompat="@drawable/trash_can_solid"
+                android:visibility="gone"
+                tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <View
                 android:id="@+id/view"
@@ -36,70 +47,19 @@
                 tools:ignore="ContentDescription,DuplicateIds,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </LinearLayout>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/idTitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingBottom="20dp">
-
-            <TextView
-                android:id="@+id/idTitulo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Crear tarea"
-                android:textAlignment="center"
-                android:textColor="@color/negro"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
-
-        </LinearLayout>
-
-        <!-- Título de la tarea -->
-
-        <EditText
-            android:id="@+id/idInputTituloTarea"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:hint="@string/t_tulo_tarea"
-            android:inputType="text"
-            android:padding="10dp"
-            tools:ignore="Autofill,VisualLintTextFieldSize,TextContrastCheck" />
+            android:layout_weight="1"
+            android:text="Crear nota"
+            android:textAlignment="center"
+            android:textColor="@color/negro"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText,InefficientWeight" />
 
-        <!-- Fecha -->
-        <EditText
-            android:id="@+id/idInputFecha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:clickable="true"
-            android:focusable="false"
-            android:hint="Seleccione una fecha"
-            android:padding="10dp"
-            android:textColorHint="#616161"
-            tools:ignore="Autofill,HardcodedText,KeyboardInaccessibleWidget,TextFields,VisualLintTextFieldSize" />
-
-
-        <!-- Prioridad con Spinner -->
-        <Spinner
-            android:id="@+id/idSpinnerPrioridad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:padding="10dp"
-            android:spinnerMode="dropdown"
-            tools:ignore="TouchTargetSizeCheck" />
-
-        <!-- Área de texto para descripción -->
         <EditText
             android:id="@+id/idInputDescripcion"
             android:layout_width="match_parent"
@@ -107,22 +67,92 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="30dp"
-            android:gravity="top"
+            android:background="@color/blanco_claro"
+            android:gravity="top|start"
             android:hint="@string/descripci_n"
             android:inputType="textMultiLine"
             android:maxLines="5"
+            android:overScrollMode="always"
             android:padding="10dp"
+            android:scrollbars="vertical"
             tools:ignore="Autofill,TextContrastCheck,VisualLintTextFieldSize" />
 
-        <!-- Botón de crear tarea -->
+        <RadioGroup
+            android:id="@+id/idGrupoColores"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <!-- Primera fila de colores -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+
+                <RadioButton
+                    android:id="@+id/idBotonColorAmarillo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/radioamarillo"
+                    android:button="@null"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
+
+                <RadioButton
+                    android:id="@+id/idBotonColorAzul"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/radioazul"
+                    android:button="@null" />
+
+                <RadioButton
+                    android:id="@+id/idBotonColorMorado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/radiomorado"
+                    android:button="@null" />
+            </LinearLayout>
+
+            <!-- Segunda fila de colores -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+
+                <RadioButton
+                    android:id="@+id/idBotonColorNaranja"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/radionaranja"
+                    android:button="@null" />
+
+                <RadioButton
+                    android:id="@+id/idBotonColorRosa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/radiorosa"
+                    android:button="@null" />
+
+                <RadioButton
+                    android:id="@+id/idBotonColorVerde"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/radioverde"
+                    android:button="@null" />
+            </LinearLayout>
+        </RadioGroup>
+
         <Button
-            android:id="@+id/idBotonEditarTarea"
+            android:id="@+id/idBotonCrearEditarNota"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/amarillo"
-            android:text="@string/crear_tarea"
+            android:text="crear nota"
             android:textColor="@color/negro"
-            tools:ignore="DuplicateSpeakableTextCheck" />
+            tools:ignore="DuplicateSpeakableTextCheck,HardcodedText" />
 
         <TextView
             android:id="@+id/idMensajeResultado"

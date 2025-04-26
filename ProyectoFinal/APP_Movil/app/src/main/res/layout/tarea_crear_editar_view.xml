@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/gris_claro"
-    android:padding="16dp">
+    android:background="@color/gris_claro">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:padding="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -107,16 +107,19 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="30dp"
-            android:gravity="top"
+            android:background="@color/blanco_claro"
+            android:gravity="top|start"
             android:hint="@string/descripci_n"
             android:inputType="textMultiLine"
             android:maxLines="5"
+            android:overScrollMode="always"
             android:padding="10dp"
+            android:scrollbars="vertical"
             tools:ignore="Autofill,TextContrastCheck,VisualLintTextFieldSize" />
 
         <!-- Botón de crear tarea -->
         <Button
-            android:id="@+id/idBotonEditarTarea"
+            android:id="@+id/idBotonCrearEditarNota"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/amarillo"

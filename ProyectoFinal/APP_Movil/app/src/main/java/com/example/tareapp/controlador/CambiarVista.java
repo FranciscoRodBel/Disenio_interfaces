@@ -9,6 +9,7 @@ import com.example.tareapp.vista.AjustesView;
 import com.example.tareapp.vista.IniciarRegistrarView;
 import com.example.tareapp.vista.ListasView;
 import com.example.tareapp.vista.MainActivity;
+import com.example.tareapp.vista.NotasView;
 import com.example.tareapp.vista.TareasView;
 
 public class CambiarVista {
@@ -35,6 +36,7 @@ public class CambiarVista {
         return fragment instanceof TareasView
                 || fragment instanceof ListasView
                 || fragment instanceof AjustesView
+                || fragment instanceof NotasView
                 || fragment instanceof IniciarRegistrarView;
     }
 

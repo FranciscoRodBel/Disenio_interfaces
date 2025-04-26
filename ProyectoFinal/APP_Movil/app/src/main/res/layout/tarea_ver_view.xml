@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/gris_claro"
-    android:padding="16dp">
+    android:background="@color/gris_claro">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:padding="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,8 +64,6 @@
                 android:textStyle="bold"
                 tools:ignore="HardcodedText" />
         </LinearLayout>
-
-        <!-- Título de la tarea -->
 
         <!-- Fecha -->
         <LinearLayout
@@ -124,9 +122,6 @@
                 tools:ignore="HardcodedText,InefficientWeight,RtlHardcoded" />
         </LinearLayout>
 
-
-        <!-- Prioridad con Spinner -->
-
         <!-- Área de texto para descripción -->
         <TextView
             android:id="@+id/idLabelDescripcion"
@@ -140,32 +135,23 @@
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
 
-        <HorizontalScrollView
+        <!-- Descripción con Scroll -->
+        <TextView
+            android:id="@+id/idDescripcionTarea"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
-            android:scrollbars="horizontal"
-            tools:ignore="NestedScrolling">
-
-            <TextView
-                android:id="@+id/idDescripcionTarea"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="top"
-                android:padding="10dp"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
-                android:text="Descripción"
-                android:textColor="@color/negro"
-                android:textSize="16sp"
-                tools:ignore="HardcodedText" />
-        </HorizontalScrollView>
+            android:layout_height="wrap_content"
+            android:gravity="top|start"
+            android:padding="10dp"
+            android:text="Descripción"
+            android:textColor="@color/negro"
+            android:textSize="16sp"
+            android:lineSpacingExtra="4dp"
+            android:ellipsize="none"
+            tools:ignore="HardcodedText" />
 
         <!-- Botón de crear tarea -->
         <Button
-            android:id="@+id/idBotonEditarTarea"
+            android:id="@+id/idBotonCrearEditarNota"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/amarillo"
