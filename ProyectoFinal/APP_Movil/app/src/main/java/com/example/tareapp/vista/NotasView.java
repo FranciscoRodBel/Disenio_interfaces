@@ -18,21 +18,19 @@ import com.example.tareapp.R;
 import com.example.tareapp.controlador.CambiarVista;
 import com.example.tareapp.controlador.Idioma_controlador;
 import com.example.tareapp.controlador.Nota_controlador;
-import com.example.tareapp.modelo.Lista;
+import com.example.tareapp.modelo.Nota;
 import com.example.tareapp.modelo.idioma.Pagina_notas;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
+import java.util.List;import android.widget.Toast;
 
 public class NotasView extends Fragment {
-    private Nota_controlador nota_controlador = new Nota_controlador();
     private TextView idTitulo;
     private Button idBotonCrearNota;
     private RecyclerView recyclerView;
     private NotaAdapter notaAdapter;
-    private List<HashMap<String, Object>> listaDatos = new ArrayList<>();
+    private List<Nota> listaNotas = new ArrayList<>();
     private Pagina_notas pagina_notas = Idioma_controlador.getIdioma_seleccionado().getPagina_notas();
 
 
@@ -47,7 +45,7 @@ public class NotasView extends Fragment {
 
         recyclerView = view.findViewById(R.id.idRecyclerViewNotas);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        notaAdapter = new NotaAdapter(listaDatos, this);
+        notaAdapter = new NotaAdapter(listaNotas);
         recyclerView.setAdapter(notaAdapter);
 
         idTitulo.setText(pagina_notas.getTitulo());
@@ -67,6 +65,18 @@ public class NotasView extends Fragment {
             CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), crearEditarFragment);
         });
 
+        notaAdapter.setOnItemClickListener(nota -> {
+
+            NotaCrearEditarView fragment = new NotaCrearEditarView();
+            Bundle bundle = new Bundle();
+            bundle.putString("accion", "editar");
+            bundle.putSerializable("nota", nota);
+
+            fragment.setArguments(bundle);
+
+            CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), fragment);
+        });
+
         return view;
     }
 
@@ -75,21 +85,29 @@ public class NotasView extends Fragment {
     void actualizar_panel_notas() {
         new Thread(() -> {
 
-            List<HashMap<String, Object>> notas = Nota_controlador.recoger_Notas();
+            List<HashMap<String, Object>> notasRaw = Nota_controlador.recoger_Notas();
 
             requireActivity().runOnUiThread(() -> {
 
-                listaDatos.clear();
+                listaNotas.clear();
 
-                if (notas != null && !notas.isEmpty()) {
+                if (notasRaw != null && !notasRaw.isEmpty()) {
 
-                    listaDatos.addAll(notas);
+                    for (HashMap<String, Object> fila : notasRaw) {
 
+                        int idNota = (int) fila.get("idNota");
+                        String descripcion = (String) fila.get("descripcion");
+                        String color = (String) fila.get("color");
+
+                        listaNotas.add(new Nota(idNota, descripcion, color));
+                    }
                 }
+
                 notaAdapter.notifyDataSetChanged();
             });
         }).start();
     }
+
 
     @Override
     public void onResume() {

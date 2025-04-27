@@ -4,6 +4,7 @@
  */
 package com.example.tareapp.modelo;
 
+import java.io.Serializable;
 import java.util.regex.Pattern;
 
 /**
@@ -12,7 +13,7 @@ import java.util.regex.Pattern;
  *
  * @author Francisco
  */
-public class Nota {
+public class Nota implements Serializable {
     
     private int idNota;
     private String descripcion;

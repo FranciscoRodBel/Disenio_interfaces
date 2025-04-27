@@ -10,20 +10,17 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tareapp.R;
-
-import java.util.HashMap;
+import com.example.tareapp.modelo.Nota;
 import java.util.List;
 
 import android.widget.HorizontalScrollView;
 
 public class NotaAdapter extends RecyclerView.Adapter<NotaAdapter.NotaViewHolder> {
 
-    private final List<HashMap<String, Object>> listaNotas;
-    private final NotasView notasView;
-
-    public NotaAdapter(List<HashMap<String, Object>> listaNotas, NotasView notasView) {
+    private final List<Nota> listaNotas;
+    private OnItemClickListener listener;
+    public NotaAdapter(List<Nota> listaNotas) {
         this.listaNotas = listaNotas;
-        this.notasView = notasView;
     }
 
     @NonNull
@@ -36,35 +33,38 @@ public class NotaAdapter extends RecyclerView.Adapter<NotaAdapter.NotaViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull NotaViewHolder holder, int position) {
-        HashMap<String, Object> nota = listaNotas.get(position);
 
-        holder.textoNota.setText((String) nota.get("descripcion"));
+        Nota nota = listaNotas.get(position);
 
-        String color = (String) nota.get("color");
-
-        // Cambiar el color del fondo del HorizontalScrollView
-        HorizontalScrollView horizontalScrollView = (HorizontalScrollView) holder.itemView.findViewById(R.id.idHorizontalScrollView);
+        holder.textoNota.setText(nota.getDescripcion());
+        String color = nota.getColor();
 
         switch(color) {
             case "naranja":
-                horizontalScrollView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.naranja_nota));
+                holder.textoNota.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.naranja_nota));
                 break;
             case "verde":
-                horizontalScrollView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.verde_nota));
+                holder.textoNota.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.verde_nota));
                 break;
             case "morado":
-                horizontalScrollView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.morado_nota));
+                holder.textoNota.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.morado_nota));
                 break;
             case "amarillo":
-                horizontalScrollView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.amarillo_nota));
+                holder.textoNota.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.amarillo_nota));
                 break;
             case "rosa":
-                horizontalScrollView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.rosa_nota));
+                holder.textoNota.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.rosa_nota));
                 break;
             default:
-                horizontalScrollView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.azul_nota));
+                holder.textoNota.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.azul_nota));
                 break;
         }
+
+        holder.textoNota.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onItemClick(nota);
+            }
+        });
     }
 
     @Override
@@ -72,13 +72,23 @@ public class NotaAdapter extends RecyclerView.Adapter<NotaAdapter.NotaViewHolder
         return listaNotas.size();
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(Nota nota);
+    }
+
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
     static class NotaViewHolder extends RecyclerView.ViewHolder {
         TextView textoNota;
-
         public NotaViewHolder(@NonNull View itemView) {
             super(itemView);
+
             textoNota = itemView.findViewById(R.id.idTextoNota);
         }
     }
+
 }
 

@@ -2,8 +2,6 @@ package com.example.tareapp.vista;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,9 +20,6 @@ import com.example.tareapp.controlador.Lista_controlador;
 import com.example.tareapp.controlador.Usuario_controlador;
 import com.example.tareapp.modelo.idioma.Pagina_inicio_registro;
 import com.example.tareapp.modelo.idioma.Pagina_listas;
-
-import java.util.Random;
-import java.util.Timer;
 
 public class ListaEditar extends DialogFragment {
     private OnListaEditadaListener listener;
@@ -74,7 +69,7 @@ public class ListaEditar extends DialogFragment {
 
         idTitulo = view.findViewById(R.id.idTitulo);
         idInputTituloLista = view.findViewById(R.id.idInputTituloLista);
-        idBotonEditarLista = view.findViewById(R.id.idBotonEditarLista);
+        idBotonEditarLista = view.findViewById(R.id.idBotonEditarNota);
         idMensajeResultado = view.findViewById(R.id.idMensajeResultado);
         idCerrarPanel = view.findViewById(R.id.idCerrarPanel);
 

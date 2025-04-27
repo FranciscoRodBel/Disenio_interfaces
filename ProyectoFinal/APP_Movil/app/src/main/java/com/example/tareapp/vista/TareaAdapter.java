@@ -21,6 +21,7 @@ import java.util.List;
 
 public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHolder> {
     private final List<Tarea> listaTareas;
+    private OnItemClickListener listener;
     private final Tarea_controlador tarea_controlador = new Tarea_controlador();
 
     public TareaAdapter(List<Tarea> listaTareas) {
@@ -31,7 +32,6 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHol
         void onItemClick(Tarea tarea);
     }
 
-    private OnItemClickListener listener;
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
@@ -45,6 +45,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHol
 
         public TareaViewHolder(@NonNull View itemView) {
             super(itemView);
+
             tareaCompletada = itemView.findViewById(R.id.idTareaCompletada);
             tituloTarea = itemView.findViewById(R.id.idTituloLista);
             prioridadTarea = itemView.findViewById(R.id.idPrioridadTarea);
@@ -61,6 +62,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHol
 
     @Override
     public void onBindViewHolder(@NonNull TareaViewHolder holder, int position) {
+
         Tarea tarea = listaTareas.get(position);
         holder.tituloTarea.setText(tarea.getTitulo());
         holder.fechaTarea.setText(convertirFechaAString(tarea.getFecha()));
@@ -113,10 +115,12 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHol
 
         try {
 
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd");
+            @SuppressLint("SimpleDateFormat")
+            SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd");
             Date fecha = formatoEntrada.parse(fechaSQL);
 
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatoSalida = new SimpleDateFormat("dd/MM/yyyy");
+            @SuppressLint("SimpleDateFormat")
+            SimpleDateFormat formatoSalida = new SimpleDateFormat("dd/MM/yyyy");
             return formatoSalida.format(fecha);
 
         } catch (Exception e) {
