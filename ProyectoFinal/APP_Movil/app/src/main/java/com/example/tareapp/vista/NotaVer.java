@@ -1,114 +1,121 @@
 package com.example.tareapp.vista;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.tareapp.R;
+import com.example.tareapp.controlador.CambiarVista;
 import com.example.tareapp.controlador.Idioma_controlador;
-import com.example.tareapp.controlador.Lista_controlador;
-import com.example.tareapp.controlador.Usuario_controlador;
+import com.example.tareapp.controlador.Nota_controlador;
+import com.example.tareapp.modelo.Nota;
 import com.example.tareapp.modelo.idioma.Pagina_inicio_registro;
 import com.example.tareapp.modelo.idioma.Pagina_listas;
+import com.example.tareapp.modelo.idioma.Pagina_notas;
 
-public class ListaEditar extends DialogFragment {
-    private OnListaEditadaListener listener;
-    private Lista_controlador lista_controlador = new Lista_controlador();
-    private Usuario_controlador usuario_controlador = new Usuario_controlador();
-    private ImageButton idCerrarPanel;
-    private EditText idInputTituloLista;
-    private Button idBotonEditarLista;
-    private TextView idTitulo, idMensajeResultado;
-    private String idLista = "";
-    private String titulo = "";
+public class NotaVer extends DialogFragment {
+    private ImageButton idBorrarNota, idCerrarPanel;
+    private Button idBotonEditarNota;
+    private TextView idTitulo, idDescripcionNota;
+    private Nota nota;
+    private NotaListener notaListener;
+    private Nota_controlador nota_controlador = new Nota_controlador();
+    private Pagina_notas pagina_notas = Idioma_controlador.getIdioma_seleccionado().getPagina_notas();
 
-    Pagina_inicio_registro pagina_inicio_registro = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
-
-    public static ListaEditar newInstance(String idLista, String titulo) {
-        ListaEditar dialog = new ListaEditar();
-        Bundle args = new Bundle();
-        args.putString("idLista", idLista);
-        args.putString("titulo", titulo);
-        dialog.setArguments(args);
-        return dialog;
-    }
-    public interface OnListaEditadaListener {
-        void onListaEditada();
-    }
-
-    public void setOnListaEditadaListener(OnListaEditadaListener listener) {
-        this.listener = listener;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            idLista = getArguments().getString("idLista");
-            titulo = getArguments().getString("titulo");
-        }
-    }
-
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.lista_editar, container, false);
+        View view = inflater.inflate(R.layout.nota_ver, container, false);
 
-        Pagina_listas idioma_listas = Idioma_controlador.getIdioma_seleccionado().getPagina_listas();
-
+        idBorrarNota = view.findViewById(R.id.idBorrarNota);
         idTitulo = view.findViewById(R.id.idTitulo);
-        idInputTituloLista = view.findViewById(R.id.idInputTituloLista);
-        idBotonEditarLista = view.findViewById(R.id.idBotonEditarNota);
-        idMensajeResultado = view.findViewById(R.id.idMensajeResultado);
+        idBotonEditarNota = view.findViewById(R.id.idBotonEditarNota);
+        idDescripcionNota = view.findViewById(R.id.idDescripcionNota);
         idCerrarPanel = view.findViewById(R.id.idCerrarPanel);
 
-        idTitulo.setText(idioma_listas.getEditar_lista());
-        idInputTituloLista.setHint(idioma_listas.getTitulo_lista());
-        idBotonEditarLista.setText(idioma_listas.getEditar_lista());
+        idTitulo.setText(pagina_notas.getVer_nota());
+        idBotonEditarNota.setText(pagina_notas.getEditar_nota());
 
-        idInputTituloLista.setText(titulo);
+        nota = (Nota) getArguments().getSerializable("nota");
+        idDescripcionNota.setText(nota.getDescripcion());
 
         idCerrarPanel.setOnClickListener(v -> dismiss());
 
-        idBotonEditarLista.setOnClickListener(v -> {
-            new Thread(() -> {
+        idBotonEditarNota.setOnClickListener(v -> {
 
-                String[] mensaje_resultado = new String[1];
-                mensaje_resultado[0] = lista_controlador.actualizar_lista(Integer.parseInt(idLista), idInputTituloLista.getText().toString());
+            NotaCrearEditarView fragment = new NotaCrearEditarView();
+            Bundle bundle = new Bundle();
+            bundle.putString("accion", "editar");
+            bundle.putSerializable("nota", nota);
+            fragment.setArguments(bundle);
 
-                requireActivity().runOnUiThread(() -> {
+            dismiss();
 
-                    if (mensaje_resultado[0].isEmpty()) {
+            CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), fragment);
+        });
 
-                        mensaje_resultado[0] = idioma_listas.getLista_editada();
-                        listener.onListaEditada();
-                    }
+        idBorrarNota.setOnClickListener(v -> {
 
-                    idMensajeResultado.setText(mensaje_resultado[0]);
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+            alertDialogBuilder.setTitle(pagina_notas.getPregunta_borrar_nota());
+            alertDialogBuilder
+                    .setCancelable(false)
+                    .setPositiveButton(pagina_notas.getBorrar_nota(), new DialogInterface.OnClickListener() {
 
-                    new android.os.Handler().postDelayed(() -> {
-                        if (isAdded()) {
-                            requireActivity().runOnUiThread(() ->
-                                    idMensajeResultado.setText(""));
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            new Thread(() -> {
+
+                                String mensaje_resultado = nota_controlador.borrar_nota(nota.getIdNota());
+
+                                if (mensaje_resultado.isEmpty()) {
+
+                                    requireActivity().runOnUiThread(() -> {
+                                        Toast.makeText(getContext(), pagina_notas.getNota_borrada(), Toast.LENGTH_SHORT).show();
+
+                                        dismiss();
+
+                                        if (notaListener != null) {
+
+                                            notaListener.onNotaActualizada();
+                                        }
+                                    });
+                                }
+                            }).start();
                         }
-                    }, 3000);
-                });
-            }).start();
+                    })
+                    .setNegativeButton(Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getCancelar(), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel(); // Cerrar popUp
+                        }
+                    }).create().show();
         });
 
         return view;
     }
+
+    public interface NotaListener {
+        void onNotaActualizada();
+    }
+
+    public void setNotaListener(NotaListener listener) {
+        this.notaListener = listener;
+    }
+
 
     @Override
     public void onStart() {

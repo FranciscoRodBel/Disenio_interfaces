@@ -31,9 +31,7 @@ public class ListaEditar extends DialogFragment {
     private TextView idTitulo, idMensajeResultado;
     private String idLista = "";
     private String titulo = "";
-
-    Pagina_inicio_registro pagina_inicio_registro = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
-
+    private Pagina_listas idioma_listas = Idioma_controlador.getIdioma_seleccionado().getPagina_listas();
     public static ListaEditar newInstance(String idLista, String titulo) {
         ListaEditar dialog = new ListaEditar();
         Bundle args = new Bundle();
@@ -64,8 +62,6 @@ public class ListaEditar extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.lista_editar, container, false);
-
-        Pagina_listas idioma_listas = Idioma_controlador.getIdioma_seleccionado().getPagina_listas();
 
         idTitulo = view.findViewById(R.id.idTitulo);
         idInputTituloLista = view.findViewById(R.id.idInputTituloLista);

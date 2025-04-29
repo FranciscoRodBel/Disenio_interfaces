@@ -26,7 +26,7 @@ import com.example.tareapp.modelo.Nota;
 import com.example.tareapp.modelo.idioma.Pagina_notas;
 
 public class NotaCrearEditarView extends Fragment {
-    private ImageButton idBorrarNota, idCerrarPanel;
+    private ImageButton idCerrarPanel;
     private TextView idTitulo;
     private EditText idInputDescripcion;
     private RadioGroup idGrupoColores;
@@ -44,7 +44,6 @@ public class NotaCrearEditarView extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.nota_crear_editar_view, container, false);
 
-        idBorrarNota = view.findViewById(R.id.idBorrarNota);
         idCerrarPanel = view.findViewById(R.id.idCerrarPanel);
         idTitulo = view.findViewById(R.id.idTitulo);
         idInputDescripcion = view.findViewById(R.id.idInputDescripcion);
@@ -70,6 +69,7 @@ public class NotaCrearEditarView extends Fragment {
             idTitulo.setText(pagina_notas.getEditar_nota());
             idInputDescripcion.setText(nota.getDescripcion());
             idBotonCrearEditarNota.setText(pagina_notas.getEditar_nota());
+            recogerColor(nota.getColor());
 
         } else {
 
@@ -137,9 +137,7 @@ public class NotaCrearEditarView extends Fragment {
     }
     @SuppressLint("NonConstantResourceId")
     private void seleccionarColor(RadioButton radioButton) {
-
         quitarFotoSeleccionada();
-
         idGrupoColores.clearCheck();
         radioButton.setChecked(true);
 
@@ -167,6 +165,28 @@ public class NotaCrearEditarView extends Fragment {
             case R.id.idBotonColorVerde:
                 idBotonColorVerde.setBackgroundResource(R.drawable.radioverdeseleccionado);
                 colorSeleccionado = "verde";
+                break;
+        }
+    }
+    private void recogerColor(String color) {
+        switch (color.toLowerCase()) {
+            case "amarillo":
+                seleccionarColor(idBotonColorAmarillo);
+                break;
+            case "azul":
+                seleccionarColor(idBotonColorAzul);
+                break;
+            case "morado":
+                seleccionarColor(idBotonColorMorado);
+                break;
+            case "naranja":
+                seleccionarColor(idBotonColorNaranja);
+                break;
+            case "rosa":
+                seleccionarColor(idBotonColorRosa);
+                break;
+            case "verde":
+                seleccionarColor(idBotonColorVerde);
                 break;
         }
     }

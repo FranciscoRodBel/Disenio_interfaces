@@ -12,6 +12,16 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
+        <ImageButton
+            android:id="@+id/idBorrarNota"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:backgroundTint="@color/gris_claro"
+            android:padding="0dp"
+            app:srcCompat="@drawable/trash_can_solid"
+            tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
         <View
             android:id="@+id/view3"
             android:layout_width="0dp"
@@ -50,18 +60,24 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/idDescripcionNota"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:lineSpacingExtra="4dp"
-        android:maxLines="1000"
-        android:padding="4dp"
-        android:scrollHorizontally="true"
-        android:text="Descripción"
-        android:textColor="@color/negro"
-        android:textSize="16sp"
-        tools:ignore="HardcodedText" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <TextView
+            android:id="@+id/idDescripcionNota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="4dp"
+            android:padding="4dp"
+            android:text="Descripción"
+            android:textColor="@color/negro"
+            android:textSize="16sp"
+            android:scrollbars="vertical"
+            tools:ignore="HardcodedText" />
+    </ScrollView>
 
     <Button
         android:id="@+id/idBotonEditarNota"
@@ -73,12 +89,4 @@
         android:textColor="@color/negro"
         tools:ignore="HardcodedText,DuplicateSpeakableTextCheck" />
 
-    <TextView
-        android:id="@+id/idMensajeResultado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="14sp"
-        tools:ignore="HardcodedText,TextContrastCheck" />
 </LinearLayout>

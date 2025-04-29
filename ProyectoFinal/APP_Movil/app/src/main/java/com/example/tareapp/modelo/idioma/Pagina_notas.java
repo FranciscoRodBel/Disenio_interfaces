@@ -24,6 +24,7 @@ public class Pagina_notas {
     private String nota_no_editada;
     private String nota_no_borrada;
     private String descripcion_supera_caracteres;
+    private String ver_nota;
 
     public String getTitulo() {
         return titulo;
@@ -128,6 +129,12 @@ public class Pagina_notas {
     public void setDescripcion_supera_caracteres(String descripcion_supera_caracteres) {
         this.descripcion_supera_caracteres = descripcion_supera_caracteres;
     }
-    
-    
+
+    public String getVer_nota() {
+        return ver_nota;
+    }
+
+    public void setVer_nota(String ver_nota) {
+        this.ver_nota = ver_nota;
+    }
 }

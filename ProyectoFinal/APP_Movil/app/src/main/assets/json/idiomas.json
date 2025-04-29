@@ -123,7 +123,8 @@
                 "nota_no_creada": "No se ha podido crear la nota",
                 "nota_no_editada": "No se ha podido editar la nota",
                 "nota_no_borrada": "No se ha podido borrar la nota",
-                "descripcion_supera_caracteres": "La descripción no puede superar los 250 caracteres"
+                "descripcion_supera_caracteres": "La descripción no puede superar los 250 caracteres",
+                "ver_nota": "Ver nota"
             }
         },
         {
@@ -249,7 +250,8 @@
                 "nota_no_creada": "The note could not be created",
                 "nota_no_editada": "The note could not be edited",
                 "nota_no_borrada": "The note could not be deleted",
-                "descripcion_supera_caracteres": "The description cannot exceed 250 characters"
+                "descripcion_supera_caracteres": "The description cannot exceed 250 characters",
+                "ver_nota": "See note"
             }
         },
         {
@@ -375,7 +377,8 @@
                 "nota_no_creada": "La note n'a pas pu être créée",
                 "nota_no_editada": "La note n'a pas pu être modifiée",
                 "nota_no_borrada": "La note n'a pas pu être supprimée",
-                "descripcion_supera_caracteres": "La description ne peut pas dépasser 250 caractères"
+                "descripcion_supera_caracteres": "La description ne peut pas dépasser 250 caractères",
+                "ver_nota": "Voir note"
             }
         }
     ]

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -59,7 +60,6 @@ public class NotasView extends Fragment {
 
             Bundle bundle = new Bundle();
             bundle.putString("accion", "crear");
-
             crearEditarFragment.setArguments(bundle);
 
             CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), crearEditarFragment);
@@ -67,22 +67,24 @@ public class NotasView extends Fragment {
 
         notaAdapter.setOnItemClickListener(nota -> {
 
-            NotaCrearEditarView fragment = new NotaCrearEditarView();
+            NotaVer notaVer = new NotaVer();
+
             Bundle bundle = new Bundle();
-            bundle.putString("accion", "editar");
             bundle.putSerializable("nota", nota);
+            notaVer.setArguments(bundle);
 
-            fragment.setArguments(bundle);
+            notaVer.setNotaListener(() -> actualizar_panel_notas());
 
-            CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), fragment);
+            notaVer.show(this.getParentFragmentManager(), "ver_nota");
         });
+
 
         return view;
     }
 
 
     @SuppressLint("NotifyDataSetChanged")
-    void actualizar_panel_notas() {
+    public void actualizar_panel_notas() {
         new Thread(() -> {
 
             List<HashMap<String, Object>> notasRaw = Nota_controlador.recoger_Notas();
