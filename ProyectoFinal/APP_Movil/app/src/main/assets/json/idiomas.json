@@ -50,7 +50,8 @@
                 "ver_tarea": "Ver tarea",
                 "lista_no_seleccionada": "Debe seleccionar una lista",
                 "seleccione_fecha": "Seleccione una fecha",
-                "cancelar": "Cancelar"
+                "cancelar": "Cancelar",
+                "filtros": "Filtros"
             },
             "Pagina_listas": {
                 "titulo": "Listas",
@@ -177,7 +178,8 @@
                 "ver_tarea": "View task",
                 "lista_no_seleccionada": "You must select a list",
                 "seleccione_fecha": "Select a date",
-                "cancelar": "Cancel"
+                "cancelar": "Cancel",
+                "filtros": "Filters"
             },
             "Pagina_listas": {
                 "titulo": "Lists",
@@ -304,7 +306,8 @@
                 "ver_tarea": "Voir la tâche",
                 "lista_no_seleccionada": "Vous devez sélectionner une liste",
                 "seleccione_fecha": "Sélectionnez une date",
-                "cancelar": "annuler"
+                "cancelar": "annuler",
+                "filtros": "Filtres"
             },
             "Pagina_listas": {
                 "titulo": "Listes",

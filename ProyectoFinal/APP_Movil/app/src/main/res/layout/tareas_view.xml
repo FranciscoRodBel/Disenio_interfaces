@@ -52,10 +52,10 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/azul_oscuro"
-                android:text="@string/filtros"
+                android:text="Filtros"
                 android:textColor="@color/blanco"
                 android:textSize="17sp"
-                tools:ignore="InefficientWeight,VisualLintButtonSize" />
+                tools:ignore="HardcodedText,InefficientWeight,VisualLintButtonSize" />
         </LinearLayout>
 
         <Spinner

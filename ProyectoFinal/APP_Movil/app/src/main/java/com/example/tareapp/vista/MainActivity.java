@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.example.tareapp.R;
 import com.example.tareapp.controlador.CambiarVista;
 import com.example.tareapp.controlador.Idioma_controlador;
+import com.example.tareapp.controlador.Usuario_controlador;
 import com.example.tareapp.modelo.idioma.Cabecera;
 
 import java.io.IOException;
@@ -102,19 +103,19 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.idIdiomaEsp:
-                Idioma_controlador.cambiarIdioma("Español");
+                Idioma_controlador.cambiarIdioma("Español", true);
                 invalidateOptionsMenu();
                 recargarFragmentoActual();
                 break;
 
             case R.id.idIdiomaEng:
-                Idioma_controlador.cambiarIdioma("English");
+                Idioma_controlador.cambiarIdioma("English", true);
                 invalidateOptionsMenu();
                 recargarFragmentoActual();
                 break;
 
             case R.id.idIdiomaFr:
-                Idioma_controlador.cambiarIdioma("Français");
+                Idioma_controlador.cambiarIdioma("Français", true);
                 invalidateOptionsMenu();
                 recargarFragmentoActual();
                 break;
@@ -128,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.idCuentaCerrarSesion:
+                Usuario_controlador.setUsuario(null);
                 CambiarVista.cambiarFragmento(getSupportFragmentManager(), new IniciarRegistrarView());
                 bloquearOpcionesMenu(true);
                 break;

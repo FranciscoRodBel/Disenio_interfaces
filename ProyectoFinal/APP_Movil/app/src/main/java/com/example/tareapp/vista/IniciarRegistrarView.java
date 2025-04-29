@@ -111,6 +111,8 @@ public class IniciarRegistrarView extends Fragment {
                         idInputEmailInicio.setText("");
                         idInputContraseniaInicio.setText("");
 
+                        Idioma_controlador.cambiarIdioma(Usuario_controlador.getUsuario().getIdioma_seleccionado(), false);
+
                         ((MainActivity) getActivity()).bloquearOpcionesMenu(false);
                         CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), new TareasView());
 

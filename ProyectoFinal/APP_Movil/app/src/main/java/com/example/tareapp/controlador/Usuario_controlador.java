@@ -45,7 +45,7 @@ public class Usuario_controlador {
     * 
     * @return Devuelve el resultado de iniciar sesión, si se consigue iniciar sesión devuelve vacío y si no un mensaje de error
     */
-    public String iniciar_usuario(String email,String contrasenia) {
+    public String iniciar_usuario(String email, String contrasenia) {
 
         email = email.trim().toLowerCase(); // Pasa el email a minúsculas
 

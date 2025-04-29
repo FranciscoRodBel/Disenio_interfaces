@@ -46,9 +46,10 @@ public class Idioma_controlador {
     * 
     * @param idioma El idioma que se desea seleccionar.
     */
-    public static void cambiarIdioma(String idioma) {
+    public static void cambiarIdioma(String idioma, Boolean guardarIdioma) {
 
-        if (Usuario_controlador.getUsuario() != null) {
+        if (guardarIdioma && Usuario_controlador.getUsuario() != null) {
+
             new Thread(() -> {
 
                 new Usuario_controlador().actualizar_idioma(idioma);
@@ -57,22 +58,10 @@ public class Idioma_controlador {
         }
 
         for (Idioma idioma_json : idiomas.getIdioma()) { // Recorro los idiomas
-            
+
             if (idioma_json.getIdioma().equals(idioma)) { // Si el idioma recorrido es igual al que se está cambiando
-                
+
                 idioma_seleccionado = idioma_json; // Guardo el idioma como el seleccionado
-                
-                switch(idioma) { // Selecciono en la cabecera el idioma seleccionado - Esto es para cuando inicia sesión, ya que el idioma se pone en base a lo que tiene en la bbdd sin pulsar en la cabacera
-                    case "Français":
-                        //cabecera.getItemFrances().setSelected(true);
-                        
-                      break;
-                    case "English":
-                        //cabecera.getItemIngles().setSelected(true);
-                      break;
-                    default:
-                        //cabecera.getItemEspaniol().setSelected(true);
-                }
             }
         }
     }

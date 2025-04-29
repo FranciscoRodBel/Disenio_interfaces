@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ import com.example.tareapp.controlador.CambiarVista;
 import com.example.tareapp.controlador.Idioma_controlador;
 import com.example.tareapp.controlador.Lista_controlador;
 import com.example.tareapp.controlador.Tarea_controlador;
+import com.example.tareapp.controlador.Usuario_controlador;
 import com.example.tareapp.modelo.Lista;
 import com.example.tareapp.modelo.Tarea;
 import com.example.tareapp.modelo.idioma.Pagina_tareas;
@@ -34,6 +36,7 @@ public class TareasView extends Fragment {
 
     private TextView idTitulo;
     private ImageButton idBotonCrearTarea;
+    private Button idBotonFiltros;
     private Spinner idSpinnerListas;
     private ArrayAdapter<Lista> listaAdapter;
     private ArrayList<Lista> listaDeListas;
@@ -53,12 +56,15 @@ public class TareasView extends Fragment {
         idBotonCrearTarea = view.findViewById(R.id.idBotonCrearEditarNota);
         idSpinnerListas = view.findViewById(R.id.idSpinnerListas);
         recyclerTareas = view.findViewById(R.id.idRecyclerViewTareas);
+        idBotonFiltros = view.findViewById(R.id.idBotonFiltros);
+
         recyclerTareas.setLayoutManager(new LinearLayoutManager(requireContext()));
         listaTareas = new ArrayList<>();
         tareaAdapter = new TareaAdapter(listaTareas);
         recyclerTareas.setAdapter(tareaAdapter);
 
         idTitulo.setText(pagina_tareas.getTitulo());
+        idBotonFiltros.setText(pagina_tareas.getFiltros());
 
         Bundle bundleIdLista = getArguments();
         if (bundleIdLista != null) {
