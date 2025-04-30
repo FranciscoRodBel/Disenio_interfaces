@@ -55,7 +55,7 @@ public class TareaCrearEditarView extends Fragment {
         idInputFecha = view.findViewById(R.id.idInputFecha);
         idSpinnerPrioridad = view.findViewById(R.id.idSpinnerPrioridad);
         idInputDescripcion = view.findViewById(R.id.idInputDescripcion);
-        idBotonCrearEditarTarea = view.findViewById(R.id.idBotonCrearEditarNota);
+        idBotonCrearEditarTarea = view.findViewById(R.id.idBotonAceptar);
         idMensajeResultado = view.findViewById(R.id.idMensajeResultado);
 
         // SPINNER

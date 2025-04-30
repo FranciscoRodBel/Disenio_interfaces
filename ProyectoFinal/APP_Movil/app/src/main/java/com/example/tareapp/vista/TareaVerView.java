@@ -39,14 +39,14 @@ public class TareaVerView extends Fragment {
 
         idBorrarTarea = view.findViewById(R.id.idBorrarTarea);
         idCerrarPanel = view.findViewById(R.id.idCerrarPanel);
-        idTituloTarea = view.findViewById(R.id.idTituloLista);
+        idTituloTarea = view.findViewById(R.id.idTitulo);
         idLabelFecha = view.findViewById(R.id.idLabelEmail);
         idFechaTarea = view.findViewById(R.id.idEmailCuenta);
         idLabelPrioridad = view.findViewById(R.id.idLabelPrioridad);
         idPrioridadTarea = view.findViewById(R.id.idPrioridadTarea);
         idLabelDescripcion = view.findViewById(R.id.idLabelDescripcion);
         idDescripcionTarea = view.findViewById(R.id.idDescripcionTarea);
-        idBotonEditarTarea = view.findViewById(R.id.idBotonCrearEditarNota);
+        idBotonEditarTarea = view.findViewById(R.id.idBotonAceptar);
 
         idLabelFecha.setText(idioma_tareas.getFecha()+":");
         idLabelPrioridad.setText(idioma_tareas.getPrioridad()+":");

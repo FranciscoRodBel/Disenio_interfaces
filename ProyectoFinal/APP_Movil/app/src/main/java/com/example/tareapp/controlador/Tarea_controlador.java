@@ -19,7 +19,7 @@ public class Tarea_controlador {
     
     private final BBDD_tareapp bbdd_tareapp = new BBDD_tareapp(); // Recojo la bbdd
     private static String consulta; // Guardo la consulta para que al actualizar el panel se mantengan los filtros
-    
+
     /**
     * Función que permite crear tareas
     * 
@@ -156,7 +156,7 @@ public class Tarea_controlador {
     * 
     * @return Devuelve la consulta generada
     */
-    public static String generarConsulta(int idLista, boolean completadas, boolean incompletas, boolean prioridadBaja, boolean prioridadMedia, boolean prioridadAlta, String ordenacion) {
+    public static String generarConsulta(int idLista, boolean completadas, boolean incompletas, boolean prioridadBaja, boolean prioridadMedia, boolean prioridadAlta, int ordenacion) {
     
         String consulta = "SELECT * FROM tarea WHERE idLista = '"+ idLista +"'";
         
@@ -175,15 +175,20 @@ public class Tarea_controlador {
         if (prioridadBaja && prioridadMedia && prioridadAlta) consulta += "AND (prioridad = 1 OR prioridad = 2 OR prioridad = 3) ";
         
         // Filtro del orden de las tareas
-        /*
-        switch(ordenacion) {
-            case "AZ" -> consulta += "ORDER BY titulo ASC";
-            case "ZA" -> consulta += "ORDER BY titulo DESC";
-            case "91" -> consulta += "ORDER BY fecha DESC";
-            default -> consulta += "ORDER BY fecha ASC";
-         }
-         */
-
+        switch (ordenacion) {
+            case 0:
+                consulta += " ORDER BY titulo ASC";
+                break;
+            case 1:
+                consulta += " ORDER BY titulo DESC";
+                break;
+            case 3:
+                consulta += " ORDER BY fecha DESC";
+                break;
+            default:
+                consulta += " ORDER BY fecha ASC";
+                break;
+        }
         
         return consulta;
     }

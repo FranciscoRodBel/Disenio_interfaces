@@ -12,7 +12,7 @@
 
     <!-- Título de la tarea -->
     <TextView
-        android:id="@+id/idTituloLista"
+        android:id="@+id/idTitulo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

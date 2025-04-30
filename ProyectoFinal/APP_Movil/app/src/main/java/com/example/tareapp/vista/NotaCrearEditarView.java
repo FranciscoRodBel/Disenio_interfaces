@@ -1,7 +1,6 @@
 package com.example.tareapp.vista;
 
 import android.annotation.SuppressLint;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -21,7 +19,6 @@ import androidx.fragment.app.Fragment;
 import com.example.tareapp.R;
 import com.example.tareapp.controlador.Idioma_controlador;
 import com.example.tareapp.controlador.Nota_controlador;
-import com.example.tareapp.controlador.Tarea_controlador;
 import com.example.tareapp.modelo.Nota;
 import com.example.tareapp.modelo.idioma.Pagina_notas;
 
@@ -54,7 +51,7 @@ public class NotaCrearEditarView extends Fragment {
         idBotonColorNaranja = view.findViewById(R.id.idBotonColorNaranja);
         idBotonColorRosa = view.findViewById(R.id.idBotonColorRosa);
         idBotonColorVerde = view.findViewById(R.id.idBotonColorVerde);
-        idBotonCrearEditarNota = view.findViewById(R.id.idBotonCrearEditarNota);
+        idBotonCrearEditarNota = view.findViewById(R.id.idBotonAceptar);
         idMensajeResultado = view.findViewById(R.id.idMensajeResultado);
 
         // Envío de formulario de crear tarea

@@ -35,7 +35,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/idTituloLista"
+            android:id="@+id/idTitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Filtros"
@@ -57,21 +57,24 @@
                 android:id="@+id/idMarcarTareaCompletadas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/negro"
-                tools:ignore="DuplicateSpeakableTextCheck" />
+                tools:ignore="DuplicateSpeakableTextCheck"
+                android:textSize="18sp"
+                android:scaleX="1.5"
+                android:scaleY="1.5"/>
 
             <TextView
+                android:id="@+id/idTareasCompletadas"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingStart="8dp"
                 android:text="Mostrar tareas completadas"
                 android:textColor="@color/negro"
-                android:paddingStart="8dp"
                 tools:ignore="HardcodedText,RtlSymmetry" />
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/square_check_solid_black"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
@@ -84,24 +87,27 @@
             android:paddingVertical="5dp">
 
             <CheckBox
-                android:id="@+id/checkbox_incompletas1"
+                android:id="@+id/idMarcarTareaIncompletas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/negro"
-                android:checked="false" />
+                android:checked="false"
+                android:textSize="18sp"
+                android:scaleX="1.5"
+                android:scaleY="1.5"/>
 
             <TextView
+                android:id="@+id/idTareasIncompletas"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingStart="8dp"
                 android:text="Mostrar tareas incompletas"
                 android:textColor="@color/negro"
-                android:paddingStart="8dp"
                 tools:ignore="HardcodedText,RtlSymmetry" />
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/square_regular_black"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
@@ -114,12 +120,15 @@
             android:paddingVertical="5dp">
 
             <CheckBox
-                android:id="@+id/checkbox_incompletas2"
+                android:id="@+id/idMarcarTareaPrioridadBaja"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/negro" />
+                android:textSize="18sp"
+                android:scaleX="1.5"
+                android:scaleY="1.5"/>
 
             <TextView
+                android:id="@+id/idTareasPrioridadBaja"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -129,8 +138,8 @@
                 tools:ignore="HardcodedText,RtlSymmetry" />
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/circle_arrow_down_solid"
                 tools:ignore="ContentDescription,ImageContrastCheck" />
         </LinearLayout>
@@ -143,12 +152,15 @@
             android:paddingVertical="5dp">
 
             <CheckBox
-                android:id="@+id/checkbox_incompletas3"
+                android:id="@+id/idMarcarTareaPrioridadMedia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/negro" />
+                android:textSize="18sp"
+                android:scaleX="1.5"
+                android:scaleY="1.5" />
 
             <TextView
+                android:id="@+id/idTareasPrioridadMedia"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -158,8 +170,8 @@
                 tools:ignore="HardcodedText,RtlSymmetry" />
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/circle_arrow_right_solid"
                 tools:ignore="ContentDescription,ImageContrastCheck" />
         </LinearLayout>
@@ -172,13 +184,16 @@
             android:paddingVertical="5dp">
 
             <CheckBox
-                android:id="@+id/checkbox_incompletas4"
+                android:id="@+id/idMarcarTareaPrioridadAlta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/negro"
-                android:checked="false" />
+                android:checked="false"
+                android:textSize="18sp"
+                android:scaleX="1.5"
+                android:scaleY="1.5"/>
 
             <TextView
+                android:id="@+id/idTareasPrioridadAlta"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -188,11 +203,23 @@
                 tools:ignore="HardcodedText,RtlSymmetry" />
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/circle_arrow_up_solid"
                 tools:ignore="ContentDescription,ImageContrastCheck" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/idLabelOrdenado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Ordenar tareas por"
+            android:textAlignment="center"
+            android:textColor="@color/negro"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
 
         <Spinner
             android:id="@+id/idSpinnerOrdenTareas"
@@ -200,8 +227,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/blanco"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:background="@drawable/spinner_background"
+            android:minHeight="48dp" />
 
         <Button
             android:id="@+id/idBotonAceptar"

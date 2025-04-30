@@ -1,6 +1,7 @@
 package com.example.tareapp.vista;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +24,6 @@ import com.example.tareapp.controlador.CambiarVista;
 import com.example.tareapp.controlador.Idioma_controlador;
 import com.example.tareapp.controlador.Lista_controlador;
 import com.example.tareapp.controlador.Tarea_controlador;
-import com.example.tareapp.controlador.Usuario_controlador;
 import com.example.tareapp.modelo.Lista;
 import com.example.tareapp.modelo.Tarea;
 import com.example.tareapp.modelo.idioma.Pagina_tareas;
@@ -53,7 +53,7 @@ public class TareasView extends Fragment {
         View view = inflater.inflate(R.layout.tareas_view, container, false);
 
         idTitulo = view.findViewById(R.id.idTitulo);
-        idBotonCrearTarea = view.findViewById(R.id.idBotonCrearEditarNota);
+        idBotonCrearTarea = view.findViewById(R.id.idBotonAceptar);
         idSpinnerListas = view.findViewById(R.id.idSpinnerListas);
         recyclerTareas = view.findViewById(R.id.idRecyclerViewTareas);
         idBotonFiltros = view.findViewById(R.id.idBotonFiltros);
@@ -86,6 +86,11 @@ public class TareasView extends Fragment {
             crearEditarFragment.setArguments(bundle);
 
             CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), crearEditarFragment);
+        });
+
+        idBotonFiltros.setOnClickListener(v -> {
+
+            CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), new TareaFiltrosView());
         });
 
         tareaAdapter.setOnItemClickListener(tarea -> {
@@ -148,7 +153,7 @@ public class TareasView extends Fragment {
                     @Override
                     public void onItemSelected(android.widget.AdapterView<?> parent, View view, int position, long id) {
                         Lista listaSeleccionada = (Lista) parent.getItemAtPosition(position);
-                        actualizarTareasDeLista(listaSeleccionada.getIdLista());
+                        actualizarPanelTareas(listaSeleccionada.getIdLista());
                     }
 
                     @Override
@@ -160,10 +165,19 @@ public class TareasView extends Fragment {
         }).start();
     }
 
-    private void actualizarTareasDeLista(int idListaSeleccionada) {
+    private void actualizarPanelTareas(int idListaSeleccionada) {
         new Thread(() -> {
 
-            String consulta = "SELECT * FROM tarea WHERE idLista = " + idListaSeleccionada;
+            SharedPreferences prefs = requireContext().getSharedPreferences("filtros", 0);
+
+            String consulta = Tarea_controlador.generarConsulta(
+                    idListaSeleccionada
+                    , prefs.getBoolean("completadas", true)
+                    , prefs.getBoolean("incompletas", true)
+                    , prefs.getBoolean("baja", true)
+                    , prefs.getBoolean("media", true)
+                    , prefs.getBoolean("alta", true)
+                    , prefs.getInt("orden", 0)); // Genero la consulta
 
             ArrayList<HashMap<String, Object>> tareasRaw = Tarea_controlador.recoger_tareas(consulta);
 

@@ -1,119 +1,115 @@
 package com.example.tareapp.vista;
 
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.tareapp.R;
-import com.example.tareapp.controlador.CambiarVista;
 import com.example.tareapp.controlador.Idioma_controlador;
-import com.example.tareapp.controlador.Tarea_controlador;
-import com.example.tareapp.modelo.Tarea;
 import com.example.tareapp.modelo.idioma.Pagina_tareas;
 
-public class TareaVerView extends Fragment {
+public class TareaFiltrosView extends Fragment {
 
-    private ImageButton idBorrarTarea, idCerrarPanel;
-    private TextView idTituloTarea, idLabelFecha, idFechaTarea, idLabelPrioridad, idPrioridadTarea, idLabelDescripcion, idDescripcionTarea;
-    private Button idBotonEditarTarea;
-    private Tarea_controlador tarea_controlador = new Tarea_controlador();
+    private ImageButton idCerrarPanel;
+    private TextView idTitulo, idTareasCompletadas, idTareasIncompletas,
+            idTareasPrioridadBaja, idTareasPrioridadMedia, idTareasPrioridadAlta;
+    private CheckBox idMarcarTareaCompletadas, idMarcarTareaIncompletas,
+            idMarcarTareaPrioridadBaja, idMarcarTareaPrioridadMedia, idMarcarTareaPrioridadAlta;
+    private Spinner idSpinnerOrdenTareas;
+    private Button idBotonAceptar;
+
     private Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
 
-    @SuppressLint({"MissingInflatedId", "SetTextI18n"})
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tarea_ver_view, container, false);
+        View view = inflater.inflate(R.layout.tarea_filtros_view, container, false);
 
-        idBorrarTarea = view.findViewById(R.id.idBorrarTarea);
         idCerrarPanel = view.findViewById(R.id.idCerrarPanel);
-        idTituloTarea = view.findViewById(R.id.idTituloLista);
-        idLabelFecha = view.findViewById(R.id.idLabelEmail);
-        idFechaTarea = view.findViewById(R.id.idEmailCuenta);
-        idLabelPrioridad = view.findViewById(R.id.idLabelPrioridad);
-        idPrioridadTarea = view.findViewById(R.id.idPrioridadTarea);
-        idLabelDescripcion = view.findViewById(R.id.idLabelDescripcion);
-        idDescripcionTarea = view.findViewById(R.id.idDescripcionTarea);
-        idBotonEditarTarea = view.findViewById(R.id.idBotonAceptar);
+        idTitulo = view.findViewById(R.id.idTitulo);
 
-        idLabelFecha.setText(idioma_tareas.getFecha()+":");
-        idLabelPrioridad.setText(idioma_tareas.getPrioridad()+":");
-        idLabelDescripcion.setText(idioma_tareas.getDescripcion());
-        idBotonEditarTarea.setText(idioma_tareas.getEditar_tarea());
+        idTareasCompletadas = view.findViewById(R.id.idTareasCompletadas);
+        idTareasIncompletas = view.findViewById(R.id.idTareasIncompletas);
+        idTareasPrioridadBaja = view.findViewById(R.id.idTareasPrioridadBaja);
+        idTareasPrioridadMedia = view.findViewById(R.id.idTareasPrioridadMedia);
+        idTareasPrioridadAlta = view.findViewById(R.id.idTareasPrioridadAlta);
 
-        Bundle args = getArguments();
+        idMarcarTareaCompletadas = view.findViewById(R.id.idMarcarTareaCompletadas);
+        idMarcarTareaIncompletas = view.findViewById(R.id.idMarcarTareaIncompletas);
+        idMarcarTareaPrioridadBaja = view.findViewById(R.id.idMarcarTareaPrioridadBaja);
+        idMarcarTareaPrioridadMedia = view.findViewById(R.id.idMarcarTareaPrioridadMedia);
+        idMarcarTareaPrioridadAlta = view.findViewById(R.id.idMarcarTareaPrioridadAlta);
 
-        if (args != null) {
+        idSpinnerOrdenTareas = view.findViewById(R.id.idSpinnerOrdenTareas);
+        idBotonAceptar = view.findViewById(R.id.idBotonAceptar);
 
-            Tarea tarea = (Tarea) args.getSerializable("tarea");
+        idTitulo.setText(idioma_tareas.getFiltros());
+        idBotonAceptar.setText(idioma_tareas.getAceptar());
 
-            if (tarea != null) {
+        idTareasCompletadas.setText(idioma_tareas.getMostrar_tareas_completadas());
+        idTareasIncompletas.setText(idioma_tareas.getMarcar_completa_incompleta());
+        idTareasPrioridadBaja.setText(idioma_tareas.getMostrar_prioridad_baja());
+        idTareasPrioridadMedia.setText(idioma_tareas.getMostrar_prioridad_media());
+        idTareasPrioridadAlta.setText(idioma_tareas.getMostrar_prioridad_alta());
 
-                idTituloTarea.setText(tarea.getTitulo());
-                idFechaTarea.setText(TareaAdapter.convertirFechaAString(tarea.getFecha()));
-                idPrioridadTarea.setText(tarea.recoger_prioridad_tarea());
-                idDescripcionTarea.setText(tarea.getDescripcion());
+        String[] opcionesOrden = {
+                idioma_tareas.getMostrar_tareas_az(),
+                idioma_tareas.getMostrar_tareas_za(),
+                idioma_tareas.getMostrar_tareas_19(),
+                idioma_tareas.getMostrar_tareas_91(),
+        };
 
-                idBotonEditarTarea.setOnClickListener(v -> {
+        Spinner idSpinnerOrdenTareas = view.findViewById(R.id.idSpinnerOrdenTareas);
 
-                    TareaCrearEditarView tareaCrearEditarView = new TareaCrearEditarView();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("accion", "editar");
-                    bundle.putSerializable("tarea", tarea);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, opcionesOrden);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        idSpinnerOrdenTareas.setAdapter(adapter);
 
-                    tareaCrearEditarView.setArguments(bundle);
+        SharedPreferences prefs = requireContext().getSharedPreferences("filtros", 0);
 
-                    CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), tareaCrearEditarView);
-                });
+        int ordenGuardado = prefs.getInt("orden", 0);
+        idSpinnerOrdenTareas.setSelection(ordenGuardado);
 
-                idBorrarTarea.setOnClickListener(v -> {
+        idMarcarTareaCompletadas.setChecked(prefs.getBoolean("completadas", true));
+        idMarcarTareaIncompletas.setChecked(prefs.getBoolean("incompletas", true));
+        idMarcarTareaPrioridadBaja.setChecked(prefs.getBoolean("baja", true));
+        idMarcarTareaPrioridadMedia.setChecked(prefs.getBoolean("media", true));
+        idMarcarTareaPrioridadAlta.setChecked(prefs.getBoolean("alta", true));
 
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
-                    alertDialogBuilder.setTitle(idioma_tareas.getPregunta_borrar_tarea());
-                    alertDialogBuilder
-                            .setMessage(tarea.getTitulo())
-                            .setCancelable(false)
-                            .setPositiveButton(idioma_tareas.getBorrar_tarea(), new DialogInterface.OnClickListener() {
+        idCerrarPanel.setOnClickListener(v -> requireActivity().getSupportFragmentManager().popBackStack());
 
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    new Thread(() -> {
+        idBotonAceptar.setOnClickListener(v -> {
 
-                                        String mensaje_resultado = tarea_controlador.borrar_tarea(tarea.getIdTarea());
+            int spinnerPos = idSpinnerOrdenTareas.getSelectedItemPosition();
 
-                                        if (mensaje_resultado.isEmpty()) {
+            boolean completadas = idMarcarTareaCompletadas.isChecked();
+            boolean incompletas = idMarcarTareaIncompletas.isChecked();
+            boolean prioridadBaja = idMarcarTareaPrioridadBaja.isChecked();
+            boolean prioridadMedia = idMarcarTareaPrioridadMedia.isChecked();
+            boolean prioridadAlta = idMarcarTareaPrioridadAlta.isChecked();
 
-                                            requireActivity().runOnUiThread(() -> {
-                                                Toast.makeText(getContext(), idioma_tareas.getTarea_borrada(), Toast.LENGTH_SHORT).show();
-                                                requireActivity().getSupportFragmentManager().popBackStack();
-                                            });
-                                        }
-                                    }).start();
-                                }
-                            })
-                            .setNegativeButton(idioma_tareas.getCancelar(), new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.cancel(); // Cerrar popUp
-                                }
-                            }).create().show();
-                });
-            }
-        }
-
-        idCerrarPanel.setOnClickListener(v -> {
+            requireContext().getSharedPreferences("filtros", 0)
+                    .edit()
+                    .putInt("orden", spinnerPos)
+                    .putBoolean("completadas", completadas)
+                    .putBoolean("incompletas", incompletas)
+                    .putBoolean("baja", prioridadBaja)
+                    .putBoolean("media", prioridadMedia)
+                    .putBoolean("alta", prioridadAlta)
+                    .apply();
 
             requireActivity().getSupportFragmentManager().popBackStack();
         });
