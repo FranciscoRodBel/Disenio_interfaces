@@ -65,11 +65,14 @@ public class IniciarRegistrarView extends Fragment {
         idInputContraseniaRegistro.setHint(pagina_inicio_registro.getContrasenia());
         idInputRepetirContraseniaRegistro.setHint(pagina_inicio_registro.getRepetir_contrasenia());
 
-
         // Cambio de layout de registro a inicio de sesión
 
         idInputEmailInicio.setText("9442@cifpceuta.es");
         idInputContraseniaInicio.setText("12345678Aa");
+
+        idInputEmailRegistro.setText("pacopollo24@gmail.com");
+        idInputContraseniaRegistro.setText("12345678Aa");
+        idInputRepetirContraseniaRegistro.setText("12345678Aa");
 
         idBotonIniciarSesion.setOnClickListener(v -> {
 
@@ -143,10 +146,7 @@ public class IniciarRegistrarView extends Fragment {
                 requireActivity().runOnUiThread(() -> {
                     if (mensaje_resultado.isEmpty()) {
 
-                        idInputEmailInicio.setText("");
-                        idInputContraseniaInicio.setText("");
-
-                        ConfirmarEmailDialog dialog = ConfirmarEmailDialog.newInstance(email);
+                        ConfirmarEmailDialog dialog = ConfirmarEmailDialog.newInstance(email, contrasenia, repetir_contrasenia);
                         dialog.show(getParentFragmentManager(), "ConfirmarEmail");
 
                     } else {

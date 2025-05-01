@@ -72,6 +72,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Código"
+            android:inputType="number"
+            android:maxLength="5"
             tools:ignore="Autofill,HardcodedText,TextContrastCheck,TextFields,VisualLintTextFieldSize" />
 
         <Button
@@ -88,8 +90,9 @@
         android:id="@+id/idBotonConfirmarEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Crear tarea"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/amarillo"
+        android:text="Confirmar email"
         android:textColor="@color/negro"
         tools:ignore="HardcodedText" />
 

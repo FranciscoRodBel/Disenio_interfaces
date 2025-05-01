@@ -117,7 +117,7 @@ public class CambiarDato extends DialogFragment {
 
                         } else {
 
-                            ConfirmarEmailDialog dialog = ConfirmarEmailDialog.newInstance(datoCambiar);
+                            ConfirmarEmailDialog dialog = ConfirmarEmailDialog.newInstance(datoCambiar, null, null);
                             dialog.show(getParentFragmentManager(), "ConfirmarEmail");
                         }
                     }

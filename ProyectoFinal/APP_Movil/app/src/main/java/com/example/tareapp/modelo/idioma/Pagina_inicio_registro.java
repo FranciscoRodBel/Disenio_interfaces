@@ -33,6 +33,7 @@ public class Pagina_inicio_registro {
     private String confirmacion_asunto;
     private String confirmacion_mensaje;
     private String enviando_codigo;
+    private String codigo;
 
     public String getTitulo_inicio() {
         return titulo_inicio;
@@ -208,5 +209,13 @@ public class Pagina_inicio_registro {
 
     public void setEnviando_codigo(String enviando_codigo) {
         this.enviando_codigo = enviando_codigo;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 }

@@ -29,6 +29,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    packaging {
+        resources {
+            excludes += "META-INF/NOTICE.md"
+            excludes += "META-INF/LICENSE.md"
+        }
+    }
 }
 
 dependencies {
@@ -43,7 +49,8 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation(libs.gson)
     implementation(libs.mysql.connector)
-    implementation(libs.javax.mail)
+    implementation(libs.android.mail)
+    implementation(libs.android.activation)
     implementation(libs.bcrypt)
 
     testImplementation(libs.junit)

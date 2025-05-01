@@ -80,8 +80,7 @@ public class TareaFiltrosView extends Fragment {
 
         SharedPreferences prefs = requireContext().getSharedPreferences("filtros", 0);
 
-        int ordenGuardado = prefs.getInt("orden", 0);
-        idSpinnerOrdenTareas.setSelection(ordenGuardado);
+        idSpinnerOrdenTareas.setSelection(prefs.getInt("orden", 0));
 
         idMarcarTareaCompletadas.setChecked(prefs.getBoolean("completadas", true));
         idMarcarTareaIncompletas.setChecked(prefs.getBoolean("incompletas", true));

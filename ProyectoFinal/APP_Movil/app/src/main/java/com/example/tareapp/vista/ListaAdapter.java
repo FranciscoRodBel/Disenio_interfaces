@@ -2,6 +2,7 @@ package com.example.tareapp.vista;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,14 +51,12 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ListaViewHol
 
         holder.idBotonVerLista.setOnClickListener(v -> {
 
-            TareasView tareasView = new TareasView();
+            SharedPreferences prefs = fragment.requireContext().getSharedPreferences("tarea_lista_seleccionada", 0);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putInt("idListaSeleccionada", Integer.parseInt(idLista));
+            editor.apply();
 
-            Bundle bundle = new Bundle();
-            bundle.putInt("id", Integer.parseInt(idLista));
-
-            tareasView.setArguments(bundle);
-
-            CambiarVista.cambiarFragmento(fragment.requireActivity().getSupportFragmentManager(), tareasView);
+            CambiarVista.cambiarFragmento(fragment.requireActivity().getSupportFragmentManager(), new TareasView());
         });
 
         holder.idEditarLista.setOnClickListener(v -> {

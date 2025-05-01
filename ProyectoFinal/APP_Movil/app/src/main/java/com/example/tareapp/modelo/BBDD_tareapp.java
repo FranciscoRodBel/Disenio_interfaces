@@ -7,23 +7,15 @@ package com.example.tareapp.modelo;
 import static com.example.tareapp.controlador.APIRest.realizarPeticionPost;
 
 import com.example.tareapp.controlador.APIRest;
-import com.example.tareapp.controlador.BBDD_controlador;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Clase para el modelo del CRUD de la base de datos
@@ -31,10 +23,10 @@ import java.util.logging.Logger;
  * @author Francisco
  */
 public class BBDD_tareapp {
-    
+
     /**
     * Función que permite recoger datos de la BBDD
-    * 
+    *
     * @return Devuelvo un ArrayList que tiene dentro HashMap con nombre_propiedad : valor - Array de array asociativo
     */
     public ArrayList<HashMap<String, Object>> consultar(String consulta_consultar) {
@@ -77,10 +69,10 @@ public class BBDD_tareapp {
         return lista;
     }
 
-    
+
     /**
     * Función que permite insertar y actualizar datos en la BBDD
-    * 
+    *
     * @return Devuelvo true si se inserta o actualiza correctamente o false si da error
     */
     public boolean insertar(String consulta_insertar) {
@@ -105,10 +97,10 @@ public class BBDD_tareapp {
         }
     }
 
-    
+
     /**
     * Función que permite borrar datos en la BBDD
-    * 
+    *
     * @return Devuelvo true si se borrar correctamente o false si da error
     */
     public boolean borrar(String consulta_borrar) {
@@ -123,7 +115,7 @@ public class BBDD_tareapp {
         String respuesta = realizarPeticionPost(url, json.toString());
 
         try {
-            
+
             JSONObject resultado = new JSONObject(respuesta);
             return resultado.getInt("filas_afectadas") > 0;
 

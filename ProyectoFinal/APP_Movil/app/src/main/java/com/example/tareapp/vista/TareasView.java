@@ -66,12 +66,17 @@ public class TareasView extends Fragment {
         idTitulo.setText(pagina_tareas.getTitulo());
         idBotonFiltros.setText(pagina_tareas.getFiltros());
 
+        /*
         Bundle bundleIdLista = getArguments();
         if (bundleIdLista != null) {
             idListaParaSeleccionar = bundleIdLista.getInt("id", -1);
         }
+        */
+        SharedPreferences prefs = requireContext().getSharedPreferences("tarea_lista_seleccionada", 0);
+        idListaParaSeleccionar =  prefs.getInt("idListaSeleccionada", 0);
 
         cargarListasEnSpinner();
+
 
         idBotonCrearTarea.setOnClickListener(v -> {
 
@@ -152,7 +157,14 @@ public class TareasView extends Fragment {
                 idSpinnerListas.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(android.widget.AdapterView<?> parent, View view, int position, long id) {
+
                         Lista listaSeleccionada = (Lista) parent.getItemAtPosition(position);
+
+                        SharedPreferences prefs = requireContext().getSharedPreferences("tarea_lista_seleccionada", 0);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putInt("idListaSeleccionada", listaSeleccionada.getIdLista());
+                        editor.apply();
+
                         actualizarPanelTareas(listaSeleccionada.getIdLista());
                     }
 
