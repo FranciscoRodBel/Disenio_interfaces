@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -82,15 +83,24 @@ public class TareasView extends Fragment {
 
             Lista listaSeleccionada = (Lista) idSpinnerListas.getSelectedItem();
 
-            TareaCrearEditarView crearEditarFragment = new TareaCrearEditarView();
+            if (listaSeleccionada != null) {
 
-            Bundle bundle = new Bundle();
-            bundle.putInt("id", listaSeleccionada.getIdLista());
-            bundle.putString("accion", "crear");
+                TareaCrearEditarView crearEditarFragment = new TareaCrearEditarView();
 
-            crearEditarFragment.setArguments(bundle);
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", listaSeleccionada.getIdLista());
+                bundle.putString("accion", "crear");
 
-            CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), crearEditarFragment);
+                crearEditarFragment.setArguments(bundle);
+
+                CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), crearEditarFragment);
+
+            } else {
+
+                CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), new ListasView());
+                Toast.makeText(this.getContext(), Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getDebe_crear_lista(), Toast.LENGTH_SHORT).show();
+            }
+
         });
 
         idBotonFiltros.setOnClickListener(v -> {

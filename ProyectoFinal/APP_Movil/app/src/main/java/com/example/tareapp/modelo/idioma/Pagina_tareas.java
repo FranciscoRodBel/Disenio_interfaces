@@ -49,8 +49,9 @@ public class Pagina_tareas {
     private String lista_no_seleccionada;
     private String seleccione_fecha;
     private String cancelar;
-    private String filtros;;
+    private String filtros;
     private String aceptar;
+    private String debe_crear_lista;
     
     public String getTitulo() {
         return titulo;
@@ -370,5 +371,13 @@ public class Pagina_tareas {
 
     public void setAceptar(String aceptar) {
         this.aceptar = aceptar;
+    }
+
+    public String getDebe_crear_lista() {
+        return debe_crear_lista;
+    }
+
+    public void setDebe_crear_lista(String debe_crear_lista) {
+        this.debe_crear_lista = debe_crear_lista;
     }
 }

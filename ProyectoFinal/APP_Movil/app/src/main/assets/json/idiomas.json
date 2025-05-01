@@ -53,7 +53,8 @@
                 "cancelar": "Cancelar",
                 "filtros": "Filtros",
                 "aceptar": "Aceptar",
-                "orden_tareas": "Ordenar tareas por"
+                "orden_tareas": "Ordenar tareas por",
+                "debe_crear_lista": "Debe crear una lista"
             },
             "Pagina_listas": {
                 "titulo": "Listas",
@@ -184,7 +185,8 @@
                 "cancelar": "Cancel",
                 "filtros": "Filters",
                 "aceptar": "Accept",
-                "orden_tareas": "Sort tasks by"
+                "orden_tareas": "Sort tasks by",
+                "debe_crear_lista": "You must create a list"
             },
             "Pagina_listas": {
                 "titulo": "Lists",
@@ -315,7 +317,8 @@
                 "cancelar": "annuler",
                 "filtros": "Filtres",
                 "aceptar": "Accepter",
-                "orden_tareas": "Trier les tâches par"
+                "orden_tareas": "Trier les tâches par",
+                "debe_crear_lista": "Vous devez créer une liste"
             },
             "Pagina_listas": {
                 "titulo": "Listes",

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 
 import com.example.tareapp.R;
 import com.example.tareapp.controlador.Idioma_controlador;
@@ -35,6 +36,7 @@ public class ConfirmarEmailDialog extends DialogFragment {
     private String contrasenia = "";
     private String repetir_contrasenia = "";
 
+    private OnRegistroExitosoListener listener;
     Pagina_inicio_registro pagina_inicio_registro = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
 
     public static ConfirmarEmailDialog newInstance(String email, String contrasenia, String repetir_contrasenia) {
@@ -120,25 +122,26 @@ public class ConfirmarEmailDialog extends DialogFragment {
             final int codigoFinal = codigo;
 
             new Thread(() -> {
+
                 String mensaje_resultado = pagina_inicio_registro.getCodigo_incorrecto();
                 int numero_enviado = 0;
 
                 try {
+
                     numero_enviado = Integer.parseInt(codigoIngresado);
+
                 } catch (Exception e) {}
 
                 if (codigoFinal == numero_enviado) {
 
                     if (contraseniaFinal != null) {
-                        mensaje_resultado = usuario_controlador.registrar_usuario(
-                                emailFinal,
-                                contraseniaFinal,
-                                repetirContraseniaFinal,
-                                Idioma_controlador.getIdioma_seleccionado().getIdioma()
-                        );
+
+                        mensaje_resultado = usuario_controlador.registrar_usuario(emailFinal, contraseniaFinal, repetirContraseniaFinal, Idioma_controlador.getIdioma_seleccionado().getIdioma());
 
                         if (mensaje_resultado.isEmpty()) {
-                            mensaje_resultado = pagina_inicio_registro.getCuenta_creada();
+
+                            requireActivity().runOnUiThread(() -> listener.onRegistroExitoso());
+                            dismiss();
                         }
 
                     } else {
@@ -146,9 +149,15 @@ public class ConfirmarEmailDialog extends DialogFragment {
                         mensaje_resultado = usuario_controlador.actualizar_email(emailFinal);
 
                         if (mensaje_resultado.isEmpty()) {
-                            mensaje_resultado = Idioma_controlador.getIdioma_seleccionado()
-                                    .getPagina_ajustes_cuenta()
-                                    .getEmail_actualizado();
+
+                            mensaje_resultado = Idioma_controlador.getIdioma_seleccionado().getPagina_ajustes_cuenta().getEmail_actualizado();
+
+                            Fragment cambiarDato = getParentFragmentManager().findFragmentByTag("Cambiar_dato");
+                            if (cambiarDato instanceof CambiarDato) {
+                                ((CambiarDato) cambiarDato).mostrarMensajeResultado(mensaje_resultado);
+                                dismiss();
+                            }
+
                         }
                     }
                 }
@@ -156,6 +165,7 @@ public class ConfirmarEmailDialog extends DialogFragment {
                 String mensaje_resultado_final = mensaje_resultado;
 
                 requireActivity().runOnUiThread(() -> {
+
                     idResultadoConfirmarEmail.setText(mensaje_resultado_final);
 
                     new android.os.Handler().postDelayed(() -> {
@@ -167,9 +177,16 @@ public class ConfirmarEmailDialog extends DialogFragment {
             }).start();
         });
 
-
         return view;
     }
+    public interface OnRegistroExitosoListener {
+        void onRegistroExitoso();
+    }
+
+    public void setOnRegistroExitosoListener(OnRegistroExitosoListener listener) {
+        this.listener = listener;
+    }
+
 
     @Override
     public void onStart() {

@@ -104,13 +104,8 @@ public class ListasView extends Fragment implements ListaEditar.OnListaEditadaLi
                 if (listas != null && !listas.isEmpty()) {
 
                     listaDatos.addAll(listas);
-
-                } else {
-
-                    HashMap<String, Object> sinListas = new HashMap<>();
-                    sinListas.put("titulo", "No hay listas disponibles.");
-                    listaDatos.add(sinListas);
                 }
+
                 listaAdapter.notifyDataSetChanged();
             });
         }).start();

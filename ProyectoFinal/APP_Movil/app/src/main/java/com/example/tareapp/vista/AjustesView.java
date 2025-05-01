@@ -99,7 +99,6 @@ public class AjustesView extends Fragment implements CambiarDato.OnCambiarDatoLi
                                         mensaje_resultado[0] = pagina_ajustes_cuenta.getCuenta_borrada();
 
                                         CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), new IniciarRegistrarView());
-
                                     }
 
                                     Toast.makeText(getContext(), mensaje_resultado[0], Toast.LENGTH_SHORT).show();
@@ -120,7 +119,13 @@ public class AjustesView extends Fragment implements CambiarDato.OnCambiarDatoLi
 
     @Override
     public void onCambiarDato() {
-        // Actualizar email
+
+        email = Usuario_controlador.getUsuario().getEmail();
+
+        if (idEmailCuenta != null) {
+
+            idEmailCuenta.setText(email);
+        }
     }
 
     @Override

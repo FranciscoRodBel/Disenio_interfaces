@@ -40,6 +40,10 @@ public class IniciarRegistrarView extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.iniciar_registrar_view, container, false);
 
+        if (getActivity() instanceof MainActivity) {
+            ((MainActivity) getActivity()).bloquearOpcionesMenu(true);
+        }
+
         Pagina_inicio_registro pagina_inicio_registro = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
 
         idBotonIniciarSesion = view.findViewById(R.id.idBotonIniciarSesion);
@@ -67,7 +71,7 @@ public class IniciarRegistrarView extends Fragment {
 
         // Cambio de layout de registro a inicio de sesión
 
-        idInputEmailInicio.setText("9442@cifpceuta.es");
+        idInputEmailInicio.setText("pacopollo24@gmail.com");
         idInputContraseniaInicio.setText("12345678Aa");
 
         idInputEmailRegistro.setText("pacopollo24@gmail.com");
@@ -147,11 +151,26 @@ public class IniciarRegistrarView extends Fragment {
                     if (mensaje_resultado.isEmpty()) {
 
                         ConfirmarEmailDialog dialog = ConfirmarEmailDialog.newInstance(email, contrasenia, repetir_contrasenia);
+
+                        dialog.setOnRegistroExitosoListener(() -> {
+                            idInputEmailRegistro.setText("");
+                            idInputContraseniaRegistro.setText("");
+                            idInputRepetirContraseniaRegistro.setText("");
+
+                            idMensajeResultadoInicio.setText(pagina_inicio_registro.getCuenta_creada());
+
+                            new android.os.Handler().postDelayed(() -> {
+                                if (isAdded()) {
+                                    requireActivity().runOnUiThread(() ->
+                                            idMensajeResultadoInicio.setText(""));
+                                }
+                            }, 3000);
+                        });
+
                         dialog.show(getParentFragmentManager(), "ConfirmarEmail");
 
                     } else {
 
-                        idInputContraseniaInicio.setText("");
                         idMensajeResultadoInicio.setText(mensaje_resultado);
 
                         new android.os.Handler().postDelayed(() -> {

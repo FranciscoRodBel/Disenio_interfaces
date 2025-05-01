@@ -3,6 +3,7 @@ package com.example.tareapp.vista;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -134,6 +135,30 @@ public class CambiarDato extends DialogFragment {
         });
 
         return view;
+    }
+
+    public void mostrarMensajeResultado(String mensaje) {
+
+        if (getActivity() != null) {
+
+            getActivity().runOnUiThread(() -> {
+
+                idMensajeResultado.setText(mensaje);
+
+                if (listener != null) {
+
+                    listener.onCambiarDato();
+                }
+
+                new android.os.Handler(Looper.getMainLooper()).postDelayed(() -> {
+
+                    if (isAdded()) {
+
+                        dismiss();
+                    }
+                }, 3000);
+            });
+        }
     }
 
     @Override
