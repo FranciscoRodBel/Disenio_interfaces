@@ -4,23 +4,18 @@
  */
 package com.example.tareapp.controlador;
 
-import static com.example.tareapp.controlador.APIRest.crearJSONObject;
-import static com.example.tareapp.controlador.APIRest.realizarPeticionPost;
-
 import android.content.Context;
-import android.util.Log;
+import android.content.SharedPreferences;
+import android.util.Base64;
 
 import com.example.tareapp.modelo.BBDD_tareapp;
 import com.example.tareapp.modelo.SMTP;
 import com.example.tareapp.modelo.Usuario;
 import com.example.tareapp.modelo.idioma.Pagina_inicio_registro;
-import com.google.gson.Gson;
+import com.example.tareapp.vista.IniciarRegistrarView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  * Clase que se encarga de controlar el usuario
@@ -39,13 +34,14 @@ public class Usuario_controlador {
     public static void setUsuario(Usuario usuario) {
         Usuario_controlador.usuario = usuario;
     }
-    
+    private static final String CLAVE_AES = "mCqT0eB9xW6sYnZ4";
+
     /**
     * Función que permite iniciar sesión
     * 
     * @return Devuelve el resultado de iniciar sesión, si se consigue iniciar sesión devuelve vacío y si no un mensaje de error
     */
-    public String iniciar_usuario(String email, String contrasenia) {
+    public String iniciar_usuario(Context context, String email, String contrasenia) {
 
         email = email.trim().toLowerCase(); // Pasa el email a minúsculas
 
@@ -63,7 +59,8 @@ public class Usuario_controlador {
         
         if(usuario.verificar_contrasenia(contrasenia)) { // Compruebo si el usuario y contraseña coinciden con el de la BBDD
 
-            this.usuario = usuario; // Si inicia sesión, guardo el usuario en la variable global
+            this.usuario = usuario;
+            guardarCredenciales(context, email, contrasenia);
             return "";
             
         } else {
@@ -227,5 +224,70 @@ public class Usuario_controlador {
         String consulta = "UPDATE usuario SET idioma_seleccionado = '" + idioma + "' WHERE email = '" + usuario.getEmail() + "'";
         bbdd_tareapp.insertar(consulta);
     }
-    
+
+    private void guardarCredenciales(Context context, String email, String contrasenia) {
+
+        SharedPreferences prefs = context.getSharedPreferences("usuarioPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        try {
+
+            SecretKeySpec key = new SecretKeySpec(CLAVE_AES.getBytes(), "AES");
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.ENCRYPT_MODE, key);
+            byte[] encrypted = cipher.doFinal(contrasenia.getBytes());
+            String contraseniaCifrada = Base64.encodeToString(encrypted, Base64.DEFAULT);
+
+            editor.putString("email", email);
+            editor.putString("contrasenia", contraseniaCifrada);
+            editor.apply();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean iniciarSesionAutomatica(Context context) {
+
+        SharedPreferences prefs = context.getSharedPreferences("usuarioPrefs", Context.MODE_PRIVATE);
+
+        String email = prefs.getString("email", null);
+        String contraseniaCifrada = prefs.getString("contrasenia", null);
+
+        if (email != null && contraseniaCifrada != null) {
+
+            try {
+
+                SecretKeySpec key = new SecretKeySpec(CLAVE_AES.getBytes(), "AES");
+                Cipher cipher = Cipher.getInstance("AES");
+                cipher.init(Cipher.DECRYPT_MODE, key);
+                byte[] decoded = Base64.decode(contraseniaCifrada, Base64.DEFAULT);
+                String contraseniaDescifrada = new String(cipher.doFinal(decoded));
+
+                Usuario usuarioGuardado = Usuario.recoger_usuario(email);
+
+                if (usuarioGuardado != null && usuarioGuardado.verificar_contrasenia(contraseniaDescifrada)) {
+
+                    usuario = usuarioGuardado;
+                    return true;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return false;
+    }
+
+
+    public static void cerrarSesion(Context context) {
+
+        SharedPreferences prefs = context.getSharedPreferences("usuarioPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.clear();
+        editor.apply();
+
+        usuario = null;
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.example.tareapp.vista;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -123,7 +124,12 @@ public class TareasView extends Fragment {
                 getViewLifecycleOwner(),
                 new OnBackPressedCallback(true) {
                     @Override
-                    public void handleOnBackPressed() {}
+                    public void handleOnBackPressed() {
+                        Intent intent = new Intent(Intent.ACTION_MAIN);
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
                 }
         );
 

@@ -23,14 +23,11 @@ public class APIRest {
             conexion.setRequestMethod("POST");
             conexion.setRequestProperty("Content-Type", "application/json; utf-8");
             conexion.setRequestProperty("Accept", "application/json");
-            conexion.setRequestProperty("Authorization", "Bearer sk_live_p3J8K9zFqR2L7vD1mCqT0eB9xW6sYnZ4aF8uRtMqT7gXbN2hL");
             conexion.setDoOutput(true);
 
             try (DataOutputStream salida = new DataOutputStream(conexion.getOutputStream())) {
-
                 byte[] datos = jsonInput.getBytes(StandardCharsets.UTF_8);
                 salida.write(datos, 0, datos.length);
-
             }
 
             int codigoRespuesta = conexion.getResponseCode();
@@ -40,6 +37,7 @@ public class APIRest {
             if (codigoRespuesta >= 200 && codigoRespuesta < 300) {
 
                 lector = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
+
             } else {
 
                 lector = new BufferedReader(new InputStreamReader(conexion.getErrorStream()));
@@ -54,7 +52,6 @@ public class APIRest {
             }
 
             lector.close();
-
             return respuesta.toString();
 
         } catch (IOException e) {
@@ -86,6 +83,15 @@ public class APIRest {
                 throw new RuntimeException("Error al crear JSONObject", e);
             }
         }
+
+        try {
+
+            json.put("clave_secreta", "p3J8K9zFqR2L7vD1mCqT0eB9xW6sYnZ4aF8uRtMqT7gXbN2hL");
+
+        } catch (JSONException e) {
+            throw new RuntimeException("Error al añadir clave segura", e);
+        }
+
         return json;
     }
 }

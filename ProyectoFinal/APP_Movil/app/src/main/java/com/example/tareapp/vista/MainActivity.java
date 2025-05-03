@@ -1,6 +1,7 @@
 package com.example.tareapp.vista;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -36,13 +37,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(idMenuCabecera);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        // Cargar el primer fragmento por defecto
-        if (savedInstanceState == null) {
-
-            CambiarVista.cambiarFragmento(getSupportFragmentManager(), new IniciarRegistrarView());
-            bloquearOpcionesMenu(true);
-        }
-
         try {
 
             Idioma_controlador.convertirJsonEnClase(this);
@@ -51,6 +45,29 @@ public class MainActivity extends AppCompatActivity {
 
             e.printStackTrace();
         }
+
+        new Thread(() -> {
+
+            boolean sesionIniciada = Usuario_controlador.iniciarSesionAutomatica(this);
+
+            runOnUiThread(() -> {
+
+                if (savedInstanceState == null) {
+
+                    if (sesionIniciada) {
+
+                        CambiarVista.cambiarFragmento(getSupportFragmentManager(), new TareasView());
+                        bloquearOpcionesMenu(false);
+
+                    } else {
+
+                        CambiarVista.cambiarFragmento(getSupportFragmentManager(), new IniciarRegistrarView());
+                        bloquearOpcionesMenu(true);
+                    }
+                }
+            });
+        }).start();
+
     }
 
     @Override
@@ -129,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.idCuentaCerrarSesion:
-                Usuario_controlador.setUsuario(null);
+                Usuario_controlador.cerrarSesion(this);
                 CambiarVista.cambiarFragmento(getSupportFragmentManager(), new IniciarRegistrarView());
                 bloquearOpcionesMenu(true);
                 break;

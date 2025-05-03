@@ -98,6 +98,7 @@ public class AjustesView extends Fragment implements CambiarDato.OnCambiarDatoLi
 
                                         mensaje_resultado[0] = pagina_ajustes_cuenta.getCuenta_borrada();
 
+                                        Usuario_controlador.cerrarSesion(requireContext());
                                         CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), new IniciarRegistrarView());
                                     }
 

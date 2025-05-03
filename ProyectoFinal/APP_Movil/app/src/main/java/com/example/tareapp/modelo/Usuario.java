@@ -4,14 +4,8 @@
  */
 package com.example.tareapp.modelo;
 
-import static com.example.tareapp.controlador.APIRest.crearJSONObject;
-import static com.example.tareapp.controlador.APIRest.realizarPeticionPost;
-
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.regex.Pattern;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
@@ -125,13 +119,20 @@ public class Usuario {
     */
     public static Usuario recoger_usuario(String email) {
 
-        Map<String, String> datos = new HashMap<>();
-        datos.put("email", email);
+        String consulta = "SELECT * FROM usuario WHERE email = '"+ email +"'";
+        ArrayList<HashMap<String, Object>> resultados = new BBDD_tareapp().consultar(consulta); // Recojo el email
 
-        String respuesta = realizarPeticionPost("https://tareapp.info/leerUsuario", crearJSONObject(datos).toString());
+        if (!resultados.isEmpty()) { // Si hay resultados...
 
-        if (respuesta == null || respuesta.equalsIgnoreCase("false") || respuesta.equalsIgnoreCase("null")) return null;
+            HashMap<String, Object> fila = resultados.get(0); // Recojo la primera fila, donde está el usuario que se busca
 
-        return new Gson().fromJson(respuesta, Usuario.class);
+            // Convierto la contraseña y el idioma en string
+            String contrasenia = (String) fila.get("contrasenia");
+            String idioma_seleccionado = (String) fila.get("idioma_seleccionado");
+
+            return new Usuario(email, contrasenia, idioma_seleccionado); // Devuelvo el usuario encontrado
+        }
+
+        return null;
     }
 }

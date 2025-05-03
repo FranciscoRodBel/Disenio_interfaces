@@ -1,6 +1,8 @@
 package com.example.tareapp.vista;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -109,7 +111,7 @@ public class IniciarRegistrarView extends Fragment {
                 String email = idInputEmailInicio.getText().toString();
                 String contrasenia = idInputContraseniaInicio.getText().toString();
 
-                String mensaje_resultado = usuario_controlador.iniciar_usuario(email, contrasenia);
+                String mensaje_resultado = usuario_controlador.iniciar_usuario(requireContext(), email, contrasenia);
 
                 requireActivity().runOnUiThread(() -> {
 
@@ -188,7 +190,12 @@ public class IniciarRegistrarView extends Fragment {
                 getViewLifecycleOwner(),
                 new OnBackPressedCallback(true) {
                     @Override
-                    public void handleOnBackPressed() {}
+                    public void handleOnBackPressed() {
+                        Intent intent = new Intent(Intent.ACTION_MAIN);
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
                 }
         );
 
