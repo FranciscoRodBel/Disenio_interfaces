@@ -73,13 +73,6 @@ public class IniciarRegistrarView extends Fragment {
 
         // Cambio de layout de registro a inicio de sesión
 
-        idInputEmailInicio.setText("pacopollo24@gmail.com");
-        idInputContraseniaInicio.setText("12345678Aa");
-
-        idInputEmailRegistro.setText("pacopollo24@gmail.com");
-        idInputContraseniaRegistro.setText("12345678Aa");
-        idInputRepetirContraseniaRegistro.setText("12345678Aa");
-
         idBotonIniciarSesion.setOnClickListener(v -> {
 
             layoutLogin.setVisibility(View.VISIBLE);

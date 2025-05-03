@@ -269,6 +269,7 @@ public class Usuario_controlador {
                 if (usuarioGuardado != null && usuarioGuardado.verificar_contrasenia(contraseniaDescifrada)) {
 
                     usuario = usuarioGuardado;
+                    Idioma_controlador.cambiarIdioma(usuarioGuardado.getIdioma_seleccionado(), false);
                     return true;
                 }
             } catch (Exception e) {
