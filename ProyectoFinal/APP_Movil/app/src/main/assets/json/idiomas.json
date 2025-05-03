@@ -90,7 +90,7 @@
                 "email_contrasenia_no_coinciden": "El email y la contraseña no coincide",
                 "confirmar_email": "Confirmar email",
                 "introduzca_codigo": "Introduzca el código que se ha enviado a su correo",
-                "enviar_codigo": "Eviar código",
+                "enviar_codigo": "Enviar código",
                 "codigo_incorrecto": "El código introducido es incorrecto",
                 "confirmacion_asunto": "Código de verificación para iniciar sesión en TareApp",
                 "confirmacion_mensaje": "Hola,\n\nPara completar tu inicio de sesión en TareApp, introduce el siguiente código de verificación en la aplicación:\n\n{codigo}\n\nSi no solicitaste este código, puedes ignorar este mensaje.\n\nSaludos,\nEl equipo de TareApp.",

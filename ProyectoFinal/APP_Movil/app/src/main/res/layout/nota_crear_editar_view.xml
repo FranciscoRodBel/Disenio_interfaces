@@ -64,6 +64,7 @@
             android:overScrollMode="always"
             android:padding="10dp"
             android:scrollbars="vertical"
+            android:textColor="@color/negro"
             tools:ignore="Autofill,TextContrastCheck,VisualLintTextFieldSize" />
 
         <RadioGroup

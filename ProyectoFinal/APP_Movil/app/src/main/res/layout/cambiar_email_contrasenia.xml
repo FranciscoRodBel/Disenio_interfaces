@@ -57,6 +57,7 @@
         android:layout_marginBottom="20dp"
         android:layout_weight="1"
         android:hint="Nuevo email"
+        android:textColor="@color/negro"
         tools:ignore="Autofill,HardcodedText,InefficientWeight,TextContrastCheck,TextFields,VisualLintTextFieldSize" />
 
     <EditText
@@ -65,6 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:hint="Repetir email"
+        android:textColor="@color/negro"
         tools:ignore="Autofill,HardcodedText,InefficientWeight,TextContrastCheck,TextFields,VisualLintTextFieldSize" />
 
     <Button

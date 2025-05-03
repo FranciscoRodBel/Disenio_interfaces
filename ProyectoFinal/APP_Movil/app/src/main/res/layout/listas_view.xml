@@ -47,6 +47,7 @@
                     android:layout_weight="1"
                     android:hint="@string/t_tulo_lista"
                     android:inputType="textEmailAddress"
+                    android:textColor="@color/negro"
                     tools:ignore="Autofill,TextContrastCheck,VisualLintTextFieldSize" />
 
                 <ImageButton
