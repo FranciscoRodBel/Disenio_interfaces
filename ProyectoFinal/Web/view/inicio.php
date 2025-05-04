@@ -38,7 +38,8 @@
         <section class="seccion_descarga">
             <h2>Descarga TareApp ahora</h2>
             <p>Optimiza tu productividad con nuestra aplicación para escritorio. Disponible en múltiples plataformas para que puedas organizar tu vida sin importar dónde estés.</p>
-            <a class="boton" id="boton_descargar">Descargar .exe</a>
+            <a class="boton" id="boton_descargar_exe">Descargar .exe</a>
+            <a class="boton" id="boton_descargar_apk">Descargar .apk</a>
         </section>
     </main>
     <footer>
