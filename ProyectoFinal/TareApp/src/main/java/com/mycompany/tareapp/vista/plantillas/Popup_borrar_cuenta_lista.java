@@ -144,7 +144,7 @@ public class Popup_borrar_cuenta_lista extends JDialog {
                 label_resultado.setText(mensaje_resultado);
                 
                 Timer tiempo_espera = new Timer(1000, evt -> {
-                    dispose();
+                    dispose(); // Cierro el PopUp después de borrar la cuenta o la lista
                 });
                 
                 tiempo_espera.setRepeats(false);

@@ -33,7 +33,7 @@ public final class Nota_plantilla extends Scroll {
         this.setMinimumSize(DIMENSION_NOTA);
         this.setMaximumSize(DIMENSION_NOTA);
 
-        switch(color) {
+        switch(color) { // Selecciono el color de fondo de la nota
             case "naranja" -> textArea.setBackground(Estilos.getNaranja_nota());
             case "verde" -> textArea.setBackground(Estilos.getVerde_nota());
             case "morado" -> textArea.setBackground(Estilos.getMorado_nota());  
@@ -42,7 +42,7 @@ public final class Nota_plantilla extends Scroll {
             default -> textArea.setBackground(Estilos.getAzul_nota());
         }
         
-        textArea.addMouseListener(new java.awt.event.MouseAdapter() {
+        textArea.addMouseListener(new java.awt.event.MouseAdapter() { // Si se pulsa en la propia nota, abre el PopUp para editar la nota
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 Popup_crear_editar_nota popup_crear_editar_nota = new Popup_crear_editar_nota(Nota_plantilla.this);

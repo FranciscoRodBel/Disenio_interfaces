@@ -26,7 +26,7 @@ import javax.swing.Timer;
 
 
 /**
- * Clase para el componente del popUp de crear y editar tarea
+ * Clase para el componente del popUp de crear y editar nota
  * Componente creado para crearlo cuando se pulse en el botón o icono concreto
  * 
  * @author Francisco
@@ -79,7 +79,7 @@ public class Popup_crear_editar_nota extends JDialog {
         panelPrincipal.setBackground(Estilos.getGris_claro());
         
         
-        if (nota == null) {
+        if (nota == null) { // Si la nota es null es que se está creando la nota
             
             texto_titulo_popup = idioma_notas.getCrear_nota();
             texto_input_descripcion = "";
@@ -112,6 +112,7 @@ public class Popup_crear_editar_nota extends JDialog {
         grupoBotonesColores.add (radioButtonAmarillo);
         grupoBotonesColores.add (radioButtonRosa);
         
+        // Pongo un nombre para saber cual es cada radio button
         radioButtonNaranja.setActionCommand("naranja");
         radioButtonVerde.setActionCommand("verde");
         radioButtonAzul.setActionCommand("azul");
@@ -119,7 +120,7 @@ public class Popup_crear_editar_nota extends JDialog {
         radioButtonAmarillo.setActionCommand("amarillo");
         radioButtonRosa.setActionCommand("rosa");
         
-        if (nota != null) {
+        if (nota != null) { // Al editar selecciono el radio button y cambio la foto del radio button seleccionado
             
             quitarBotonSeleccionado();
             
@@ -198,7 +199,7 @@ public class Popup_crear_editar_nota extends JDialog {
         layout.putConstraint(SpringLayout.EAST, label_resultado_tarea, 0, SpringLayout.EAST, panelPrincipal);
         panelPrincipal.add(label_resultado_tarea);
         
-        
+        // Actualizo la imagen del radio button que se seleccione
         radioButtonNaranja.addActionListener((ActionEvent e) -> {
             
             quitarBotonSeleccionado();
@@ -242,7 +243,7 @@ public class Popup_crear_editar_nota extends JDialog {
             String descripcion = this.getInput_descripcion().getTextArea().getText();
             String color = grupoBotonesColores.getSelection().getActionCommand();
                 
-            if (this.getNota() == null) {
+            if (this.getNota() == null) { // Si se crea la nota...
 
                 mensaje_resultado = nota_controlador.crear_nota(descripcion, color);
 
@@ -255,7 +256,7 @@ public class Popup_crear_editar_nota extends JDialog {
                     radioButtonNaranja.setSelected(true);
                 }
 
-            } else {
+            } else { // Si se edita la nota...
 
                 mensaje_resultado = nota_controlador.editar_nota(this.getNota().getIdNota(), descripcion, color);
 
@@ -266,7 +267,7 @@ public class Popup_crear_editar_nota extends JDialog {
                 }
             }
             
-            this.getLabel_resultado_tarea().setText(mensaje_resultado);
+            this.getLabel_resultado_tarea().setText(mensaje_resultado); // Muestro el resultado durante 3 segundos
             Timer tiempo_espera = new Timer(3000, evt -> this.getLabel_resultado_tarea().setText(""));
             tiempo_espera.setRepeats(false);
             tiempo_espera.start();

@@ -105,7 +105,7 @@ public class Popup_borrar_nota extends JDialog {
             
             Timer tiempo_espera = new Timer(1000, evt -> {
                 
-                dispose();
+                dispose(); // Cierro el PopUp después de borrar la nota
                 if (popup_crear_editar_nota != null) {
                     
                     popup_crear_editar_nota.dispose();
