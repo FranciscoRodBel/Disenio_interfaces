@@ -225,19 +225,25 @@ public class Usuario_controlador {
         bbdd_tareapp.insertar(consulta);
     }
 
+    /**
+    * Función que permite guardar las credenciales del usuario para que no tenga que iniciar sesión cada vez que abre la aplicación
+    * 
+    */
     private void guardarCredenciales(Context context, String email, String contrasenia) {
 
-        SharedPreferences prefs = context.getSharedPreferences("usuarioPrefs", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
+        SharedPreferences prefs = context.getSharedPreferences("usuarioPrefs", Context.MODE_PRIVATE); // Accedo a la preferencia con el nombre "usuarioPrefs"
+        SharedPreferences.Editor editor = prefs.edit(); // Creo un editor para modificar las preferencias
 
         try {
 
+            // Cifro la contraseña con el método AES para poder almacenarla cifrada y añadir seguridad
             SecretKeySpec key = new SecretKeySpec(CLAVE_AES.getBytes(), "AES");
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.ENCRYPT_MODE, key);
             byte[] encrypted = cipher.doFinal(contrasenia.getBytes());
             String contraseniaCifrada = Base64.encodeToString(encrypted, Base64.DEFAULT);
 
+            // Guardo el email y la contraseña
             editor.putString("email", email);
             editor.putString("contrasenia", contraseniaCifrada);
             editor.apply();
@@ -247,29 +253,35 @@ public class Usuario_controlador {
         }
     }
 
+    /**
+    * Función que permite iniciar la sesión del usuario para que no tenga que iniciar sesión cada vez que abre la aplicación
+    * 
+    */
     public static boolean iniciarSesionAutomatica(Context context) {
 
-        SharedPreferences prefs = context.getSharedPreferences("usuarioPrefs", Context.MODE_PRIVATE);
+        SharedPreferences prefs = context.getSharedPreferences("usuarioPrefs", Context.MODE_PRIVATE); // Accedo a la preferencia con el nombre "usuarioPrefs"
 
-        String email = prefs.getString("email", null);
-        String contraseniaCifrada = prefs.getString("contrasenia", null);
+        String email = prefs.getString("email", null); // Si existe recoge el dato, si no guardará null
+        String contraseniaCifrada = prefs.getString("contrasenia", null); // Si existe recoge el dato, si no guardará null
 
-        if (email != null && contraseniaCifrada != null) {
+        if (email != null && contraseniaCifrada != null) { // Si las credenciales están guardadas...
 
             try {
 
+                // Descifro la contraseña almacenada
                 SecretKeySpec key = new SecretKeySpec(CLAVE_AES.getBytes(), "AES");
                 Cipher cipher = Cipher.getInstance("AES");
                 cipher.init(Cipher.DECRYPT_MODE, key);
                 byte[] decoded = Base64.decode(contraseniaCifrada, Base64.DEFAULT);
                 String contraseniaDescifrada = new String(cipher.doFinal(decoded));
 
-                Usuario usuarioGuardado = Usuario.recoger_usuario(email);
+                Usuario usuarioGuardado = Usuario.recoger_usuario(email); // Recojo el usuario
 
-                if (usuarioGuardado != null && usuarioGuardado.verificar_contrasenia(contraseniaDescifrada)) {
+                if (usuarioGuardado != null && usuarioGuardado.verificar_contrasenia(contraseniaDescifrada)) { // Compruebo si los datos son válidos con los que hay en la BBDD
 
-                    usuario = usuarioGuardado;
-                    Idioma_controlador.cambiarIdioma(usuarioGuardado.getIdioma_seleccionado(), false);
+                    usuario = usuarioGuardado; // Si es correcto guardo el usuario como el que tiene la sesión iniciada
+                    Idioma_controlador.cambiarIdioma(usuarioGuardado.getIdioma_seleccionado(), false); // Cambio el idioma al que tiene el usuario guardado
+                    
                     return true;
                 }
             } catch (Exception e) {
@@ -283,12 +295,11 @@ public class Usuario_controlador {
 
     public static void cerrarSesion(Context context) {
 
-        SharedPreferences prefs = context.getSharedPreferences("usuarioPrefs", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.clear();
+        SharedPreferences prefs = context.getSharedPreferences("usuarioPrefs", Context.MODE_PRIVATE); // Accedo a la preferencia con el nombre "usuarioPrefs"
+        SharedPreferences.Editor editor = prefs.edit(); // Creo un editor para modificar las preferencias
+        editor.clear(); // Vacío la preferencia para que no pueda iniciar sesión automáticamente
         editor.apply();
 
-        usuario = null;
+        usuario = null; // Elimino el usuario que tiene la sesión iniciada
     }
-
 }
