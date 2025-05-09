@@ -379,10 +379,10 @@ public final class Tareas_view extends javax.swing.JPanel {
                 for(HashMap<String, Object> fila : tareas) { // Recorro las tareas y las voy añadiendo al panel
 
                     int idTarea = (int) fila.get("idTarea");
-                    boolean completada = (boolean) fila.get("completada");
+                    int completada = (int) fila.get("completada");
                     String titulo = (String) fila.get("titulo");
                     int prioridad = (int) fila.get("prioridad");
-                    String fecha = convertir_fecha_a_string((Date) fila.get("fecha"));
+                    String fecha = convertir_fecha_a_string(Date.valueOf((String) fila.get("fecha")));
                     String descripcion = (String) fila.get("descripcion");
                     int idLista = (int) fila.get("idLista");
 

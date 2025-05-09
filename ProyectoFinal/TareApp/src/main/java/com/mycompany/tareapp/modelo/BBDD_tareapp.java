@@ -4,16 +4,18 @@
  */
 package com.mycompany.tareapp.modelo;
 
-import com.mycompany.tareapp.controlador.BBDD_controlador;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
+import static com.mycompany.tareapp.controlador.APIRest.realizarPeticionPost;
+
+import com.mycompany.tareapp.controlador.APIRest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Clase para el modelo del CRUD de la base de datos
@@ -21,88 +23,109 @@ import java.util.logging.Logger;
  * @author Francisco
  */
 public class BBDD_tareapp {
-    
+
     /**
     * Función que permite recoger datos de la BBDD
-    * 
+    *
     * @return Devuelvo un ArrayList que tiene dentro HashMap con nombre_propiedad : valor - Array de array asociativo
     */
     public ArrayList<HashMap<String, Object>> consultar(String consulta_consultar) {
-        
-        ArrayList<HashMap<String, Object>> resultados = new ArrayList<>(); // Array final que se devuelve con todos los datos
-        Connection conexion = BBDD_controlador.getConexion();
-        
+
+        String url = "https://tareapp.info/ejecutarConsulta";
+
+        Map<String, String> parametros = new HashMap<>();
+        parametros.put("sql", consulta_consultar);
+        parametros.put("modo", "consulta");
+
+        JSONObject json = APIRest.crearJSONObject(parametros);
+
+        String respuesta = realizarPeticionPost(url, json.toString());
+
+        System.out.println("Respuesta server: "+respuesta);
+
+        ArrayList<HashMap<String, Object>> lista = new ArrayList<>();
+
         try {
-            
-            Statement consulta = conexion.createStatement();
 
-            ResultSet resultado = consulta.executeQuery(consulta_consultar); // Ejecuto la consulta
+            JSONArray resultado = new JSONArray(respuesta);
 
-            while (resultado.next()) { // Recorro los datos creando el arrayList con el hashMap
-                
-                HashMap<String, Object> fila = new HashMap<>();
-                ResultSetMetaData metaData = resultado.getMetaData();
+            for (int i = 0; i < resultado.length(); i++) {
 
-                for (int i = 1; i <= metaData.getColumnCount(); i++) {
+                JSONObject fila = resultado.getJSONObject(i);
+                HashMap<String, Object> filaMap = new HashMap<>();
 
-                    fila.put(metaData.getColumnName(i), resultado.getObject(i)); // Se guarda en el hashMap la columna con el dato
+                Iterator<String> claves = fila.keys();
+
+                while (claves.hasNext()) {
+
+                    String clave = claves.next();
+                    filaMap.put(clave, fila.get(clave));
                 }
 
-                resultados.add(fila); // Añade el hashMap añ ArrayList
+                lista.add(filaMap);
             }
-            
-        } catch (SQLException ex) {
-            
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JSONException e) {
+            e.printStackTrace();
             return null;
         }
-        
-        return resultados; // Devuelvo el array list
+
+        return lista;
     }
-    
+
+
     /**
     * Función que permite insertar y actualizar datos en la BBDD
-    * 
+    *
     * @return Devuelvo true si se inserta o actualiza correctamente o false si da error
     */
-    public boolean insertar(String consulta_insertar) { 
-        
-        Connection conexion = BBDD_controlador.getConexion();
-        
+    public boolean insertar(String consulta_insertar) {
+
+        String url = "https://tareapp.info/ejecutarConsulta";
+
+        Map<String, String> parametros = new HashMap<>();
+        parametros.put("sql", consulta_insertar);
+        parametros.put("modo", "insertar");
+
+        JSONObject json = APIRest.crearJSONObject(parametros);
+        String respuesta = realizarPeticionPost(url, json.toString());
+
         try {
 
-            Statement consulta = conexion.createStatement();
-           
-            return consulta.executeUpdate(consulta_insertar) > 0; // Si se han actualizado más de una columna es que se insertó correctamente
-            
-        } catch (SQLException ex) {
-            
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            JSONObject resultado = new JSONObject(respuesta);
+            return resultado.getInt("filas_afectadas") > 0;
+
+        } catch (JSONException e) {
+            e.printStackTrace();
             return false;
-            
         }
     }
-    
+
+
     /**
     * Función que permite borrar datos en la BBDD
-    * 
+    *
     * @return Devuelvo true si se borrar correctamente o false si da error
     */
     public boolean borrar(String consulta_borrar) {
-        
-        Connection conexion = BBDD_controlador.getConexion();
+
+        String url = "https://tareapp.info/ejecutarConsulta";
+
+        Map<String, String> parametros = new HashMap<>();
+        parametros.put("sql", consulta_borrar);
+        parametros.put("modo", "borrar");
+
+        JSONObject json = APIRest.crearJSONObject(parametros);
+        String respuesta = realizarPeticionPost(url, json.toString());
 
         try {
-            
-            Statement consulta = conexion.createStatement();
 
-            return consulta.executeUpdate(consulta_borrar) > 0; // Si se han actualizado más de una columna es que se borró correctamente
+            JSONObject resultado = new JSONObject(respuesta);
+            return resultado.getInt("filas_afectadas") > 0;
 
-        } catch (SQLException ex) {
-            
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JSONException e) {
+
+            e.printStackTrace();
             return false;
-
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.tareapp.controlador;
+package com.mycompany.tareapp.controlador;
 import org.json.JSONException;
 import org.json.JSONObject;
 

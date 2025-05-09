@@ -1,6 +1,5 @@
 <?php
 require_once './model/QueryExecutor.php';
-require_once './model/Funciones.php';
 
 class ConsultaController {
     private $CLAVE_SECRETA = 'p3J8K9zFqR2L7vD1mCqT0eB9xW6sYnZ4aF8uRtMqT7gXbN2hL'; // misma clave que en la app

@@ -38,7 +38,12 @@ public class BBDD_tareapp {
         parametros.put("modo", "consulta");
 
         JSONObject json = APIRest.crearJSONObject(parametros);
+
+        System.out.println(json);
+
         String respuesta = realizarPeticionPost(url, json.toString());
+
+        System.out.println("Respuesta server: "+respuesta);
 
         ArrayList<HashMap<String, Object>> lista = new ArrayList<>();
 

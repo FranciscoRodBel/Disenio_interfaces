@@ -122,6 +122,8 @@ public class Usuario {
         String consulta = "SELECT * FROM usuario WHERE email = '"+ email +"'";
         ArrayList<HashMap<String, Object>> resultados = new BBDD_tareapp().consultar(consulta); // Recojo el email
 
+        System.out.println("Resultado: "+resultados);
+
         if (!resultados.isEmpty()) { // Si hay resultados...
 
             HashMap<String, Object> fila = resultados.get(0); // Recojo la primera fila, donde está el usuario que se busca

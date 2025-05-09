@@ -18,6 +18,7 @@ com\mycompany\tareapp\modelo\idioma\Pagina_notas.class
 com\mycompany\tareapp\vista\plantillas\RoundedBorder.class
 com\mycompany\tareapp\vista\plantillas\Nota_plantilla.class
 com\mycompany\tareapp\modelo\BBDD_tareapp.class
+com\mycompany\tareapp\controlador\APIRest.class
 com\mycompany\tareapp\modelo\idioma\Cabecera.class
 com\mycompany\tareapp\vista\plantillas\Popup_confirmar_email.class
 com\mycompany\tareapp\vista\plantillas\Scroll$1.class
@@ -56,6 +57,5 @@ com\mycompany\tareapp\vista\plantillas\Tarea_plantilla.class
 com\mycompany\tareapp\vista\Iniciar_registrar_view.class
 com\mycompany\tareapp\vista\plantillas\Input_Number.class
 com\mycompany\tareapp\modelo\SMTP.class
-com\mycompany\tareapp\controlador\BBDD_controlador.class
 com\mycompany\tareapp\vista\plantillas\Lista_plantilla.class
 com\mycompany\tareapp\vista\plantillas\Scroll.class

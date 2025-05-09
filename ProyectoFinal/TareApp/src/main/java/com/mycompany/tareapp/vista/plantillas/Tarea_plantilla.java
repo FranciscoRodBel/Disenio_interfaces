@@ -35,7 +35,7 @@ public final class Tarea_plantilla extends JPanel {
     
     int idTarea;
     int prioridadTarea;
-    boolean completada;
+    int completada;
     String descripcionTarea;
     
     JButton botonVerTarea = new JButton();
@@ -56,14 +56,14 @@ public final class Tarea_plantilla extends JPanel {
     * Para poder crearla con sus opciones marcadas
     * 
     */
-    public Tarea_plantilla(int idTarea, boolean completada, String titulo, int prioridad, String fecha, String descripcion, int idLista) { // Si se envía true está completa, si se envía en la prioridad 1 - baja, 2 - media, 3 - alta
+    public Tarea_plantilla(int idTarea, int completada, String titulo, int prioridad, String fecha, String descripcion, int idLista) { // Si se envía true está completa, si se envía en la prioridad 1 - baja, 2 - media, 3 - alta
         
         this.idTarea = idTarea;
         this.completada = completada;
         
         generarEstructura();
         
-        if(completada) {
+        if(completada == 1) {
             
             this.setTareaCompletada();
         
@@ -280,12 +280,12 @@ public final class Tarea_plantilla extends JPanel {
         
         botonTareaCompletada.addActionListener((ActionEvent e) -> {
             
-            if (completada) {
+            if (completada == 1) {
                 
                 if (tarea_controlador.completarTarea(idTarea, 0)) {
                 
                     this.setTareaIncompleta();
-                    completada = false;
+                    completada = 0;
                 }
                 
                 
@@ -294,7 +294,7 @@ public final class Tarea_plantilla extends JPanel {
                 if (tarea_controlador.completarTarea(idTarea, 1)) {
                 
                     this.setTareaCompletada();
-                    completada = true;
+                    completada = 1;
                 }
             }
         });

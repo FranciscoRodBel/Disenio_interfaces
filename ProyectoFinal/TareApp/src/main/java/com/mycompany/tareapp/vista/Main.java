@@ -4,7 +4,6 @@
  */
 package com.mycompany.tareapp.vista;
 
-import com.mycompany.tareapp.controlador.BBDD_controlador;
 import com.mycompany.tareapp.controlador.Idioma_controlador;
 import com.mycompany.tareapp.controlador.Usuario_controlador;
 import com.mycompany.tareapp.vista.plantillas.Cabecera;
@@ -288,8 +287,6 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void run() {
                 try {
-                    
-                    BBDD_controlador.abrirConexion();
                     
                     new Main().setVisible(true);
                     

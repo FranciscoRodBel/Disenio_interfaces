@@ -5,9 +5,9 @@ class Database {
 
     private function __construct() {
 
-        $host = 'tareapp-1.crwyy0o20y2n.eu-north-1.rds.amazonaws.com';
-        $dbName = 'tareapp_bbdd';
-        $user = 'admin_tareapp';
+        $host = 'tareaq-tareapp.db.tb-hosting.com';
+        $dbName = 'tareaq_tareapp';
+        $user = 'tareaq_tareappAdmin';
         $password = 'RSgJW84VtG3BHMq';
 
         try {
