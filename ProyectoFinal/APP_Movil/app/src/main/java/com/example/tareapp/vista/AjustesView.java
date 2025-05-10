@@ -60,7 +60,7 @@ public class AjustesView extends Fragment implements CambiarDato.OnCambiarDatoLi
 
         idBotonCambiarEmail.setOnClickListener(v -> {
 
-            CambiarDato dialog = CambiarDato.newInstance("email"); // Creo un nuevo PopUp para cambiar el email
+            CambiarDato dialog = CambiarDato.nuevaInstancia("email"); // Creo un nuevo PopUp para cambiar el email
 
             if (this instanceof CambiarDato.OnCambiarDatoListener) { // Compruebo si la interfaz implementa el listener
 
@@ -73,7 +73,7 @@ public class AjustesView extends Fragment implements CambiarDato.OnCambiarDatoLi
 
         idBotonCambiarContrasenia.setOnClickListener(v -> {
 
-            CambiarDato dialog = CambiarDato.newInstance("contrasenia"); // Creo un nuevo PopUp para cambiar la contraseña
+            CambiarDato dialog = CambiarDato.nuevaInstancia("contrasenia"); // Creo un nuevo PopUp para cambiar la contraseña
 
             if (this instanceof CambiarDato.OnCambiarDatoListener) { // Compruebo si la interfaz implementa el listener
 

@@ -17,6 +17,7 @@ import com.example.tareapp.controlador.CambiarVista;
 import com.example.tareapp.controlador.Idioma_controlador;
 import com.example.tareapp.controlador.Usuario_controlador;
 import com.example.tareapp.modelo.idioma.Cabecera;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import java.io.IOException;
 
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); // Bloqueo el modo oscuro, para que solo funcione el modo claro
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);

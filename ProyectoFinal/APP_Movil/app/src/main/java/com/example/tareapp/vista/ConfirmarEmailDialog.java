@@ -39,7 +39,7 @@ public class ConfirmarEmailDialog extends DialogFragment {
     private OnRegistroExitosoListener listener;
     Pagina_inicio_registro pagina_inicio_registro = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
 
-    public static ConfirmarEmailDialog newInstance(String email, String contrasenia, String repetir_contrasenia) {
+    public static ConfirmarEmailDialog nuevaInstancia(String email, String contrasenia, String repetir_contrasenia) {
         ConfirmarEmailDialog dialog = new ConfirmarEmailDialog();
         Bundle args = new Bundle();
         args.putString("email", email);

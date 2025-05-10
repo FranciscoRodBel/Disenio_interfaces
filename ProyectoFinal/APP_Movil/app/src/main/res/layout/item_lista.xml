@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Título de la lista"
+        android:textColor="@color/negro"
         android:textSize="18sp"
         tools:ignore="HardcodedText" />
 

@@ -32,7 +32,7 @@ public class ListaEditar extends DialogFragment {
     private String idLista = "";
     private String titulo = "";
     private Pagina_listas idioma_listas = Idioma_controlador.getIdioma_seleccionado().getPagina_listas();
-    public static ListaEditar newInstance(String idLista, String titulo) {
+    public static ListaEditar nuevaInstancia(String idLista, String titulo) {
         ListaEditar dialog = new ListaEditar();
         Bundle args = new Bundle();
         args.putString("idLista", idLista);

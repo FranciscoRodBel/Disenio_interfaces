@@ -61,7 +61,7 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ListaViewHol
 
         holder.idEditarLista.setOnClickListener(v -> {
 
-            ListaEditar dialog = ListaEditar.newInstance(idLista, titulo);
+            ListaEditar dialog = ListaEditar.nuevaInstancia(idLista, titulo);
 
             if (fragment instanceof ListaEditar.OnListaEditadaListener) {
 

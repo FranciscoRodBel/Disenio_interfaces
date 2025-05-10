@@ -145,7 +145,7 @@ public class IniciarRegistrarView extends Fragment {
                 requireActivity().runOnUiThread(() -> {
                     if (mensaje_resultado.isEmpty()) {
 
-                        ConfirmarEmailDialog dialog = ConfirmarEmailDialog.newInstance(email, contrasenia, repetir_contrasenia);
+                        ConfirmarEmailDialog dialog = ConfirmarEmailDialog.nuevaInstancia(email, contrasenia, repetir_contrasenia);
 
                         dialog.setOnRegistroExitosoListener(() -> {
                             idInputEmailRegistro.setText("");

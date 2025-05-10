@@ -25,7 +25,13 @@ import com.example.tareapp.modelo.idioma.Pagina_ajustes_cuenta;
 import com.example.tareapp.modelo.idioma.Pagina_inicio_registro;
 import com.example.tareapp.modelo.idioma.Pagina_listas;
 
+/**
+ * Clase para el PopUp de cambiar email o contraseña
+ *
+ * @author Francisco
+ */
 public class CambiarDato extends DialogFragment {
+
     private OnCambiarDatoListener listener;
     private Usuario_controlador usuario_controlador = new Usuario_controlador();
     private ImageButton idCerrarPanel;
@@ -36,26 +42,35 @@ public class CambiarDato extends DialogFragment {
 
     Pagina_ajustes_cuenta pagina_ajustes_cuenta = Idioma_controlador.getIdioma_seleccionado().getPagina_ajustes_cuenta();
 
-    public static CambiarDato newInstance(String accion) {
+    /**
+     * Función que hace de constructor, me permite crear una nueva instancia con un envio de bundle, lo que permite ahorrar lineas de código
+     *
+     * @return Devuelvo una instacia de la propia clase
+     */
+    public static CambiarDato nuevaInstancia(String accion) { // La acción es para saber si está cambiando el email o la contraseña
+
         CambiarDato dialog = new CambiarDato();
         Bundle args = new Bundle();
         args.putString("accion", accion);
         dialog.setArguments(args);
+
         return dialog;
     }
-    public interface OnCambiarDatoListener {
+    public interface OnCambiarDatoListener { // Cuando se cambie un dato se activará la función onCambiarDato de la vista principal(AjustesView)
         void onCambiarDato();
     }
 
-    public void setOnCambiarDatoListener(OnCambiarDatoListener listener) {
+    public void setOnCambiarDatoListener(OnCambiarDatoListener listener) { // Para aplicar un listener al fragmento principal(AjustesView)
         this.listener = listener;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
-            accion = getArguments().getString("accion");
+
+            accion = getArguments().getString("accion"); // Recoge la acción que se envía desde el Bundle
         }
     }
 
@@ -72,17 +87,18 @@ public class CambiarDato extends DialogFragment {
         idBotonCambiar = view.findViewById(R.id.idBotonCambiar);
         idMensajeResultado = view.findViewById(R.id.idMensajeResultado);
 
-        if (accion.equals("contrasenia")) {
+        if (accion.equals("contrasenia")) { // Si se cambia la contraseña se añaden todos los textos de la contraseña en el idioma seleccionado
 
             idTitulo.setText(pagina_ajustes_cuenta.getCambiar_contrasenia());
             idInputDato.setHint(pagina_ajustes_cuenta.getNuevo_contrasenia());
             idInputRepetirDato.setHint(pagina_ajustes_cuenta.getRepetir_contrasenia());
             idBotonCambiar.setText(pagina_ajustes_cuenta.getCambiar_contrasenia());
 
+            // Se ponen los inputs de la contraseña en modo password para que cuando escriba salgan los asteriscos
             idInputDato.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             idInputRepetirDato.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
-        } else {
+        } else {  // Si se cambia el email se añaden todos los textos del emial en el idioma seleccionado
 
             idTitulo.setText(pagina_ajustes_cuenta.getCambiar_email());
             idInputDato.setHint(pagina_ajustes_cuenta.getNuevo_email());
@@ -90,16 +106,16 @@ public class CambiarDato extends DialogFragment {
             idBotonCambiar.setText(pagina_ajustes_cuenta.getCambiar_email());
         }
 
-        idCerrarPanel.setOnClickListener(v -> dismiss());
+        idCerrarPanel.setOnClickListener(v -> dismiss()); // Cierra el PopUp
 
-        idBotonCambiar.setOnClickListener(v -> {
+        idBotonCambiar.setOnClickListener(v -> { // Al aplicar los cambios...
             new Thread(() -> {
 
                 final String[] mensaje_resultado = new String[1];
                 String datoCambiar = idInputDato.getText().toString();
                 String datoRepetir = idInputRepetirDato.getText().toString();
 
-                if (accion.equals("contrasenia")) {
+                if (accion.equals("contrasenia")) { // Se actualiza el dato en la BBDD
 
                     mensaje_resultado[0] = usuario_controlador.actualizar_contrasenia(datoCambiar, datoRepetir);
 
@@ -112,13 +128,13 @@ public class CambiarDato extends DialogFragment {
 
                     if (mensaje_resultado[0].isEmpty()) {
 
-                        if (accion.equals("contrasenia")) {
+                        if (accion.equals("contrasenia")) { // Si está vacío es que se actualizó correctamente la contraseña
 
-                            mensaje_resultado[0] = pagina_ajustes_cuenta.getContrasenia_actualizada();
+                            mensaje_resultado[0] = pagina_ajustes_cuenta.getContrasenia_actualizada(); // Mensaje de que se actualizó correctamente
 
-                        } else {
+                        } else { // Si comprobar_datos_actualizar_email devuelve vacío es que los datos son válidos para actualizar el email
 
-                            ConfirmarEmailDialog dialog = ConfirmarEmailDialog.newInstance(datoCambiar, null, null);
+                            ConfirmarEmailDialog dialog = ConfirmarEmailDialog.nuevaInstancia(datoCambiar, null, null); // Muestro el PopUp de cambiar email, al enviar la contraseña como null, ya sé que está actualizando y no registrando
                             dialog.show(getParentFragmentManager(), "ConfirmarEmail");
                         }
                     }
@@ -129,7 +145,7 @@ public class CambiarDato extends DialogFragment {
                             requireActivity().runOnUiThread(() ->
                                     idMensajeResultado.setText(""));
                         }
-                    }, 3000);
+                    }, 3000); // Muestra el mensaje durante 3 segundos
                 });
             }).start();
         });
@@ -137,17 +153,21 @@ public class CambiarDato extends DialogFragment {
         return view;
     }
 
+    /**
+     * Función que me permite mostrar el resultado de la confirmación del email en este Dialog en vez de mostrar el resultado en el de ConfirmarEmail
+     *
+     */
     public void mostrarMensajeResultado(String mensaje) {
 
-        if (getActivity() != null) {
+        if (getActivity() != null) { // Comprueba que exista el PopUp anterior
 
             getActivity().runOnUiThread(() -> {
 
-                idMensajeResultado.setText(mensaje);
+                idMensajeResultado.setText(mensaje); // Muestro el mensaje
 
                 if (listener != null) {
 
-                    listener.onCambiarDato();
+                    listener.onCambiarDato(); // Aviso de que se cambió el dato
                 }
 
                 new android.os.Handler(Looper.getMainLooper()).postDelayed(() -> {
@@ -156,7 +176,7 @@ public class CambiarDato extends DialogFragment {
 
                         dismiss();
                     }
-                }, 3000);
+                }, 3000); // Cierro el PopUp a los 3 segundos
             });
         }
     }

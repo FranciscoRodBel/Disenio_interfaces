@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Título de la tarea"
+        android:textColor="@color/negro"
         android:textSize="16sp"
         tools:ignore="DuplicateIds,HardcodedText" />
 
@@ -38,6 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="03/04/2025"
+        android:textColor="@color/negro"
         android:textSize="14sp"
         tools:ignore="HardcodedText" />
 </LinearLayout>
