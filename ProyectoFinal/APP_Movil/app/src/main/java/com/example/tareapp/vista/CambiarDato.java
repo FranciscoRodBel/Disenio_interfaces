@@ -43,7 +43,7 @@ public class CambiarDato extends DialogFragment {
     Pagina_ajustes_cuenta pagina_ajustes_cuenta = Idioma_controlador.getIdioma_seleccionado().getPagina_ajustes_cuenta();
 
     /**
-     * Función que hace de constructor, me permite crear una nueva instancia con un envio de bundle, lo que permite ahorrar lineas de código
+     * Función que hace de constructor, me permite crear una nueva instancia con un envío de bundle, lo que permite ahorrar lineas de código
      *
      * @return Devuelvo una instacia de la propia clase
      */

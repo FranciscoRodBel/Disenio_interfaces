@@ -21,6 +21,11 @@ import com.example.tareapp.controlador.Usuario_controlador;
 import com.example.tareapp.modelo.idioma.Pagina_inicio_registro;
 import com.example.tareapp.modelo.idioma.Pagina_listas;
 
+/**
+ * Clase para PopUp de editar lista
+ *
+ * @author Francisco
+ */
 public class ListaEditar extends DialogFragment {
     private OnListaEditadaListener listener;
     private Lista_controlador lista_controlador = new Lista_controlador();
@@ -32,26 +37,36 @@ public class ListaEditar extends DialogFragment {
     private String idLista = "";
     private String titulo = "";
     private Pagina_listas idioma_listas = Idioma_controlador.getIdioma_seleccionado().getPagina_listas();
+
+    /**
+     * Función que hace de constructor, me permite crear una nueva instancia con un envío de bundle, lo que permite ahorrar lineas de código
+     *
+     * @return Devuelvo una instacia de la propia clase
+     */
     public static ListaEditar nuevaInstancia(String idLista, String titulo) {
+
         ListaEditar dialog = new ListaEditar();
         Bundle args = new Bundle();
         args.putString("idLista", idLista);
         args.putString("titulo", titulo);
         dialog.setArguments(args);
+
         return dialog;
     }
-    public interface OnListaEditadaListener {
+    public interface OnListaEditadaListener { // Cuando se edite se activará la función onListaEditada de la vista principal(ListasView)
         void onListaEditada();
     }
 
-    public void setOnListaEditadaListener(OnListaEditadaListener listener) {
+    public void setOnListaEditadaListener(OnListaEditadaListener listener) { // Para aplicar un listener al fragmento principal(ListasView)
         this.listener = listener;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+
+        if (getArguments() != null) { // Recojo los datos del Bundle
+
             idLista = getArguments().getString("idLista");
             titulo = getArguments().getString("titulo");
         }
@@ -69,26 +84,27 @@ public class ListaEditar extends DialogFragment {
         idMensajeResultado = view.findViewById(R.id.idMensajeResultado);
         idCerrarPanel = view.findViewById(R.id.idCerrarPanel);
 
+        // Añado el idioma de los textos
         idTitulo.setText(idioma_listas.getEditar_lista());
         idInputTituloLista.setHint(idioma_listas.getTitulo_lista());
         idBotonEditarLista.setText(idioma_listas.getEditar_lista());
 
         idInputTituloLista.setText(titulo);
 
-        idCerrarPanel.setOnClickListener(v -> dismiss());
+        idCerrarPanel.setOnClickListener(v -> dismiss()); // Cierra el PopUp
 
-        idBotonEditarLista.setOnClickListener(v -> {
+        idBotonEditarLista.setOnClickListener(v -> { // Al pulsar en editar lista
             new Thread(() -> {
 
                 String[] mensaje_resultado = new String[1];
-                mensaje_resultado[0] = lista_controlador.actualizar_lista(Integer.parseInt(idLista), idInputTituloLista.getText().toString());
+                mensaje_resultado[0] = lista_controlador.actualizar_lista(Integer.parseInt(idLista), idInputTituloLista.getText().toString()); // Intento actualizar la lista
 
                 requireActivity().runOnUiThread(() -> {
 
-                    if (mensaje_resultado[0].isEmpty()) {
+                    if (mensaje_resultado[0].isEmpty()) { // Si está vacío es que se editó correctamente
 
                         mensaje_resultado[0] = idioma_listas.getLista_editada();
-                        listener.onListaEditada();
+                        listener.onListaEditada(); // Aviso de que se actualizó para que actualice el panel de las listas
                     }
 
                     idMensajeResultado.setText(mensaje_resultado[0]);
@@ -98,7 +114,7 @@ public class ListaEditar extends DialogFragment {
                             requireActivity().runOnUiThread(() ->
                                     idMensajeResultado.setText(""));
                         }
-                    }, 3000);
+                    }, 3000); // Muestro el mensaje del resultado durante 3 segundos
                 });
             }).start();
         });

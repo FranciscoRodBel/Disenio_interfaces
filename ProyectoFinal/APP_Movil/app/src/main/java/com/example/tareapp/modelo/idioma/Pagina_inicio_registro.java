@@ -34,6 +34,7 @@ public class Pagina_inicio_registro {
     private String confirmacion_mensaje;
     private String enviando_codigo;
     private String codigo;
+    private String email_no_enviado;
 
     public String getTitulo_inicio() {
         return titulo_inicio;
@@ -217,5 +218,13 @@ public class Pagina_inicio_registro {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    public String getEmail_no_enviado() {
+        return email_no_enviado;
+    }
+
+    public void setEmail_no_enviado(String email_no_enviado) {
+        this.email_no_enviado = email_no_enviado;
     }
 }

@@ -21,6 +21,12 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import java.io.IOException;
 
+/**
+ * Clase para la vista principal
+ * En este panel se añade la cabecera y se irán añadiendo todos los fragmentos de las demás vistas
+ *
+ * @author Francisco
+ */
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar idMenuCabecera;
@@ -35,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        idMenuCabecera = findViewById(R.id.idMenuCabecera);
-        setSupportActionBar(idMenuCabecera);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        idMenuCabecera = findViewById(R.id.idMenuCabecera); // Recojo la cabecera
+        setSupportActionBar(idMenuCabecera); // La añado a la vista
+        getSupportActionBar().setDisplayShowTitleEnabled(false); // Deshabilito el título por defecto del menú
 
         try {
 
-            Idioma_controlador.convertirJsonEnClase(this);
+            Idioma_controlador.convertirJsonEnClase(this); // Recojo el json del idioma
 
         } catch (IOException e) {
 
@@ -50,18 +56,18 @@ public class MainActivity extends AppCompatActivity {
 
         new Thread(() -> {
 
-            boolean sesionIniciada = Usuario_controlador.iniciarSesionAutomatica(this);
+            boolean sesionIniciada = Usuario_controlador.iniciarSesionAutomatica(this); // Intento iniciar sesión automáticamente
 
             runOnUiThread(() -> {
 
                 if (savedInstanceState == null) {
 
-                    if (sesionIniciada) {
+                    if (sesionIniciada) { // Si se inicia correctamente muestro la vista de tareas
 
                         CambiarVista.cambiarFragmento(getSupportFragmentManager(), new TareasView());
                         bloquearOpcionesMenu(false);
 
-                    } else {
+                    } else { // Si no se inicia correctamente muestro la vista de inicio y registro
 
                         CambiarVista.cambiarFragmento(getSupportFragmentManager(), new IniciarRegistrarView());
                         bloquearOpcionesMenu(true);
@@ -73,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) { // Crea el menú
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
         return true;
@@ -84,8 +90,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (menu != null) {
 
-            Cabecera cabecera = Idioma_controlador.getIdioma_seleccionado().getCabecera();
+            Cabecera cabecera = Idioma_controlador.getIdioma_seleccionado().getCabecera(); // Recojo el idioma del menú
 
+            // Añado todos los textos del menú con su idioma
             menu.findItem(R.id.idTareasMenu).setTitle(cabecera.getTareas());
             menu.findItem(R.id.idListasMenu).setTitle(cabecera.getListas());
             menu.findItem(R.id.idIdioma).setTitle(cabecera.getIdioma());
@@ -95,12 +102,12 @@ public class MainActivity extends AppCompatActivity {
             menu.findItem(R.id.idCuentaCerrarSesion).setTitle(cabecera.getCerrar_sesion());
             menu.findItem(R.id.idCuentaSalir).setTitle(cabecera.getSalir());
 
+            // Bloquea las opciones cuando es un fragmento que no sea uno de los pricipales
             menu.findItem(R.id.idTareasMenu).setEnabled(!opcionesBloqueadas);
             menu.findItem(R.id.idListasMenu).setEnabled(!opcionesBloqueadas);
             menu.findItem(R.id.idNotasMenu).setEnabled(!opcionesBloqueadas);
             menu.findItem(R.id.idCuentaAjustes).setEnabled(!opcionesBloqueadas);
             menu.findItem(R.id.idCuentaCerrarSesion).setEnabled(!opcionesBloqueadas);
-
 
             menu.findItem(R.id.idIdioma).setEnabled(!bloquearIdioma);
         }
@@ -109,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) { // Se ejecuta cuando se pulsa en un item del menú
 
         switch (item.getItemId()) {
 
@@ -123,20 +130,20 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.idIdiomaEsp:
                 Idioma_controlador.cambiarIdioma("Español", true);
-                invalidateOptionsMenu();
-                recargarFragmentoActual();
+                invalidateOptionsMenu(); // Actualiza el menú para que se le cambie el idioma
+                recargarFragmentoActual(); // Actualiza el fragmento que se está viendo para que se le cambie el idioma
                 break;
 
             case R.id.idIdiomaEng:
                 Idioma_controlador.cambiarIdioma("English", true);
-                invalidateOptionsMenu();
-                recargarFragmentoActual();
+                invalidateOptionsMenu(); // Actualiza el menú para que se le cambie el idioma
+                recargarFragmentoActual(); // Actualiza el fragmento que se está viendo para que se le cambie el idioma
                 break;
 
             case R.id.idIdiomaFr:
                 Idioma_controlador.cambiarIdioma("Français", true);
-                invalidateOptionsMenu();
-                recargarFragmentoActual();
+                invalidateOptionsMenu(); // Actualiza el menú para que se le cambie el idioma
+                recargarFragmentoActual(); // Actualiza el fragmento que se está viendo para que se le cambie el idioma
                 break;
 
             case R.id.idNotasMenu:
@@ -148,12 +155,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.idCuentaCerrarSesion:
-                Usuario_controlador.cerrarSesion(this);
+                Usuario_controlador.cerrarSesion(this); // Cierro la sesión
                 CambiarVista.cambiarFragmento(getSupportFragmentManager(), new IniciarRegistrarView());
-                bloquearOpcionesMenu(true);
+                bloquearOpcionesMenu(true); // Desactivo las opciones del menú
                 break;
 
-            case R.id.idCuentaSalir:
+            case R.id.idCuentaSalir: // Cierro la app
                 android.os.Process.killProcess(android.os.Process.myPid());
                 System.exit(1);
                 break;
@@ -162,13 +169,13 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void recargarFragmentoActual() {
+    public void recargarFragmentoActual() { // Lo uso para cambio el idioma, que se actualice toda la vista al idioma nuevo
 
-        Fragment fragmentActual = getSupportFragmentManager().findFragmentById(R.id.idContenedorFragmentos);
+        Fragment fragmentActual = getSupportFragmentManager().findFragmentById(R.id.idContenedorFragmentos); // Recojo el fragmento activo
 
         if (fragmentActual != null) {
 
-            Fragment nuevoFragment;
+            Fragment nuevoFragment; // Si coincide, creo uno nuevo
 
             if (fragmentActual instanceof IniciarRegistrarView) {
 
@@ -195,16 +202,16 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.idContenedorFragmentos, nuevoFragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.idContenedorFragmentos, nuevoFragment).commit(); // Cambio del antiguo al nuevo
         }
     }
 
-    public void bloquearOpcionesMenu(boolean bloquear) {
+    public void bloquearOpcionesMenu(boolean bloquear) { // Se usa para bloquear las opciones en el inicio y registro
         opcionesBloqueadas = bloquear;
         invalidateOptionsMenu();
     }
 
-    public void bloquearIdiomaMenu(boolean bloquear) {
+    public void bloquearIdiomaMenu(boolean bloquear) { // Para bloquear el idioma en fragmentos que no sean principales
         bloquearIdioma = bloquear;
         invalidateOptionsMenu();
     }

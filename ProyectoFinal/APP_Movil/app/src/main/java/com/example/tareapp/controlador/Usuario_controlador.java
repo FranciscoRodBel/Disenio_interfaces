@@ -123,7 +123,7 @@ public class Usuario_controlador {
         
         } else {
         
-            return "No se ha podido enviar el email";
+            return Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro().getEmail_no_enviado();
         }
     }
     
