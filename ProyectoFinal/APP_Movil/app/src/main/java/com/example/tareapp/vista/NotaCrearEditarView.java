@@ -22,6 +22,11 @@ import com.example.tareapp.controlador.Nota_controlador;
 import com.example.tareapp.modelo.Nota;
 import com.example.tareapp.modelo.idioma.Pagina_notas;
 
+/**
+ * Clase para la vista de editar y crear notas
+ *
+ * @author Francisco
+ */
 public class NotaCrearEditarView extends Fragment {
     private ImageButton idCerrarPanel;
     private TextView idTitulo;
@@ -54,13 +59,13 @@ public class NotaCrearEditarView extends Fragment {
         idBotonCrearEditarNota = view.findViewById(R.id.idBotonAceptar);
         idMensajeResultado = view.findViewById(R.id.idMensajeResultado);
 
-        // Envío de formulario de crear tarea
-        Bundle bundle = getArguments();
-        String accion = bundle.getString("accion", "crear");
-        nota = (Nota) getArguments().getSerializable("nota");
+        Bundle bundle = getArguments(); // Reocojo la acción enviada
+        String accion = bundle.getString("accion", "crear"); // Recojo la acción, por defecto crear
+        nota = (Nota) getArguments().getSerializable("nota"); // Recojo la nota que se habrá enviado si está editando
 
         idInputDescripcion.setHint(Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getDescripcion());
 
+        // Añado los textos en el idioma correspondiente si está editanto o creando
         if (accion.equals("editar")) {
 
             idTitulo.setText(pagina_notas.getEditar_nota());
@@ -75,6 +80,7 @@ public class NotaCrearEditarView extends Fragment {
             seleccionarColor(idBotonColorAmarillo);
         }
 
+        // Añado listener a los inputs radio para cambiar la imagen cuando se seleccione uno
         idBotonColorAmarillo.setOnClickListener(v -> seleccionarColor(idBotonColorAmarillo));
         idBotonColorAzul.setOnClickListener(v -> seleccionarColor(idBotonColorAzul));
         idBotonColorMorado.setOnClickListener(v -> seleccionarColor(idBotonColorMorado));
@@ -84,15 +90,16 @@ public class NotaCrearEditarView extends Fragment {
 
         idCerrarPanel.setOnClickListener(v -> {
                 requireActivity().getSupportFragmentManager().popBackStack();
-        });
+        }); // Cierra el PopUp
 
-        idBotonCrearEditarNota.setOnClickListener(v -> {
+        idBotonCrearEditarNota.setOnClickListener(v -> { // Si pulsa en el botón de crear/editar...
             new Thread(() -> {
 
                 String descripcion = idInputDescripcion.getText().toString();
 
                 final String[] mensaje_resultado = new String[1];
 
+                // Intento editar/crear la nota
                 if (accion.equals("crear")) {
 
                     mensaje_resultado[0] = nota_controlador.crear_nota(descripcion, colorSeleccionado);
@@ -104,7 +111,7 @@ public class NotaCrearEditarView extends Fragment {
 
                 requireActivity().runOnUiThread(() -> {
 
-                    if (mensaje_resultado[0].isEmpty()) {
+                    if (mensaje_resultado[0].isEmpty()) { // Si el mensaje está vacío es que se editó o creó
 
                         if (accion.equals("crear")) {
 
@@ -125,7 +132,7 @@ public class NotaCrearEditarView extends Fragment {
                             requireActivity().runOnUiThread(() ->
                                     idMensajeResultado.setText(""));
                         }
-                    }, 3000);
+                    }, 3000); // Muestro el resultado de crear/editar durante 3 segundos
                 });
             }).start();
         });
@@ -134,10 +141,11 @@ public class NotaCrearEditarView extends Fragment {
     }
     @SuppressLint("NonConstantResourceId")
     private void seleccionarColor(RadioButton radioButton) {
-        quitarFotoSeleccionada();
-        idGrupoColores.clearCheck();
-        radioButton.setChecked(true);
+        quitarFotoSeleccionada(); // Les quito a todos la foto del radioButton marcado
+        idGrupoColores.clearCheck(); // Desmarco todos los radioButton
+        radioButton.setChecked(true); // Marco el radioButton pulsado
 
+        // Actualuizo el color seleccionado y la foto
         switch (radioButton.getId()) {
             case R.id.idBotonColorAmarillo:
                 idBotonColorAmarillo.setBackgroundResource(R.drawable.radioamarilloseleccionado);
@@ -165,7 +173,7 @@ public class NotaCrearEditarView extends Fragment {
                 break;
         }
     }
-    private void recogerColor(String color) {
+    private void recogerColor(String color) { // Cuando estoy editando solo tengo el String del color, por tanto llamo a esta función para que marque el radioButton del color de la nota
         switch (color.toLowerCase()) {
             case "amarillo":
                 seleccionarColor(idBotonColorAmarillo);
@@ -188,7 +196,7 @@ public class NotaCrearEditarView extends Fragment {
         }
     }
 
-    private void quitarFotoSeleccionada() {
+    private void quitarFotoSeleccionada() { // Quita la foto de radioButton marcado a todos los radioButton
 
         idBotonColorAmarillo.setBackgroundResource(R.drawable.radioamarillo);
         idBotonColorAzul.setBackgroundResource(R.drawable.radioazul);

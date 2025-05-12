@@ -121,7 +121,7 @@ public class ListasView extends Fragment implements ListaEditar.OnListaEditadaLi
     public void onResume() {
         super.onResume();
         if (getActivity() instanceof MainActivity) {
-            ((MainActivity) getActivity()).bloquearIdiomaMenu(false);
+            ((MainActivity) getActivity()).bloquearIdiomaMenu(false); // Desbloquea el idioma
         }
     }
 }
