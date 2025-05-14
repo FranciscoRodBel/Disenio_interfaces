@@ -5,12 +5,13 @@ class Database {
 
     private function __construct() {
 
+        // Configuración de la base de datos
         $host = 'tareaq-tareapp.db.tb-hosting.com';
         $dbName = 'tareaq_tareapp';
         $user = 'tareaq_tareappAdmin';
         $password = 'RSgJW84VtG3BHMq';
 
-        try {
+        try { // Conexión con la base de datos
 
             $this->pdo = new PDO(
                 "mysql:host=$host;dbname=$dbName;charset=utf8",
@@ -25,7 +26,7 @@ class Database {
         }
     }
 
-    public static function getInstance() {
+    public static function getInstance() { // Si ya hay una instacia devuelve la misma
 
         if (self::$instance === null) {
 
@@ -36,7 +37,7 @@ class Database {
         return self::$instance;
     }
 
-    public function getConnection() {
+    public function getConnection() { // Devuelve la conexión de la BBDD
         return $this->pdo;
     }
 }
