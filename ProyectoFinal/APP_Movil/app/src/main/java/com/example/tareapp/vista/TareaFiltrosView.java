@@ -21,6 +21,11 @@ import com.example.tareapp.R;
 import com.example.tareapp.controlador.Idioma_controlador;
 import com.example.tareapp.modelo.idioma.Pagina_tareas;
 
+/**
+ * Clase para la vista de los filtros de las tareas
+ *
+ * @author Francisco
+ */
 public class TareaFiltrosView extends Fragment {
 
     private ImageButton idCerrarPanel;
@@ -56,6 +61,7 @@ public class TareaFiltrosView extends Fragment {
         idSpinnerOrdenTareas = view.findViewById(R.id.idSpinnerOrdenTareas);
         idBotonAceptar = view.findViewById(R.id.idBotonAceptar);
 
+        // Añado el idioma de los textos
         idTitulo.setText(idioma_tareas.getFiltros());
         idBotonAceptar.setText(idioma_tareas.getAceptar());
 
@@ -65,6 +71,7 @@ public class TareaFiltrosView extends Fragment {
         idTareasPrioridadMedia.setText(idioma_tareas.getMostrar_prioridad_media());
         idTareasPrioridadAlta.setText(idioma_tareas.getMostrar_prioridad_alta());
 
+        // Spinner con las opciones del orden de las tareas
         String[] opcionesOrden = {
                 idioma_tareas.getMostrar_tareas_az(),
                 idioma_tareas.getMostrar_tareas_za(),
@@ -78,8 +85,9 @@ public class TareaFiltrosView extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         idSpinnerOrdenTareas.setAdapter(adapter);
 
-        SharedPreferences prefs = requireContext().getSharedPreferences("filtros", 0);
+        SharedPreferences prefs = requireContext().getSharedPreferences("filtros", 0); // Recojo las preferencias con las opciones de los filtros, para que las opciones se guarden incluso cerrando la app
 
+        // Recojo los datos, teniendo opciones predeterminadas por si es la primera vez que entra a los filtros
         idSpinnerOrdenTareas.setSelection(prefs.getInt("orden", 0));
 
         idMarcarTareaCompletadas.setChecked(prefs.getBoolean("completadas", true));
@@ -88,9 +96,9 @@ public class TareaFiltrosView extends Fragment {
         idMarcarTareaPrioridadMedia.setChecked(prefs.getBoolean("media", true));
         idMarcarTareaPrioridadAlta.setChecked(prefs.getBoolean("alta", true));
 
-        idCerrarPanel.setOnClickListener(v -> requireActivity().getSupportFragmentManager().popBackStack());
+        idCerrarPanel.setOnClickListener(v -> requireActivity().getSupportFragmentManager().popBackStack()); // Cierra el panel
 
-        idBotonAceptar.setOnClickListener(v -> {
+        idBotonAceptar.setOnClickListener(v -> { // Si acepta en cambiar los filtros actualizo las preferencias para que se guarden los filtros
 
             int spinnerPos = idSpinnerOrdenTareas.getSelectedItemPosition();
 
@@ -110,7 +118,7 @@ public class TareaFiltrosView extends Fragment {
                     .putBoolean("alta", prioridadAlta)
                     .apply();
 
-            requireActivity().getSupportFragmentManager().popBackStack();
+            requireActivity().getSupportFragmentManager().popBackStack(); // Cierro el panel
         });
 
         return view;

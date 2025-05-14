@@ -28,7 +28,13 @@ import com.example.tareapp.modelo.idioma.Pagina_tareas;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+/**
+ * Clase para la vista de editar y crear tareas
+ *
+ * @author Francisco
+ */
 public class TareaCrearEditarView extends Fragment {
+
     private ImageButton idCerrarPanel;
     private EditText idInputTituloTarea, idInputFecha, idInputDescripcion;
     private Spinner idSpinnerPrioridad;
@@ -39,7 +45,7 @@ public class TareaCrearEditarView extends Fragment {
     private Tarea_controlador tarea_controlador = new Tarea_controlador();
     private Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
 
-    private Boolean editado = false;
+    private Boolean editado = false; // Guardo si ha editado o no para saber si tengo que cerrar el PopUp de ver tarea al editar
 
     @SuppressLint("MissingInflatedId")
     @Nullable
@@ -58,17 +64,15 @@ public class TareaCrearEditarView extends Fragment {
         idBotonCrearEditarTarea = view.findViewById(R.id.idBotonAceptar);
         idMensajeResultado = view.findViewById(R.id.idMensajeResultado);
 
-        // SPINNER
-
+        // Spinner con las prioridades
         String[] prioridades = {pagina_tareas.getPrioridad(), pagina_tareas.getBaja(), pagina_tareas.getMedia(), pagina_tareas.getAlta()};
-
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, prioridades);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         idSpinnerPrioridad.setAdapter(adapter);
 
-        final Calendar calendar = Calendar.getInstance();
+        final Calendar calendar = Calendar.getInstance(); // Objeto calendario para mostrar un calendario al pulsar en el input fecha
 
-        idInputFecha.setOnClickListener(v -> {
+        idInputFecha.setOnClickListener(v -> { // Al pulsar en el input fecha...
 
             DatePickerDialog datePickerDialog = new DatePickerDialog(
 
@@ -83,18 +87,18 @@ public class TareaCrearEditarView extends Fragment {
                     calendar.get(Calendar.MONTH),
                     calendar.get(Calendar.DAY_OF_MONTH)
             );
-            datePickerDialog.show();
+            datePickerDialog.show(); // Muestra el objeto datePickerDialog que es un calendario que se despliega para que seleccione la fecha
         });
 
-        // Envío de formulario de crear tarea
-        Bundle bundle = getArguments();
+        Bundle bundle = getArguments(); // Recojo los argumentos del Bundle
 
         if (bundle != null) {
 
-            String accion = bundle.getString("accion", "crear");
-            int idLista = bundle.getInt("id", -1);
-            tarea = (Tarea) getArguments().getSerializable("tarea");
+            String accion = bundle.getString("accion", "crear"); // Recojo la acción que será "crear" de forma predeterminada
+            int idLista = bundle.getInt("id", -1); // Se recoge el id de lista, si no se manda será -1(significará que está creando)
+            tarea = (Tarea) getArguments().getSerializable("tarea"); // Si está editando se enviará la tarea
 
+            // Añado el idioma de los textos
             idInputTituloTarea.setHint(idioma_tareas.getTitulo_tarea());
             idInputFecha.setHint(idioma_tareas.getSeleccione_fecha());
             idInputDescripcion.setHint(idioma_tareas.getDescripcion());
@@ -118,7 +122,7 @@ public class TareaCrearEditarView extends Fragment {
 
             idCerrarPanel.setOnClickListener(v -> {
 
-                if (editado) {
+                if (editado) { // Si ha editado cierro los dos PopUp y si no, cierro uno
 
                     requireActivity().getSupportFragmentManager().popBackStack();
                     requireActivity().getSupportFragmentManager().popBackStack();
@@ -130,9 +134,10 @@ public class TareaCrearEditarView extends Fragment {
 
             });
 
-            idBotonCrearEditarTarea.setOnClickListener(v -> {
+            idBotonCrearEditarTarea.setOnClickListener(v -> { // Si pulsa en confirmar crear o editar...
                 new Thread(() -> {
 
+                    // Recojo los datos de los inputs
                     String titulo = idInputTituloTarea.getText().toString();
                     int prioridad = idSpinnerPrioridad.getSelectedItemPosition();
                     String fecha = idInputFecha.getText().toString();
@@ -140,7 +145,7 @@ public class TareaCrearEditarView extends Fragment {
 
                     final String[] mensaje_resultado = new String[1];
 
-                    if (accion.equals("crear")) {
+                    if (accion.equals("crear")) { // Dependiendo de la acción edito o creo la tarea
 
                         mensaje_resultado[0] = tarea_controlador.crear_tarea(titulo, prioridad, fecha, descripcion, idLista);
 
@@ -151,9 +156,9 @@ public class TareaCrearEditarView extends Fragment {
 
                     requireActivity().runOnUiThread(() -> {
 
-                        if (mensaje_resultado[0].isEmpty()) {
+                        if (mensaje_resultado[0].isEmpty()) { // Si está vacío es que editó o creó correctamente
 
-                            if (accion.equals("crear")) {
+                            if (accion.equals("crear")) { // Si está creando, vacío los inputs y guardo el mensaje de "tarea creada"
 
                                 idInputTituloTarea.setText("");
                                 idInputFecha.setText("");
@@ -167,7 +172,7 @@ public class TareaCrearEditarView extends Fragment {
                                 mensaje_resultado[0] = idioma_tareas.getTarea_editada();
                                 editado = true;
 
-                                requireActivity().getOnBackPressedDispatcher().addCallback(
+                                requireActivity().getOnBackPressedDispatcher().addCallback( // Bloqueo para que no pueda echar con la flecha a la vista anterior y tenga que cerrar desde la X
                                         getViewLifecycleOwner(),
                                         new OnBackPressedCallback(true) {
                                             @Override
@@ -184,7 +189,7 @@ public class TareaCrearEditarView extends Fragment {
                                 requireActivity().runOnUiThread(() ->
                                         idMensajeResultado.setText(""));
                             }
-                        }, 3000);
+                        }, 3000); // Muestro el resultado durante 3 segundos
                     });
                 }).start();
             });

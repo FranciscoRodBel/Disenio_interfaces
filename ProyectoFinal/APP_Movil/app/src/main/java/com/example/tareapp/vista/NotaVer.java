@@ -25,7 +25,13 @@ import com.example.tareapp.modelo.idioma.Pagina_inicio_registro;
 import com.example.tareapp.modelo.idioma.Pagina_listas;
 import com.example.tareapp.modelo.idioma.Pagina_notas;
 
+/**
+ * Clase para la vista del PopUp que permite ver una nota
+ *
+ * @author Francisco
+ */
 public class NotaVer extends DialogFragment {
+
     private ImageButton idBorrarNota, idCerrarPanel;
     private Button idBotonEditarNota;
     private TextView idTitulo, idDescripcionNota;
@@ -46,29 +52,31 @@ public class NotaVer extends DialogFragment {
         idDescripcionNota = view.findViewById(R.id.idDescripcionNota);
         idCerrarPanel = view.findViewById(R.id.idCerrarPanel);
 
+        // Añado el idioma de los textos
         idTitulo.setText(pagina_notas.getVer_nota());
         idBotonEditarNota.setText(pagina_notas.getEditar_nota());
 
-        nota = (Nota) getArguments().getSerializable("nota");
+        nota = (Nota) getArguments().getSerializable("nota"); // Recojo la nota que ha sido enviada desde NotasView
         idDescripcionNota.setText(nota.getDescripcion());
 
-        idCerrarPanel.setOnClickListener(v -> dismiss());
+        idCerrarPanel.setOnClickListener(v -> dismiss()); // Cierra el PopUp
 
-        idBotonEditarNota.setOnClickListener(v -> {
+        idBotonEditarNota.setOnClickListener(v -> {  // Le añado al un listener para cuando pulse en editar nota
 
-            NotaCrearEditarView fragment = new NotaCrearEditarView();
+            NotaCrearEditarView fragment = new NotaCrearEditarView(); // Creo la vista y envío la acción(editar) y el objeto nota
             Bundle bundle = new Bundle();
             bundle.putString("accion", "editar");
             bundle.putSerializable("nota", nota);
             fragment.setArguments(bundle);
 
-            dismiss();
+            dismiss(); // Cierro el PopUp actual
 
-            CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), fragment);
+            CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), fragment); // Cambio la vista
         });
 
-        idBorrarNota.setOnClickListener(v -> {
+        idBorrarNota.setOnClickListener(v -> {  // Le añado al un listener para cuando pulse en borrar nota
 
+            // Creo un PopUp con un AlertDialog para preguntar si quiere borrar la lista
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
             alertDialogBuilder.setTitle(pagina_notas.getPregunta_borrar_nota());
             alertDialogBuilder
@@ -76,21 +84,22 @@ public class NotaVer extends DialogFragment {
                     .setPositiveButton(pagina_notas.getBorrar_nota(), new DialogInterface.OnClickListener() {
 
                         @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
+                        public void onClick(DialogInterface dialogInterface, int i) { // Si pulsa en aceptar...
                             new Thread(() -> {
 
-                                String mensaje_resultado = nota_controlador.borrar_nota(nota.getIdNota());
+                                String mensaje_resultado = nota_controlador.borrar_nota(nota.getIdNota()); // Borra la nota
 
-                                if (mensaje_resultado.isEmpty()) {
+                                if (mensaje_resultado.isEmpty()) { // Si el mensaje está vacío es que lo eliminó
 
                                     requireActivity().runOnUiThread(() -> {
-                                        Toast.makeText(getContext(), pagina_notas.getNota_borrada(), Toast.LENGTH_SHORT).show();
 
-                                        dismiss();
+                                        Toast.makeText(getContext(), pagina_notas.getNota_borrada(), Toast.LENGTH_SHORT).show(); // Muestro el mensaje con el resultado
+
+                                        dismiss(); // Cierro el PopUp
 
                                         if (notaListener != null) {
 
-                                            notaListener.onNotaActualizada();
+                                            notaListener.onNotaActualizada(); // Activo el listener que actualiza el panel
                                         }
                                     });
                                 }
@@ -108,11 +117,11 @@ public class NotaVer extends DialogFragment {
         return view;
     }
 
-    public interface NotaListener {
+    public interface NotaListener {  // Cuando se edite se activará la función onNotaActualizada, que actualizará el panel de notas
         void onNotaActualizada();
     }
 
-    public void setNotaListener(NotaListener listener) {
+    public void setNotaListener(NotaListener listener) { // Para aplicar un listener al fragmento principal(NotasView)
         this.notaListener = listener;
     }
 

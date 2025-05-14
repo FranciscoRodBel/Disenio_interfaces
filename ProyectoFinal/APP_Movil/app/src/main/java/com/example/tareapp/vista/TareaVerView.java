@@ -23,6 +23,11 @@ import com.example.tareapp.controlador.Tarea_controlador;
 import com.example.tareapp.modelo.Tarea;
 import com.example.tareapp.modelo.idioma.Pagina_tareas;
 
+/**
+ * Clase para la vista que permite ver una tarea
+ *
+ * @author Francisco
+ */
 public class TareaVerView extends Fragment {
 
     private ImageButton idBorrarTarea, idCerrarPanel;
@@ -48,6 +53,7 @@ public class TareaVerView extends Fragment {
         idDescripcionTarea = view.findViewById(R.id.idDescripcionTarea);
         idBotonEditarTarea = view.findViewById(R.id.idBotonAceptar);
 
+        // Añado el idioma de los textos
         idLabelFecha.setText(idioma_tareas.getFecha()+":");
         idLabelPrioridad.setText(idioma_tareas.getPrioridad()+":");
         idLabelDescripcion.setText(idioma_tareas.getDescripcion());
@@ -57,16 +63,17 @@ public class TareaVerView extends Fragment {
 
         if (args != null) {
 
-            Tarea tarea = (Tarea) args.getSerializable("tarea");
+            Tarea tarea = (Tarea) args.getSerializable("tarea"); // Recojo la tarea enviada desde TareasView
 
             if (tarea != null) {
 
+                // Añado el idioma de los textos
                 idTituloTarea.setText(tarea.getTitulo());
                 idFechaTarea.setText(TareaAdapter.convertirFechaAString(tarea.getFecha()));
                 idPrioridadTarea.setText(tarea.recoger_prioridad_tarea());
                 idDescripcionTarea.setText(tarea.getDescripcion());
 
-                idBotonEditarTarea.setOnClickListener(v -> {
+                idBotonEditarTarea.setOnClickListener(v -> { // Si pulsa en editar, envío el objeto de la tarea y la acción de editar
 
                     TareaCrearEditarView tareaCrearEditarView = new TareaCrearEditarView();
                     Bundle bundle = new Bundle();
@@ -75,10 +82,10 @@ public class TareaVerView extends Fragment {
 
                     tareaCrearEditarView.setArguments(bundle);
 
-                    CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), tareaCrearEditarView);
+                    CambiarVista.cambiarFragmento(requireActivity().getSupportFragmentManager(), tareaCrearEditarView); // Cambio la vista
                 });
 
-                idBorrarTarea.setOnClickListener(v -> {
+                idBorrarTarea.setOnClickListener(v -> { // Si pulsa en eliminar tarea...
 
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
                     alertDialogBuilder.setTitle(idioma_tareas.getPregunta_borrar_tarea());
@@ -88,16 +95,16 @@ public class TareaVerView extends Fragment {
                             .setPositiveButton(idioma_tareas.getBorrar_tarea(), new DialogInterface.OnClickListener() {
 
                                 @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
+                                public void onClick(DialogInterface dialogInterface, int i) { // Si pulsa en aceptar...
                                     new Thread(() -> {
 
-                                        String mensaje_resultado = tarea_controlador.borrar_tarea(tarea.getIdTarea());
+                                        String mensaje_resultado = tarea_controlador.borrar_tarea(tarea.getIdTarea()); // Borra la tarea
 
-                                        if (mensaje_resultado.isEmpty()) {
+                                        if (mensaje_resultado.isEmpty()) { // Si el mensaje está vacío es que lo eliminó
 
                                             requireActivity().runOnUiThread(() -> {
-                                                Toast.makeText(getContext(), idioma_tareas.getTarea_borrada(), Toast.LENGTH_SHORT).show();
-                                                requireActivity().getSupportFragmentManager().popBackStack();
+                                                Toast.makeText(getContext(), idioma_tareas.getTarea_borrada(), Toast.LENGTH_SHORT).show(); // Muestro el mensaje con el resultado
+                                                requireActivity().getSupportFragmentManager().popBackStack(); // Cierro el PopUp
                                             });
                                         }
                                     }).start();
@@ -116,7 +123,7 @@ public class TareaVerView extends Fragment {
         idCerrarPanel.setOnClickListener(v -> {
 
             requireActivity().getSupportFragmentManager().popBackStack();
-        });
+        });  // Cierra el PopUp
 
         return view;
     }
