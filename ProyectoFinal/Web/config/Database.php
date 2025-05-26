@@ -6,9 +6,9 @@ class Database {
     private function __construct() {
 
         // Configuración de la base de datos
-        $host = 'tareaq-tareapp.db.tb-hosting.com';
-        $dbName = 'tareaq_tareapp';
-        $user = 'tareaq_tareappAdmin';
+        $host = 'tarear-tareapp.db.tb-hosting.com';
+        $dbName = 'tarear_tareapp';
+        $user = 'tarear_tareappAdmin';
         $password = 'RSgJW84VtG3BHMq';
 
         try { // Conexión con la base de datos

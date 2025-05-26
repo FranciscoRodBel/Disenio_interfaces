@@ -131,7 +131,6 @@ h1 {
 }
 .seccion_descarga p {
     font-size: 16px;
-    margin-bottom: 20px;
 }
 .boton {
     display: inline-block;
@@ -143,6 +142,7 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-decoration: none;
     transition: all 0.3s ease-in-out;
+    margin-top: 20px;
 }
 .boton:hover {
     background-color: var(--color-hover);

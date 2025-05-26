@@ -2,9 +2,9 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "TareApp"
-#define MyAppVersion "1.1"
+#define MyAppVersion "1.2"
 #define MyAppPublisher "Francisco Rodríguez"
-#define MyAppURL "https://www.tareapp.es/"
+#define MyAppURL "https://www.tareapp.blog/"
 #define MyAppExeName "TareApp.exe"
 #define MyAppAssocName MyAppName + ""
 #define MyAppAssocExt ".myp"

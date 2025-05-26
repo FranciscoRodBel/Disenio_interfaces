@@ -1,0 +1,46 @@
+
+
+Version:	3.50
+CmdLine:	D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\Instalador\TareApp.exe --l4j-debug
+JNI:		No
+WOW64:		Yes
+Working dir:	D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\Instalador\.
+Requires JDK:	No
+Requires 64-Bit: No
+Java min ver:	1.002.000
+Java max ver:	
+Substitute:	JAVA_HOME = 
+Substitute:	PATH = C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python38\Scripts\;C:\Program Files\Python38\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\ProgramData\ComposerSetup\bin;%JAVA_HOME%\bin;C:\Program Files\NVIDIA Corporation\NVIDIA app\NvDLISR;C:\Program Files\Git\cmd;C:\Program Files\AutoFirma\AutoFirma;C:\Users\Propietario\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\PhpStorm 2022.2.3\bin;;D:\php\;C:\ProgramData\ComposerSetup\bin;C:\Program Files\7-Zip;C:\Windows\System32\vendor\phpdocumentor\phpdocumentor\bin;C:\Users\Propietario\AppData\Roaming\Composer\vendor\bin;C:\Users\Propietario\AppData\Local\Programs\Microsoft VS Code\bin;E:\xampp\php;D:\flutter\bin;;C:\Program Files\Java\jdk-22\bin
+JRE paths:	;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python38\Scripts\;C:\Program Files\Python38\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\ProgramData\ComposerSetup\bin;%JAVA_HOME%\bin;C:\Program Files\NVIDIA Corporation\NVIDIA app\NvDLISR;C:\Program Files\Git\cmd;C:\Program Files\AutoFirma\AutoFirma;C:\Users\Propietario\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\PhpStorm 2022.2.3\bin;;D:\php\;C:\ProgramData\ComposerSetup\bin;C:\Program Files\7-Zip;C:\Windows\System32\vendor\phpdocumentor\phpdocumentor\bin;C:\Users\Propietario\AppData\Roaming\Composer\vendor\bin;C:\Users\Propietario\AppData\Local\Programs\Microsoft VS Code\bin;E:\xampp\php;D:\flutter\bin;;C:\Program Files\Java\jdk-22\bin
+Check launcher:	C:\Program Files\Common Files\Oracle\Java\javapath\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files (x86)\Common Files\Oracle\Java\javapath\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files\Python38\Scripts\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files\Python38\bin\javaw.exe (not found)
+Check launcher:	C:\windows\system32\bin\javaw.exe (not found)
+Check launcher:	C:\windows\bin\javaw.exe (not found)
+Check launcher:	C:\windows\System32\Wbem\bin\javaw.exe (not found)
+Check launcher:	C:\windows\System32\WindowsPowerShell\v1.0\bin\javaw.exe (not found)
+Check launcher:	C:\windows\System32\OpenSSH\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files\dotnet\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common\bin\javaw.exe (not found)
+Check launcher:	C:\ProgramData\ComposerSetup\bin\javaw.exe (not found)
+Check launcher:	D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\Instalador\%JAVA_HOME%\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files\NVIDIA Corporation\NVIDIA app\NvDLISR\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files\Git\cmd\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files\AutoFirma\AutoFirma\bin\javaw.exe (not found)
+Check launcher:	C:\Users\Propietario\AppData\Local\Microsoft\WindowsApps\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files\JetBrains\PhpStorm 2022.2.3\bin\javaw.exe (not found)
+Check launcher:	D:\php\bin\javaw.exe (not found)
+Check launcher:	C:\ProgramData\ComposerSetup\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files\7-Zip\bin\javaw.exe (not found)
+Check launcher:	C:\Windows\System32\vendor\phpdocumentor\phpdocumentor\bin\javaw.exe (not found)
+Check launcher:	C:\Users\Propietario\AppData\Roaming\Composer\vendor\bin\javaw.exe (not found)
+Check launcher:	C:\Users\Propietario\AppData\Local\Programs\Microsoft VS Code\bin\javaw.exe (not found)
+Check launcher:	E:\xampp\php\bin\javaw.exe (not found)
+Check launcher:	D:\flutter\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files\Java\jdk-22\bin\javaw.exe (OK)
+Version string: 1.022.000_002 / 64-Bit (OK)
+Launcher:	C:\Program Files\Java\jdk-22\bin\javaw.exe
+Launcher args:	-jar "D:\clase\2 DAM\Disenio_interfaces\ProyectoFinal\Instalador\TareApp.exe"
+Args length:	77/32768 chars
+Exit code:	0

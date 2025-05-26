@@ -31,7 +31,7 @@ public class BBDD_tareapp {
     */
     public ArrayList<HashMap<String, Object>> consultar(String consulta_consultar) {
 
-        String url = "https://tareapp.info/ejecutarConsulta";
+        String url = "https://tareapp.blog/ejecutarConsulta";
 
         Map<String, String> parametros = new HashMap<>();
         parametros.put("sql", consulta_consultar);
@@ -40,8 +40,6 @@ public class BBDD_tareapp {
         JSONObject json = APIRest.crearJSONObject(parametros);
 
         String respuesta = realizarPeticionPost(url, json.toString());
-
-        System.out.println("Respuesta server: "+respuesta);
 
         ArrayList<HashMap<String, Object>> lista = new ArrayList<>();
 
@@ -80,7 +78,7 @@ public class BBDD_tareapp {
     */
     public boolean insertar(String consulta_insertar) {
 
-        String url = "https://tareapp.info/ejecutarConsulta";
+        String url = "https://tareapp.blog/ejecutarConsulta";
 
         Map<String, String> parametros = new HashMap<>();
         parametros.put("sql", consulta_insertar);
@@ -108,7 +106,7 @@ public class BBDD_tareapp {
     */
     public boolean borrar(String consulta_borrar) {
 
-        String url = "https://tareapp.info/ejecutarConsulta";
+        String url = "https://tareapp.blog/ejecutarConsulta";
 
         Map<String, String> parametros = new HashMap<>();
         parametros.put("sql", consulta_borrar);
