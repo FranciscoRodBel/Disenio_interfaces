@@ -1,109 +1,96 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.example.tareapp.controlador;
 
-import com.example.tareapp.modelo.BBDD_tareapp;
 import com.example.tareapp.modelo.Lista;
+import com.example.tareapp.modelo.APIHelper;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
- * Clase que se encarga de controlar las listas
- *
- * @author Francisco
+ * Controlador de listas que interactúa con el backend
  */
 public class Lista_controlador {
-    
-    private final BBDD_tareapp bbdd_tareapp = new BBDD_tareapp();
-    
-    /**
-    * Función que permite crear una lista
-    * 
-    * @return Devuelve el resultado de crear la lista, si se consigue crear devuelve vacío y si no un mensaje de error
-    */
+
     public String crear_lista(String titulo) {
-    
         titulo = titulo.trim();
-        
-        if (titulo.length() > 50) return Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getTitulo_supera_caracteres(); // Si el título supera los 50 caracteres devuelve el error
-        
-        if (!Lista.es_titulo_valido(titulo)) return Idioma_controlador.getIdioma_seleccionado().getPagina_listas().getTitulo_no_valido(); // Comprueba que el texto sea válido
-        
-        String consulta = "INSERT INTO lista (titulo, email) VALUES ('"+titulo+"', '"+Usuario_controlador.getUsuario().getEmail()+"')";
-        
-        if(bbdd_tareapp.insertar(consulta)) {
-            
+
+        if (titulo.length() > 50)
+            return Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getTitulo_supera_caracteres();
+
+        if (!Lista.es_titulo_valido(titulo))
+            return Idioma_controlador.getIdioma_seleccionado().getPagina_listas().getTitulo_no_valido();
+
+        Map<String, String> parametros = Map.of("titulo", titulo);
+        JSONObject json = APIHelper.crearJSONObject(parametros);
+
+        JSONObject respuesta = APIHelper.post("/listas", json);
+
+        if (respuesta != null && !respuesta.has("error")) {
             return "";
-            
         } else {
-            
             return Idioma_controlador.getIdioma_seleccionado().getPagina_listas().getLista_no_creada();
         }
     }
-    
-    /**
-    * Función que permite actualizar una lista
-    * 
-    * @return Devuelve el resultado de actualizar la lista, si se consigue actuializar la lista devuelve vacío y si no un mensaje de error
-    */
+
     public String actualizar_lista(int idLista, String titulo) {
-        
         titulo = titulo.trim();
-        
-        if (titulo.length() > 50) return Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getTitulo_supera_caracteres(); // Si el título supera los 50 caracteres devuelve el error
-        
-        if (!Lista.es_titulo_valido(titulo)) return Idioma_controlador.getIdioma_seleccionado().getPagina_listas().getTitulo_no_valido(); // Comprueba que el texto sea válido
-        
-        String consulta = "UPDATE lista SET titulo = '"+titulo+"' WHERE idLista = '"+idLista+"';";
-        
-        if(bbdd_tareapp.insertar(consulta)) {
-            
+
+        if (titulo.length() > 50)
+            return Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getTitulo_supera_caracteres();
+
+        if (!Lista.es_titulo_valido(titulo))
+            return Idioma_controlador.getIdioma_seleccionado().getPagina_listas().getTitulo_no_valido();
+
+        Map<String, String> parametros = Map.of("titulo", titulo);
+        JSONObject json = APIHelper.crearJSONObject(parametros);
+
+        JSONObject respuesta = APIHelper.put("/listas/" + idLista, json);
+
+        if (respuesta != null && !respuesta.has("error")) {
             return "";
-            
         } else {
-            
             return Idioma_controlador.getIdioma_seleccionado().getPagina_listas().getLista_no_editada();
         }
-        
     }
-    
-    /**
-    * Función que permite recoger las listas
-    * 
-    * @return Devuelve las listas en un array de arrays asociativos, si no encuentra listas devuelve null
-    */
-    public static ArrayList<HashMap<String, Object>> recoger_listas() {
 
-        String consultaRecoger = "SELECT * FROM lista WHERE email = '" + Usuario_controlador.getUsuario().getEmail() + "' ORDER BY titulo ASC";
-        ArrayList<HashMap<String, Object>> resultados = new BBDD_tareapp().consultar(consultaRecoger);
-        
-        if (resultados.isEmpty()) {
-            
-            return null;
-            
-        } else {
-        
-            return resultados;
+    public static List<HashMap<String, Object>> recoger_listas() {
+        JSONArray array = APIHelper.getJSONArray("/listas");
+        List<HashMap<String, Object>> listas = new ArrayList<>();
+
+        if (array != null) {
+            for (int i = 0; i < array.length(); i++) {
+                try {
+                    JSONObject obj = array.getJSONObject(i);
+                    HashMap<String, Object> mapa = new HashMap<>();
+                    Iterator<String> keys = obj.keys();
+                    while (keys.hasNext()) {
+                        String key = keys.next();
+                        mapa.put(key, obj.get(key));
+                    }
+                    listas.add(mapa);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
         }
+        return listas;
     }
-    
-    /**
-    * Función que permite borrar una lista
-    * 
-    * @return Devuelve el resultado de borrar la lista, si se consigue borrar la lista devuelve vacío y si no un mensaje de error
-    */
+
+
+
     public String borrar_lista(int idLista) {
-        
-        String consulta = "DELETE FROM lista WHERE idLista = '" + idLista + "'";
-        
-        if(bbdd_tareapp.borrar(consulta)) {
-            
+        JSONObject respuesta = APIHelper.delete("/listas/" + idLista, null);
+
+        if (respuesta != null && !respuesta.has("error")) {
             return "";
-            
         } else {
-            
             return Idioma_controlador.getIdioma_seleccionado().getPagina_listas().getLista_no_borrada();
         }
     }

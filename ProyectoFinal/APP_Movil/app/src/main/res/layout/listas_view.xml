@@ -45,6 +45,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
+                    android:backgroundTint="@color/negro"
                     android:hint="@string/t_tulo_lista"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/negro"

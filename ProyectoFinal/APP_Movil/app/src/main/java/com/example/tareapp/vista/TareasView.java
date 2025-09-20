@@ -31,7 +31,9 @@ import com.example.tareapp.modelo.Tarea;
 import com.example.tareapp.modelo.idioma.Pagina_tareas;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Clase para la vista de tareas
@@ -50,6 +52,7 @@ public class TareasView extends Fragment {
     private TareaAdapter tareaAdapter;
     private ArrayList<Tarea> listaTareas;
     private int idListaParaSeleccionar = -1;
+    private final Tarea_controlador tarea_controlador = new Tarea_controlador();
     private Pagina_tareas pagina_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
 
     @SuppressLint("MissingInflatedId")
@@ -142,7 +145,7 @@ public class TareasView extends Fragment {
 
         new Thread(() -> {
 
-            ArrayList<HashMap<String, Object>> listas = Lista_controlador.recoger_listas(); // Recojo las listas del usuario de la BBDD
+            ArrayList<HashMap<String, Object>> listas = (ArrayList<HashMap<String, Object>>) Lista_controlador.recoger_listas(); // Recojo las listas del usuario de la BBDD
 
             requireActivity().runOnUiThread(() -> {
 
@@ -199,47 +202,84 @@ public class TareasView extends Fragment {
         }).start();
     }
 
-    private void actualizarPanelTareas(int idListaSeleccionada) { // Función para mostrar todas las tareas de la lista seleccionada
-
+    private void actualizarPanelTareas(int idListaSeleccionada) {
         new Thread(() -> {
 
-            SharedPreferences prefs = requireContext().getSharedPreferences("filtros", 0); // Recojo los filtros
+            // Recojo filtros de SharedPreferences
+            SharedPreferences prefs = requireContext().getSharedPreferences("filtros", 0);
+            boolean filtroCompletadas = prefs.getBoolean("completadas", true);
+            boolean filtroIncompletas = prefs.getBoolean("incompletas", true);
+            boolean filtroBaja = prefs.getBoolean("baja", true);
+            boolean filtroMedia = prefs.getBoolean("media", true);
+            boolean filtroAlta = prefs.getBoolean("alta", true);
 
-            String consulta = Tarea_controlador.generarConsulta(
-                    idListaSeleccionada
-                    , prefs.getBoolean("completadas", true)
-                    , prefs.getBoolean("incompletas", true)
-                    , prefs.getBoolean("baja", true)
-                    , prefs.getBoolean("media", true)
-                    , prefs.getBoolean("alta", true)
-                    , prefs.getInt("orden", 0)); // Genero la consulta
+            // Recojo todas las tareas de la lista seleccionada
+            List<HashMap<String, Object>> tareasRecibidas = tarea_controlador.recoger_tareas(idListaSeleccionada);
+            List<Tarea> tareasFiltradas = new ArrayList<>();
 
-            ArrayList<HashMap<String, Object>> tareas = Tarea_controlador.recoger_tareas(consulta); // Recojo las tareas de la lista de la bbdd
+            if (tareasRecibidas != null) {
+                for (HashMap<String, Object> fila : tareasRecibidas) {
 
-            requireActivity().runOnUiThread(() -> {
+                    int idTarea = (int) fila.get("idTarea");
+                    int completada = (int) fila.get("completada");
+                    String titulo = (String) fila.get("titulo");
+                    int prioridad = (int) fila.get("prioridad");
+                    String fecha = (String) fila.get("fecha");
+                    String descripcion = (String) fila.get("descripcion");
+                    int idLista = (int) fila.get("idLista");
 
-                listaTareas.clear(); // Vacío las listas
-
-                if (tareas != null) {
-
-                    for (HashMap<String, Object> fila : tareas) { // Recorro las tareas y las añado al array
-
-                        int idTarea = (int) fila.get("idTarea");
-                        int completada = (int) fila.get("completada");
-                        String titulo = (String) fila.get("titulo");
-                        int prioridad = (int) fila.get("prioridad");
-                        String fecha = (String) fila.get("fecha");
-                        String descripcion = (String) fila.get("descripcion");
-                        int idLista = (int) fila.get("idLista");
-
-                        listaTareas.add(new Tarea(idTarea, completada, titulo, prioridad, fecha, descripcion, idLista));
+                    // Filtro por estado de completada
+                    if ((completada == 1 && !filtroCompletadas) || (completada == 0 && !filtroIncompletas)) {
+                        continue;
                     }
-                }
 
-                tareaAdapter.notifyDataSetChanged(); // Notifico que cambió el panel para que lo actualice y muestre las tareas
+                    // Filtro por prioridad
+                    if ((prioridad == 1 && !filtroBaja) ||
+                            (prioridad == 2 && !filtroMedia) ||
+                            (prioridad == 3 && !filtroAlta)) {
+                        continue;
+                    }
+
+                    tareasFiltradas.add(new Tarea(idTarea, completada, titulo, prioridad, fecha, descripcion, idLista));
+                }
+            }
+
+            // Recojo orden de SharedPreferences (0=fecha asc, 1=fecha desc, 2=título asc, 3=título desc, 4=prioridad asc, 5=prioridad desc)
+            int orden = prefs.getInt("orden", 0);
+
+            // Aplico ordenación
+            Collections.sort(tareasFiltradas, (t1, t2) -> {
+                switch (orden) {
+                    case 0: // Fecha ASC
+                        return t1.getFecha().compareTo(t2.getFecha());
+                    case 1: // Fecha DESC
+                        return t2.getFecha().compareTo(t1.getFecha());
+                    case 2: // Título ASC
+                        return t1.getTitulo().compareToIgnoreCase(t2.getTitulo());
+                    case 3: // Título DESC
+                        return t2.getTitulo().compareToIgnoreCase(t1.getTitulo());
+                    case 4: // Prioridad ASC
+                        return Integer.compare(t1.getPrioridad(), t2.getPrioridad());
+                    case 5: // Prioridad DESC
+                        return Integer.compare(t2.getPrioridad(), t1.getPrioridad());
+                    default:
+                        return 0;
+                }
             });
+
+
+            // Actualizo UI
+            List<Tarea> finalTareasFiltradas = tareasFiltradas;
+            requireActivity().runOnUiThread(() -> {
+                listaTareas.clear();
+                listaTareas.addAll(finalTareasFiltradas);
+                tareaAdapter.notifyDataSetChanged();
+            });
+
         }).start();
     }
+
+
 
     @Override
     public void onResume() {

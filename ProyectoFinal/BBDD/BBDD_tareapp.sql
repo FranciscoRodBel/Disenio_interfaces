@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `tarear_tareapp`.`lista` (
   `titulo` VARCHAR(50) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`idLista`),
-  INDEX `fk_lista_usuario_idx` (`email` ASC) VISIBLE,
+  INDEX `fk_lista_usuario_idx` (`email` ASC) ,
   CONSTRAINT `fk_lista_usuario`
     FOREIGN KEY (`email`)
     REFERENCES `tarear_tareapp`.`usuario` (`email`)
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `tarear_tareapp`.`tarea` (
   `descripcion` VARCHAR(500) NOT NULL,
   `idLista` INT NOT NULL,
   PRIMARY KEY (`idTarea`),
-  INDEX `fk_tarea_lista1_idx` (`idLista` ASC) VISIBLE,
+  INDEX `fk_tarea_lista1_idx` (`idLista` ASC) ,
   CONSTRAINT `fk_tarea_lista1`
     FOREIGN KEY (`idLista`)
     REFERENCES `tarear_tareapp`.`lista` (`idLista`)
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `tarear_tareapp`.`nota` (
   `color` VARCHAR(45) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`idNota`),
-  INDEX `fk_nota_usuario1_idx` (`email` ASC) VISIBLE,
+  INDEX `fk_nota_usuario1_idx` (`email` ASC) ,
   CONSTRAINT `fk_nota_usuario1`
     FOREIGN KEY (`email`)
     REFERENCES `tarear_tareapp`.`usuario` (`email`)

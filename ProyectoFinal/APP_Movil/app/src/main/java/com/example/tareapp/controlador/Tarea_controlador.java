@@ -1,102 +1,131 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.example.tareapp.controlador;
 
-import com.example.tareapp.modelo.BBDD_tareapp;
+import com.example.tareapp.modelo.APIHelper;
 import com.example.tareapp.modelo.Tarea;
 import com.example.tareapp.modelo.idioma.Pagina_tareas;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
- *  Clase controladora de las tareas, con funciones para hacer el CRUD de las tareas
- * 
- * @author Francisco
+ * Controlador de tareas usando backend REST con token automático
  */
 public class Tarea_controlador {
-    
-    private final BBDD_tareapp bbdd_tareapp = new BBDD_tareapp(); // Recojo la bbdd
-    private static String consulta; // Guardo la consulta para que al actualizar el panel se mantengan los filtros
 
     /**
-    * Función que permite crear tareas
-    * 
-    * @return Devuelve el resultado de crear la tarea, si se consigue crear devuelve vacío y si no un mensaje de error
-    */
+     * Crear tarea
+     */
     public String crear_tarea(String titulo, int prioridad, String fecha, String descripcion, int idLista) {
 
         Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
 
-        if (idLista == 0) {
-            return idioma_tareas.getLista_no_seleccionada();
-        }
+        if (idLista == 0) return idioma_tareas.getLista_no_seleccionada();
 
         Object resultado = validarTarea(titulo, prioridad, fecha, descripcion, idLista);
-
-        if (resultado instanceof String) {
-
-            return (String) resultado;
-        }
+        if (resultado instanceof String) return (String) resultado;
 
         Tarea tarea = (Tarea) resultado;
 
-        String consulta = "INSERT INTO tarea (titulo, prioridad, fecha, descripcion, idLista) VALUES ('" + tarea.getTitulo() + "', '" + tarea.getPrioridad() + "', '" + tarea.getFecha() + "', '" + tarea.getDescripcion() + "', '" + tarea.getIdLista() + "')";
+        Map<String, String> parametros = Map.of(
+                "titulo", tarea.getTitulo(),
+                "prioridad", String.valueOf(tarea.getPrioridad()),
+                "fecha", tarea.getFecha(),
+                "descripcion", tarea.getDescripcion(),
+                "idLista", String.valueOf(tarea.getIdLista())
+        );
 
-        return bbdd_tareapp.insertar(consulta) ? "" : idioma_tareas.getTarea_no_creada();
+        JSONObject json = APIHelper.crearJSONObject(parametros);
+        JSONObject respuesta = APIHelper.post("/tareas", json);
+
+        if (respuesta != null && !respuesta.has("error")) return "";
+        else return idioma_tareas.getTarea_no_creada();
     }
-    
+
     /**
-    * Función que permite recoger todas las tareas de un usuario
-    * 
-    * @return Devuelve un array de arrays asociativos con el nombre de la propiedad y su valor.
-    */
-    public static ArrayList<HashMap<String, Object>> recoger_tareas(String consulta) {
-    
-        if (consulta.isEmpty()) { // Si viene vacío es porque simplemente se ha actualizado el panel por actualización de las listas o tareas creadas, actualizadas, borradas...
-            
-            consulta = Tarea_controlador.consulta; // Recoge la consulta de filtro que se guardó
-                    
-        } else { // Si envía una consulta es poque ha cambiado el filtro
-            
-            Tarea_controlador.consulta = consulta; // Guarda la nueva consulta
+     * Recoger todas las tareas de una lista
+     */
+    public static List<HashMap<String, Object>> recoger_tareas(int idLista) {
+        JSONArray jsonTareas = APIHelper.getJSONArray("/tareas?idLista=" + idLista); // backend puede filtrar por idLista
+        List<HashMap<String, Object>> tareas = new ArrayList<>();
+
+        if (jsonTareas != null) {
+            try {
+                JSONArray array = new JSONArray(jsonTareas.toString());
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject obj = array.getJSONObject(i);
+                    HashMap<String, Object> mapa = new HashMap<>();
+                    Iterator<String> keys = obj.keys();
+                    while (keys.hasNext()) {
+                        String key = keys.next();
+                        try {
+                            mapa.put(key, obj.get(key));
+                        } catch (JSONException ignored) {}
+                    }
+                    tareas.add(mapa);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
-        
-        ArrayList<HashMap<String, Object>> resultados = new BBDD_tareapp().consultar(consulta); // Recoge los datos
-        
-        if (resultados.isEmpty()) { // Si no hay tareas creadas devuleve null y si no los datos
-            
-            return null;
-            
-        } else {
-        
-            return resultados;
-        }
+        return tareas;
     }
-    
+
+
     /**
-    * Función que permite editar una tarea de un usuario
-    * 
-    * @return Devuelve el resultado de editar la tarea, si se consigue editar devuelve vacío y si no un mensaje de error
-    */
+     * Editar tarea
+     */
     public String editar_tarea(int idTarea, String titulo, int prioridad, String fecha, String descripcion, int idLista) {
 
         Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
 
         Object resultado = validarTarea(titulo, prioridad, fecha, descripcion, idLista);
-
-        if (resultado instanceof String) {
-            return (String) resultado;
-        }
+        if (resultado instanceof String) return (String) resultado;
 
         Tarea tarea = (Tarea) resultado;
 
-        String consulta = "UPDATE tarea SET titulo = '" + tarea.getTitulo() + "', prioridad = '" + tarea.getPrioridad() + "', fecha = '" + tarea.getFecha() + "', descripcion = '" + tarea.getDescripcion() + "', idLista = '" + tarea.getIdLista() + "' WHERE idTarea = " + idTarea;
+        Map<String, String> parametros = Map.of(
+                "titulo", tarea.getTitulo(),
+                "prioridad", String.valueOf(tarea.getPrioridad()),
+                "fecha", tarea.getFecha(),
+                "descripcion", tarea.getDescripcion(),
+                "idLista", String.valueOf(tarea.getIdLista())
+        );
 
-        return bbdd_tareapp.insertar(consulta) ? "" : idioma_tareas.getTarea_no_editada();
+        JSONObject json = APIHelper.crearJSONObject(parametros);
+        JSONObject respuesta = APIHelper.put("/tareas/" + idTarea, json);
+
+        if (respuesta != null && !respuesta.has("error")) return "";
+        else return idioma_tareas.getTarea_no_editada();
     }
 
+    /**
+     * Borrar tarea
+     */
+    public String borrar_tarea(int idTarea) {
+        JSONObject respuesta = APIHelper.delete("/tareas/" + idTarea, null);
+        if (respuesta != null && !respuesta.has("error")) return "";
+        else return Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getTarea_no_borrada();
+    }
+
+    /**
+     * Marcar como completada/incompleta
+     */
+    public boolean completarTarea(int idTarea, int completada) {
+        Map<String, String> parametros = Map.of("completada", String.valueOf(completada));
+        JSONObject json = APIHelper.crearJSONObject(parametros);
+        JSONObject respuesta = APIHelper.put("/tareas/" + idTarea, json);
+        return respuesta != null && !respuesta.has("error");
+    }
+
+    /**
+     * Validación de tarea
+     */
     private Object validarTarea(String titulo, int prioridad, String fecha, String descripcion, int idLista) {
 
         Pagina_tareas idioma_tareas = Idioma_controlador.getIdioma_seleccionado().getPagina_tareas();
@@ -117,79 +146,5 @@ public class Tarea_controlador {
         tarea.setFecha(tarea.cambiar_string_a_date());
 
         return tarea;
-    }
-
-    /**
-    * Función que permite borrar una tarea
-    * 
-    * @return Devuelve el resultado de borrar la tarea, si se consigue borrar devuelve vacío y si no un mensaje de error
-    */
-    public String borrar_tarea(int idTarea) {
-        
-        String consulta = "DELETE FROM tarea WHERE idTarea = '" + idTarea + "'";
-        
-        if(bbdd_tareapp.borrar(consulta)) {
-            
-            return ""; 
-            
-        } else {
-            
-            return Idioma_controlador.getIdioma_seleccionado().getPagina_tareas().getTarea_no_borrada();
-        }
-    }
-    
-    /**
-    * Función que permite marcar una tarea como completada o incompleta
-    * 
-    * @return Devuelve true si se consigue guardar la tarea y false si no se guarda
-    */
-    public Boolean completarTarea(int idTarea, int completada) {
-        
-        String consulta = "UPDATE tarea SET completada = '" + completada + "' WHERE idTarea = " + idTarea;
-
-        return bbdd_tareapp.insertar(consulta);
-    }
-    
-    /**
-    * Función que permite crear la consulta basandose en los filtros
-    * Se pasan como parámetros el estado de los filtros, si están marcados sí o no
-    * 
-    * @return Devuelve la consulta generada
-    */
-    public static String generarConsulta(int idLista, boolean completadas, boolean incompletas, boolean prioridadBaja, boolean prioridadMedia, boolean prioridadAlta, int ordenacion) {
-    
-        String consulta = "SELECT * FROM tarea WHERE idLista = '"+ idLista +"'";
-        
-        // Filtro de si está marcada
-        if (completadas && !incompletas) consulta += "AND (completada = 1) ";
-        if (!completadas && incompletas) consulta += "AND (completada = 0) ";
-        if (completadas && incompletas) consulta += "AND (completada = 1 OR completada = 0) ";
-       
-        // Filtro de la prioridad
-        if (prioridadBaja && !prioridadMedia && !prioridadAlta) consulta += "AND (prioridad = 1) ";
-        if (!prioridadBaja && prioridadMedia && !prioridadAlta) consulta += "AND (prioridad = 2) ";
-        if (!prioridadBaja && !prioridadMedia && prioridadAlta) consulta += "AND (prioridad = 3) ";
-        if (prioridadBaja && prioridadMedia && !prioridadAlta) consulta += "AND (prioridad = 1 OR prioridad = 2) ";
-        if (!prioridadBaja && prioridadMedia && prioridadAlta) consulta += "AND (prioridad = 2 OR prioridad = 3) ";
-        if (prioridadBaja && !prioridadMedia && prioridadAlta) consulta += "AND (prioridad = 3 OR prioridad = 1) ";
-        if (prioridadBaja && prioridadMedia && prioridadAlta) consulta += "AND (prioridad = 1 OR prioridad = 2 OR prioridad = 3) ";
-        
-        // Filtro del orden de las tareas
-        switch (ordenacion) {
-            case 0:
-                consulta += " ORDER BY titulo ASC";
-                break;
-            case 1:
-                consulta += " ORDER BY titulo DESC";
-                break;
-            case 3:
-                consulta += " ORDER BY fecha DESC";
-                break;
-            default:
-                consulta += " ORDER BY fecha ASC";
-                break;
-        }
-        
-        return consulta;
     }
 }

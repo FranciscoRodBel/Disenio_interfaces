@@ -90,7 +90,7 @@ public class NotasView extends Fragment {
     public void actualizar_panel_notas() {
         new Thread(() -> {
 
-            List<HashMap<String, Object>> notas = Nota_controlador.recoger_Notas(); // Recojo todas las notas
+            List<HashMap<String, Object>> notas = Nota_controlador.recoger_notas(); // Recojo todas las notas
 
             requireActivity().runOnUiThread(() -> {
 

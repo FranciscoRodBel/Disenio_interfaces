@@ -4,6 +4,9 @@
  */
 package com.example.tareapp.modelo;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Pattern;
@@ -20,7 +23,13 @@ public class Usuario {
     private String email;
     private String contrasenia;
     private String idioma_seleccionado;
-    
+    private String token;
+
+    public Usuario(String email) {
+        this.email = email;
+    }
+
+
     /**
     * Constructor de la tarea con el idioma, es el que se utiliza para guardar el objeto del usuario con la sesión iniciada
     * 
@@ -55,7 +64,15 @@ public class Usuario {
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
-    
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public String getIdioma_seleccionado() {
         return idioma_seleccionado;
     }
@@ -117,22 +134,35 @@ public class Usuario {
     * 
     * @return Devuelvo el objeto usuario
     */
-    public static Usuario recoger_usuario(String email) {
+    public static Usuario recoger_usuario(String token) {
+        if (token == null || token.isEmpty()) return null;
 
-        String consulta = "SELECT * FROM usuario WHERE email = '"+ email +"'";
-        ArrayList<HashMap<String, Object>> resultados = new BBDD_tareapp().consultar(consulta); // Recojo el email
+        // Llamada GET a /usuario con header Authorization
+        JSONObject respuesta = APIHelper.getJSONObject("/usuario");
 
-        if (!resultados.isEmpty()) { // Si hay resultados...
-
-            HashMap<String, Object> fila = resultados.get(0); // Recojo la primera fila, donde está el usuario que se busca
-
-            // Convierto la contraseña y el idioma en string
-            String contrasenia = (String) fila.get("contrasenia");
-            String idioma_seleccionado = (String) fila.get("idioma_seleccionado");
-
-            return new Usuario(email, contrasenia, idioma_seleccionado); // Devuelvo el usuario encontrado
+        if (respuesta != null && !respuesta.has("error")) {
+            try {
+                String email = respuesta.getString("email");
+                String idioma = respuesta.optString("idioma_seleccionado", "es");
+                Usuario usuario = new Usuario(email, "", idioma); // contraseña no se necesita
+                usuario.setToken(token);
+                return usuario;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
-
         return null;
     }
+
+    public static boolean emailExiste(String email) {
+        try {
+            JSONObject respuesta = APIHelper.getJSONObject("/usuario/email/" + email);
+            // Si devuelve null, no existe; si tiene "email", existe
+            return respuesta != null && respuesta.has("email");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

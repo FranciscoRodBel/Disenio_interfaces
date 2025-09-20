@@ -39,7 +39,6 @@ public class ConfirmarEmailDialog extends DialogFragment {
     private final Handler handler = new Handler(Looper.getMainLooper());
     private String email = "";
     private String contrasenia = "";
-    private String repetir_contrasenia = "";
 
     private OnRegistroExitosoListener listener;
     Pagina_inicio_registro pagina_inicio_registro = Idioma_controlador.getIdioma_seleccionado().getPagina_inicio_registro();
@@ -69,7 +68,6 @@ public class ConfirmarEmailDialog extends DialogFragment {
 
             email = getArguments().getString("email");
             contrasenia = getArguments().getString("contrasenia");
-            repetir_contrasenia = getArguments().getString("repetir_contrasenia");
         }
     }
 
@@ -132,7 +130,6 @@ public class ConfirmarEmailDialog extends DialogFragment {
             final String codigoIngresado = idInputCodigo.getText().toString();
             final String emailFinal = email;
             final String contraseniaFinal = contrasenia;
-            final String repetirContraseniaFinal = repetir_contrasenia;
             final int codigoFinal = codigo;
 
             new Thread(() -> {
@@ -150,7 +147,7 @@ public class ConfirmarEmailDialog extends DialogFragment {
 
                     if (contraseniaFinal != null) { // Si la contraseña no es null es que se está registrando el usuario
 
-                        mensaje_resultado = usuario_controlador.registrar_usuario(emailFinal, contraseniaFinal, repetirContraseniaFinal, Idioma_controlador.getIdioma_seleccionado().getIdioma()); // Registro al usuario
+                        mensaje_resultado = usuario_controlador.registrar_usuario(emailFinal, contraseniaFinal, Idioma_controlador.getIdioma_seleccionado().getIdioma()); // Registro al usuario
 
                         if (mensaje_resultado.isEmpty()) { // Si está vacío es que se registró
 
